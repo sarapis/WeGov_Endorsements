@@ -20,15 +20,17 @@
     <!-- Material Design -->
     <link rel="stylesheet" href="css/material-design-lite/dist/css/bootstrap-material-design.min.css">
     <link rel="stylesheet" href="http://zavoloklom.github.io/material-design-iconic-font/v1/css/material-design-iconic-font.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    
     <link rel="stylesheet" href="css/material-design-lite/dist/css/ripples.min.css">
     <link rel="stylesheet" href="css/material-design-lite/material.min.css">
+     <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="css/material-design-lite/material.min.js"></script>
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,600,700,300italic,400italic,600italic">
-    <script src="{{asset('script/jquery-1.10.2.min.js')}}"></script>
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="css/material-design-lite/material.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -45,9 +47,12 @@
 
     </div>
 
-    <script src="script/jquery-migrate-1.2.1.min.js"></script>
     <script src="script/jquery-ui.js"></script>
-    <script src="script/bootstrap.min.js"></script>
+<!--     <script src="script/bootstrap.min.js"></script> -->
+    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    
     
 <!--     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQxoWuYlm64PCZk4GVupcugr-MC9odMgY&callback=initMap">
     </script> -->

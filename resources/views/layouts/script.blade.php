@@ -1,4 +1,4 @@
-    <script src="script/jquery-1.10.2.min.js"></script>
+
     <script src="script/jquery-migrate-1.2.1.min.js"></script>
     <script src="script/jquery-ui.js"></script>
     <script src="script/bootstrap.min.js"></script>

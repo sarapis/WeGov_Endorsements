@@ -126,7 +126,42 @@
                         </div>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="projects">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+                <div role="tabpanel" class="tab-pane" id="projects">
+
+                <p>Projects implemented by the <b>{{$organization->name}}</b></p>
+                <div class="box">
+                    <!-- /.box-header -->
+                    @if($organization->projects!='')
+                    <div class="box-body no-padding">
+                        <table id="example2" class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <th>Project Description</th>
+                                    <th class="text-center">Commitments (#)</th>
+                                    <th class="text-right" style="padding-right: 50px;">Cost ($)</th>
+                                    <th>Budgetline (click)</th>
+                                    <th>ID (click)</th>
+                                </tr>
+                                @foreach($organization_projects as $organization_project)
+                                <tr>
+                                  <td>{{$organization_project->project_description}}</td>
+                                  <td class="text-center">
+                                    {{sizeof(explode(",", $organization_project->project_commitments))}}
+                                  </td>
+                                  <td class="text-right" style="padding-right: 50px;">${{number_format($organization_project->project_totalcost)}}</td>
+                                  <td></td>
+                                  <td><a href="projects_{{$organization_project->project_recordid}}">{{$organization_project->project_projectid}}</a></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                    @else
+                     <div class="alert alert-danger"><strong>No Projects!</strong></div>
+                    @endif
+                  </div>
+                </div>
                 <div role="tabpanel" class="tab-pane" id="money">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
                 <div role="tabpanel" class="tab-pane" id="services">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passage..</div>
                 <div role="tabpanel" class="tab-pane" id="people">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passage..</div>
@@ -138,6 +173,7 @@
 </div>
 @include('layouts.script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
+
 <script type="text/javascript">
 
     var locations = <?php print_r(json_encode($organization_map)) ?>;
@@ -175,5 +211,18 @@
     });
 
 
+</script>
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
 </script>
 @endsection

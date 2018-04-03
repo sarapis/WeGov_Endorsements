@@ -203,3 +203,9 @@ footer.mdl-mini-footer{
     text-align: center;
     margin-right: 30px;
 }
+#projects{
+	padding: 30px;
+}
+a{
+   color: #1d00bf;
+}

@@ -1,0 +1,205 @@
+body {
+	background-color: #f9f9f9;
+	font-family: Roboto;
+}
+p{
+	font-family: Roboto;
+	font-size: 18px;
+	color: rgba(0, 31, 59, 0.85);
+}
+a.mdl-badge {
+	font-style: normal;
+	color: white;
+	font-size: 13px;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+footer.mdl-mini-footer{
+	background-color: #042c3d;
+	text-align: center;
+	min-height: 260px;
+}
+.mdl-layout__header {
+	background-color: #042c3d;
+	border: solid 1px #042c3d;
+	box-shadow: none;
+}
+.demo-ribbon {
+  	width: 100%;
+  	height: 75.8px;
+  	flex-shrink: 0;
+	background-color: #042c3d;
+	border: solid 1px #042c3d;
+}
+
+.demo-main {
+  margin-top: -92.8px;
+  flex-shrink: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/*.demo-header .mdl-layout__header-row {
+  padding-left: 40px;
+}*/
+
+.demo-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-bottom: 0;
+}
+
+.demo-content {
+  border-radius: 2px;
+  padding: 40px 0px;
+  margin-bottom: 0px;
+  padding-bottom: 0;
+}
+.mdl-layout__tab-bar-button.mdl-layout__tab-bar-left-button{
+	display: none;
+}
+.mdl-layout__tab-bar-button.mdl-layout__tab-bar-right-button{
+	display: none;
+}
+.mdl-layout__tab-bar {
+	padding-left: 0;
+}
+.demo-layout.is-small-screen .demo-content {
+  padding: 40px 28px;
+}
+
+.demo-content h3 {
+  margin-top: 48px;
+}
+
+.demo-footer {
+  padding-left: 40px;
+}
+
+.demo-footer .mdl-mini-footer--link-list a {
+  font-size: 13px;
+}
+.page-title {
+  font-family: sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #042c3d;
+  padding-left: 56px;
+  padding-right: 62px;
+  margin: 0;
+}
+.text-title-tages{
+	color: #02435f;
+	font-size: 12px;
+}
+.menu-bar{
+	margin: 0;
+	padding: 20px;
+}
+.menu-bar.row{
+	margin-left: -20px !important;
+	margin-right: -20px !important;
+}
+
+.menu-title-tag{
+	width: 130px;
+	height: 30px;
+	display: inline-block;
+	text-align: center;
+}
+.menu-title-tag:hover{
+	border-bottom: 2px solid #f09731;
+}
+.menu-title-tag.active{
+	border-bottom: 2px solid #f09731;
+}
+.menu-title{
+	font-size: 16px;
+	font-weight: 500;
+	color:  #8699a2 !important;
+}
+.menu-title:hover{
+	color:  #042c3d;
+}
+.menu-title.active{
+	color:  #042c3d;
+}
+.box{
+	border-top: 0; 
+	border-radius: 2px;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+}
+.box-header{
+	padding: 24px 24px 24px 56px;
+	background-color: #f5f6f7;
+  	border-bottom: 2px solid #d2d6de;
+}
+.box-title{
+	font-size: 24px !important;
+	color: #042c3d;
+}
+.box-body-operating{
+	color: #095372;
+}
+.box-body-budget{
+	color: #ff9f1d;
+}
+.text-feed{
+	padding-top: 122px;
+    font-family: Roboto;
+  	font-size: 16px;
+  	font-weight: normal;
+  	font-style: italic;
+  	font-stretch: normal;
+  	line-height: 1.19;
+  	letter-spacing: normal;
+  	text-align: center;
+  	color: #4870bf;
+}
+.btn-tweet{
+	width: 197.2px;
+  	height: 74.5px;
+  	border-radius: 2px;
+  	background-color: #07aaec;
+  	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  	color: white !important;
+  	text-transform: none;
+  	margin-top: 83px;
+    margin-bottom: 75px;
+}
+.btn-facebook{
+	width: 197.2px;
+  	height: 74.5px;
+  	border-radius: 2px;
+  	background-color: #4870bf;
+  	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  	color: white !important;
+  	text-transform: none;
+  	margin-top: 83px;
+    margin-bottom: 75px;
+}
+.btn-link{
+	color: #072b40;
+}
+.nav-tabs { border-bottom: 2px solid #f1f1f1; padding-left: 25px;}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
+.nav-tabs > li > a { border: none; color: #8699a2 !important; font-size: 16px; font-weight: 500;font-family: Roboto;}
+.nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #042c3d !important; background: transparent; font-size: 16px;font-weight: 500;font-family: Roboto;}
+.nav-tabs > li > a::after { content: ""; background: #f09731; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+.nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
+.tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #000; }
+.tab-pane { padding: 15px 0; }
+.tab-content{padding:20px}
+.nav-tabs {
+    background: #ffffff;
+}
+.nav-tabs>li {
+    width: 100px;
+    text-align: center;
+    margin-right: 30px;
+}

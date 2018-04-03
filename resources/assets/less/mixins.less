@@ -1,0 +1,49 @@
+a,button {
+	&:focus,
+	&:active {
+		outline: 0;
+		.box-shadow(0);
+	}
+}
+
+.vendorize(@property, @value) {
+	-webkit-@{property}: @value;
+	-khtml-@{property}: @value;
+	-moz-@{property}: @value;
+	-ms-@{property}: @value;
+	-o-@{property}: @value;
+	@{property}: @value;
+}
+
+.rotate (@degree) {
+	-webkit-transform: rotate(@degree);
+	-moz-transform: rotate(@degree);
+	-ms-transform: rotate(@degree);
+	-o-transform: rotate(@degree);
+	transform: rotate(@degree);
+}
+
+.trasition-all (@speed) {
+	-webkit-transition: all @speed ease-in-out;
+	-moz-transition: all @speed ease-in-out;
+	-ms-transition: all @speed ease-in-out;
+	-o-transition: all @speed ease-in-out;
+	transition: all @speed ease-in-out;
+}
+
+.box-shadow (@shadow) {
+	-webkit-box-shadow: @shadow;
+	-moz-box-shadow: @shadow;
+	-ms-box-shadow: @shadow;
+	-o-box-shadow: @shadow;
+	box-shadow: @shadow;
+}
+
+.fade-out-animation() {
+	.vendorize(transition, all .15s ease-in-out);
+    .vendorize(transform, rotate(360deg));
+	&:active {
+		.vendorize(transform, rotate(180deg));
+		opacity: 0 !important;
+	}
+}

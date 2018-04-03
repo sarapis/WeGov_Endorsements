@@ -49,15 +49,15 @@
                                             <div class="row" style="padding: 40px;">
                                                 <div class="col-sm-6">
                                                     <h5 class="box-body-operating">NYC Services</h5>
-                                                    <h2 class="box-body-operating"><b>@if($original_organization->services!='')
+                                                    <h3 class="box-body-operating"><b>@if($original_organization->services!='')
                                                         {{sizeof(explode(",", $original_organization->services))}}
-                                                        @else 0 @endif</b></h2>
+                                                        @else 0 @endif</b></h3>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <h5 class="box-body-operating">Capital Projects</h5>
-                                                    <h2 class="box-body-operating"><b>@if($organization->projects!=null)
+                                                    <h3 class="box-body-operating"><b>@if($organization->projects!=null)
                                                         {{sizeof(explode(",", $organization->projects))}}
-                                                        @else 0 @endif</b></h2>
+                                                        @else 0 @endif</b></h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -70,11 +70,11 @@
                                             <div class="row" style="padding: 40px;">
                                                 <div class="col-sm-6">
                                                     <h5 class="box-body-budget">Expense Budget</h5>
-                                                    <h2 class="box-body-budget"><b>${{$organization->total_project_cost}}</b></h2>
+                                                    <h3 class="box-body-budget"><b>${{$organization->total_project_cost}}</b></h3>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <h5 class="box-body-budget">Capital Budgets</h5>
-                                                    <h2 class="box-body-budget"><b>${{$organization->expenses_budgets}}</b></h2>
+                                                    <h3 class="box-body-budget"><b>${{$organization->expenses_budgets}}</b></h3>
                                                 </div>
                                             </div>
                                         </div>

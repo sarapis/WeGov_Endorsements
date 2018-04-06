@@ -25,7 +25,7 @@
 						$servername = "localhost";
 						$username = "root";
 						$password = "root";
-						$dbname = "nycbudgets";
+						$dbname = "mygov";
 						$sql = '';
 
 						// Create connection
@@ -53,7 +53,7 @@
 						// To get this value, look at the Authentication notes in the API docs.
 						// Example: $ curl https://api.airtable.com/v0/appZZ12rVdg6qzyC/foo...
 						// .. where "appZZ12rVdg6qzyC" is the App ID.
-						define ( 'AIRTABLE_APP_ID', 'appd1eQuF0gFcOMsV' );
+						define ( 'AIRTABLE_APP_ID', 'app2sk6MlzyikwbzL' );
 						
 						// Airtable API URL.
 						// Default: https://api.airtable.com/v0/
@@ -153,7 +153,7 @@
 								$services = implode(",", $record['fields']['services']);
 
 								$sql = "INSERT INTO details (detail_id, value, detail_type, organizations, locations, services)
-								VALUES ( '{$record['id']}', '{$value}', '{$record['fields']['detail type']}', '{$organizations}', '{$locations}', '{$services}');";
+								VALUES ( '{$record['id']}', '{$value}', '{$record['fields']['detail_type']}', '{$organizations}', '{$locations}', '{$services}');";
 
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";
@@ -166,7 +166,7 @@
 						}
 						date_default_timezone_set('UTC');
 						$date = date("Y/m/d H:i:s");
-						$sql = "UPDATE contact_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Details'";
+						$sql = "UPDATE services_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Details'";
 						if ($conn->query($sql) === TRUE) {
 						    echo "record updated successfully";
 						} else {

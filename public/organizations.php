@@ -25,7 +25,7 @@
 						$servername = "localhost";
 						$username = "root";
 						$password = "root";
-						$dbname = "nycbudgets";
+						$dbname = "mygov";
 						$sql = '';
 
 						// Create connection
@@ -153,13 +153,11 @@
 								$contacts = implode(",", $record['fields']['Contacts']);		
 								$description = str_replace("'","\'",$record['fields']['short description']);
 								$description =  mb_convert_encoding($description, "HTML-ENTITIES", "UTF-8");
-								$services = implode(",", $record['fields']['services']);
-								$phones = implode(",", $record['fields']['phones']);
-								$locations = implode(",", $record['fields']['locations']);
-								$contact = str_replace("'","\'", $record['fields']['contact']);
+								$services = str_replace("'","\'", $record['fields']['services']);
+								$main_phone = implode(",", $record['fields']['main_phone']);
+								$main_address = implode(",", $record['fields']['main_address']);
 								$details = implode(",", $record['fields']['details']);
 								$program = implode(",", $record['fields']['program']);
-								$sources = implode(",", $record['fields']['Sources']);
 								$logo = '';
 								foreach ($record['fields']['Logo'] as $key => $image) {
 									try {
@@ -170,8 +168,8 @@
 								}
 								$services_count= sizeof(explode(",", $services));
 
-								$sql = "INSERT INTO organizations (organization_id, organizations_id, alternate_name, name, dedupe, type, child_of, contacts, website, description, logo, checkbook, internalnotes, contacts_link, services, phones, locations, contact, details, program, email, legal_status, tax_status, tax_id, year_incorporated, sources, services_count)
-								VALUES ('{$record['id']}', '{$organizations_id}', '{$alternate_name}', '{$name}', '{$record['fields']['dedupe']}', '{$record['fields']['Type']}', '{$record['fields']['Child of']}', '{$contacts}', '{$record['fields']['website']}',  '{$description}', '{$logo}', '{$record['fields']['checkbook']}', '{$record['fields']['internalnotes']}', '{$record['fields']['contacts link']}', '{$services}', '{$phones}', '{$locations}', '{$contact}', '{$details}', '{$program}', '{$record['fields']['email']}', '{$record['fields']['legal_status']}', '{$record['fields']['tax_status']}', '{$record['fields']['tax_id']}', '{$record['fields']['year_incorporated']}', '{$sources}', '{$services_count}');";
+								$sql = "INSERT INTO organizations (organization_id, organizations_id, alternate_name, name, dedupe, type, child_of, contacts, website, description, logo, checkbook, internalnotes, contacts_link, services, main_phone, main_address, details, program, email, legal_status, tax_status, tax_id, year_incorporated, Twitter, Facebook, RSS, services_count)
+								VALUES ('{$record['id']}', '{$organizations_id}', '{$alternate_name}', '{$name}', '{$record['fields']['dedupe']}', '{$record['fields']['Type']}', '{$record['fields']['Child of']}', '{$contacts}', '{$record['fields']['website']}',  '{$description}', '{$logo}', '{$record['fields']['checkbook']}', '{$record['fields']['internalnotes']}', '{$record['fields']['contacts link']}', '{$services}', '{$main_phone}', '{$main_address}', '{$details}', '{$program}', '{$record['fields']['email']}', '{$record['fields']['legal_status']}', '{$record['fields']['tax_status']}', '{$record['fields']['tax_id']}', '{$record['fields']['year_incorporated']}', '{$record['fields']['Twitter']}', '{$record['fields']['Facebook']}', '{$record['fields']['RSS']}', '{$services_count}');";
 
 								
 

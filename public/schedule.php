@@ -25,7 +25,7 @@
 						$servername = "localhost";
 						$username = "root";
 						$password = "root";
-						$dbname = "nycbudgets";
+						$dbname = "mygov";
 						$sql = '';
 
 						// Create connection
@@ -53,7 +53,7 @@
 						// To get this value, look at the Authentication notes in the API docs.
 						// Example: $ curl https://api.airtable.com/v0/appZZ12rVdg6qzyC/foo...
 						// .. where "appZZ12rVdg6qzyC" is the App ID.
-						define ( 'AIRTABLE_APP_ID', 'appd1eQuF0gFcOMsV' );
+						define ( 'AIRTABLE_APP_ID', 'app2sk6MlzyikwbzL' );
 						
 						// Airtable API URL.
 						// Default: https://api.airtable.com/v0/
@@ -89,7 +89,7 @@
 
 						$airtable_url = AIRTABLE_API_URL . AIRTABLE_APP_ID;
 							// We're also specifying a table.
-							$airtable_url .= '/Schedule';
+							$airtable_url .= '/schedule';
 							// And we're specifying a view. The API will honor any filters 
 							// that have been applied to the view, as well as any sort
 							// order that has been applied to it.
@@ -149,10 +149,10 @@
 
 								$services = str_replace("'","\'",$record['fields']['services']);
 								$locations = implode(",", $record['fields']['locations']);
+								$x_phones = implode(",", $record['fields']['x-phones']);
 
-
-								$sql = "INSERT INTO schedule (schedule_id, services, locations, days, opens_at, closes_at, holiday, start_date, end_date, closed)
-								VALUES ( '{$record['id']}', '{$services}', '{$locations}', '{$record['fields']['days']}', '{$record['fields']['opens_at']}', '{$record['fields']['closes_at']}', '{$record['fields']['holiday']}', '{$record['fields']['start_date']}', '{$record['fields']['end_date']}', '{$record['fields']['closed']}');";
+								$sql = "INSERT INTO schedule (schedule_id, schedule_services, schedule_locations, x_phones, days_of_week, opens_at, closes_at, holiday, start_date, end_date, closed)
+								VALUES ( '{$record['id']}', '{$services}', '{$locations}', '{$x_phones}', '{$record['fields']['days_of_week']}', '{$record['fields']['opens_at']}', '{$record['fields']['closes_at']}', '{$record['fields']['holiday']}', '{$record['fields']['start_date']}', '{$record['fields']['end_date']}', '{$record['fields']['closed']}');";
 
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";
@@ -165,7 +165,7 @@
 						}
 						date_default_timezone_set('UTC');
 						$date = date("Y/m/d H:i:s");
-						$sql = "UPDATE contact_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Schedule'";
+						$sql = "UPDATE services_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Schedule'";
 						if ($conn->query($sql) === TRUE) {
 						    echo "record updated successfully";
 						} else {

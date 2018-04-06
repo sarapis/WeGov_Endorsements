@@ -24,11 +24,11 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3>Source Name: nyc-contacts</h3>
+                        <h3>Source Name: mygovnyc-money</h3>
                     </div>
 
                     <div class="box-body table-responsive">
-                        <h4 class="box-title">Source URL: https://airtable.com/tbld7PVSKy3N7ePXB</h4>
+                        <h4 class="box-title">Source URL: https://airtable.com/tblnB1gcDJx9MxUNM</h4>
                         <table id="user_table" class="table table-striped table-hover table-condensed">
                             <thead>
                                 <tr class="success">
@@ -66,11 +66,11 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3>Source Name: nyc-budgets</h3>
+                        <h3>Source Name: mygov-people</h3>
                     </div>
 
                     <div class="box-body table-responsive">
-                        <h4 class="box-title">Source URL: https://airtable.com/tblnB1gcDJx9MxUNM</h4>
+                        <h4 class="box-title">Source URL: https://airtable.com/tbld7PVSKy3N7ePXB</h4>
                         <table id="user_table" class="table table-striped table-hover table-condensed">
                             <thead>
                                 <tr class="success">
@@ -92,6 +92,48 @@
                                         <button class="badge bg-yellow sync_now">Sync Now</button>
                                         <button class="badge bg-green"><a href="/{!! strtolower($contact->table_name) !!}.php" style="color: white;">View Log</a></button>
                                         <button class="badge bg-blue"><a href="/tb_{!! strtolower($contact->table_name) !!}" style="color: white;">View Table</a></button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3>Source Name: mygov-services</h3>
+                    </div>
+
+                    <div class="box-body table-responsive">
+                        <h4 class="box-title">Source URL: https://airtable.com/tblHfNfXpbGVgNX4j</h4>
+                        <table id="user_table" class="table table-striped table-hover table-condensed">
+                            <thead>
+                                <tr class="success">
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">Table Name</th>
+                                    <th class="text-center">Total Records</th>
+                                    <th class="text-center">Last Synced</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($services as $service)
+                                <tr>
+                                    <td class="text-center">{{$service->id}}</td>
+                                    <td class="text-center">{{$service->table_name}}</td>
+                                    <td class="text-center">{{$service->total_records}}</td>
+                                    <td class="text-center">{{$service->last_synced}}</td>
+                                    <td class="text-center">
+                                        <button class="badge bg-yellow sync_now">Sync Now</button>
+                                        <button class="badge bg-green"><a href="/{!! strtolower($service->table_name) !!}.php" style="color: white;">View Log</a></button>
+                                        <button class="badge bg-blue"><a href="/tb_{!! strtolower($service->table_name) !!}" style="color: white;">View Table</a></button>
                                     </td>
                                 </tr>
                                 @endforeach

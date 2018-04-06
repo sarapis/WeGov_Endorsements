@@ -25,7 +25,7 @@
 						$servername = "localhost";
 						$username = "root";
 						$password = "root";
-						$dbname = "nycservices";
+						$dbname = "mygov";
 						$sql = '';
 
 						// Create connection

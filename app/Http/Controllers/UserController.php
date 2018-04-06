@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Contacts;
 use App\Models\Budgets;
+use App\Models\Services;
 
 class UserController extends Controller
 {
@@ -55,9 +56,10 @@ class UserController extends Controller
         }
 
         $budgets = Budgets::all();
-        $contacts = Contacts::all(); 
+        $contacts = Contacts::all();
+        $services = Services::all(); 
 
-        return view('admin.pages.datasync', compact('budgets', 'contacts'))->withUser($user)->withAccess($access);
+        return view('admin.pages.datasync', compact('budgets', 'contacts', 'services'))->withUser($user)->withAccess($access);
     }
 
 //OLD LTE

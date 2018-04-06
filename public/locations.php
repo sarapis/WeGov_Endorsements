@@ -25,7 +25,7 @@
 						$servername = "localhost";
 						$username = "root";
 						$password = "root";
-						$dbname = "nycbudgets";
+						$dbname = "mygov";
 						$sql = '';
 
 						// Create connection
@@ -53,7 +53,7 @@
 						// To get this value, look at the Authentication notes in the API docs.
 						// Example: $ curl https://api.airtable.com/v0/appZZ12rVdg6qzyC/foo...
 						// .. where "appZZ12rVdg6qzyC" is the App ID.
-						define ( 'AIRTABLE_APP_ID', 'appd1eQuF0gFcOMsV' );
+						define ( 'AIRTABLE_APP_ID', 'app2sk6MlzyikwbzL' );
 						
 						// Airtable API URL.
 						// Default: https://api.airtable.com/v0/
@@ -155,13 +155,12 @@
 								$services = implode(",", $record['fields']['services']);
 								$phones = implode(",", $record['fields']['phones']);
 								$details = implode(",", $record['fields']['details']);
-								$holiday_schedule = implode(",", $record['fields']['holiday_schedule']);
-								$regular_schedule = implode(",", $record['fields']['regular_schedule']);
+								$schedule = implode(",", $record['fields']['schedule']);
 								$address = implode(",", $record['fields']['address']);
 								$accessibility_for_disabilities = implode(",", $record['fields']['accessibility_for_disabilities']);
 
-								$sql = "INSERT INTO locations (location_id, name, organization, alternate_name, transportation, latitude, longitude, description, services, phones, details, holiday_schedule, regular_schedule, address, accessibility_for_disabilities)
-								VALUES ( '{$record['id']}', '{$name}', '{$organization}','{$alternate_name}', '{$transportation}', '{$record['fields']['latitude']}', '{$record['fields']['longitude']}', '{$description}', '{$services}', '{$phones}', '{$details}', '{$holiday_schedule}', '{$regular_schedule}', '{$address}', '{$accessibility_for_disabilities}');";
+								$sql = "INSERT INTO locations (location_id, name, organization, alternate_name, transportation, latitude, longitude, description, services, phones, details, schedule, address)
+								VALUES ( '{$record['id']}', '{$name}', '{$organization}','{$alternate_name}', '{$transportation}', '{$record['fields']['latitude']}', '{$record['fields']['longitude']}', '{$description}', '{$services}', '{$phones}', '{$details}', '{$schedule}', '{$address}');";
 
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";
@@ -175,7 +174,7 @@
 						}
 						date_default_timezone_set('UTC');
 						$date = date("Y/m/d H:i:s");
-						$sql = "UPDATE contact_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Locations'";
+						$sql = "UPDATE services_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Locations'";
 						if ($conn->query($sql) === TRUE) {
 						    echo "record updated successfully";
 						} else {

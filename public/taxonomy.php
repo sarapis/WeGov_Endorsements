@@ -25,7 +25,7 @@
 						$servername = "localhost";
 						$username = "root";
 						$password = "root";
-						$dbname = "nycbudgets";
+						$dbname = "mygov";
 						$sql = '';
 
 						// Create connection
@@ -53,7 +53,7 @@
 						// To get this value, look at the Authentication notes in the API docs.
 						// Example: $ curl https://api.airtable.com/v0/appZZ12rVdg6qzyC/foo...
 						// .. where "appZZ12rVdg6qzyC" is the App ID.
-						define ( 'AIRTABLE_APP_ID', 'appd1eQuF0gFcOMsV' );
+						define ( 'AIRTABLE_APP_ID', 'app2sk6MlzyikwbzL' );
 						
 						// Airtable API URL.
 						// Default: https://api.airtable.com/v0/
@@ -151,8 +151,8 @@
 								$parent_name = implode(",", $record['fields']['parent_name']);
 								$services = implode(",", $record['fields']['services']);
 
-								$sql = "INSERT INTO taxonomies (taxonomy_id, name, parent_name, services, vocabulary)
-								VALUES ( '{$record['id']}', '{$name}', '{$parent_name}', '{$services}', '{$record['fields']['vocabulary']}');";
+								$sql = "INSERT INTO taxonomies (taxonomy_id, name, parent_name, vocabulary, x_description, x_notes, services)
+								VALUES ('{$record['id']}', '{$name}', '{$parent_name}',  '{$record['fields']['vocabulary']}', '{$record['fields']['x-description']}', '{$record['fields']['x-notes']}', '{$services}');";
 
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";
@@ -165,7 +165,7 @@
 						}
 						date_default_timezone_set('UTC');
 						$date = date("Y/m/d H:i:s");
-						$sql = "UPDATE contact_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Taxonomy'";
+						$sql = "UPDATE services_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Taxonomy'";
 						if ($conn->query($sql) === TRUE) {
 						    echo "record updated successfully";
 						} else {

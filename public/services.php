@@ -25,7 +25,7 @@
 						$servername = "localhost";
 						$username = "root";
 						$password = "root";
-						$dbname = "nycbudgets";
+						$dbname = "mygov";
 						$sql = '';
 
 						// Create connection
@@ -53,7 +53,7 @@
 						// To get this value, look at the Authentication notes in the API docs.
 						// Example: $ curl https://api.airtable.com/v0/appZZ12rVdg6qzyC/foo...
 						// .. where "appZZ12rVdg6qzyC" is the App ID.
-						define ( 'AIRTABLE_APP_ID', 'appd1eQuF0gFcOMsV' );
+						define ( 'AIRTABLE_APP_ID', 'app2sk6MlzyikwbzL' );
 						
 						// Airtable API URL.
 						// Default: https://api.airtable.com/v0/
@@ -149,24 +149,22 @@
 
 								$name = str_replace("'","\'",$record['fields']['name']);
 								$organization = implode(",", $record['fields']['organization']);
-								$programs = implode(",", $record['fields']['programs']);
-								$locations = implode(",", $record['fields']['locations']);
 								$alternate_name = str_replace("'","\'",$record['fields']['alternate_name']);
 								$description = str_replace("'","\'",$record['fields']['description']);
+								$locations = implode(",", $record['fields']['locations']);
 								$url = str_replace("'","\'",$record['fields']['url']);
-								$phones = implode(",", $record['fields']['phones']);
+								
 								$taxonomy = implode(",", $record['fields']['taxonomy']);
 								$application_process = str_replace("'","\'",$record['fields']['application_process']);
-								$holiday_schedule = implode(",", $record['fields']['holiday_schedule']);
-								$regular_schedule = implode(",", $record['fields']['regular_schedule']);
+								$phones = implode(",", $record['fields']['phones']);
+								$schedule = implode(",", $record['fields']['schedule']);
 								$service_area = implode(",", $record['fields']['service_area']);
 								$contacts = implode(",", $record['fields']['Contacts']);
 								$details = implode(",", $record['fields']['details']);
-								$metadata = implode(",", $record['fields']['metadata']);
 
 
-								$sql = "INSERT INTO services (service_id, name, organization, programs, locations, alternate_name, description, url, email, status, taxonomy,  application_process, wait_time, fees, accreditations, licenses, phones, holiday_schedule, regular_schedule, contacts, details, service_area, metadata)
-								VALUES ( '{$record['id']}', '{$name}', '{$organization}', '{$programs}', '{$locations}', '{$alternate_name}', '{$description}', '{$url}', '{$record['fields']['email']}', '{$record['fields']['status']}', '{$taxonomy}', '{$application_process}', '{$record['fields']['wait_time']}', '{$record['fields']['fees']}', '{$record['fields']['accreditations']}', '{$record['fields']['licenses']}', '{$phones}', '{$holiday_schedule}', '{$regular_schedule}', '{$contacts}', '{$details}', '{$service_area}', '{$metadata}');";
+								$sql = "INSERT INTO services (service_id, name, organization, alternate_name, description, locations, url, email, status, taxonomy,  application_process, wait_time, fees, accreditations, licenses, phones, schedule,  contacts, details, service_area, metadata)
+								VALUES ( '{$record['id']}', '{$name}', '{$organization}', '{$alternate_name}', '{$description}', '{$locations}', '{$url}', '{$record['fields']['email']}', '{$record['fields']['status']}', '{$taxonomy}', '{$application_process}', '{$record['fields']['wait_time']}', '{$record['fields']['fees']}', '{$record['fields']['accreditations']}', '{$record['fields']['licenses']}', '{$phones}', '{$schedule}', '{$contacts}', '{$details}', '{$service_area}', '{$record['fields']['metadata']}');";
 
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";
@@ -180,7 +178,7 @@
 						}
 						date_default_timezone_set('UTC');
 						$date = date("Y/m/d H:i:s");
-						$sql = "UPDATE contact_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Services'";
+						$sql = "UPDATE services_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Services'";
 						if ($conn->query($sql) === TRUE) {
 						    echo "record updated successfully";
 						} else {

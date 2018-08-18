@@ -11,26 +11,32 @@
 
     <meta charset="utf-8">
       <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="css/material-design-lite/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/bootstrap-slider/slider.css')}}">
+    <link rel="stylesheet" href="{{asset('css/material-design-lite/dist/css/AdminLTE.min.css')}}">
     <!-- Material Design -->
-    <link rel="stylesheet" href="css/material-design-lite/dist/css/bootstrap-material-design.min.css">
+    <link rel="stylesheet" href="{{asset('css/material-design-lite/dist/css/bootstrap-material-design.min.css')}}">
     <link rel="stylesheet" href="http://zavoloklom.github.io/material-design-iconic-font/v1/css/material-design-iconic-font.min.css">
     
-    <link rel="stylesheet" href="css/material-design-lite/dist/css/ripples.min.css">
-    <link rel="stylesheet" href="css/material-design-lite/material.min.css">
-     <link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('css/material-design-lite/dist/css/ripples.min.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/MaterialAdminLTE.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/material-design-lite/material.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/asRange.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/skins/all-md-skins.min.css')}}">
+    <link rel="stylesheet" href="{{asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,600,700,300italic,400italic,600italic">
-    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="css/material-design-lite/material.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{asset('css/material-design-lite/material.min.js')}}"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="{{asset('js/filter_ajaxscript.js')}}"></script>
 </head>
 
 <body>
@@ -47,29 +53,34 @@
 
     </div>
 
-    <script src="script/jquery-ui.js"></script>
-<!--     <script src="script/bootstrap.min.js"></script> -->
-    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    
-    
-<!--     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQxoWuYlm64PCZk4GVupcugr-MC9odMgY&callback=initMap">
-    </script> -->
-<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script> -->
-<!--     <script>
-      function initMap() {
-        var uluru = {lat: 40.712722, lng: -74.006058};
-        var map = new google.maps.Map(document.getElementById('mymap'), {
-          zoom: 10,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script> -->
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{{asset('bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <!-- Material Design -->
+    <script src="{{asset('dist/js/material.min.js')}}"></script>
+    <script src="{{asset('dist/js/ripples.min.js')}}"></script>
+    <script>
+        $.material.init();
+    </script>
+    <!-- FastClick -->
+    <script src="{{asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{asset('dist/js/demo.js')}}"></script>
+    <!-- Bootstrap slider -->
+    <script src="{{asset('plugins/bootstrap-slider/bootstrap-slider.js')}}"></script>
+    <script>
+      $(function () {
+        /* BOOTSTRAP SLIDER */
+        $('.slider').slider()
+      })
+    </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC4sA0zmg1sTd4hjznSoLrVg7UAx17GpE&callback=initMap">
     </script>

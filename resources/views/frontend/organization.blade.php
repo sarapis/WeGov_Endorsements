@@ -7,12 +7,6 @@
 <div class="demo-container mdl-grid">
     <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col">
         <div class="page-title row">
-            <div class="pull-right hidden-xs" style="padding-left: 20px;">
-              <p class="text-title-tages">Public Safely</p>
-            </div>
-            <div class="pull-right hidden-xs">
-              <p class="text-title-tages">NYPD</p>
-            </div>
             <div class="pull-left">{{$organization->name}}</div>
         </div>
         <div class="menu-bar row">
@@ -30,12 +24,12 @@
                         <div class="col-sm-8">
                             <div class="box" style="padding: 40px;border-top: 2px solid #d2d6de;">
                                 <div class="row">
-                                    <div class="col-md-7" style="padding-top: 5px;">
+                                    <div class="col-md-8" style="padding-top: 5px;">
                                     <p>{!! $organization->organization_description !!}</p>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-4">
                                         @if($organization->logo!='')
-                                            <img src="{{$organization->logo}}" class="img-responsive">
+                                            <img src="{{$organization->logo}}" class="img-responsive center">
                                         @endif
                                     </div>
                                 </div>
@@ -128,46 +122,78 @@
                 </div>
                 <div role="tabpanel" class="tab-pane" id="projects">
 
-                <p>Projects implemented by the <b>{{$organization->name}}</b></p>
-                <div class="box">
-                    <!-- /.box-header -->
-                    @if($organization->projects!='')
-                    <div class="box-body no-padding">
-                        <table id="example2" class="table table-hover">
-                            <tbody>
-                                <tr>
-                                    <th>Project Description</th>
-                                    <th class="text-center">Commitments (#)</th>
-                                    <th class="text-right" style="padding-right: 50px;">Cost ($)</th>
-                                    <th>Budgetline (click)</th>
-                                    <th>ID (click)</th>
-                                </tr>
-                                @foreach($organization_projects as $organization_project)
-                                <tr>
-                                  <td>{{$organization_project->project_description}}</td>
-                                  <td class="text-center">
-                                    {{sizeof(explode(",", $organization_project->project_commitments))}}
-                                  </td>
-                                  <td class="text-right" style="padding-right: 50px;">${{number_format($organization_project->project_totalcost)}}</td>
-                                  <td></td>
-                                  <td><a href="projects_{{$organization_project->project_recordid}}">{{$organization_project->project_projectid}}</a></td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                    <p>Projects implemented by the <b>{{$organization->name}}</b></p>
+                    <div class="box">
+                        <!-- /.box-header -->
+                        @if($organization->projects!='')
+                        <div class="box-body no-padding">
+                            <table id="example2" class="table table-hover">
+                                <tbody>
+                                    <tr>
+                                        <th>Project Description</th>
+                                        <th class="text-center">Commitments (#)</th>
+                                        <th class="text-right" style="padding-right: 50px;">Cost ($)</th>
+                                        <th>Budgetline (click)</th>
+                                        <th>ID (click)</th>
+                                    </tr>
+                                    @foreach($organization_projects as $organization_project)
+                                        @if($organization_project->project_description!=null)
+                                            <tr>
+                                              <td>{{$organization_project->project_description}}</td>
+                                              <td class="text-center">
+                                                {{sizeof(explode(",", $organization_project->project_commitments))}}
+                                              </td>
+                                              <td class="text-right" style="padding-right: 50px;">${{number_format($organization_project->project_totalcost)}}</td>
+                                              <td></td>
+                                              <td><a href="projects_{{$organization_project->project_recordid}}">{{$organization_project->project_projectid}}</a></td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                        @else
+                         <div class="alert alert-danger"><strong>No Projects!</strong>
+                         </div>
+                        @endif
                     </div>
-                    <!-- /.box-body -->
+                </div>
+                <div role="tabpanel" class="tab-pane" id="services">
+                    @if($organization_services!='')
+                    <div class="row">
+                        <div class="col-sm-3" style="border-right:1px solid #3f3f3f; padding: 0;">
+                            @include('layouts.sidebar')
+                        </div>
+                        <div class="col-sm-9 row">
+                            
+                            <div class="col-sm-8">
+                            @foreach($organization_services as $organization_service)
+                                <div class="box box-service">
+                                    <p>Category: {{$organization_service->taxonomy_name}}</p>
+                                    <p>{{$organization_service->name}}</p>
+                                    <p>Proviced by: {{$organization->name}}</p>
+                                    <p>Phone: {{$organization_service->phone_numbers}}</p>
+                                </div>
+                            @endforeach
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="box" style="border-top: 2px solid #d2d6de;">
+                                    <div id="mymap" style="width: 100%; height: 417px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @else
-                     <div class="alert alert-danger"><strong>No Projects!</strong></div>
+                    <div class="alert alert-danger"><strong>No Services!</strong>
+                         </div>
                     @endif
-                  </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="money">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
-                <div role="tabpanel" class="tab-pane" id="services">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passage..</div>
+                
                 <div role="tabpanel" class="tab-pane" id="people">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passage..</div>
             </div>
         </div>
-         @include('partials.footer')
     </div>
 
 </div>

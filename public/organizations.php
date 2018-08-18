@@ -158,6 +158,7 @@
 								$main_address = implode(",", $record['fields']['main_address']);
 								$details = implode(",", $record['fields']['details']);
 								$program = implode(",", $record['fields']['program']);
+								$internalnotes = str_replace("'","\'", $record['fields']['internalnotes']);
 								$logo = '';
 								foreach ($record['fields']['Logo'] as $key => $image) {
 									try {
@@ -169,7 +170,7 @@
 								$services_count= sizeof(explode(",", $services));
 
 								$sql = "INSERT INTO organizations (organization_id, organizations_id, alternate_name, name, dedupe, type, child_of, contacts, website, description, logo, checkbook, internalnotes, contacts_link, services, phones, main_address, details, program, email, legal_status, tax_status, tax_id, year_incorporated, Twitter, Facebook, RSS, tags, services_count)
-								VALUES ('{$record['id']}', '{$organizations_id}', '{$alternate_name}', '{$name}', '{$record['fields']['dedupe']}', '{$record['fields']['Type']}', '{$record['fields']['Child of']}', '{$contacts}', '{$record['fields']['website']}',  '{$description}', '{$logo}', '{$record['fields']['checkbook']}', '{$record['fields']['internalnotes']}', '{$record['fields']['contacts link']}', '{$services}', '{$main_phone}', '{$main_address}', '{$details}', '{$program}', '{$record['fields']['email']}', '{$record['fields']['legal_status']}', '{$record['fields']['tax_status']}', '{$record['fields']['tax_id']}', '{$record['fields']['year_incorporated']}', '{$record['fields']['Twitter']}', '{$record['fields']['Facebook']}', '{$record['fields']['RSS']}', '{$record['fields']['tags']}','{$services_count}');";
+								VALUES ('{$record['id']}', '{$organizations_id}', '{$alternate_name}', '{$name}', '{$record['fields']['dedupe']}', '{$record['fields']['Type']}', '{$record['fields']['Child of']}', '{$contacts}', '{$record['fields']['website']}',  '{$description}', '{$logo}', '{$record['fields']['checkbook']}', '{$internalnotes}', '{$record['fields']['contacts link']}', '{$services}', '{$main_phone}', '{$main_address}', '{$details}', '{$program}', '{$record['fields']['email']}', '{$record['fields']['legal_status']}', '{$record['fields']['tax_status']}', '{$record['fields']['tax_id']}', '{$record['fields']['year_incorporated']}', '{$record['fields']['Twitter']}', '{$record['fields']['Facebook']}', '{$record['fields']['RSS']}', '{$record['fields']['tags']}','{$services_count}');";
 
 								
 

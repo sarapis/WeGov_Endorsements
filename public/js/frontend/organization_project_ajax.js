@@ -1,9 +1,9 @@
 $(document).ready(function()
 {
-    $('.text-aqua').on('click', function() {
+    $('.project-link').on('click', function() {
 
-        var service_id = $(this).attr('id');
-        console.log(service_id);
+        var project_id = $(this).attr('id');
+        
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -12,12 +12,12 @@ $(document).ready(function()
         
         $.ajax({
             type: 'GET',
-            url: '/organizationservice_'+service_id,
+            url: '/organizationproject_'+project_id,
             contentType: false,
             cache: false, // To unable request pages to be cached
             processData: false,
             success: function(data) {
-                $('#service_content').html(data);
+                $('#project_content').html(data);
             },
             error: function(errResponse) {
 

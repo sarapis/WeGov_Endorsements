@@ -37,7 +37,7 @@
     <script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
     <script src="{{asset('css/material-design-lite/material.min.js')}}"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="{{asset('js/filter_ajaxscript.js')}}"></script>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5XHJ6oNL9-qh0XsL0G74y1xbcxNGkSxw&callback=initMap">
     </script>
 </head>

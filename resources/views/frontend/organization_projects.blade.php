@@ -2,7 +2,7 @@
   <div class="col-sm-3" style="border-right:1px solid #3f3f3f; padding: 0;">
       @include('layouts.sidebar')
   </div>
-  <div class="col-sm-9"style="padding: 0;">
+  <div class="col-sm-9"  id="project_content" style="padding: 0;">
     <div class="col-sm-8">
       <div class="box">
         <!-- /.box-header -->
@@ -20,7 +20,7 @@
                             <tr>
                               <td>{{$organization_project->project_description}}</td>
                               <td class="text-right" style="padding-right: 50px;">${{number_format($organization_project->project_totalcost)}}</td>
-                              <td><a href="projects_{{$organization_project->project_recordid}}">{{$organization_project->project_projectid}}</a></td>
+                              <td class="project-link" id="{{$organization_project->project_recordid}}">{{$organization_project->project_projectid}}</td>
                             </tr>
                         @endif
                     @endforeach
@@ -41,6 +41,7 @@
     </div>
   </div>
 </div>
+<script src="{{ asset('js/frontend/organization_project_ajax.js') }}"></script>
 <script type="text/javascript">
 
     var locations = <?php print_r(json_encode($organization_map)) ?>;

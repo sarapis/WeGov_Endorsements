@@ -116,15 +116,10 @@ class ServiceController extends Controller
         $project_name = '&nbsp;';
         $filter = collect([$organization_name, $service_name, $project_name]);
 
-        //$service_locations = DB::table('services')->where('service_id', '=', $id)->leftjoin('locations', 'services.locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->select('locations.name')->get();
-        //$lat = DB::table('services')->where('service_id','=',$id)->leftjoin('locations', 'services.locations', '=', 'locations.location_id')-> value('latitude');
-       //$long = DB::table('services')->where('service_id','=',$id)->leftjoin('locations', 'services.locations', '=', 'locations.location_id')-> value('longitude');
-        
-        //Mapper::map($lat, $long, ['zoom' => 5]);
         
         $service_details = DB::table('services')->where('service_id', '=', $id)->leftjoin('details', 'services.details', 'like', DB::raw("concat('%', details.detail_id, '%')"))->select('details.value', 'details.detail_type')->get();
  
-        return view('frontend.service', compact('servicetypes','projecttypes','organizationtypes', 'taxonomys','service_name','service','organization','program','taxonomy', 'contacts', 'service_map','filter', 'service_details','servicename'))->render();
+        return view('frontend.service', compact('taxonomys','service_name','service','organization','program','taxonomy', 'contacts', 'service_map', 'service_details','servicename'))->render();
     }
 
     /**

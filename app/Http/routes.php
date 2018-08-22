@@ -39,6 +39,10 @@ Route::get('/twitter', function()
 Route::get('/organizations', 'OrganizationController@all');
 Route::get('/organization_all', 'OrganizationController@all');
 Route::get('/organization_{id}', 'OrganizationController@find');
+Route::get('/organizationprojects_{id}', 'OrganizationController@projects');
+Route::get('/organizationservices_{id}', 'OrganizationController@services');
+
+
 Route::get('/organizations_expensedesc', 'OrganizationController@expensedesc');
 Route::get('/organizations_expenseasc', 'OrganizationController@expenseasc');
 Route::get('/organizations_projectsdesc', 'OrganizationController@projectsdesc');

@@ -309,4 +309,21 @@ hr{
 .box-service{
   padding: 20px 20px 1px 20px;
   margin-bottom: 3px;
-;}
+}
+.box-service:hover{
+  box-shadow: 0px 0px 50px rgba(57,73,76,.5);
+  transition: box-shadow 0.2s;
+  z-index: 10;
+}
+#mymap{
+  width: 100% !important;
+  height: 417px !important;
+}
+#mymap_service{
+  width: 100% !important;
+  height: 417px !important;
+}
+#mymap_service_profile{
+  width: 100% !important;
+  height: 417px !important;
+}

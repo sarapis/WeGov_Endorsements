@@ -67,7 +67,7 @@ class ProjectController extends Controller
         $long = DB::table('projects')->where('project_recordid', $id)-> value('project_long');
         Mapper::map($lat, $long, ['zoom' => 15]);
         $commitments = DB::table('commitments')->where('projectid', $id)->get();
-        return view('frontend.profile', compact('servicetypes','projecttypes','organizationtypes', 'filter', 'commitments','project'));
+        return view('frontend.profile', compact('servicetypes','projecttypes','organizationtypes', 'filter', 'commitments','project'))->render();
     }
 
     //project type find

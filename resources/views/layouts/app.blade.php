@@ -11,6 +11,7 @@
 
     <meta charset="utf-8">
       <!-- Bootstrap 3.3.7 -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
@@ -37,6 +38,8 @@
     <script src="{{asset('css/material-design-lite/material.min.js')}}"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="{{asset('js/filter_ajaxscript.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5XHJ6oNL9-qh0XsL0G74y1xbcxNGkSxw&callback=initMap">
+    </script>
 </head>
 
 <body>
@@ -81,12 +84,6 @@
         $('.slider').slider()
       })
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC4sA0zmg1sTd4hjznSoLrVg7UAx17GpE&callback=initMap">
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5XHJ6oNL9-qh0XsL0G74y1xbcxNGkSxw&callback=initMap">
-    </script>
-
-    
+  
 
 </html>

@@ -148,6 +148,7 @@
 								echo $record['fields']['magency'] . '</a>';
 								echo '</li>';
 
+								$name = str_replace("'","\'", $record['fields']['Name']);
 								$projects = implode(",", $record['fields']['projects']);
 								$commitments = implode(",", $record['fields']['commitments']);
 								$expense = implode(",", $record['fields']['expenses']);
@@ -155,7 +156,7 @@
 
 
 								$sql = "INSERT INTO agencies (agency_recordid, magency, magencyname, magencyacro, publish, projects, commitments, commitments_cost, commitments_noncity_cost, total_project_cost, expenses, expenses_link, projects_count)
-								VALUES ( '{$record['id']}', '{$record['fields']['ID']}', '{$record['fields']['alternate_name']}', '{$record['fields']['Name']}', '{$record['fields']['publish']}', '{$projects}', '{$commitments}', '{$record['fields']['Commitments Cost']}', '{$record['fields']['Commitments NonCity Cost']}', '{$record['fields']['Total Project Cost']}', '$expense', '{$record['fields']['expenses_link']}', '{$projects_count}');";
+								VALUES ( '{$record['id']}', '{$record['fields']['ID']}', '{$record['fields']['alternate_name']}', '{$name}', '{$record['fields']['publish']}', '{$projects}', '{$commitments}', '{$record['fields']['Commitments Cost']}', '{$record['fields']['Commitments NonCity Cost']}', '{$record['fields']['Total Project Cost']}', '$expense', '{$record['fields']['expenses_link']}', '{$projects_count}');";
 
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";

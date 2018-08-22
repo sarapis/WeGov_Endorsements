@@ -88,16 +88,21 @@ class ServiceController extends Controller
     public function find($id)
     {
 
-        $service = Service::where('service_id','=',$id)->leftjoin('organizations', 'services.organization', 'like', DB::raw("concat('%', organizations.organization_id, '%')"))->first();
+        $service = Service::where('service_id','=',$id)->first();
+
+        // var_dump($service);
+        // exit();
+
+
         $servicename = Service::where('service_id','=', $id)->value('name');
         $service_organization = Service::where('service_id','=', $id)->value('organization');
-        $service_program = Service::where('service_id','=', $id)->value('programs');
+
         $service_taxonomy = Service::where('service_id','=', $id)->value('taxonomy');
         $service_contact = Service::where('service_id','=', $id)->value('contacts');
         $service_map = DB::table('services')->where('service_id','=',$id)->leftjoin('locations', 'services.locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
 
-        $organization = Organization::where('organization_id', '=', $service_organization)->value('name');
-        $program = Program::where('program_id', '=', $service_program)->value('name');
+        $organization = DB::table('services_organizations')->where('organization_x_id', '=', $service_organization)->value('organization_name');
+
         $taxonomy = Taxonomy::where('taxonomy_id', '=', $service_taxonomy)->select('taxonomy_id', 'name')->first();
         $contacts = Contact::where('contact_id', '=', $service_contact)->value('name');
 
@@ -119,7 +124,7 @@ class ServiceController extends Controller
         
         $service_details = DB::table('services')->where('service_id', '=', $id)->leftjoin('details', 'services.details', 'like', DB::raw("concat('%', details.detail_id, '%')"))->select('details.value', 'details.detail_type')->get();
  
-        return view('frontend.service', compact('servicetypes','projecttypes','organizationtypes', 'taxonomys','service_name','service','organization','program','taxonomy', 'contacts', 'service_map','filter', 'service_details','servicename'));
+        return view('frontend.service', compact('servicetypes','projecttypes','organizationtypes', 'taxonomys','service_name','service','organization','program','taxonomy', 'contacts', 'service_map','filter', 'service_details','servicename'))->render();
     }
 
     /**

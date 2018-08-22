@@ -55,6 +55,7 @@ Route::get('/type_{id}', 'OrganizationController@type');
 Route::get('/services', 'ServiceController@index');
 Route::get('/service_all', 'ServiceController@all');
 Route::get('/service_{id}', 'ServiceController@find');
+Route::get('/organizationservice_{id}', 'ServiceController@find');
 
 //Projects
 Route::get('/projects', 'ProjectController@projectview');

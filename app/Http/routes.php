@@ -41,6 +41,7 @@ Route::get('/organization_all', 'OrganizationController@all');
 Route::get('/organization_{id}', 'OrganizationController@find');
 Route::get('/organizationprojects_{id}', 'OrganizationController@projects');
 Route::get('/organizationservices_{id}', 'OrganizationController@services');
+Route::get('/organizationpeoples_{id}', 'OrganizationController@peoples');
 
 
 Route::get('/organizations_expensedesc', 'OrganizationController@expensedesc');
@@ -72,6 +73,8 @@ Route::get('/projectcategory_{id}', 'ProjectController@category');
 //Peoples
 Route::get('/people', 'PeopleController@index');
 Route::get('/people_{id}', 'PeopleController@find');
+Route::get('/organizationpeople_{id}', 'PeopleController@find');
+
 Route::get('/organizationtype_{id}', 'PeopleController@organizationtypefind');
 
 Route::get('/category', [

@@ -331,7 +331,44 @@ hr{
   width: 100% !important;
   height: 417px !important;
 }
+#mymap_people{
+  width: 100% !important;
+  height: 417px !important;
+}
 .project-link{
+  cursor: pointer;
+  color: #32acc3;
+}
+.table{
+  background-color: #eeeeee;
+}
+.budget-tb{
+  background-color: #066790;
+  border: 0;
+  color: #ffffff;
+}
+.budget-foot{
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,0.12), 0 1px 6px 0 rgba(0,0,0,0.12);
+}
+.budget-tb td{
+  border: 0 !important;
+}
+.box-budget{
+  padding: 20px;
+}
+.budget-span{
+  font-size: 28px;
+  padding-left: 20px;
+}
+dd{
+  font-size: 16px;
+  color: rgba(0, 31, 59, 0.85);
+}
+dt{
+  font-size: 16px;
+  color: rgba(0, 31, 59, 0.85);
+}
+.people-link{
   cursor: pointer;
   color: #32acc3;
 }

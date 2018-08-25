@@ -8,13 +8,15 @@
         <!-- /.box-header -->
         @if($organization->projects!='')
         <div class="box-body no-padding">
-            <table id="example2" class="table table-hover">
-                <tbody>
+            <table id="example3" class="table table-hover" cellspacing="0" width="100%">
+                <thead>
                     <tr>
                         <th>Project Description</th>
                         <th class="text-right" style="padding-right: 50px;">Cost ($)</th>
-                        <th>ID (click)</th>
+                        <th class="text-center">ID</th>
                     </tr>
+                </thead>
+                <tbody>
                     @foreach($organization_projects as $organization_project)
                         @if($organization_project->project_description!=null)
                             <tr>
@@ -42,6 +44,20 @@
   </div>
 </div>
 <script src="{{ asset('js/frontend/organization_project_ajax.js') }}"></script>
+<script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script>
+$(document).ready(function() {
+    $('#example3').DataTable({
+      'paging'      : false,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : false,
+      'autoWidth'   : true
+    });
+} );
+</script>
 <script type="text/javascript">
 
     var locations = <?php print_r(json_encode($organization_map)) ?>;

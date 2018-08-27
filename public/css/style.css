@@ -372,3 +372,6 @@ dt{
   cursor: pointer;
   color: #32acc3;
 }
+#example3{
+  margin-bottom: 0 !important;
+}

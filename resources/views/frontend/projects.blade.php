@@ -1,110 +1,46 @@
-@include('layouts.style')
-<title>Projects</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href="../css/treeview.css" rel="stylesheet">
-<body>
-    <!--BEGIN BACK TO TOP-->
-    <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
-    <!--END BACK TO TOP-->
-    <!--BEGIN TOPBAR-->
-     @include('layouts.header')
-    <!--END TOPBAR-->
-    
-        <!--BEGIN SIDEBAR MENU-->
-        @include('layouts.menu')
-        <!--END SIDEBAR MENU-->
+@extends('layouts.app')
+@section('title', 'Projects')
 
-        <!--BEGIN PAGE WRAPPER-->
-        <div id="wrapper">
-        <div id="page-wrapper">
-            @include('layouts.sidebar')
-            <!--BEGIN TITLE & BREADCRUMB PAGE-->
-            <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
-                <div class="page-header pull-left">
-                    <div class="page-title plxxl">
-                        Projects</div>
-                </div>
-                <div class="col-sm-4" style="padding-left: 200px;">
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Type @if($projecttype!=''): {{$projecttype}}@endif
-                        <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            @foreach ($projecttypes as $projecttype)
-                            <li><a href="/projecttype_{{$projecttype->project_type}}">{{$projecttype->project_type}}</a></li>
-                        @endforeach
-                        </ul>
-                    </div>
-                </div>
-                <ol class="breadcrumb page-breadcrumb pull-right">
-                    <li><i class="fa fa-home"></i>&nbsp;<a href="/">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                </ol>
-                <div class="clearfix">
-                </div>
-            </div>
-            <!--END TITLE & BREADCRUMB PAGE-->
-            <div id="tab-general">
-                <div class="mbl">
-                    <div class="col-lg-12">
+@section('content')
+<div class="demo-container mdl-grid">
+  <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col" style="padding-top: 0;">
+  <div class="col-sm-3" style="border-right: 1px solid #3f3f3f; height: 100%;">
+      <div class="row">
+          @include('layouts.sidebar')
+      </div>
+  </div>
+  <div class="col-sm-9"  id="project_content" style="padding-top: 10px;">
+    <div class="box" style="margin-bottom: 0;">
+      <!-- /.box-header -->
 
-                        <div class="col-md-12">
-                            <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div>
-                        <button class="cornsilk btn-blue" style="position: absolute;top: 7px;left: auto;" id="menu-toggle">
-                            <a href="" class="btn btn-secondary" style="padding: 0px;font-size: 25px;"><i class="fa  fa-search" style="color: #fff;font-size: 25px;"></i></a>
-                        </button>
-                   
-                        <div class="page-content">
-                            <div class="panel panel-blue">
-                                <!-- /.box-header -->
-                                <div class="panel-body" style="overflow-x:auto;">
-                                    <table class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
-                                        <thead>
-                                          <tr class="info">
-                                            <th>@sortablelink('project_projectid', 'Project ID')</th>
-                                            <th>Organization</th>
-                                            <th>Description</th>
-                                            <th>Commitments</th>
-                                            <th>Total Cost &nbsp &nbsp&nbsp&nbsp&nbsp</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          @foreach ($allprojects as $project)
-                                          <tr>
-                                            <td><a href="/projects_{{$project->project_recordid}}"> {{$project->project_projectid}}</a></td>
-                                            <td><a href="/organization_{{$project->magency}}">{{$project->magencyacro}}</a></td>
-                                            <td>{{$project->project_description}}</td>
-                                            <td>{{sizeof(explode(",", $project->project_commitments))}}</td>
-                                            <td>${{number_format($project->project_totalcost)}}</td>
-                                          </tr> 
-                                          @endforeach
-                                        </tbody>
-                                    </table>
-                                    <dir class="text-right">
-                                    {{$allprojects->links()}}
-                                    </dir>
-                                </div>  
-                            </div>
-                        </div>
-                    </div>                 
-                </div>
-            </div>
-
-            <!--BEGIN FOOTER-->
-            <div id="footer">
-                <div class="copyright">
-                    <a href="#">&copy; ThemesGround 2015. Designed by ThemesGround </a></div>
-            </div>
-            <!--END FOOTER-->
-        </div>
-        <!--END CONTENT-->
+      <div class="box-body no-padding">
+          <table id="example3" class="table table-hover" cellspacing="0" width="100%">
+              <thead>
+                  <tr>
+                      <th>@sortablelink('project_projectid', 'Project ID')</th>
+                      <th>@sortablelink('project_description', 'Project Description')</th>
+                      <th class="text-right" style="padding-right: 50px;">@sortablelink('project_totalcost', 'Cost ($)')</th>
+                      <th class="text-center">@sortablelink('project_projectid', 'ID')</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  @foreach($allprojects as $organization_project)
+                      @if($organization_project->project_description!=null)
+                          <tr>
+                            <td>{{$organization_project->project_projectid}}</td>
+                            <td>{{$organization_project->project_description}}</td>
+                            <td class="text-right" style="padding-right: 50px;">${{number_format($organization_project->project_totalcost)}}</td>
+                            <td class="project-link" id="{{$organization_project->project_recordid}}">{{$organization_project->project_projectid}}</td>
+                          </tr>
+                      @endif
+                  @endforeach
+              </tbody>
+          </table>
+      </div>
     </div>
-    <!--END PAGE WRAPPER-->
-</body>
-@include('layouts.script')
+    {{ $allprojects->links() }}
+  </div>
+</div>
+<script src="{{ asset('js/frontend/organization_project_ajax.js') }}"></script>
+
+@endsection

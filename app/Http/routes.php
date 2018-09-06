@@ -39,9 +39,9 @@ Route::get('/twitter', function()
 Route::get('/organizations', 'OrganizationController@all');
 Route::get('/organization_all', 'OrganizationController@all');
 Route::get('/organization_{id}', 'OrganizationController@find');
-Route::get('/organizationprojects_{id}', 'OrganizationController@projects');
-Route::get('/organizationservices_{id}', 'OrganizationController@services');
-Route::get('/organizationpeoples_{id}', 'OrganizationController@peoples');
+Route::post('/organizationprojects_{id}', 'OrganizationController@projects');
+Route::post('/organizationservices_{id}', 'OrganizationController@services');
+Route::post('/organizationpeoples_{id}', 'OrganizationController@peoples');
 
 
 Route::get('/organizations_expensedesc', 'OrganizationController@expensedesc');
@@ -60,12 +60,13 @@ Route::get('/type_{id}', 'OrganizationController@type');
 Route::get('/services', 'ServiceController@index');
 Route::get('/service_all', 'ServiceController@all');
 Route::get('/service_{id}', 'ServiceController@find');
-Route::get('/organizationservice_{id}', 'ServiceController@find');
+Route::post('/organizationservice_{id}', 'ServiceController@find');
+Route::post('/services_filter', 'ServiceController@filter');
 
 //Projects
 Route::get('/projects', 'ProjectController@projectview');
 Route::get('/projects_{id}', 'ProjectController@projectfind');
-Route::get('/organizationproject_{id}', 'ProjectController@find');
+Route::post('/organizationproject_{id}', 'ProjectController@find');
 
 Route::get('/projecttype_{id}', 'ProjectController@projecttypefind');
 Route::get('/projectcategory_{id}', 'ProjectController@category');
@@ -73,7 +74,7 @@ Route::get('/projectcategory_{id}', 'ProjectController@category');
 //Peoples
 Route::get('/people', 'PeopleController@index');
 Route::get('/people_{id}', 'PeopleController@find');
-Route::get('/organizationpeople_{id}', 'PeopleController@find');
+Route::post('/organizationpeople_{id}', 'PeopleController@find');
 
 Route::get('/organizationtype_{id}', 'PeopleController@organizationtypefind');
 

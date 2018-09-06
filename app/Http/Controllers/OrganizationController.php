@@ -30,19 +30,13 @@ class OrganizationController extends Controller
     public function all()
     {
 
-        $servicetypes = DB::table('taxonomies')->get();
-        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
-        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
-        $service_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $project_name = '&nbsp;';
-        $filter = collect([$organization_name, $service_name, $project_name]);
+      
 
-        $organization_type='';
+        $types = Organization::distinct()->get(['type']);
+        $tags = DB::table('tags')->get();
         $organizations = Organization::leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select('organizations.*', 'agencies.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->get();
 
-        $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.organizations', compact('servicetypes','projecttypes','organizationtypes','filter', 'location_map', 'organizations', 'organization_type'));
+        return view('frontend.organizations', compact('types', 'tags','organizations'));
     }
 
     /**

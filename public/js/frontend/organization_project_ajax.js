@@ -11,7 +11,7 @@ $(document).ready(function()
         })
         
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: '/organizationproject_'+project_id,
             contentType: false,
             cache: false, // To unable request pages to be cached

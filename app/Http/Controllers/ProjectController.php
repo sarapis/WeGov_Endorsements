@@ -34,19 +34,12 @@ class ProjectController extends Controller
 
     public function projectview()
     {
-        //$pros = $this->pro->first();
-        $servicetypes = DB::table('taxonomies')->get();
-        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
-        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
-        $service_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $project_name = '&nbsp;';
-        $filter = collect([$organization_name, $service_name, $project_name]);
+        $project_types = Project::distinct()->get(['project_type']);
+        $organizations = Organization::all();
 
         $allprojects = Project::leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid','agencies.magency','agencies.magencyacro','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->sortable(['project_projectid'])->paginate(20);
-        $projecttypes = DB::table('projects')-> distinct()-> get(['project_type']);
-        $projecttype = '';
-        return view('frontend.projects', compact('servicetypes','projecttypes','organizationtypes','filter', 'allprojects','projecttypes','projecttype'));
+
+        return view('frontend.projects', compact('project_types', 'organizations', 'allprojects'));
     }
 
 

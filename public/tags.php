@@ -37,7 +37,7 @@
 						} 
 						echo "Connected successfully. ";
 
-						$sql = "TRUNCATE TABLE taxonomies;";
+						$sql = "TRUNCATE TABLE tags;";
 
 						if ($conn->query($sql) === TRUE) {
 						    echo "New record created successfully";
@@ -53,7 +53,7 @@
 						// To get this value, look at the Authentication notes in the API docs.
 						// Example: $ curl https://api.airtable.com/v0/appZZ12rVdg6qzyC/foo...
 						// .. where "appZZ12rVdg6qzyC" is the App ID.
-						define ( 'AIRTABLE_APP_ID', 'app2sk6MlzyikwbzL' );
+						define ( 'AIRTABLE_APP_ID', 'appd1eQuF0gFcOMsV' );
 						
 						// Airtable API URL.
 						// Default: https://api.airtable.com/v0/
@@ -89,7 +89,7 @@
 
 						$airtable_url = AIRTABLE_API_URL . AIRTABLE_APP_ID;
 							// We're also specifying a table.
-							$airtable_url .= '/taxonomy';
+							$airtable_url .= '/tags';
 							// And we're specifying a view. The API will honor any filters 
 							// that have been applied to the view, as well as any sort
 							// order that has been applied to it.
@@ -103,7 +103,7 @@
 							// We're also specifying a sort order for the request,
 							// which will override any sort order that has been 
 							// applied on the view.
-							$airtable_url .= '&sortField=name&sortDirection=asc';
+							$airtable_url .= '&sortField=Name&sortDirection=asc';
 
 							curl_setopt( $ch, CURLOPT_URL, $airtable_url );		
 									
@@ -144,16 +144,15 @@
 								// Note that we're passing the Airtable-assigned record ID.
 								echo '<li>';
 								echo '<a href="artist.php?id=' . $record['id'] . '">';
-								echo $record['fields']['name'] . '</a>';
+								echo $record['fields']['Ngame'] . '</a>';
 								echo '</li>';
 
-								$name = str_replace("'","\'",$record['fields']['name']);
-								$parent_name = implode(",", $record['fields']['parent_name']);
-								$services = implode(",", $record['fields']['services']);
-								$description = str_replace("'","\'",$record['fields']['x-description']);
+								$tag_name = str_replace("'","\'",$record['fields']['Name']);
+								$organizations = implode(",", $record['fields']['organizations']);
+								$tag_description = str_replace("'","\'",$record['fields']['Description']);
 
-								$sql = "INSERT INTO taxonomies (taxonomy_id, name, parent_name, vocabulary, x_description, x_notes, services)
-								VALUES ('{$record['id']}', '{$name}', '{$parent_name}',  '{$record['fields']['vocabulary']}', '{$description}', '{$record['fields']['x-notes']}', '{$services}');";
+								$sql = "INSERT INTO tags (tag_id, tag_name, organizations, tag_description)
+								VALUES ( '{$record['id']}', '{$tag_name}', '{$organizations}', '{$tag_description}');";
 
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";
@@ -161,12 +160,13 @@
 								    echo "Error: " . $sql . "<br>" . $conn->error;
 								}
 							}
+							
 							$size += sizeof($airtable_response['records']);
 							$offset = $airtable_response['offset'];
 						}
 						date_default_timezone_set('UTC');
 						$date = date("Y/m/d H:i:s");
-						$sql = "UPDATE services_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Taxonomy'";
+						$sql = "UPDATE contact_table SET total_records='". $size ."', last_synced='{$date}' WHERE table_name='Tags'";
 						if ($conn->query($sql) === TRUE) {
 						    echo "record updated successfully";
 						} else {

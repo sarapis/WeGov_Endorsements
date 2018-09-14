@@ -269,6 +269,10 @@ hr{
   font-style: normal;
   opacity: 0.95;
   white-space: normal;
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 3px;
+  width: calc(100% - 21px);
 }
 .checkbox .checkbox-material .check, label.checkbox-inline .checkbox-material .check {
   border: solid 1px #32acc3;
@@ -283,7 +287,7 @@ hr{
 }
 .main-sidebar{
   box-shadow: none;
-  height: 100vh;
+  min-height: 100vh;
 }
 .center {
   display: block;
@@ -374,4 +378,20 @@ dt{
 }
 #example3{
   margin-bottom: 0 !important;
+}
+.btn-link{
+  padding: 0;
+  text-align: center;
+}
+.link-div{
+  padding: 0;
+}
+.treeview-menu{
+  padding-left: 0;
+}
+.text-aqua{
+  cursor: pointer;
+}
+.portlet-body{
+  padding: 10px;
 }

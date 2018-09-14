@@ -17,7 +17,6 @@
           <table id="example3" class="table table-hover" cellspacing="0" width="100%">
               <thead>
                   <tr>
-                      <th>@sortablelink('project_projectid', 'Project ID')</th>
                       <th>@sortablelink('project_description', 'Project Description')</th>
                       <th class="text-right" style="padding-right: 50px;">@sortablelink('project_totalcost', 'Cost ($)')</th>
                       <th class="text-center">@sortablelink('project_projectid', 'ID')</th>
@@ -27,7 +26,6 @@
                   @foreach($allprojects as $organization_project)
                       @if($organization_project->project_description!=null)
                           <tr>
-                            <td>{{$organization_project->project_projectid}}</td>
                             <td>{{$organization_project->project_description}}</td>
                             <td class="text-right" style="padding-right: 50px;">${{number_format($organization_project->project_totalcost)}}</td>
                             <td class="project-link" id="{{$organization_project->project_recordid}}">{{$organization_project->project_projectid}}</td>

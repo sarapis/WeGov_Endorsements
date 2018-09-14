@@ -10,4 +10,13 @@ class Service extends Model
 
     public $timestamps = false;
 
+    public function organization()
+    {
+        return $this->belongsTo('App\Models\ServiceOrganization', 'organization', 'organization_recordid');
+    }
+
+    public function taxonomy()
+    {
+        return $this->belongsTo('App\Models\Taxonomy', 'taxonomy', 'taxonomy_id');
+    }
 }

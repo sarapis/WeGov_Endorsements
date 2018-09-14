@@ -10,14 +10,14 @@
           </div>        
         </div>
       </form>
-      <form action="#" method="get" class="sidebar-form">
+<!--       <form action="#" method="get" class="sidebar-form">
         <div class="has-feedback">
           <span class="glyphicon glyphicon-search form-control-input"></span>
           <div class="form-group is-empty">
             <input type="text" class="form-control form-input" placeholder="Search Address">
           </div>        
         </div>
-      </form>
+      </form> -->
       <hr>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -57,7 +57,7 @@
                 @foreach($services_organizations as $organization)
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" name="services_organizations[]" value="{{$organization->organization_recordid}}" class="servives-checkbox">  <span class="subitem-list text-uppercase">{{$organization->organization_x_id}}</span>
+                    <input type="checkbox" name="services_organizations[]" value="{{$organization->organization_recordid}}" class="servives-checkbox">  <span class="subitem-list text-uppercase">{{$organization->organization_name}}</span>
                   </label>
                 </div>
                 @endforeach

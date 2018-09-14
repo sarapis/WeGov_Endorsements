@@ -10,6 +10,7 @@ use App\Models\Taxonomy;
 use App\Models\Service;
 use App\Models\Location;
 use App\Models\Organization;
+use App\Models\Agency;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -35,11 +36,43 @@ class ProjectController extends Controller
     public function projectview()
     {
         $project_types = Project::distinct()->get(['project_type']);
-        $organizations = Organization::all();
+        $organizations = Agency::orderBy('magencyacro', 'asc')->get();
 
         $allprojects = Project::leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid','agencies.magency','agencies.magencyacro','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->sortable(['project_projectid'])->paginate(20);
 
         return view('frontend.projects', compact('project_types', 'organizations', 'allprojects'));
+    }
+
+    public function filter(Request $request)
+    {
+        $ids = $request->organization_value;
+
+        $project_type = $request->project_type;
+         
+        $check = 0;
+        if(isset($ids[0])){
+            $allprojects = Project::where('project_managingagency',$ids[0]);
+            $count = 0;
+            for($i = 1; $i < count($ids); $i++)
+                $allprojects = $allprojects->orwhere('project_managingagency',$ids[$i]);
+            $check = 1;
+        }
+        if(isset($project_type[0])){
+            if($check == 0)
+                $allprojects = Project::where('project_type',$project_type[0]);
+            else
+                $allprojects = $allprojects->orwhere('project_type',$project_type[0]);
+            for($i = 1; $i < count($project_type); $i++)
+                $allprojects = $allprojects->orwhere('project_type',$project_type[$i]);
+            $check = 1;
+
+        }
+        if($check == 1)
+            $allprojects = $allprojects->get();
+        else
+            $allprojects =  (object)[];
+
+        return view('frontend.projects_filter', compact('allprojects'))->render();
     }
 
 

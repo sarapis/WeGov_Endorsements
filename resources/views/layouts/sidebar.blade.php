@@ -10,14 +10,14 @@
           </div>        
         </div>
       </form>
-      <form action="#" method="get" class="sidebar-form">
+<!--       <form action="#" method="get" class="sidebar-form">
         <div class="has-feedback">
           <span class="glyphicon glyphicon-search form-control-input"></span>
           <div class="form-group is-empty">
             <input type="text" class="form-control form-input" placeholder="Search Address">
           </div>        
         </div>
-      </form>
+      </form> -->
       <hr>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->

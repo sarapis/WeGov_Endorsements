@@ -10,14 +10,14 @@
           </div>        
         </div>
       </form>
-      <form action="#" method="get" class="sidebar-form">
+<!--       <form action="#" method="get" class="sidebar-form">
         <div class="has-feedback">
           <span class="glyphicon glyphicon-search form-control-input"></span>
           <div class="form-group is-empty">
             <input type="text" class="form-control form-input" placeholder="Search Address">
           </div>        
         </div>
-      </form>
+      </form> -->
       <hr>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -35,7 +35,7 @@
               @if($project_type->project_type!='')
               <div class="checkbox">             
                 <label>
-                  <input type="checkbox">  <span class="subitem-list text-uppercase">{{$project_type->project_type}}</span>
+                  <input type="checkbox" class="project-type" value="{{$project_type->project_type}}">  <span class="subitem-list text-uppercase">{{$project_type->project_type}}</span>
                 </label>
               </div>
               @endif
@@ -57,7 +57,7 @@
                 @foreach($organizations as $organization)
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox">  <span class="subitem-list text-uppercase">{{$organization->organizations_id}}</span>
+                    <input type="checkbox" name="projects_organizations[]" value="{{$organization->agency_recordid}}" class="organization-checkbox">  <span class="subitem-list text-uppercase">{{$organization->magencyacro}}</span>
                   </label>
                 </div>
                 @endforeach
@@ -69,3 +69,46 @@
     </section>
     <!-- /.sidebar -->
   </aside>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      function send_datas(){
+          var organization_value = [];
+          var cboxes = $('.organization-checkbox:checked');
+          for(i = 0; i < cboxes.length; i ++)
+            organization_value[i] = cboxes[i].value;
+          console.log(organization_value);
+
+          var project_type = [];
+          var cboxes = $('.project-type:checked');
+          for(i = 0; i < cboxes.length; i ++)
+            project_type[i] = cboxes[i].value;
+
+          console.log(project_type); 
+
+          $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          })
+
+          $.ajax({
+            type: 'POST',
+            url: '/projects_filter',
+            data: {
+              organization_value: organization_value,
+              project_type: project_type
+            },
+            success: function(data){
+                $('#project_content').html(data);
+            }
+          });
+      }      
+      $('.organization-checkbox').on('click', function(e) {
+          send_datas();
+      });
+      $('.project-type').on('click', function(e){
+          send_datas();
+      });
+
+    });
+</script>

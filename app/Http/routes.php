@@ -71,6 +71,8 @@ Route::post('/organizationproject_{id}', 'ProjectController@find');
 Route::get('/projecttype_{id}', 'ProjectController@projecttypefind');
 Route::get('/projectcategory_{id}', 'ProjectController@category');
 
+Route::post('/projects_filter', 'ProjectController@filter');
+
 //Peoples
 Route::get('/people', 'PeopleController@index');
 Route::get('/people_{id}', 'PeopleController@find');

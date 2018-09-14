@@ -80,6 +80,33 @@
                         <div class="col-sm-4">
                             <div class="box" style="border-top: 2px solid #d2d6de;">
                                <div id="mymap"></div>
+                            
+                                <div class="box-footer" style="height: 115px;">
+                                    <div class="col-xs-3 link-div text-center">
+                                    <a class="btn btn-app btn-link" href="tel:">
+                                        <i class="fa md md-phone"></i> Call
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                    </div>
+                                    <div class="col-xs-3 link-div text-center">
+                                    <a class="btn btn-app btn-link">
+                                        <i class="fa md md-place"></i> Location
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                    </div>
+                                    <div class="col-xs-3 link-div text-center">
+                                    <a class="btn btn-app btn-link">
+                                        <i class="fa md md-link"></i> Website
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                    </div>
+                                    <div class="col-xs-3 link-div text-center">
+                                    <a class="btn btn-app btn-link">
+                                        <i class="fa md md-publish"></i> Share
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

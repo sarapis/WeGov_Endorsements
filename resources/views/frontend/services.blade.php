@@ -15,12 +15,14 @@
             
             <div class="col-sm-8" id="services_filter">
                 @foreach($organization_services as $organization_service)
+                    @if($organization_service->name!=null)
                     <div class="box box-service">
                         <p>Category: {{$organization_service->taxonomy_name}}</p>
                         <p class="text-aqua" id="{{$organization_service->service_id}}">{{$organization_service->name}}</p>
-                        <p>Proviced by: </p>
+                        <p>Proviced by: {{$organization_service->organization()->first()->organization_name}}</p>
                         <p>Phone: {!! $organization_service->phone_numbers !!}</p>
                     </div>
+                    @endif
                 @endforeach
                 {{ $organization_services->links() }}
             </div>

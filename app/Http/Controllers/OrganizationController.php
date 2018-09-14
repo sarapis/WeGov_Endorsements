@@ -163,7 +163,7 @@ class OrganizationController extends Controller
         if($check == 1)
             $organizations = $organizations->get();
         else
-            $organizations =  (object)[];
+            $organizations = Organization::leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select('organizations.*', 'agencies.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->get();;
 
         return view('frontend.organization_filter', compact('organizations'))->render();
     }

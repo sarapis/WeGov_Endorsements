@@ -70,7 +70,7 @@ class ProjectController extends Controller
         if($check == 1)
             $allprojects = $allprojects->get();
         else
-            $allprojects =  (object)[];
+            $allprojects =  Project::all();
 
         return view('frontend.projects_filter', compact('allprojects'))->render();
     }

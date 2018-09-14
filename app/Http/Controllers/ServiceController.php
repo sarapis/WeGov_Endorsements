@@ -77,7 +77,7 @@ class ServiceController extends Controller
         if($check == 1)
             $organization_services = $organization_services->leftjoin('services_phones', 'services.phones', 'like', DB::raw("concat('%', services_phones.phone_recordid, '%')"))->groupBy('services.id')->get();
         else
-            $organization_services =  (object)[];
+            $organization_services =  Service::leftjoin('services_phones', 'services.phones', 'like', DB::raw("concat('%', services_phones.phone_recordid, '%')"))->groupBy('services.id')->get();
 
         return view('frontend.services_filter', compact('organization_services'))->render();
     }

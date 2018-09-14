@@ -28,8 +28,9 @@
 <script>
 $(document).ready(function() {
     $('#example3').DataTable({
-      'paging'      : false,
+      'paging'      : true,
       'lengthChange': false,
+      'pageLength'  : 25,
       'searching'   : false,
       'ordering'    : true,
       'info'        : false,

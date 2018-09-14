@@ -1,9 +1,6 @@
 
 <div class="row">
-    <div class="col-sm-3" style="border-right:1px solid #3f3f3f; padding: 0;">
-        @include('layouts.sidebar')
-    </div>
-    <div class="col-sm-9" id="service_content" style="padding: 0;">
+    <div class="col-sm-12" id="service_content" style="padding: 0;">
         
         <div class="col-sm-8">
         @if($organizations_services)

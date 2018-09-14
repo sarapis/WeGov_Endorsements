@@ -11,7 +11,7 @@
                 @include('layouts.agency_sidebar')
             </div>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-9" id="organization_content">
             <div class="demo-container">
                 @foreach ($organizations as $organization)
                 <div class="col-md-4" style="padding: 0;">

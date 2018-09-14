@@ -44,17 +44,7 @@ Route::post('/organizationservices_{id}', 'OrganizationController@services');
 Route::post('/organizationpeoples_{id}', 'OrganizationController@peoples');
 
 
-Route::get('/organizations_expensedesc', 'OrganizationController@expensedesc');
-Route::get('/organizations_expenseasc', 'OrganizationController@expenseasc');
-Route::get('/organizations_projectsdesc', 'OrganizationController@projectsdesc');
-Route::get('/organizations_projectsasc', 'OrganizationController@projectsasc');
-Route::get('/organizations_servicesdesc', 'OrganizationController@servicesdesc');
-Route::get('/organizations_servicesasc', 'OrganizationController@servicesasc');
-Route::get('/organizations_projectdesc', 'OrganizationController@projectdesc');
-Route::get('/organizations_projectasc', 'OrganizationController@projectasc');
-Route::get('/organizationcategory_{id}', 'OrganizationController@category');
-Route::get('/type_{id}', 'OrganizationController@type');
-
+Route::post('/organizations_filter', 'OrganizationController@filter');
 
 //Services
 Route::get('/services', 'ServiceController@index');

@@ -131,10 +131,10 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="projects">
-
+                    
                 </div>
                 <div role="tabpanel" class="tab-pane" id="services">
-                    
+ 
                 </div>
                 <div role="tabpanel" class="tab-pane" id="money">
                     <div class="row">

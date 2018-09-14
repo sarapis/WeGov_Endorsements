@@ -12,15 +12,6 @@ class AppServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		//
-		view()->composer('layouts.sidebar', function($view)
-        {
-            $view->with('organization_lists', \App\Models\Organization::all());
-        });
-
-        view()->composer('layouts.sidebar', function($view)
-        {
-            $view->with('taxonomy_lists', \App\Models\Taxonomy::all());
-        });
 	}
 
 	/**

@@ -35,7 +35,7 @@
               @if($type->type!='')
               <div class="checkbox">             
                 <label>
-                  <input type="checkbox">  <span class="subitem-list text-uppercase">{{$type->type}}</span>
+                  <input type="checkbox" class="organization-type" value="{{$type->type}}">  <span class="subitem-list text-uppercase">{{$type->type}}</span>
                 </label>
               </div>
               @endif
@@ -57,7 +57,7 @@
                 @foreach($tags as $tag)
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox">  <span class="subitem-list text-uppercase">{{$tag->tag_name}}</span>
+                    <input type="checkbox" class="organization-tag" value="{{$tag->tag_id}}">  <span class="subitem-list text-uppercase">{{$tag->tag_name}}</span>
                   </label>
                 </div>
                 @endforeach
@@ -69,3 +69,46 @@
     </section>
     <!-- /.sidebar -->
   </aside>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      function send_datas(){
+          var organization_type = [];
+          var cboxes = $('.organization-type:checked');
+          for(i = 0; i < cboxes.length; i ++)
+            organization_type[i] = cboxes[i].value;
+          console.log(organization_type);
+
+          var organization_tag = [];
+          var cboxes = $('.organization-tag:checked');
+          for(i = 0; i < cboxes.length; i ++)
+            organization_tag[i] = cboxes[i].value;
+
+          console.log(organization_tag); 
+
+          $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          })
+
+          $.ajax({
+            type: 'POST',
+            url: '/organizations_filter',
+            data: {
+              organization_type: organization_type,
+              organization_tag: organization_tag
+            },
+            success: function(data){
+                $('#organization_content').html(data);
+            }
+          });
+      }      
+      $('.organization-type').on('click', function(e) {
+          send_datas();
+      });
+      $('.organization-tag').on('click', function(e){
+          send_datas();
+      });
+
+    });
+</script>

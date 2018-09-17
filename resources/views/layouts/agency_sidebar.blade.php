@@ -68,14 +68,11 @@
           var cboxes = $('.organization-type:checked');
           for(i = 0; i < cboxes.length; i ++)
             organization_type[i] = cboxes[i].value;
-          console.log(organization_type);
 
           var organization_tag = [];
           var cboxes = $('.organization-tag:checked');
           for(i = 0; i < cboxes.length; i ++)
             organization_tag[i] = cboxes[i].value;
-
-          console.log(organization_tag); 
 
           $.ajaxSetup({
             headers: {

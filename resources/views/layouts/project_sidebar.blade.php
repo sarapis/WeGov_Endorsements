@@ -76,14 +76,11 @@
           var cboxes = $('.organization-checkbox:checked');
           for(i = 0; i < cboxes.length; i ++)
             organization_value[i] = cboxes[i].value;
-          console.log(organization_value);
 
           var project_type = [];
           var cboxes = $('.project-type:checked');
           for(i = 0; i < cboxes.length; i ++)
             project_type[i] = cboxes[i].value;
-
-          console.log(project_type); 
 
           $.ajaxSetup({
             headers: {
@@ -99,15 +96,18 @@
               project_type: project_type
             },
             success: function(data){
+                $('#loader').hide();
                 $('#project_content').html(data);
             }
           });
       }      
       $('.organization-checkbox').on('click', function(e) {
           send_datas();
+          document.getElementById("loader").style.display = "block";
       });
       $('.project-type').on('click', function(e){
           send_datas();
+          document.getElementById("loader").style.display = "block";     
       });
 
     });

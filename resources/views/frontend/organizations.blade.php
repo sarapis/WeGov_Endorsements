@@ -25,8 +25,8 @@
                         <div class="organization_div">
                         <a href="/organization_{{$organization->organizations_id}}" class="organization_title">{{str_limit($organization->name, 40)}}</a>
                         </div>
-                        <a target="_blank" class="link-website" @if($organization->website!='') href="{{$organization->website}}" @endif>
-                          website</a>
+                        <a target="_blank" class="link-website" @if($organization->website!='') href="http://{{$organization->website}}" @endif>
+                          Website</a>
                         <div style="padding-top: 5px;">
                           <a target="_blank" class="link_category"  @if($organization->tags!='') href="{{$organization->tags}}" @endif>
                             {{$organization->tags}}</a>

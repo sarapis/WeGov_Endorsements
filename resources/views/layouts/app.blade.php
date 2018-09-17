@@ -43,7 +43,7 @@
 </head>
 
 <body>
-
+    <div id="loader" style="display: none;"></div>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
         @include('partials.header')
@@ -84,6 +84,19 @@
         $('.slider').slider()
       })
     </script>
-  
+    <script type="text/javascript">
+        var csrfToken = $('[name="csrf_token"]').attr('content');
+
+        setInterval(refreshToken, 3600000); // 1 hour 
+
+        function refreshToken(){
+            $.get('refresh-csrf').done(function(data){
+                csrfToken = data; // the new token
+            });
+        }
+
+        setInterval(refreshToken, 3600000); // 1 hour 
+
+    </script>
 
 </html>

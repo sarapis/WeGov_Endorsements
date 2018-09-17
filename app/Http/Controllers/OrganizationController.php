@@ -147,7 +147,7 @@ class OrganizationController extends Controller
             $organizations = Organization::where('type',$types[0]);
             $count = 0;
             for($i = 1; $i < count($types); $i++)
-                $organization_services = $organizations->orwhere('organization',$types[$i]);
+                $organizations = $organizations->orwhere('type',$types[$i]);
             $check = 1;
         }
         if(isset($tags[0])){

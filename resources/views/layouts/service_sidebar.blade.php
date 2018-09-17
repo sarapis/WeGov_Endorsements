@@ -77,14 +77,11 @@
           var cboxes = $('.servives-checkbox:checked');
           for(i = 0; i < cboxes.length; i ++)
             organization_value[i] = cboxes[i].value;
-          console.log(organization_value);
 
           var taxonomy_value = [];
           var cboxes = $('.taxonomy-checkbox:checked');
           for(i = 0; i < cboxes.length; i ++)
             taxonomy_value[i] = cboxes[i].value;
-
-          console.log(taxonomy_value); 
 
           $.ajaxSetup({
             headers: {

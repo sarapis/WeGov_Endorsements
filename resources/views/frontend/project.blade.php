@@ -90,7 +90,14 @@
 <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script>
 $(document).ready(function() {
-    $('#example').DataTable();
-} );
+    $('#example').DataTable({
+      'paging'      : false,
+      'lengthChange': false,
+      'pageLength'  : 25,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : false,
+      'autoWidth'   : false
+  });
+});
 </script>
-

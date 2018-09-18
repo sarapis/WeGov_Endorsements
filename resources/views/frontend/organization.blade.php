@@ -105,9 +105,7 @@
                                         <i class="fa md md-publish"></i> Share
                                         <div class=" sharethis-inline-share-buttons"></div>
                                     </a>
-<!--                                     <div class="sharethis-inline-share-buttons"><i class="fa md md-publish"></i> Share
-                                        <div class="ripple-container"></div></div>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>

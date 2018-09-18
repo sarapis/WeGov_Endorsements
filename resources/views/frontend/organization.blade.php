@@ -103,9 +103,11 @@
                                     <div class="col-xs-3 link-div text-center">
                                     <a class="btn btn-app btn-link">
                                         <i class="fa md md-publish"></i> Share
-                                        <div class="ripple-container"></div>
+                                        <div class=" sharethis-inline-share-buttons"></div>
                                     </a>
-                                    </div>
+<!--                                     <div class="sharethis-inline-share-buttons"><i class="fa md md-publish"></i> Share
+                                        <div class="ripple-container"></div></div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

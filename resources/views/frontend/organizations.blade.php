@@ -26,7 +26,7 @@
                         <a href="/organization_{{$organization->organizations_id}}" class="organization_title">{{str_limit($organization->name, 40)}}</a>
                         </div>
                         <a target="_blank" class="link-website" @if($organization->website!='') href="http://{{$organization->website}}" @endif>
-                          Website</a>
+                          Website<i class="fa fa-fw fa-external-link"></i></a>
                         <div style="padding-top: 5px;">
                           <?php 
                             $tag_names = explode(',', $organization->tag_names);

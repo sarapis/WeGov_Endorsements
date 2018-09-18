@@ -84,6 +84,7 @@
         $('.slider').slider()
       })
     </script>
+    <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5ba15af942fa8c0011745dc1&product=inline-share-buttons' async='async'></script>
     <script type="text/javascript">
         var csrfToken = $('[name="csrf_token"]').attr('content');
 

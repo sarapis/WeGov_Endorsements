@@ -22,4 +22,9 @@ class Organization extends Model
         return $this->hasMany('App\Models\Location','organization', 'organization_id');
     }
 
+    public function address()
+    {
+        return $this->hasMany('App\Models\Address', 'organizations', 'organization_id');
+    }
+
 }

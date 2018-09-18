@@ -458,3 +458,6 @@ dt{
   opacity: .5;
   position: fixed;
 }
+.text-white{
+  color: #ffffff;
+}

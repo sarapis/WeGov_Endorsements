@@ -153,10 +153,11 @@
 								$locations = implode(",", $record['fields']['locations']);
 								$address_type = implode(",", $record['fields']['address_type']);
 								$sources = implode(",", $record['fields']['Sources']);
+								$organizations = implode(",", $record['fields']['organizations']);
 
 
-								$sql = "INSERT INTO address (address_id, address_1, city, state_province, postal_code, contact, attention, locations, region, country, address_type, sources)
-								VALUES ( '{$record['id']}', '{$address_1}', '{$record['fields']['city']}', '{$record['fields']['state_province']}', '{$record['fields']['postal_code']}', '{$contact}', '{$attention}', '{$locations}', '{$record['fields']['region']}', '{$record['fields']['country']}', '{$address_type}', '{$sources}');";
+								$sql = "INSERT INTO address (address_id, address_1, city, state_province, postal_code, contact, attention, locations, region, country, address_type, sources, organizations)
+								VALUES ( '{$record['id']}', '{$address_1}', '{$record['fields']['city']}', '{$record['fields']['state_province']}', '{$record['fields']['postal_code']}', '{$contact}', '{$attention}', '{$locations}', '{$record['fields']['region']}', '{$record['fields']['country']}', '{$address_type}', '{$sources}', '{$organizations}');";
 
 								if ($conn->query($sql) === TRUE) {
 								    echo "New record created successfully";

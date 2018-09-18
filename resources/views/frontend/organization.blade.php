@@ -83,19 +83,19 @@
                             
                                 <div class="box-footer" style="height: 115px;">
                                     <div class="col-xs-3 link-div text-center">
-                                    <a class="btn btn-app btn-link" href="tel:">
+                                    <a class="btn btn-app btn-link" href="tel:{{$organization->phone_number}}">
                                         <i class="fa md md-phone"></i> Call
                                         <div class="ripple-container"></div>
                                     </a>
                                     </div>
                                     <div class="col-xs-3 link-div text-center">
-                                    <a class="btn btn-app btn-link">
+                                    <a class="btn btn-app btn-link" target="_blank" href="https://www.google.com.mm/maps/place/{{$organization->address()->first()->address_1}}, {{$organization->address()->first()->city}}, {{$organization->address()->first()->postal_code}}">
                                         <i class="fa md md-place"></i> Location
                                         <div class="ripple-container"></div>
                                     </a>
                                     </div>
                                     <div class="col-xs-3 link-div text-center">
-                                    <a class="btn btn-app btn-link">
+                                    <a class="btn btn-app btn-link" target="_blank" href="http://{{$organization->website}}">
                                         <i class="fa md md-link"></i> Website
                                         <div class="ripple-container"></div>
                                     </a>
@@ -114,13 +114,13 @@
                         <div class="col-sm-4">
                             <div class="box text-center" style="min-height: 390px;">
                                 <p class="text-feed">Twitter feed</p>
-                                <button class="btn btn-tweet">Tweet at NYPD</button>
+                                <button class="btn btn-tweet"><a target="_blank" href="http://{{$organization->Twitter}}" class="text-white">Tweet at NYPD</a></button>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="box text-center" style="min-height: 390px;">
                                 <p class="text-feed">Facebook feed</p>
-                                <button class="btn btn-facebook">Follow NYPD</button>
+                                <button class="btn btn-facebook"><a target="_blank" href="http://{{$organization->Facebook}}" class="text-white">Follow NYPD</a></button>
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -131,7 +131,7 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="projects">
-                    
+
                 </div>
                 <div role="tabpanel" class="tab-pane" id="services">
  

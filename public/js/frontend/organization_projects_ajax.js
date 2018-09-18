@@ -1,7 +1,7 @@
 $(document).ready(function()
 {
     $('#projects_tab').on('click', function() {
-
+        document.getElementById("loader").style.display = "block";
         var organizations_id = $('#organizations_id').val();
         
         $.ajaxSetup({
@@ -17,6 +17,7 @@ $(document).ready(function()
             cache: false, // To unable request pages to be cached
             processData: false,
             success: function(data) {
+                $('#loader').hide();
                 $('#projects').html(data);
             },
             error: function(errResponse) {

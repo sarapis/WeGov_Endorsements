@@ -76,24 +76,14 @@ class ProjectController extends Controller
     }
 
 
-    public function projectfind($id)
-    {   
-        //$pros = $this->pro->first();
+    public function search(Request $request)
+    {
+        $find = $request->search_project;
 
-        $servicetypes = DB::table('taxonomies')->get();
-        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
-        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
-        $service_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $project_name = '&nbsp;';
-        $filter = collect([$organization_name, $service_name, $project_name]);
+        $allprojects = Project::where('project_projectid', 'like', '%'.$find.'%')
+            ->orwhere('project_description', 'like', '%'.$find.'%')->get();
 
-        $project = DB::table('projects')->where('project_recordid', $id)->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.project_projectid', 'agencies.magency', 'agencies.magencyacro', 'agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_citycost','projects.project_noncitycost','projects.project_type','projects.project_lat','projects.project_long')->first();
-        $lat = DB::table('projects')->where('project_recordid', $id)-> value('project_lat');
-        $long = DB::table('projects')->where('project_recordid', $id)-> value('project_long');
-        Mapper::map($lat, $long, ['zoom' => 15]);
-        $commitments = DB::table('commitments')->where('projectid', $id)->get();
-        return view('frontend.profile', compact('servicetypes','projecttypes','organizationtypes', 'filter', 'commitments','project'))->render();
+        return view('frontend.projects_filter', compact('allprojects'))->render();
     }
 
     public function find($id)

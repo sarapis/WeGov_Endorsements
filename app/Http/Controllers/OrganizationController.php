@@ -119,29 +119,19 @@ class OrganizationController extends Controller
      */
     public function search(Request $request)
     {
+        $find = $request->search_agency;
 
-        $servicetypes = DB::table('taxonomies')->get();
-        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
-        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
-        $service_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $project_name = '&nbsp;';
-        $filter = collect([$organization_name, $service_name, $project_name]);
-
-        $find = $request->input('find');
-
-        $organizations = Organization::leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select('organizations.*', 'agencies.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets'))->groupBy('organizations.id')->where('organizations.name', 'like', '%'.$find.'%')
+        $organizations = Organization::leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->select('organizations.*', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->where('organizations.name', 'like', '%'.$find.'%')
             ->orwhere('organizations.description', 'like', '%'.$find.'%')->sortable(['expenses_budgets'])->get();
 
-        $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.organizations', compact('servicetypes','projecttypes','organizationtypes', 'filter', 'location_map', 'organizations'));
+        return view('frontend.organization_filter', compact('organizations'))->render();
     }
 
     public function filter(Request $request)
     {
         $types = $request->organization_type;
         $tags = $request->organization_tag;
-         
+        // $find = $request->val; 
         $check = 0;
         if(isset($types[0])){
             $organizations = Organization::where('type',$types[0]);
@@ -160,6 +150,18 @@ class OrganizationController extends Controller
             $check = 1;
 
         }
+        // if(isset($find)){
+            
+        //     if($check == 0)
+        //         $organizations = Organization::where(function($query) use ($find) {
+        //         $query->where('name', 'like', '%'.$find.'%')->orwhere('description', 'like', '%'.$find.'%');
+        //     });
+        //     else
+        //        $organizations = $organizations->where(function($query) use ($find) {
+        //         $query->where('name', 'like', '%'.$find.'%')->orwhere('description', 'like', '%'.$find.'%');
+        //     });
+        //     $check = 1;
+        // }        
         if($check == 1)
             $organizations = $organizations->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->select('organizations.*', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->get();
         else
@@ -169,3 +171,4 @@ class OrganizationController extends Controller
     }
     
 }
+

@@ -2,14 +2,14 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
+      <div class="sidebar-form">
         <div class="has-feedback">
           <span class="glyphicon glyphicon-search form-control-input"></span>
           <div class="form-group is-empty">
-            <input type="text" class="form-control form-input" placeholder="Search...">
+            <input type="text" class="form-control form-input" placeholder="Search..." id="search_service">
           </div>        
         </div>
-      </form>
+      </div>
 <!--       <form action="#" method="get" class="sidebar-form">
         <div class="has-feedback">
           <span class="glyphicon glyphicon-search form-control-input"></span>
@@ -72,6 +72,37 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+      $('#search_service').change(function(){
+        search_service();
+
+        document.getElementById("loader").style.display = "block";
+      });
+      $('.glyphicon-search').click(function(){
+        search_service();
+        document.getElementById("loader").style.display = "block";
+      });
+      function search_service(){
+        val = $('#search_service').val();
+        console.log(val);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          })
+
+        $.ajax({
+          type: 'POST',
+          url: '/services_search',
+          data: {
+            search_service: val
+          },
+          success: function(data){
+              $('#loader').hide();
+              $('#service_content').html(data);
+          }
+        });
+      }
       function send_datas(){
           var organization_value = [];
           var cboxes = $('.servives-checkbox:checked');

@@ -18,8 +18,10 @@
                 $tag_names = explode(',', $organization->tag_names);
                 ?>
               @foreach($tag_names as $tag_name)
-                  <a target="_blank" class="link_category">
-                    {{$tag_name}}</a><br>
+                @if($tag_name!='')
+                  <span class="badge bg-green">
+                    {{$tag_name}}</span>
+                @endif
               @endforeach
             </div>
           </div>

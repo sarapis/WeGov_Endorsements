@@ -3,7 +3,7 @@
     <div class="col-sm-8">
       <div class="box">
         <!-- /.box-header -->
-        @if($organization->projects!='')
+        @if($organization_projects!=null)
         <div class="box-body no-padding">
             <table id="example3" class="table table-hover" cellspacing="0" width="100%">
                 <thead>
@@ -46,7 +46,8 @@
 <script>
 $(document).ready(function() {
     $('#example3').DataTable({
-      'paging'      : false,
+      'paging'      : true,
+      'pageLength'  : 20,
       'lengthChange': false,
       'searching'   : false,
       'ordering'    : true,

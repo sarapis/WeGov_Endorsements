@@ -119,22 +119,13 @@ class ServiceController extends Controller
      */
     public function search(Request $request)
     {
-        $servicetypes = DB::table('taxonomies')->get();
-        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
-        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
-        $service_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $project_name = '&nbsp;';
-        $filter = collect([$organization_name, $service_name, $project_name]);
+        $find = $request->search_service;
 
-        $find = $request->input('find');
-        $services_all = DB::table('services')->leftjoin('phones', 'services.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'))->groupBy('services.id')->leftjoin('organizations', 'services.organization', '=', 'organizations.organization_id')->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), DB::raw('organizations.name as organization_name'), DB::raw('taxonomies.name as taxonomy_name'))->where('services.name', 'like', '%'.$find.'%')
-            ->orwhere('services.description', 'like', '%'.$find.'%')
-            ->get();
-        $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.search', compact('servicetypes','projecttypes','organizationtypes', 'taxonomys','service_name','filter','services_all', 'location_map', 'find'));
+        $organization_services = Service::where('name', 'like', '%'.$find.'%')
+            ->orwhere('description', 'like', '%'.$find.'%')->get();
+
+        return view('frontend.services_filter', compact('organization_services'))->render();
     }
-
     /**
      * Update the specified resource in storage.
      *

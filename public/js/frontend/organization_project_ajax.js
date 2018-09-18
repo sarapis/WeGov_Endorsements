@@ -1,7 +1,7 @@
 $(document).ready(function()
 {
     $('.project-link').on('click', function() {
-
+        document.getElementById("loader").style.display = "block";
         var project_id = $(this).attr('id');
         
         $.ajaxSetup({
@@ -17,6 +17,7 @@ $(document).ready(function()
             cache: false, // To unable request pages to be cached
             processData: false,
             success: function(data) {
+                $('#loader').hide();
                 $('#project_content').html(data);
             },
             error: function(errResponse) {

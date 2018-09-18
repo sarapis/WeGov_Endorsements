@@ -2,14 +2,14 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
+      <div class="sidebar-form">
         <div class="has-feedback">
           <span class="glyphicon glyphicon-search form-control-input"></span>
           <div class="form-group is-empty">
-            <input type="text" class="form-control form-input" placeholder="Search...">
+            <input type="text" class="form-control form-input" placeholder="Search..." id="search_agency">
           </div>        
         </div>
-      </form>
+      </div>
       <hr>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -63,6 +63,38 @@
   </aside>
   <script type="text/javascript">
     $(document).ready(function () {
+
+      $('#search_agency').change(function(){
+        search_agency();
+
+        document.getElementById("loader").style.display = "block";
+      });
+      $('.glyphicon-search').click(function(){
+        search_agency();
+        document.getElementById("loader").style.display = "block";
+      });
+      function search_agency(){
+        val = $('#search_agency').val();
+        console.log(val);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          })
+
+        $.ajax({
+          type: 'POST',
+          url: '/organizations_search',
+          data: {
+            search_agency: val
+          },
+          success: function(data){
+              $('#loader').hide();
+              $('#organization_content').html(data);
+          }
+        });
+      }
+
       function send_datas(){
           var organization_type = [];
           var cboxes = $('.organization-type:checked');
@@ -88,15 +120,18 @@
               organization_tag: organization_tag
             },
             success: function(data){
+                $('#loader').hide();
                 $('#organization_content').html(data);
             }
           });
       }      
       $('.organization-type').on('click', function(e) {
           send_datas();
+          document.getElementById("loader").style.display = "block"; 
       });
       $('.organization-tag').on('click', function(e){
           send_datas();
+          document.getElementById("loader").style.display = "block"; 
       });
 
     });

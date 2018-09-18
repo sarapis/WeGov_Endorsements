@@ -1,9 +1,9 @@
 $(document).ready(function()
 {
     $('.text-aqua').on('click', function() {
-
+        document.getElementById("loader").style.display = "block";
         var service_id = $(this).attr('id');
-        console.log(service_id);
+        // console.log(service_id);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -17,6 +17,7 @@ $(document).ready(function()
             cache: false, // To unable request pages to be cached
             processData: false,
             success: function(data) {
+                $('#loader').hide();
                 $('#service_content').html(data);
             },
             error: function(errResponse) {

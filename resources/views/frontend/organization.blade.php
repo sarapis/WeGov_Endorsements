@@ -89,7 +89,7 @@
                                     </a>
                                     </div>
                                     <div class="col-xs-3 link-div text-center">
-                                    <a class="btn btn-app btn-link" target="_blank" href="https://www.google.com.mm/maps/place/{{$organization->address()->first()->address_1}}, {{$organization->address()->first()->city}}, {{$organization->address()->first()->postal_code}}">
+                                    <a class="btn btn-app btn-link" target="_blank" @if($organization->main_address!='') href="https://www.google.com.mm/maps/place/{{$organization->address()->first()->address_1}}, {{$organization->address()->first()->city}}, {{$organization->address()->first()->postal_code}} @endif">
                                         <i class="fa md md-place"></i> Location
                                         <div class="ripple-container"></div>
                                     </a>

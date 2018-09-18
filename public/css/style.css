@@ -99,6 +99,14 @@ footer.mdl-mini-footer{
 	color: #02435f;
 	font-size: 12px;
 }
+.text-tages{
+  color: #02435f;
+  font-size: 16px;
+}
+.text-types{
+  color: #02435f;
+  font-size: 16px;
+}
 .menu-bar{
 	margin: 0;
 	padding: 20px 20px 0 20px;
@@ -183,6 +191,17 @@ footer.mdl-mini-footer{
   	color: white !important;
   	text-transform: none;
   	margin-top: 83px;
+    margin-bottom: 75px;
+}
+.btn-rss{
+  width: 197.2px;
+    height: 74.5px;
+    border-radius: 2px;
+    background-color: #f26522;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    color: white !important;
+    text-transform: none;
+    margin-top: 83px;
     margin-bottom: 75px;
 }
 .btn-link{

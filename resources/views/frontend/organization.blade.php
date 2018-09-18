@@ -7,6 +7,20 @@
 <div class="demo-container mdl-grid">
     <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col">
         <div class="page-title row">
+            <div class="pull-right hidden-xs">
+              <p class="text-tages"> Tags: <?php 
+                $tag_names = explode(',', $organization->tag_names);
+                ?>
+              @foreach($tag_names as $tag_name)
+                @if($tag_name!='')
+                  <span class="badge bg-green">
+                    {{$tag_name}}</span>
+                @endif
+              @endforeach</p>
+            </div>
+            <div class="pull-right hidden-xs" style="padding-left: 20px;padding-right: 10px;">
+              <p class="text-types"> Type: <span class="badge bg-blue">{{$organization->type}}</span></p>
+            </div>
             <div class="pull-left">{{$organization->name}}</div>
             <input type="hidden" id="organizations_id" value="{{$organization->organizations_id}}">
         </div>
@@ -114,18 +128,19 @@
                         <div class="col-sm-4">
                             <div class="box text-center" style="min-height: 390px;">
                                 <p class="text-feed">Twitter feed</p>
-                                <button class="btn btn-tweet"><a target="_blank" href="http://{{$organization->Twitter}}" class="text-white">Tweet at NYPD</a></button>
+                                <button class="btn btn-tweet"><a target="_blank" href="http://{{$organization->Twitter}}" class="text-white">Follow on Twitter</a></button>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="box text-center" style="min-height: 390px;">
                                 <p class="text-feed">Facebook feed</p>
-                                <button class="btn btn-facebook"><a target="_blank" href="http://{{$organization->Facebook}}" class="text-white">Follow NYPD</a></button>
+                                <button class="btn btn-facebook"><a target="_blank" href="http://{{$organization->Facebook}}" class="text-white">Follow on Facebook</a></button>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="box text-center" style="min-height: 390px;">
-                                <p class="text-feed">RSS Feed</p>
+                                <p class="text-feed">Needs feed</p>
+                                <button class="btn btn-rss"><a target="_blank" href="http://{{$organization->RSS}}" class="text-white">Read Their News</a></button>
                             </div>
                         </div>
                     </div>

@@ -13,6 +13,7 @@ use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 
 use App\Logic\User\UserRepository;
 use App\Models\Agency;
+use App\Models\Address;
 use App\Models\Taxonomy;
 use App\Models\Service;
 use App\Models\Location;
@@ -66,6 +67,8 @@ class OrganizationController extends Controller
         $organization->total_project_cost=$budgetclass->custom_number_format($organization->total_project_cost, 1);
         $organization->expenses_budgets=$budgetclass->custom_number_format($organization->expenses_budgets, 1);
 
+        $agency_map = Address::where('organizations','=', $original_organization->organization_id)->first();
+
         $organization_map = DB::table('services_organizations')->where('organization_x_id','=', $id)->leftjoin('locations', 'services_organizations.organization_locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->leftjoin('agencies', 'services_organizations.organization_recordid', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('projects', 'agencies.projects', 'like', DB::raw("concat('%', projects.project_recordid, '%')"))->groupBy('projects.project_recordid')->select('services_organizations.*', 'locations.*', 'projects.*', 'address.*')->groupBy('locations.id')->get();
 
         // var_dump($organization_services);
@@ -76,7 +79,7 @@ class OrganizationController extends Controller
         $expenses_sum = Organization::where('organizations_id','=', $id)->leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select(DB::raw('sum(expenses.year1_forecast) as expenses_year1'), DB::raw('sum(expenses.year2_estimate) as expenses_year2'), DB::raw('sum(expenses.year3_estimate) as expenses_year3'))->first();  
 
 
-        return view('frontend.organization', compact('organization', 'organization_peoples', 'organization_expenses', 'organization_map', 'expenses_sum', 'original_organization', 'capital_budget', 'expense_budget', 'organization_type', 'organizations', 'organization_projects'));
+        return view('frontend.organization', compact('organization', 'organization_peoples', 'organization_expenses', 'organization_map', 'expenses_sum', 'original_organization', 'capital_budget', 'expense_budget', 'organization_type', 'organizations', 'organization_projects', 'agency_map'));
     }
 
     public function projects($id)

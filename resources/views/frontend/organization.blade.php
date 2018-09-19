@@ -219,75 +219,22 @@
 
 <script type="text/javascript">
 
-    var locations = <?php print_r(json_encode($organization_map)) ?>;
+    var locations = <?php print_r(json_encode($agency_map)) ?>;
 
 
     var mymap = new GMaps({
       el: '#mymap',
-      lat: 40.712722,
-      lng: -74.006058,
+      lat: locations.latitude,
+      lng: locations.longitude,
       zoom:10
     });
 
-    $.each( locations, function( index, value){
-        if (value.latitude && value.longitude) {
-
-            mymap.addMarker({
-                lat: value.latitude,
-                lng: value.longitude,
-                title: value.name,
-                infoWindow: {
-                content: ('<a href="location_'+value.location_id+'">'+value.name+'</a></br>' +value.address_1+', ' +value.city+', '+value.state_province+', '+value.postal_code)
-                }
-            });
-        }
-        if (value.project_lat && value.project_long) {
-            mymap.addMarker({
-                lat: value.project_lat,
-                lng: value.project_long,
-                title: value.project_projectid,
-                infoWindow: {
-                    content: ('<a style="color:red;" href="projects_'+value.project_recordid+'">'+value.project_projectid+'</a></br>')
-                }
-            });
-        }
-    });
-
-
-</script>
-<script type="text/javascript">
-
-    var locations = <?php print_r(json_encode($organization_map)) ?>;
-
-
-    var mymap_service = new GMaps({
-      el: '#mymap_service',
-      lat: 40.712722,
-      lng: -74.006058,
-      zoom:10
-    });
-
-    $.each( locations, function( index, value){
-        if (value.latitude && value.longitude) {
-
-            mymap_service.addMarker({
-                lat: value.latitude,
-                lng: value.longitude,
-                title: value.name,
-                infoWindow: {
-                content: ('<a href="location_'+value.location_id+'">'+value.name+'</a></br>' +value.address_1+', ' +value.city+', '+value.state_province+', '+value.postal_code)
-                }
-            });
-        }
-        if (value.project_lat && value.project_long) {
-            mymap_service.addMarker({
-                lat: value.project_lat,
-                lng: value.project_long,
-                title: value.project_projectid,
-                infoWindow: {
-                    content: ('<a style="color:red;" href="projects_'+value.project_recordid+'">'+value.project_projectid+'</a></br>')
-                }
-            });
+    mymap.addMarker({
+        lat: locations.latitude,
+        lng: locations.longitude,
+        title: locations.name,
+        infoWindow: {
+        content: ('<span>' +locations.address_1+', ' +locations.city+', '+locations.state_province+', '+locations.postal_code+'</span>')
         }
     });
 

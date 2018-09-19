@@ -128,19 +128,19 @@
                         <div class="col-sm-4">
                             <div class="box text-center" style="min-height: 390px;">
                                 <p class="text-feed">Twitter feed</p>
-                                <button class="btn btn-tweet"><a target="_blank" href="http://{{$organization->Twitter}}" class="text-white">Follow on Twitter</a></button>
+                                <a class="btn btn-tweet" href="http://{{$organization->Twitter}}" target="_blank">Follow on Twitter</a>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="box text-center" style="min-height: 390px;">
                                 <p class="text-feed">Facebook feed</p>
-                                <button class="btn btn-facebook"><a target="_blank" href="http://{{$organization->Facebook}}" class="text-white">Follow on Facebook</a></button>
+                                <a class="btn btn-facebook" target="_blank" href="http://{{$organization->Facebook}}">Follow on Facebook</a>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="box text-center" style="min-height: 390px;">
                                 <p class="text-feed">News Feed</p>
-                                <button class="btn btn-rss"><a target="_blank" href="http://{{$organization->RSS}}" class="text-white">Read Their News</a></button>
+                                <button class="btn btn-rss" target="_blank" href="http://{{$organization->RSS}}">Read Their News</a>
                             </div>
                         </div>
                     </div>

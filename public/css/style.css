@@ -181,6 +181,7 @@ footer.mdl-mini-footer{
   	text-transform: none;
   	margin-top: 83px;
     margin-bottom: 75px;
+    line-height: 60px;
 }
 .btn-facebook{
 	width: 197.2px;
@@ -192,6 +193,7 @@ footer.mdl-mini-footer{
   	text-transform: none;
   	margin-top: 83px;
     margin-bottom: 75px;
+    line-height: 60px;
 }
 .btn-rss{
   width: 197.2px;
@@ -203,6 +205,16 @@ footer.mdl-mini-footer{
     text-transform: none;
     margin-top: 83px;
     margin-bottom: 75px;
+    line-height: 60px;
+}
+.btn-tweet:hover, .btn-tweet:focus{
+  color: #07aaec !important;
+}
+.btn-facebook:hover, .btn-facebook:focus{
+  color: #4870bf !important;
+}
+.btn-rss:hover, .btn-rss:focus{
+  color: #f26522 !important;
 }
 .btn-link{
 	color: #072b40;

@@ -25,7 +25,7 @@
 
 	        @include('admin.forms.register-form')
 
-			<div class="row">
+<!-- 			<div class="row">
 				<div class="col-xs-12">
 					<p class="text-center margin-top-1 margin-bottom-2">- OR -</p>
 
@@ -36,7 +36,7 @@
 					{{-- @include('partials.sm-logins-full') --}}
 
 				</div>
-			</div>
+			</div> -->
 
 	        <hr class="login-full-span">
 

@@ -47,7 +47,7 @@ class OrganizationController extends Controller
      */
     public function find($id)
     {   
-        $project_types = Project::distinct()->get(['project_type']);
+        $organization_type = $organization = Organization::where('organizations_id','=',$id)->first()->type;
         $organizations = Agency::orderBy('magencyacro', 'asc')->get();
 
         $original_organization = Organization::where('organizations_id','=',$id)->first();
@@ -76,7 +76,7 @@ class OrganizationController extends Controller
         $expenses_sum = Organization::where('organizations_id','=', $id)->leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select(DB::raw('sum(expenses.year1_forecast) as expenses_year1'), DB::raw('sum(expenses.year2_estimate) as expenses_year2'), DB::raw('sum(expenses.year3_estimate) as expenses_year3'))->first();  
 
 
-        return view('frontend.organization', compact('organization', 'organization_peoples', 'organization_expenses', 'organization_map', 'expenses_sum', 'original_organization', 'capital_budget', 'expense_budget', 'project_types', 'organizations', 'organization_projects'));
+        return view('frontend.organization', compact('organization', 'organization_peoples', 'organization_expenses', 'organization_map', 'expenses_sum', 'original_organization', 'capital_budget', 'expense_budget', 'organization_type', 'organizations', 'organization_projects'));
     }
 
     public function projects($id)

@@ -19,7 +19,7 @@
               @endforeach</p>
             </div>
             <div class="pull-right hidden-xs" style="padding-left: 20px;padding-right: 10px;">
-              <p class="text-types"> Type: <span class="badge bg-blue">{{$organization->type}}</span></p>
+              <p class="text-types"> Type: <span class="badge bg-blue">{{$organization_type}}</span></p>
             </div>
             <div class="pull-left">{{$organization->name}}</div>
             <input type="hidden" id="organizations_id" value="{{$organization->organizations_id}}">
@@ -139,7 +139,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="box text-center" style="min-height: 390px;">
-                                <p class="text-feed">Needs feed</p>
+                                <p class="text-feed">News Feed</p>
                                 <button class="btn btn-rss"><a target="_blank" href="http://{{$organization->RSS}}" class="text-white">Read Their News</a></button>
                             </div>
                         </div>

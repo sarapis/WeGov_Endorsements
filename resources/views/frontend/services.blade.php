@@ -58,7 +58,7 @@
                 title: value.name,
                 infoWindow: {
                 maxWidth: 150,
-                content: ('<a href="location_'+value.location_id+'">'+value.name+'</a></br>' +value.services_address_1+', ' +value.services_address_city+', '+value.services_address_state_province+', '+value.services_address_postalcode)
+                content: ('<a>'+value.name+'</a></br>' +value.services_address_1+', ' +value.services_address_city+', '+value.services_address_state_province+', '+value.services_address_postalcode)
                 }
             });
         }

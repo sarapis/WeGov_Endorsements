@@ -140,7 +140,7 @@
                         <div class="col-sm-4">
                             <div class="box text-center" style="min-height: 390px;">
                                 <p class="text-feed">News Feed</p>
-                                <button class="btn btn-rss" target="_blank" href="http://{{$organization->RSS}}">Read Their News</a>
+                                <a class="btn btn-rss" target="_blank" href="http://{{$organization->RSS}}">Read Their News</a>
                             </div>
                         </div>
                     </div>

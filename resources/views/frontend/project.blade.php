@@ -90,8 +90,6 @@
 
     var locations = <?php print_r(json_encode($project)) ?>;
 
-    console.log(locations.project_lat);
-
     var mymap_project_type = new GMaps({
       el: '#mymap_project_type',
       lat: locations.project_lat,

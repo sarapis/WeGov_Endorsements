@@ -1,6 +1,6 @@
 ## Installation Instructions
 
-### Run git clone https://github.com/sarapis/data_mygov_nyc_v2
+#### Run git clone https://github.com/sarapis/data_mygov_nyc_v2
 ### Create a MySQL database for the project
 ### mysql -u root -p, if using Vagrant: mysql -u homestead -psecret
 ### create database mygov;

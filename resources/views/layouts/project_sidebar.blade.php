@@ -69,6 +69,7 @@
     </section>
     <!-- /.sidebar -->
   </aside>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
 

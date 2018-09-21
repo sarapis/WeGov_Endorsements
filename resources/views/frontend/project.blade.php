@@ -37,10 +37,7 @@
                                         @if ($project->project_lat==0 && $project->project_long==0)
                                           <p style="font-size: 16px; padding-right: 40px; padding-top: 60px;">There is no map data. Please add some by clicking "Add Information" and submitting an address for the project.</p>
                                         @else
-                                        <div style="width: 100%; height: 300px;">
-
-                                          {!! Mapper::render() !!}
-                                        </div>
+                                        <div id="mymap_project_type"></div>
                                         @endif
                                     </div>
                                 </div>
@@ -88,6 +85,34 @@
 
 <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
+<script type="text/javascript">
+
+    var locations = <?php print_r(json_encode($project)) ?>;
+
+    console.log(locations.project_lat);
+
+    var mymap_project_type = new GMaps({
+      el: '#mymap_project_type',
+      lat: locations.project_lat,
+      lng: locations.project_long,
+      zoom:10
+    });
+
+        if (locations.project_lat!=0 && locations.project_long!=0) {
+
+            mymap_project_type.addMarker({
+                lat: locations.project_lat,
+                lng: locations.project_long,
+                title: locations.project_projectid,
+                infoWindow: {
+                maxWidth: 150,
+                content: ('<a>'+locations.project_projectid+'</a>')
+                }
+            });
+        }
+
+</script>
 <script>
 $(document).ready(function() {
     $('#example').DataTable({
@@ -101,3 +126,4 @@ $(document).ready(function() {
   });
 });
 </script>
+

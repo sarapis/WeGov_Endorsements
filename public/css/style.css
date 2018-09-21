@@ -362,6 +362,10 @@ hr{
   width: 100% !important;
   height: 417px !important;
 }
+#mymap_project_type{
+  width: 100% !important;
+  height: 220px !important;
+}
 #mymap_service_profile{
   width: 100% !important;
   height: 417px !important;

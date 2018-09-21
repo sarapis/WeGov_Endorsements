@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 //use Cornford\Googlmapper\Mapper;
-use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 
 class ProjectController extends Controller
 {
@@ -90,9 +89,7 @@ class ProjectController extends Controller
     {   
 
         $project = DB::table('projects')->where('project_recordid', $id)->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.project_projectid', 'agencies.magency', 'agencies.magencyacro', 'agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_citycost','projects.project_noncitycost','projects.project_type','projects.project_lat','projects.project_long')->first();
-        $lat = DB::table('projects')->where('project_recordid', $id)-> value('project_lat');
-        $long = DB::table('projects')->where('project_recordid', $id)-> value('project_long');
-        Mapper::map($lat, $long, ['zoom' => 15]);
+
         $commitments = DB::table('commitments')->where('projectid', $id)->get();
         return view('frontend.project', compact('commitments','project'))->render();
     }

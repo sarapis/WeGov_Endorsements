@@ -38,10 +38,14 @@ Route::get('/twitter', function()
 //Organizations
 Route::get('/organizations', 'OrganizationController@all');
 Route::get('/organization_all', 'OrganizationController@all');
+
+Route::get('/organization_{id}/projects', 'OrganizationController@projects');
+Route::get('/organization_{id}/services', 'OrganizationController@services');
+Route::get('/organization_{id}/people', 'OrganizationController@peoples');
+Route::get('/organization_{id}/money', 'OrganizationController@money');
+Route::get('/organization_{id}/laws', 'OrganizationController@laws');
+Route::get('/organization_{id}/legislation', 'OrganizationController@legislation');
 Route::get('/organization_{id}', 'OrganizationController@find');
-Route::post('/organizationprojects_{id}', 'OrganizationController@projects');
-Route::post('/organizationservices_{id}', 'OrganizationController@services');
-Route::post('/organizationpeoples_{id}', 'OrganizationController@peoples');
 
 Route::post('/organizations_filter', 'OrganizationController@filter');
 Route::post('/organizations_search', 'OrganizationController@search');
@@ -49,15 +53,18 @@ Route::post('/organizations_search', 'OrganizationController@search');
 //Services
 Route::get('/services', 'ServiceController@index');
 Route::get('/service_all', 'ServiceController@all');
-Route::get('/service_{id}', 'ServiceController@find');
-Route::post('/organizationservice_{id}', 'ServiceController@find');
+Route::get('/services/{id}', 'ServiceController@service');
+Route::post('/organizationservice_{id}', 'ServiceController@servicefind');
+Route::get('/organization_{id}/services/{service_id}', 'ServiceController@find');
 Route::post('/services_filter', 'ServiceController@filter');
 Route::post('/services_search', 'ServiceController@search');
 
 //Projects
 Route::get('/projects', 'ProjectController@projectview');
-Route::get('/projects_{id}', 'ProjectController@projectfind');
-Route::post('/organizationproject_{id}', 'ProjectController@find');
+Route::get('/projects/{id}', 'ProjectController@project');
+Route::post('/organizationproject_{id}', 'ProjectController@projectfind');
+Route::get('/organization_{id}/projects/{project_id}', 'ProjectController@find');
+
 
 Route::get('/projecttype_{id}', 'ProjectController@projecttypefind');
 Route::get('/projectcategory_{id}', 'ProjectController@category');
@@ -69,7 +76,7 @@ Route::post('/projects_search', 'ProjectController@search');
 //Peoples
 Route::get('/people', 'PeopleController@index');
 Route::get('/people_{id}', 'PeopleController@find');
-Route::post('/organizationpeople_{id}', 'PeopleController@find');
+Route::get('/organization_{id}/people/{people_id}', 'PeopleController@find');
 
 Route::get('/organizationtype_{id}', 'PeopleController@organizationtypefind');
 
@@ -100,10 +107,6 @@ Route::match(['get', 'post'], '/organizations_find', [
     'uses'          => 'OrganizationController@search'
 ]);
 
-Route::get('/findorganization_{id}', 'IndexController@findorganization');
-Route::get('/findservice_{id}', 'IndexController@findservice');
-Route::get('/findproject_{id}', 'IndexController@findproject');
-Route::get('/findpeople_{id}', 'IndexController@findpeople');
 
 // ALL AUTHENTICATION ROUTES - HANDLED IN THE CONTROLLERS
 Route::controllers([
@@ -155,9 +158,13 @@ Route::get('reset', function () {
 Route::get('admin', function () {
     return redirect('/dashboard');
 });
-Route::get('home',['uses'=>'IndexController@index']);
+Route::get('/home',['uses'=>'IndexController@index']);
 
-Route::get('about',['uses'=>'IndexController@about']);
+Route::get('/about',['uses'=>'IndexController@about']);
+
+Route::get('/data',['uses'=>'IndexController@data']);
+
+Route::get('/laws',['uses'=>'IndexController@law']);
 
 Route::get('get_involved',['uses'=>'IndexController@get_involved']);
 
@@ -231,10 +238,37 @@ Route::group(['middleware' => 'administrator'], function () {
 		'uses' 			=> 'AboutsController@index'
 	]);
 
+	Route::get('/data_edit', [
+		'as' 			=> '{username}',
+		'uses' 			=> 'DataController@index'
+	]);
+
 	Route::get('/datasync', [
 		'as' 			=> '{username}',
 		'uses' 			=> 'UserController@datasync'
 	]);
+
+	Route::get('/sync_address', ['uses' => 'AdminAddressController@airtable']);
+	Route::get('/sync_contacts', ['uses' => 'AdminContactController@airtable']);
+	Route::get('/sync_organizations', ['uses' => 'AdminOrganizationController@airtable']); 
+	Route::get('/sync_phones', ['uses' => 'AdminPhoneController@airtable']);
+	Route::get('/sync_tags', ['uses' => 'AdminTagController@airtable']);  
+	Route::get('/sync_projects', ['uses' => 'AdminProjectController@airtable']);
+	Route::get('/sync_commitments', ['uses' => 'AdminCommitmentController@airtable']);
+	Route::get('/sync_expenses', ['uses' => 'AdminExpenseController@airtable']); 
+	Route::get('/sync_organization', ['uses' => 'AdminAgencyController@airtable']);
+	Route::get('/sync_services', ['uses' => 'AdminServiceController@airtable']);
+	Route::get('/sync_locations', ['uses' => 'AdminLocationController@airtable']); 
+	Route::get('/sync_services_organizations', ['uses' => 'AdminServiceOrganizationController@airtable']); 
+	Route::get('/sync_contact', ['uses' => 'AdminServiceContactController@airtable']);
+	Route::get('/sync_services_phones', ['uses' => 'AdminServicePhoneController@airtable']); 
+	Route::get('/sync_services_address', ['uses' => 'AdminServiceAddressController@airtable']);
+	Route::get('/sync_schedule', ['uses' => 'AdminScheduleController@airtable']);
+	Route::get('/sync_service_area', ['uses' => 'AdminServiceAreaController@airtable']); 
+	Route::get('/sync_taxonomy', ['uses' => 'AdminTaxonomyController@airtable']); 
+	Route::get('/sync_details', ['uses' => 'AdminDetailController@airtable']);
+
+	Route::get('/sync_greenbook', ['uses' => 'AdminGreenbookController@greenbook']);   
 
 
 
@@ -244,6 +278,10 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::resource('abouts', 'AboutsController');
 
 	Route::resource('involves', 'InvolvesController');
+
+	Route::resource('datas', 'DataController');
+
+	Route::resource('law', 'LawController');
 
 	//Tables
 	Route::resource('tb_projects', 'AdminProjectController');
@@ -260,6 +298,8 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::resource('tb_programs', 'AdminProgramController');
 	Route::resource('tb_taxonomy', 'AdminTaxonomyController');
 	Route::resource('tb_details', 'AdminDetailController');
+
+	Route::resource('tb_greenbook', 'AdminGreenbookController');
 
 	Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 

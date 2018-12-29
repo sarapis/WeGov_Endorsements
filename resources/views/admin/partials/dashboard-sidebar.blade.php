@@ -1,5 +1,5 @@
 {{--  LEFT SIDEBAR WITH NAVIGATION AND LOGO --}}
-<aside class="main-sidebar" style="position: absolute !important;">
+<aside class="main-sidebar">
 
     {{--  SIDEBAR: style can be found in sidebar.less --}}
     <section class="sidebar">
@@ -21,7 +21,7 @@
        
 
         {{-- SIDEBAR NAVIGATION: style sidebar.less --}}
-        <ul class="sidebar-menu">
+        <ul class="sidebar-menu" style="height: 2100px;">
 
             <li class="header">
                 {{ Lang::get('sidebar-nav.nav_title') }}
@@ -39,6 +39,8 @@
               <ul class="treeview-menu">
                 <li><a href="/posts"><i class="fa fa-pencil"></i> Home</a></li>
                 <li><a href="/abouts"><i class="fa fa-info-circle"></i> About</a></li>
+                <li><a href="/datas"><i class="fa fa-archive"></i> Data</a></li>
+                <li><a href="/law"><i class="fa fa-balance-scale"></i> Laws</a></li>
                 <li><a href="/involves"><i class="fa fa-handshake-o"></i> Get Involved</a></li>
               </ul>
             </li>
@@ -76,6 +78,7 @@
                 <li><a href="/tb_programs"><i class="fa fa-circle-o"></i> Programs </a></li>
                 <li><a href="/tb_taxonomy"><i class="fa fa-circle-o"></i> Taxonomy </a></li>
                 <li><a href="/tb_details"><i class="fa fa-circle-o"></i> Details </a></li>
+                <li><a href="/tb_greenbook"><i class="fa fa-circle-o"></i> Greenbook </a></li>
               </ul>
             </li>
             

@@ -19,11 +19,11 @@ $(document).ready(function()
             success: function(data) {
                 $('#loader').hide();
                 $('#service_content').html(data);
+                window.history.replaceState({url: "" + window.location.href + ""}, '', window.location.href+'/'+service_id);
             },
             error: function(errResponse) {
 
             }
-        });
-        
+        });      
     });
 });

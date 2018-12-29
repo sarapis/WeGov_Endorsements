@@ -182,8 +182,20 @@
 								$rss = str_replace("https://","",$record['fields']['RSS']);
 								$rss = str_replace("http://","",$rss);
 
-								$sql = "INSERT INTO organizations (organization_id, organizations_id, alternate_name, name, dedupe, type, child_of, contacts, website, description, logo, checkbook, internalnotes, contacts_link, services, phones, main_address, details, program, email, legal_status, tax_status, tax_id, year_incorporated, Twitter, Facebook, RSS, tags, services_count)
-								VALUES ('{$record['id']}', '{$organizations_id}', '{$alternate_name}', '{$name}', '{$record['fields']['dedupe']}', '{$record['fields']['Type']}', '{$record['fields']['Child of']}', '{$contacts}', '{$website}',  '{$description}', '{$logo}', '{$record['fields']['checkbook']}', '{$internalnotes}', '{$record['fields']['contacts link']}', '{$services}', '{$main_phone}', '{$main_address}', '{$details}', '{$program}', '{$record['fields']['email']}', '{$record['fields']['legal_status']}', '{$record['fields']['tax_status']}', '{$record['fields']['tax_id']}', '{$record['fields']['year_incorporated']}', '{$twitter}', '{$facebook}', '{$rss}', '{$tags}','{$services_count}');";
+								$charter = str_replace("https://","",$record['fields']['charter']);
+								$charter = str_replace("http://","",$charter);
+
+								$code = str_replace("https://","",$record['fields']['code']);
+								$code = str_replace("http://","",$code);
+
+								$rules = str_replace("https://","",$record['fields']['rules']);
+								$rules = str_replace("http://","",$rules);
+
+								$legislation = str_replace("https://","",$record['fields']['legislation']);
+								$legislation = str_replace("http://","",$legislation);
+
+								$sql = "INSERT INTO organizations (organization_id, organizations_id, alternate_name, name, dedupe, type, child_of, contacts, website, description, logo, checkbook, internalnotes, contacts_link, services, phones, main_address, details, program, email, legal_status, tax_status, tax_id, year_incorporated, Twitter, Facebook, RSS, charter, code, rules, tags, services_count, legislation)
+								VALUES ('{$record['id']}', '{$organizations_id}', '{$alternate_name}', '{$name}', '{$record['fields']['dedupe']}', '{$record['fields']['Type']}', '{$record['fields']['Child of']}', '{$contacts}', '{$website}',  '{$description}', '{$logo}', '{$record['fields']['checkbook']}', '{$internalnotes}', '{$record['fields']['contacts link']}', '{$services}', '{$main_phone}', '{$main_address}', '{$details}', '{$program}', '{$record['fields']['email']}', '{$record['fields']['legal_status']}', '{$record['fields']['tax_status']}', '{$record['fields']['tax_id']}', '{$record['fields']['year_incorporated']}', '{$twitter}', '{$facebook}', '{$rss}', '{$charter}', '{$code}', '{$rules}', '{$tags}','{$services_count}', '{$legislation}');";
 
 								
 

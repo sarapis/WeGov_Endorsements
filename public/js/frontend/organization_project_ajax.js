@@ -19,6 +19,7 @@ $(document).ready(function()
             success: function(data) {
                 $('#loader').hide();
                 $('#project_content').html(data);
+                window.history.replaceState({url: "" + window.location.href + ""}, '', window.location.href+'/'+project_id);
             },
             error: function(errResponse) {
 
@@ -27,3 +28,7 @@ $(document).ready(function()
         
     });
 });
+window.onpopstate = function (event) {
+    var currentState = history.state;
+    document.body.innerHTML = currentState.innerhtml;
+};

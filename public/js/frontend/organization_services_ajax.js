@@ -12,7 +12,7 @@ $(document).ready(function()
         
         $.ajax({
             type: 'POST',
-            url: '/organizationservices_'+organizations_id,
+            url: '/organizationservice_'+organizations_id,
             contentType: false,
             cache: false, // To unable request pages to be cached
             processData: false,

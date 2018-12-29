@@ -1,9 +1,7 @@
-<div class="container-fluid">
+<div id="wrapper">
+<!--BEGIN PAGE WRAPPER-->
     <div id="page-wrapper">
-        <!--BEGIN TITLE & BREADCRUMB PAGE-->
-        <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
-            <h2 class="page-header">{{$project->project_description}}</h2>
-        </div>
+
         <!--END TITLE & BREADCRUMB PAGE-->
         <div id="tab-general">
             <div class="mbl">
@@ -18,85 +16,103 @@
 
                 <div>
                     <div class="page-content">
-                        <div class="panel panel-blue">
-
+                        <div class="panel" style="padding-top: 20px;">
                             <div class="panel-body">
-                                <div class="row" style="margin: 0;padding-bottom:30px;">
-                                    <div class="col-md-6">
-                                        <dl class="dl-horizontal">
-                                            <dt>Project ID: </dt><dd>{{$project->project_projectid}}</dd>
-                                            <dt>Organization: </dt><dd>{{$project->magencyacro}}</dd>
-                                            <dt>Description: </dt> <dd> {{$project->project_description}}</dd>
-                                            <dt>City Cost: </dt><dd> ${{number_format($project->project_citycost)}}</dd>
-                                            <dt>Non-City Cost: </dt><dd> ${{number_format($project->project_noncitycost)}}</dd>
-                                            <dt>Total Cost: </dt> <dd> ${{number_format($project->project_totalcost)}}</dd>
-                                            <dt>#Commitments:</dt> <dd>{{sizeof(explode(",", $project->project_commitments))}}</dd>
-                                        </dl>
+                                <div class="row" style="padding:0 !important;">
+                                    <div class="col-lg-8">
+                                        
+                                        <p style="font-size: 25px;color: #357ca5;">{{$project->project_description}}</p>
+
+                                        <p><code> Project ID</code> {{$project->project_projectid}}</p>
+
+                                        <p><code> Organization</code><a href="/organization_{{$organization_id}}/projects" style="color: #428bca;"> {{$project->magencyacro}}</a></p>
+
+                                        <p><code> City Cost</code> ${{number_format($project->project_citycost)}}</p>
+
+                                        <p><code> Non-City Cost</code> ${{number_format($project->project_noncitycost)}}</p>
+
+                                        <p><code> Total Cost</code> ${{number_format($project->project_totalcost)}}</p>
+
+
+                                        <p><code> Commitments</code> {{sizeof(explode(",", $project->project_commitments))}}</p>
+
+
                                     </div>
-                                    <div class="col-md-6">
-                                        @if ($project->project_lat==0 && $project->project_long==0)
-                                          <p style="font-size: 16px; padding-right: 40px; padding-top: 60px;">There is no map data. Please add some by clicking "Add Information" and submitting an address for the project.</p>
-                                        @else
-                                        <div id="mymap_project_type"></div>
-                                        @endif
+                                    <div class="col-lg-4">
+                                        <div class="portlet box">
+
+                                            <div id="mymap_project_type"></div>
+
+                                        </div>
                                     </div>
                                 </div>
-                                <table id="example" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
-                                    <thead>
-                                        <tr class="info">
-                                            <th>Description</th>
-                                            <th>Commitment Date</th>
-                                            <th>Non-City Cost</th>
-                                            <th>City Cost</th>
-                                            <th>Budgetline</th>
-                                            <th>FMS Number</th>
-                                            <th>Commitment Code</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tblData">
-                                        @foreach ($commitments as $commitment)
-                                        <tr>
-                                            <td>{{$commitment->description}}</td>
-                                            <td>{{$commitment->plancommdate}}</td>
-                                            <td>${{number_format($commitment->noncitycost)}}</td>
-                                            <td>${{number_format($commitment->citycost)}}</td>
-                                            <td>{{$commitment->budgetline}}</td>
-                                            <td>{{$commitment->fmsnumber}}</td>
-                                            <td>{{$commitment->commitmentcode}}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                <dir class="text-right">
-                                        
-                                </dir>
+                                <div class="contain-fluid">
+                                    <table id="example" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr class="info">
+                                                <th>Description</th>
+                                                <th>Commitment Date</th>
+                                                <th>Non-City Cost</th>
+                                                <th>City Cost</th>
+                                                <th>Budgetline</th>
+                                                <th>FMS Number</th>
+                                                <th>Commitment Code</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tblData">
+                                            @foreach ($commitments as $commitment)
+                                            <tr>
+                                                <td>{{$commitment->description}}</td>
+                                                <td>{{$commitment->plancommdate}}</td>
+                                                <td>${{number_format($commitment->noncitycost)}}</td>
+                                                <td>${{number_format($commitment->citycost)}}</td>
+                                                <td>{{$commitment->budgetline}}</td>
+                                                <td>{{$commitment->fmsnumber}}</td>
+                                                <td>{{$commitment->commitmentcode}}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    
+                                </div>
                             </div>
-                            <!-- /.box-body -->
                         </div>
                     </div>
 
                 </div>
-                
+
             </div>
         </div>
     </div>
     <!--END CONTENT-->
-</div>
 
+</div>
+<!--END PAGE WRAPPER-->
 <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script type="text/javascript">
 
-    var locations = <?php print_r(json_encode($project)) ?>;
+var locations = <?php print_r(json_encode($project)) ?>;
 
-    var mymap_project_type = new GMaps({
+if (locations.project_lat!=0 && locations.project_long!=0){
+   var mymap_project_type = new GMaps({
       el: '#mymap_project_type',
       lat: locations.project_lat,
       lng: locations.project_long,
       zoom:10
+    }); 
+}
+else{
+    var mymap_service_profile = new GMaps({
+      el: '#mymap_project_type',
+      lat: 40.712722,
+      lng: -74.006058,
+      zoom:10
     });
+}
 
-        if (locations.project_lat!=0 && locations.project_long!=0) {
+
+    if (locations.project_lat!=0 && locations.project_long!=0) {
 
             mymap_project_type.addMarker({
                 lat: locations.project_lat,
@@ -123,4 +139,3 @@ $(document).ready(function() {
   });
 });
 </script>
-

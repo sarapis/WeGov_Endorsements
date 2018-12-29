@@ -12,18 +12,24 @@ $(document).ready(function()
         
         $.ajax({
             type: 'POST',
-            url: '/organizationprojects_'+organizations_id,
+            url: '/organizationproject_'+organizations_id,
             contentType: false,
             cache: false, // To unable request pages to be cached
             processData: false,
             success: function(data) {
                 $('#loader').hide();
                 $('#projects').html(data);
+                
             },
             error: function(errResponse) {
 
             }
         });
+
         
     });
 });
+window.onpopstate = function (event) {
+    var currentState = history.state;
+    document.body.innerHTML = currentState.innerhtml;
+};

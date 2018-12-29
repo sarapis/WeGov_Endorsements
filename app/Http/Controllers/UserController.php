@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Contacts;
 use App\Models\Budgets;
 use App\Models\Services;
+use App\Models\Greenbook;
 
 class UserController extends Controller
 {
@@ -59,7 +60,14 @@ class UserController extends Controller
         $contacts = Contacts::all();
         $services = Services::all(); 
 
-        return view('admin.pages.datasync', compact('budgets', 'contacts', 'services'))->withUser($user)->withAccess($access);
+        $greenbooks = Greenbook::count();
+        if($greenbooks==0)
+            $greenbook_date ='';
+        else
+            $greenbook_date = Greenbook::find(1)->created_at;
+
+
+        return view('admin.pages.datasync', compact('budgets', 'contacts', 'services', 'greenbooks', 'greenbook_date'))->withUser($user)->withAccess($access);
     }
 
 //OLD LTE

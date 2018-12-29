@@ -18,6 +18,7 @@ use App\Models\Location;
 use App\Models\Project;
 use App\Models\Organization;
 use App\Models\Contact;
+use App\Models\Greenbook;
 
 class PeopleController extends Controller
 {
@@ -47,23 +48,32 @@ class PeopleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function find($id)
+    public function find($id, $people_id)
     {
-        $servicetypes = DB::table('taxonomies')->get();
-        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
-        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
-        $service_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $project_name = '&nbsp;';
-        $filter = collect([$organization_name, $service_name, $project_name]);
 
-        $people = Contact::where('contact_id','=',$id)->leftjoin('organizations', 'contacts.organization', 'like', DB::raw("concat('%', organizations.organization_id, '%')"))->leftjoin('address', 'contacts.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->leftjoin('phones', 'contacts.phone', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->select('contacts.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), 'address.*', DB::raw('organizations.name as organization_name'), DB::raw('organizations.organizations_id as organizations_id'))->first();
+        $organization = Organization::where('organizations_id','=',$id)->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->select('organizations.*', 'organizations.description as organization_description', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->first();
 
-        $organization_map = DB::table('contacts')->where('contact_id','=',$id)->leftjoin('services_organizations', 'contacts.organization', 'like', DB::raw("concat('%', services_organizations.organization_x_id, '%')"))->leftjoin('locations', 'services_organizations.organization_locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->select('services_organizations.*', 'locations.*', 'address.*')->groupBy('services_organizations.id')->get();
 
-        $people_services = Contact::where('contact_id','=', $id)->leftjoin('services', 'contacts.services', 'like', DB::raw("concat('%', services.service_id, '%')"))->select('services.*')->leftjoin('phones', 'services.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'))->groupBy('services.id')->get();
+        // $peopleid= Contact::where('name','=',$people_id)->first()->contact_id;
 
-        return view('frontend.people', compact('servicetypes','projecttypes','organizationtypes', 'people','filter','people_services', 'organization_map'));
+        // $people = Contact::where('contact_id','=',$peopleid)->leftjoin('organizations', 'contacts.organization', 'like', DB::raw("concat('%', organizations.organization_id, '%')"))->leftjoin('address', 'contacts.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->leftjoin('phones', 'contacts.phone', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->select('contacts.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), 'address.*', DB::raw('organizations.name as organization_name'), DB::raw('organizations.organizations_id as organizations_id'))->first();
+
+        $people = Greenbook::where('id', '=', $people_id)->first();
+
+        $greenbook_name = $people->last_name.', '.$people->first_name;
+
+        $contact_id = DB::table('contacts')->where('name','=', $greenbook_name)->first();
+
+        if($contact_id)
+            $contact_id = $contact_id->contact_id;
+        else
+            $contact_id = '';
+        
+        $organization_map = DB::table('contacts')->where('contact_id','=', $contact_id)->leftjoin('services_organizations', 'contacts.organization', 'like', DB::raw("concat('%', services_organizations.organization_x_id, '%')"))->leftjoin('locations', 'services_organizations.organization_locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->select('services_organizations.*', 'locations.*', 'address.*')->groupBy('services_organizations.id')->get();
+
+        $people_services = Contact::where('contact_id','=', $contact_id)->leftjoin('services', 'contacts.services', 'like', DB::raw("concat('%', services.service_id, '%')"))->select('services.*')->leftjoin('phones', 'services.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'))->groupBy('services.id')->get();
+
+        return view('frontend.organization_people', compact('organization', 'people','people_services', 'organization_map', 'greenbook'));
     }
 
     /**

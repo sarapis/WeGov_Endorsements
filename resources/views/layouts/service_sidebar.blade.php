@@ -1,4 +1,4 @@
-<aside class="main-sidebar">
+<aside class="">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- search form -->
@@ -10,26 +10,16 @@
           </div>        
         </div>
       </div>
-<!--       <form action="#" method="get" class="sidebar-form">
-        <div class="has-feedback">
-          <span class="glyphicon glyphicon-search form-control-input"></span>
-          <div class="form-group is-empty">
-            <input type="text" class="form-control form-input" placeholder="Search Address">
-          </div>        
-        </div>
-      </form> -->
+
       <hr>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="treeview">
-          <a href="#">
+       
             <span class="item-list">Service Type</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
+
+          <ul class="treeview-menu"  style="display: block !important;">
             <li style="padding-left: 10px;">
               @foreach($taxonomies as $taxonomy)
               @if($taxonomy->name!='')
@@ -45,19 +35,17 @@
         </li>
         <hr>
         <li class="treeview">
-          <a href="#">
+   
             <span class="item-list">Provide By</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
+
+          <ul class="treeview-menu" style="display: block !important;">
             <li style="padding-left: 10px;">
               
                 @foreach($services_organizations as $organization)
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" name="services_organizations[]" value="{{$organization->organization_recordid}}" class="servives-checkbox">  <span class="subitem-list text-uppercase">{{$organization->organization_name}}</span>
+
+                    <input type="checkbox" name="services_organizations[]" value="{{$organization->organization_recordid}}" class="services-checkbox">  <span class="subitem-list text-uppercase">{{$organization->organization_name}}</span>
                   </label>
                 </div>
                 @endforeach
@@ -73,6 +61,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
+      $('.btn-filter').click(function(){
+          $('.side-filter').toggle()
+      });
+
       $('#search_service').change(function(){
         search_service();
 
@@ -82,6 +74,7 @@
         search_service();
         document.getElementById("loader").style.display = "block";
       });
+
       function search_service(){
         val = $('#search_service').val();
         console.log(val);
@@ -100,12 +93,13 @@
           success: function(data){
               $('#loader').hide();
               $('#service_content').html(data);
+               window.history.replaceState({url: "" + window.location.href + ""}, '','/services');
           }
         });
       }
       function send_datas(){
           var organization_value = [];
-          var cboxes = $('.servives-checkbox:checked');
+          var cboxes = $('.services-checkbox:checked');
           for(i = 0; i < cboxes.length; i ++)
             organization_value[i] = cboxes[i].value;
 
@@ -129,15 +123,72 @@
             },
             success: function(data){
                 $('#service_content').html(data);
+                 window.history.replaceState({url: "" + window.location.href + ""}, '','/services');
             }
           });
-      }      
-      $('.servives-checkbox').on('click', function(e) {
+      } 
+    
+      $('.services-checkbox').on('click', function(e) {
           send_datas();
       });
+
       $('.taxonomy-checkbox').on('click', function(e){
           send_datas();
       });
+
+      $(document).on('click', ".taxonomyid", function () {
+
+          var organization_value = [];
+          var taxonomy_value = [];
+          taxonomy_value[0] = $(this).attr('id');
+
+          $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          })
+
+          $.ajax({
+            type: 'POST',
+            url: '/services_filter',
+            data: {
+              organization_value: organization_value,
+              taxonomy_value: taxonomy_value
+            },
+            success: function(data){
+                $('#service_content').html(data);
+                window.history.replaceState({url: "" + window.location.href + ""}, '','/services');
+            }
+          });
+      });  
+
+      $(document).on('click', ".organizationid", function () {
+
+          var organization_value = [];
+          organization_value[0] = $(this).attr('id');
+          var taxonomy_value = [];
+          
+          $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          })
+
+          $.ajax({
+            type: 'POST',
+            url: '/services_filter',
+            data: {
+              organization_value: organization_value,
+              taxonomy_value: taxonomy_value
+            },
+            success: function(data){
+                $('#service_content').html(data);
+                window.history.replaceState({url: "" + window.location.href + ""}, '','/services');
+            }
+          });
+      });
+
+      
 
     });
 </script>

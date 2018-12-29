@@ -1,6 +1,6 @@
-<aside class="main-sidebar">
+<aside class="">
     <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+    <section class="sidebar" style="padding-top: 20px;">
       <!-- search form -->
       <div class="sidebar-form">
         <div class="has-feedback">
@@ -14,20 +14,21 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="treeview">
-          <a href="#">
+        <li class="treeview menu-open">
+        
             <span class="item-list">Type</span>
-            <span class="pull-right-container">
+<!--             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
+            </span> -->
+        
+          <ul class="treeview-menu" style="display: block !important;">
             <li style="padding-left: 10px;">
               @foreach($types as $type)
               @if($type->type!='')
+              
               <div class="checkbox">             
                 <label>
-                  <input type="checkbox" class="organization-type" value="{{$type->type}}">  <span class="subitem-list text-uppercase">{{$type->type}}</span>
+                  <input type="checkbox" class="organization-type" value="{{$type->type}}" @if($type->type=='City Agency') checked @endif>  <span class="subitem-list text-uppercase">{{$type->type}}</span>
                 </label>
               </div>
               @endif
@@ -36,14 +37,12 @@
           </ul>
         </li>
         <hr>
-        <li class="treeview">
-          <a href="#">
+        <li class="treeview menu-open">
             <span class="item-list">Tags</span>
-            <span class="pull-right-container">
+  <!--           <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
+            </span> -->
+          <ul class="treeview-menu" style="display: block !important;">
             <li style="padding-left: 10px;">
               
                 @foreach($tags as $tag)
@@ -63,6 +62,10 @@
   </aside>
   <script type="text/javascript">
     $(document).ready(function () {
+
+      $('.btn-filter').click(function(){
+          $('.side-filter').toggle()
+      });
 
       $('#search_agency').change(function(){
         search_agency();

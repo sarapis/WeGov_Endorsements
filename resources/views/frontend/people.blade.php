@@ -44,8 +44,6 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">
 
     var locations = <?php print_r(json_encode($organization_map)) ?>;
@@ -68,9 +66,4 @@
    });
 });
 
-</script>
-<script>
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
 </script>

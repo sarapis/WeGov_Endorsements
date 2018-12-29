@@ -1,6 +1,6 @@
-<aside class="main-sidebar">
+<aside class="">
     <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+    <section class="sidebar"  style="padding-top: 20px;">
       <!-- search form -->
       <div class="sidebar-form">
         <div class="has-feedback">
@@ -10,26 +10,14 @@
           </div>        
         </div>
       </div>
-<!--       <form action="#" method="get" class="sidebar-form">
-        <div class="has-feedback">
-          <span class="glyphicon glyphicon-search form-control-input"></span>
-          <div class="form-group is-empty">
-            <input type="text" class="form-control form-input" placeholder="Search Address">
-          </div>        
-        </div>
-      </form> -->
+
       <hr>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="treeview">
-          <a href="#">
             <span class="item-list">Project Type</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
+          <ul class="treeview-menu" style="display: block !important;">
             <li style="padding-left: 10px;">
               @foreach($project_types as $project_type)
               @if($project_type->project_type!='')
@@ -45,21 +33,19 @@
         </li>
         <hr>
         <li class="treeview">
-          <a href="#">
             <span class="item-list">Managing Agency</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
+
+          <ul class="treeview-menu" style="display: block !important;">
             <li style="padding-left: 10px;">
               
                 @foreach($organizations as $organization)
+                @if($organization->magencyacro!='')
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" name="projects_organizations[]" value="{{$organization->agency_recordid}}" class="organization-checkbox">  <span class="subitem-list text-uppercase">{{$organization->magencyacro}}</span>
                   </label>
                 </div>
+                @endif
                 @endforeach
               
             </li>
@@ -72,6 +58,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
+
+      $('.btn-filter').click(function(){
+          $('.side-filter').toggle()
+      });
 
       $('#search_project').change(function(){
         search_project();
@@ -100,6 +90,7 @@
           success: function(data){
               $('#loader').hide();
               $('#project_content').html(data);
+              window.history.replaceState({url: "" + window.location.href + ""}, '','/projects');
           }
         });
       }
@@ -114,6 +105,9 @@
           var cboxes = $('.project-type:checked');
           for(i = 0; i < cboxes.length; i ++)
             project_type[i] = cboxes[i].value;
+
+          console.log(organization_value);
+          console.log(project_type);
 
           $.ajaxSetup({
             headers: {
@@ -131,6 +125,7 @@
             success: function(data){
                 $('#loader').hide();
                 $('#project_content').html(data);
+                window.history.replaceState({url: "" + window.location.href + ""}, '','/projects');
             }
           });
       }      

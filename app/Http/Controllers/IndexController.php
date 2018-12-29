@@ -13,6 +13,8 @@ use App\Logic\User\UserRepository;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
 use App\Models\About;
+use App\Models\Data;
+use App\Models\Law;
 use App\Models\Taxonomy;
 use App\Models\Service;
 use App\Models\Location;
@@ -38,13 +40,6 @@ class IndexController extends Controller
 
     public function index()
     {
-        $servicetypes = DB::table('taxonomies')->get();
-        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
-        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
-        $service_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $project_name = '&nbsp;';
-        $filter = collect([$organization_name, $service_name, $project_name]);
         // return $tree;
         //return view('files.treeview',compact('tree'));
         $posts = $this->post->first();
@@ -58,8 +53,7 @@ class IndexController extends Controller
         $total_project_cost = DB::table('agencies')->sum('total_project_cost');
         $capital=$budgetclass->custom_number_format($total_project_cost, 1);
 
-        $location_map = DB::table('locations')->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->get();
-        return view('frontend.home', compact('posts','organizationtypes', 'servicetypes','projecttypes', 'filter', 'quantity_organizations', 'budgets', 'quantity_services', 'quantity_project', 'capital'));
+        return view('frontend.home', compact('posts', 'quantity_organizations', 'budgets', 'quantity_services', 'quantity_project', 'capital'));
     }
  
 
@@ -72,13 +66,6 @@ class IndexController extends Controller
     public function about()
 
     {
-        $servicetypes = DB::table('taxonomies')->get();
-        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
-        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
-        $service_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $project_name = '&nbsp;';
-        $filter = collect([$organization_name, $service_name, $project_name]);
         // return $tree;
         //return view('files.treeview',compact('tree'));
         $abouts = DB::table('abouts')->first();
@@ -137,93 +124,17 @@ class IndexController extends Controller
 
     }
 
-    public function findorganization($find)
+    public function data()
     {
-        $servicetypes = DB::table('taxonomies')->get();
-        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
-        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
-        $service_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $project_name = '&nbsp;';
-        $filter = collect([$organization_name, $service_name, $project_name]);
+        $datas = Data::first();
 
-        $find_organizations= DB::table('organizations')->where('name', 'like', '%'.$find.'%')->orwhere('description', 'like', '%'.$find.'%')->get();
-        $count_organizations = DB::table('organizations')->where('name', 'like', '%'.$find.'%')->orwhere('description', 'like', '%'.$find.'%')->count();
-        $find_services= '';
-        $count_services = DB::table('services')->where('name', 'like', '%'.$find.'%')->orwhere('description', 'like', '%'.$find.'%')->count();
-        $find_projects= '';
-        $count_projects = DB::table('projects')->where('project_projectid', 'like', '%'.$find.'%')->orwhere('project_description', 'like', '%'.$find.'%')->count();
-        $find_peoples = '';
-        $count_peoples = DB::table('contacts')->where('name', 'like', '%'.$find.'%')->orwhere('office_title', 'like', '%'.$find.'%')->count();
-        return view('frontend.find', compact('servicetypes','projecttypes','organizationtypes', 'filter','find_organizations', 'find_services', 'find_projects', 'find_peoples', 'count_organizations', 'count_services', 'count_projects', 'count_peoples', 'find'));
-
+        return view('frontend.data', compact('datas'));
     }
 
-    public function findservice($find)
+    public function Law()
     {
+        $laws = Law::first();
 
-        $servicetypes = DB::table('taxonomies')->get();
-        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
-        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
-        $service_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $project_name = '&nbsp;';
-        $filter = collect([$organization_name, $service_name, $project_name]);
-
-        $find_organizations= '';
-        $count_organizations = DB::table('organizations')->where('name', 'like', '%'.$find.'%')->orwhere('description', 'like', '%'.$find.'%')->count();
-        $find_services= DB::table('services')->where('name', 'like', '%'.$find.'%')->orwhere('description', 'like', '%'.$find.'%')->get();
-        $count_services = DB::table('services')->where('name', 'like', '%'.$find.'%')->orwhere('description', 'like', '%'.$find.'%')->count();
-        $find_projects= '';
-        $count_projects = DB::table('projects')->where('project_projectid', 'like', '%'.$find.'%')->orwhere('project_description', 'like', '%'.$find.'%')->count();
-        $find_peoples = '';
-        $count_peoples = DB::table('contacts')->where('name', 'like', '%'.$find.'%')->orwhere('office_title', 'like', '%'.$find.'%')->count();
-        return view('frontend.find', compact('servicetypes','projecttypes','organizationtypes', 'filter','find_organizations', 'find_services', 'find_projects', 'find_peoples', 'count_organizations', 'count_services', 'count_projects', 'count_peoples', 'find'));
-
-    }
-
-    public function findproject($find)
-    {
-        $servicetypes = DB::table('taxonomies')->get();
-        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
-        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
-        $service_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $project_name = '&nbsp;';
-        $filter = collect([$organization_name, $service_name, $project_name]);
-
-        $find_organizations= '';
-        $count_organizations = DB::table('organizations')->where('name', 'like', '%'.$find.'%')->orwhere('description', 'like', '%'.$find.'%')->count();
-        $find_services= '';
-        $count_services = DB::table('services')->where('name', 'like', '%'.$find.'%')->orwhere('description', 'like', '%'.$find.'%')->count();
-        $find_projects= DB::table('projects')->where('project_projectid', 'like', '%'.$find.'%')->orwhere('project_description', 'like', '%'.$find.'%')->get();
-        $count_projects = DB::table('projects')->where('project_projectid', 'like', '%'.$find.'%')->orwhere('project_description', 'like', '%'.$find.'%')->count();
-        $find_peoples = '';
-        $count_peoples = DB::table('contacts')->where('name', 'like', '%'.$find.'%')->orwhere('office_title', 'like', '%'.$find.'%')->count();
-        return view('frontend.find', compact('servicetypes','projecttypes','organizationtypes', 'filter','find_organizations', 'find_services', 'find_projects', 'find_peoples', 'count_organizations', 'count_services', 'count_projects', 'count_peoples', 'find'));
-
-    }
-
-    public function findpeople($find)
-    {
-
-        $servicetypes = DB::table('taxonomies')->get();
-        $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
-        $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
-        $service_name = '&nbsp;';
-        $organization_name = '&nbsp;';
-        $project_name = '&nbsp;';
-        $filter = collect([$organization_name, $service_name, $project_name]);
-
-        $find_organizations= '';
-        $count_organizations = DB::table('organizations')->where('name', 'like', '%'.$find.'%')->orwhere('description', 'like', '%'.$find.'%')->count();
-        $find_services= '';
-        $count_services = DB::table('services')->where('name', 'like', '%'.$find.'%')->orwhere('description', 'like', '%'.$find.'%')->count();
-        $find_projects= '';
-        $count_projects = DB::table('projects')->where('project_projectid', 'like', '%'.$find.'%')->orwhere('project_description', 'like', '%'.$find.'%')->count();
-        $find_peoples = DB::table('contacts')->where('name', 'like', '%'.$find.'%')->orwhere('office_title', 'like', '%'.$find.'%')->get();
-        $count_peoples = DB::table('contacts')->where('name', 'like', '%'.$find.'%')->orwhere('office_title', 'like', '%'.$find.'%')->count();
-        return view('frontend.find', compact('servicetypes','projecttypes','organizationtypes', 'filter','find_organizations', 'find_services', 'find_projects', 'find_peoples', 'count_organizations', 'count_services', 'count_projects', 'count_peoples', 'find'));
-
+        return view('frontend.laws', compact('laws'));
     }
 }

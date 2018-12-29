@@ -1,4 +1,12 @@
-@extends('admin.layouts.dashboard') @section('template_title') Data Sync @endsection @section('template_fastload_css') @endsection @section('content')
+@extends('admin.layouts.dashboard')
+
+@section('template_title') Data Sync @endsection 
+
+@section('template_fastload_css')
+
+@endsection
+
+@section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     .btn-app {
@@ -7,6 +15,10 @@
     
     .probar {
         width: 80px;
+    }
+    .box-title{
+        display: block !important;
+        margin-top: 5px !important;
     }
 </style>
 <div class="content-wrapper">
@@ -24,11 +36,21 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3>Source Name: mygovnyc-money</h3>
+                        <div class="col-md-6">
+                            <h4 class="box-title">Dataset Name: mygovnyc-money</h4>
+                            <h4 class="box-title">Format: Airtable API</h4>
+                            <h4 class="box-title">API Path: https://api.airtable.com/v0/appd1eQuF0gFcOMsV</h4>
+                            <h4 class="box-title">API Key: keyIvQZcMYmjNbtUO</h4>
+                            <h4 class="box-title">Notes:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="box-title">All Organizations:</h4>
+                            <h4 class="box-title">Coded Organizations:</h4>
+                            <h4 class="box-title">Coded Column Name:</h4>
+                        </div>
                     </div>
 
                     <div class="box-body table-responsive">
-                        <h4 class="box-title">Source URL: https://airtable.com/tblnB1gcDJx9MxUNM</h4>
                         <table id="user_table" class="table table-striped table-hover table-condensed">
                             <thead>
                                 <tr class="success">
@@ -66,11 +88,21 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3>Source Name: mygov-people</h3>
+                        <div class="col-md-6">
+                            <h4 class="box-title">Dataset Name: mygovnyc-people</h4>
+                            <h4 class="box-title">Format: Airtable API</h4>
+                            <h4 class="box-title">API Path: https://api.airtable.com/v0/appd1eQuF0gFcOMsV</h4>
+                            <h4 class="box-title">API Key: keyIvQZcMYmjNbtUO</h4>
+                            <h4 class="box-title">Notes:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="box-title">All Organizations:</h4>
+                            <h4 class="box-title">Coded Organizations:</h4>
+                            <h4 class="box-title">Coded Column Name:</h4>
+                        </div>
                     </div>
 
                     <div class="box-body table-responsive">
-                        <h4 class="box-title">Source URL: https://airtable.com/tbld7PVSKy3N7ePXB</h4>
                         <table id="user_table" class="table table-striped table-hover table-condensed">
                             <thead>
                                 <tr class="success">
@@ -108,11 +140,21 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3>Source Name: mygov-services</h3>
+                        <div class="col-md-6">
+                            <h4 class="box-title">Dataset Name: mygovnyc-services</h4>
+                            <h4 class="box-title">Format: Airtable API</h4>
+                            <h4 class="box-title">API Path: https://api.airtable.com/v0/app2sk6MlzyikwbzL</h4>
+                            <h4 class="box-title">API Key: keyIvQZcMYmjNbtUO</h4>
+                            <h4 class="box-title">Notes:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="box-title">All Organizations:</h4>
+                            <h4 class="box-title">Coded Organizations:</h4>
+                            <h4 class="box-title">Coded Column Name:</h4>
+                        </div>
                     </div>
 
                     <div class="box-body table-responsive">
-                        <h4 class="box-title">Source URL: https://airtable.com/tblHfNfXpbGVgNX4j</h4>
                         <table id="user_table" class="table table-striped table-hover table-condensed">
                             <thead>
                                 <tr class="success">
@@ -145,6 +187,55 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <div class="col-md-6">
+                            <h4 class="box-title">Dataset Name: NYC OpenData-Greenbook</h4>
+                            <h4 class="box-title">Format: Socrata</h4>
+                            <h4 class="box-title">Api Path: https://data.cityofnewyork.us/resource/25gq-py4s.json</h4>
+                            <h4 class="box-title">API Key: </h4>
+                            <h4 class="box-title">Notes:</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="box-title">All Organizations:</h4>
+                            <h4 class="box-title">Coded Organizations:</h4>
+                            <h4 class="box-title">Coded Column Name:</h4>
+                        </div>
+                    </div>
+
+                    <div class="box-body table-responsive">
+                        <table id="user_table" class="table table-striped table-hover table-condensed">
+                            <thead>
+                                <tr class="success">
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">Table Name</th>
+                                    <th class="text-center">Total Records</th>
+                                    <th class="text-center">Last Synced</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">Greenbook</td>
+                                    <td class="text-center">{{$greenbooks}}</td>
+                                    <td class="text-center">{{$greenbook_date}}</td>
+                                    <td class="text-center">
+                                        <button class="badge bg-yellow sync_now">Sync Now</button>
+                                        <button class="badge bg-blue"><a href="/tb_greenbook" style="color: white;">View Table</a></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
     </section>
 </div>
 
@@ -169,7 +260,7 @@
             name = name.toLowerCase();
             $.ajax({
                 type: "GET",
-                url: name+'.php',
+                url: '/sync_'+name,
                 success: function(result) {
                     $img.remove();
                     $here.show();
@@ -180,181 +271,5 @@
                 }
             });
         });
-        // $('.services').click(function() {
-        //     $('.title1').removeClass('hidden');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'services.php',
-        //         success: function(result) {
-        //             $(".title1").addClass('hidden');
-        //             $(".result1").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.locations').click(function() {
-        //     $('.title2').removeClass('Updated');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'locations.php',
-        //         success: function(result) {
-        //             $(".title2").addClass('hidden');
-        //             $(".result2").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.organizations').click(function() {
-        //     $('.title3').removeClass('Updated');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'organizations.php',
-        //         success: function(result) {
-        //             $(".title3").addClass('hidden');
-        //             $(".result3").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.phones').click(function() {
-        //     $('.title4').removeClass('hidden');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'phones.php',
-        //         success: function(result) {
-        //             $(".title4").addClass('hidden');
-        //             $(".result4").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.contact').click(function() {
-        //     $('.title5').removeClass('hidden');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'contacts.php',
-        //         success: function(result) {
-        //             $(".title5").addClass('hidden');
-        //             $(".result5").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.address').click(function() {
-        //     $('.title6').removeClass('hidden');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'address.php',
-        //         success: function(result) {
-        //             $(".title6").addClass('hidden');
-        //             $(".result6").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.schedule').click(function() {
-        //     $('.title7').removeClass('hidden');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'schedule.php',
-        //         success: function(result) {
-        //             $(".title7").addClass('hidden');
-        //             $(".result7").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.agency').click(function() {
-        //     $('.title8').removeClass('hidden');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'agency.php',
-        //         success: function(result) {
-        //             $(".title8").addClass('hidden');
-        //             $(".result8").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.accessibility').click(function() {
-        //     $('.title9').removeClass('hidden');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'accessibility.php',
-        //         success: function(result) {
-        //             $(".title9").addClass('hidden');
-        //             $(".result9").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.program').click(function() {
-        //     $('.title10').removeClass('hidden');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'programs.php',
-        //         success: function(result) {
-        //             $(".title10").addClass('hidden');
-        //             $(".result10").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.service_area').click(function() {
-        //     $('.title11').removeClass('hidden');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'area.php',
-        //         success: function(result) {
-        //             $(".title11").addClass('hidden');
-        //             $(".result11").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.taxonomy').click(function() {
-        //     $('.title12').removeClass('hidden');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'taxonomy.php',
-        //         success: function(result) {
-        //             $(".title12").addClass('hidden');
-        //             $(".result12").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.details').click(function() {
-        //     $('.title13').removeClass('hidden');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'details.php',
-        //         success: function(result) {
-        //             $(".title13").addClass('hidden');
-        //             $(".result13").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.Projects').click(function() {
-        //     $('.title14').removeClass('hidden');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'project.php',
-        //         success: function(result) {
-        //             $(".title14").addClass('hidden');
-        //             $(".result14").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.commitment').click(function() {
-        //     $('.title15').removeClass('hidden');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'commitment.php',
-        //         success: function(result) {
-        //             $(".title15").addClass('hidden');
-        //             $(".result15").html("Updated");
-        //         }
-        //     });
-        // });
-        // $('.expenses').click(function() {
-        //     $('.title16').removeClass('hidden');
-        //     $.ajax({
-        //         type: "GET",
-        //         url: 'expenses.php',
-        //         success: function(result) {
-        //             $(".title16").addClass('hidden');
-        //             $(".result16").html("Updated");
-        //         }
-        //     });
-        // });
     });
 </script>

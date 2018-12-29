@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Detail;
+use App\Models\Airtable_services;
+use App\Functions\Airtable;
 use App\Http\Requests;
 
 class AdminDetailController extends Controller
@@ -13,6 +15,49 @@ class AdminDetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function airtable()
+    {
+
+        Detail::truncate();
+        $airtable = new Airtable(array(
+            'api_key'   => 'keyIvQZcMYmjNbtUO',
+            'base'      => 'app2sk6MlzyikwbzL',
+        ));
+
+        $request = $airtable->getContent( 'details' );
+
+        do {
+
+
+            $response = $request->getResponse();
+
+            $airtable_response = json_decode( $response, TRUE );
+
+            foreach ( $airtable_response['records'] as $record ) {
+
+                $detail = new Detail();
+                $detail->detail_id = $record[ 'id' ];
+                $detail->value = isset($record['fields']['value'])?$record['fields']['value']:null;
+                $detail->detail_type = isset($record['fields']['detail_type'])?$record['fields']['detail_type']:null;
+                $detail->description = isset($record['fields']['description'])?$record['fields']['description']:null;
+                $detail->organizations = isset($record['fields']['organizations'])? implode(",", $record['fields']['organizations']):null;
+                $detail->services = isset($record['fields']['services'])? implode(",", $record['fields']['services']):null;
+                $detail->locations = isset($record['fields']['locations'])? implode(",", $record['fields']['locations']):null;
+                $detail->save();
+
+            }
+            
+        }
+        while( $request = $response->next() );
+
+        $date = date("Y/m/d H:i:s");
+        $airtable = Airtable_services::where('table_name', '=', 'Details')->first();
+        $airtable->total_records = Detail::count();
+        $airtable->last_synced = $date;
+        $airtable->save();
+    }
+
     public function index()
     {
         $details = Detail::paginate(15);

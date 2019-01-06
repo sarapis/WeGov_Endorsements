@@ -1,6 +1,6 @@
 <aside class="">
     <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar" style="padding-top: 20px;">
+    <section class="sidebar">
       <!-- search form -->
       <div class="sidebar-form">
         <div class="has-feedback">
@@ -10,7 +10,6 @@
           </div>        
         </div>
       </div>
-      <hr>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
@@ -36,7 +35,7 @@
             </li>
           </ul>
         </li>
-        <hr>
+
         <li class="treeview menu-open">
             <span class="item-list">Tags</span>
   <!--           <span class="pull-right-container">

@@ -5,11 +5,11 @@
 
 
 <div class="demo-container mdl-grid">
-    <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col" style="padding-top: 0;">
+    <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col" style="padding-top: 0;padding: 20px 5px;">
         <div class="container">
           <button type="button" class="btn btn-raised btn-block btn-primary btn-filter">Filter</button>
         </div>
-        <div class="col-sm-3 side-filter" style="border-right: 1px solid #3f3f3f; height: 100%;">
+        <div class="col-sm-3 side-filter" style="border-right: 1px solid #004a83; height: 100%;">
             <div class="row">
                 @include('layouts.agency_sidebar')
             </div>
@@ -24,19 +24,19 @@
                             <img src="{{$organization->logo}}" class="img-responsive center" style="height: 50px;">
                         @endif
                       </div>
-                      <div class="mdl-card__actions mdl-card--border">
+                      <div class="mdl-card__actions">
                         <div class="organization_div">
                         <a href="/organization_{{$organization->organizations_id}}" class="organization_title">{{str_limit($organization->name, 40)}}</a>
                         </div>
                         <a target="_blank" class="link-website" @if($organization->website!='') href="http://{{$organization->website}}" @endif>
-                          Website<i class="fa fa-fw fa-external-link"></i></a>
+                          Website <i class="fa fa-fw fa-external-link"></i></a>
                         <div style="padding-top: 5px;">
                           <?php 
-                            $tag_names = explode(',', $organization->tag_names);
+                            $tag_names = explode(',', $organization->tags);
                             ?>
                           @foreach($tag_names as $tag_name)
                             @if($tag_name!='')
-                              <span class="badge bg-green">
+                              <span class="badge bg-blue span-tag">
                                 {{$tag_name}}</span>
                             @endif
                           @endforeach

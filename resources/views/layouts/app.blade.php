@@ -35,6 +35,7 @@
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,600,700,300italic,400italic,600italic">
+    <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_purple-pink.min.css"> -->
     <script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
     
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -43,23 +44,18 @@
     </script>
 </head>
 
-<body>
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
     <div id="loader" style="display: none;"></div>
-    <div class="wrapper">
-        <nav id="sidebar">
-            @include('partials.sidebar')
-        </nav>
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" id="content">
+    
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-            @include('partials.header')
-            <div class="demo-ribbon"></div>
+        @include('partials.header')
+        <main class="demo-main mdl-layout__content">
+            @yield('content')
+        </main>
 
-            <main class="demo-main mdl-layout__content">
-                @yield('content')
-            </main>
-
-        </div>
     </div>
+    
 
     <!-- jQuery UI 1.11.4 -->
     <script src="{{asset('bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
@@ -90,6 +86,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script>
       $(function () {
         /* BOOTSTRAP SLIDER */

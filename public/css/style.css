@@ -22,9 +22,9 @@ footer.mdl-mini-footer{
 	min-height: 260px;
 }
 .mdl-layout__header {
-	background-color: #042c3d;
+/*	background-color: #042c3d;
 	border: solid 1px #042c3d;
-	box-shadow: none;
+	box-shadow: none;*/
 }
 .demo-ribbon {
   	width: 100%;
@@ -35,7 +35,6 @@ footer.mdl-mini-footer{
 }
 
 .demo-main {
-  margin-top: -92.8px;
   flex-shrink: 0;
   padding-left: 10px;
   padding-right: 10px;
@@ -269,6 +268,7 @@ a{
   line-height: 34px;
   text-align: center;
   pointer-events: none;
+  color: #004a83;
 }
 .form-input{
   padding-left: 42.5px;
@@ -321,14 +321,14 @@ hr{
   width: calc(100% - 21px);
 }
 .checkbox .checkbox-material .check, label.checkbox-inline .checkbox-material .check {
-  border: solid 1px #32acc3;
+  border: solid 1px #004a83;
 }
 .mdl-card{
   min-height: 233px;
   padding: 5px;
 }
 .mdl-card:hover{
-  box-shadow: 0 0 2px 2px #4c83c3;
+  box-shadow: 0 0 2px 2px #004a83;
   transition: box-shadow 0.2s;
 }
 .main-sidebar{
@@ -350,7 +350,7 @@ hr{
 }
 .link-website{
   width: max-content;
-  color: #32acc3;
+  color: #004a83 !important;
 }
 .link_category{
   color: #2d3139;
@@ -588,4 +588,22 @@ dt{
   float: left;
   width: 200px;
   position: relative;
+}
+.checkbox input[type=checkbox]:checked+.checkbox-material .check, label.checkbox-inline input[type=checkbox]:checked+.checkbox-material .check {
+    color: #004a83;
+    border-color: #004a83;
+}
+.checkbox input[type=checkbox]:checked+.checkbox-material .check:before, label.checkbox-inline input[type=checkbox]:checked+.checkbox-material .check:before{
+  color: #004a83;
+}
+.form-control, .form-group .form-control{
+  background-image: linear-gradient(#004a83,#004a83),linear-gradient(#004a83,#004a83) !important;
+}
+.bg-blue {
+    background-color: #004a83 !important;
+}
+.span-tag{
+  padding: 10px;
+  border-radius: 15px;
+  font-size: 12px;
 }

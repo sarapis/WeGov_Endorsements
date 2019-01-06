@@ -22,7 +22,7 @@ class AdminOrganizationController extends Controller
         Organization::truncate();
         $airtable = new Airtable(array(
             'api_key'   => 'keyIvQZcMYmjNbtUO',
-            'base'      => 'appd1eQuF0gFcOMsV',
+            'base'      => 'appBU3zLf0ORYqKjk',
         ));
 
         $request = $airtable->getContent( 'organizations' );
@@ -41,11 +41,10 @@ class AdminOrganizationController extends Controller
                 $organization->organizations_id = isset($record['fields']['ID'])?$record['fields']['ID']:null;
                 $organization->alternate_name = isset($record['fields']['alternate_name'])?$record['fields']['alternate_name']:null;
                 $organization->name = isset($record['fields']['Name'])?$record['fields']['Name']:null;
-                $organization->dedupe = isset($record['fields']['dedupe'])?$record['fields']['dedupe']:null;
+                // $organization->dedupe = isset($record['fields']['dedupe'])?$record['fields']['dedupe']:null;
                 $organization->type = isset($record['fields']['Type'])?$record['fields']['Type']:null;
                 $organization->tags = isset($record['fields']['tags'])? implode(",", $record['fields']['tags']):null;
                 $organization->child_of = isset($record['fields']['Child of'])? implode(",", $record['fields']['Child of']):null;
-                $organization->contacts = isset($record['fields']['Contacts'])? implode(",", $record['fields']['Contacts']):null;
                 $website = isset($record['fields']['website'])?$record['fields']['website']:null;
                 $website = str_replace("https://","",$website);
                 $website = str_replace("http://","",$website);
@@ -59,27 +58,25 @@ class AdminOrganizationController extends Controller
                         echo 'Caught exception: ',  $e->getMessage(), "\n";
                     }
                 }
-                $organization->checkbook = isset($record['fields']['checkbook'])?$record['fields']['checkbook']:null;
+
                 $organization->Twitter = isset($record['fields']['Twitter'])?$record['fields']['Twitter']:null;
                 $organization->Facebook = isset($record['fields']['Facebook'])?$record['fields']['Facebook']:null;
                 $organization->RSS = isset($record['fields']['RSS'])?$record['fields']['RSS']:null;
-                $organization->contacts_link = isset($record['fields']['contacts_link'])?$record['fields']['contacts_link']:null;
+                $organization->contacts_link = isset($record['fields']['contact page'])?$record['fields']['contact page']:null;
+                $organization->checkbook = isset($record['fields']['checkbook'])?$record['fields']['checkbook']:null;
                 $organization->charter = isset($record['fields']['charter'])?$record['fields']['charter']:null;
                 $organization->code = isset($record['fields']['code'])?$record['fields']['code']:null;
                 $organization->rules = isset($record['fields']['rules'])?$record['fields']['rules']:null;
-                $organization->phones = isset($record['fields']['main_phone'])? implode(",", $record['fields']['main_phone']):null;
-                $organization->main_address = isset($record['fields']['main_address'])? implode(",", $record['fields']['main_address']):null;
-                $organization->internalnotes = isset($record['fields']['internalnotes'])?$record['fields']['internalnotes']:null;
-                $organization->services = isset($record['fields']['services'])?$record['fields']['services']:null;
-                $organization->details = isset($record['fields']['details'])?$record['fields']['details']:null;
-                $organization->program = isset($record['fields']['program'])?$record['fields']['program']:null;
+                $organization->legislation = isset($record['fields']['legislation'])?$record['fields']['legislation']:null;
+                $organization->phones = isset($record['fields']['main_phone'])?$record['fields']['main_phone']:null;
                 $organization->email = isset($record['fields']['email'])?$record['fields']['email']:null;
+                $organization->main_address = isset($record['fields']['main_address'])?$record['fields']['main_address']:null;
                 $organization->legal_status = isset($record['fields']['legal_status'])?$record['fields']['legal_status']:null;
                 $organization->tax_status = isset($record['fields']['tax_status'])?$record['fields']['tax_status']:null;
                 $organization->tax_id = isset($record['fields']['tax_id'])?$record['fields']['tax_id']:null;
                 $organization->year_incorporated = isset($record['fields']['year_incorporated'])?$record['fields']['year_incorporated']:null;
-                $organization->legislation = isset($record['fields']['legislation'])?$record['fields']['legislation']:null;
-                $organization->services_count= sizeof(explode(",", $organization->services));
+                $organization->internalnotes = isset($record['fields']['internalnotes'])?$record['fields']['internalnotes']:null;                              
+                
                 $organization ->save();
 
             }

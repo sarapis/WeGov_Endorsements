@@ -70,7 +70,6 @@
                                     <td class="text-center">{{$budget->last_synced}}</td>
                                     <td class="text-center">
                                         <button class="badge bg-yellow sync_now {{$budget->table_name}}">Sync Now</button>
-                                        <button class="badge bg-green"><a href="/{!! strtolower($budget->table_name) !!}.php" style="color: white;">View Log</a></button>
                                         <button class="badge bg-blue"><a href="tb_{!! strtolower($budget->table_name) !!}" style="color: white;">View Table</a></button>
                                     </td>
                                 </tr>
@@ -89,9 +88,9 @@
                 <div class="box">
                     <div class="box-header">
                         <div class="col-md-6">
-                            <h4 class="box-title">Dataset Name: mygovnyc-people</h4>
+                            <h4 class="box-title">Dataset Name: mygovnyc-organizations</h4>
                             <h4 class="box-title">Format: Airtable API</h4>
-                            <h4 class="box-title">API Path: https://api.airtable.com/v0/appd1eQuF0gFcOMsV</h4>
+                            <h4 class="box-title">API Path: https://api.airtable.com/v0/appBU3zLf0ORYqKjk</h4>
                             <h4 class="box-title">API Key: keyIvQZcMYmjNbtUO</h4>
                             <h4 class="box-title">Notes:</h4>
                         </div>
@@ -122,7 +121,6 @@
                                     <td class="text-center">{{$contact->last_synced}}</td>
                                     <td class="text-center">
                                         <button class="badge bg-yellow sync_now">Sync Now</button>
-                                        <button class="badge bg-green"><a href="/{!! strtolower($contact->table_name) !!}.php" style="color: white;">View Log</a></button>
                                         <button class="badge bg-blue"><a href="/tb_{!! strtolower($contact->table_name) !!}" style="color: white;">View Table</a></button>
                                     </td>
                                 </tr>
@@ -174,7 +172,6 @@
                                     <td class="text-center">{{$service->last_synced}}</td>
                                     <td class="text-center">
                                         <button class="badge bg-yellow sync_now">Sync Now</button>
-                                        <button class="badge bg-green"><a href="/{!! strtolower($service->table_name) !!}.php" style="color: white;">View Log</a></button>
                                         <button class="badge bg-blue"><a href="/tb_{!! strtolower($service->table_name) !!}" style="color: white;">View Table</a></button>
                                     </td>
                                 </tr>

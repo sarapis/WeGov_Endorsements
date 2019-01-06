@@ -1,24 +1,23 @@
-<header class="mdl-layout__header">
-	<div class="mdl-layout__header-row">
-		<button type="button" id="sidebarCollapse" class="btn mdl-layout__drawer-button" style="padding: 0">
-            <i class="material-icons">menu</i>
-        </button>
-		<span class="mdl-layout-title">@yield('title')</span>
-<!-- 		<div class="mdl-layout-spacer"></div> -->
+<header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+	<div class="mdl-layout--lang mdl-layout__header-row">
+	</div>
+	<div class="mdl-layout-logo mdl-layout__header-row">
+	  <a class="" href="/"><img src="../../../images/logo.png" class="img-responsive"></a>
+	</div>
+	<div class="mdl-layout__tab-bar mdl-layout__header-row external-menubar">
+		<a href="" class="mdl-layout__tab menu-link">Welcome</a>
+		<a href="" class="mdl-layout__tab menu-link">Decide</a>
+		<a href="" class="mdl-layout__tab menu-link is-active">Research</a>
+		<a href="" class="mdl-layout__tab menu-link">About</a>
+		<a href="" class="mdl-layout__tab menu-link">Blog</a>
+		<a href="" class="mdl-layout__tab menu-link">Donate</a>
+	</div>
+	<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+	  <a href="/organizations" class="mdl-layout__tab @if(Request::is ('organizations')) is-active @endif">Organizations</a>
+	  <a href="/projects" class="mdl-layout__tab @if(Request::is ('projects')) is-active @endif">Projects</a>
+	  <a href="/services" class="mdl-layout__tab @if(Request::is ('services')) is-active @endif">Services</a>
+	  <a href="/people" class="mdl-layout__tab @if(Request::is ('people')) is-active @endif">People</a>
+	  <a href="/elections" class="mdl-layout__tab @if(Request::is ('elections')) is-active @endif">Elections</a>
+	  <a href="/laws" class="mdl-layout__tab @if(Request::is ('laws')) is-active @endif">Laws</a>
 	</div>
 </header>
-
-
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.mdl-layout__drawer-button').click(function(){
-			$('.mdl-layout__drawer').addClass('is-visible');
-			$('.mdl-layout__obfuscator').addClass('is-visible');
-		});
-		$('.mdl-layout__obfuscator').click(function(){
-			$('.mdl-layout__drawer').removeClass('is-visible');
-			$('.mdl-layout__obfuscator').removeClass('is-visible');
-		});
-	});
-	
-</script>

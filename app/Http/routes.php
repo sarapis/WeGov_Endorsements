@@ -269,7 +269,26 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::get('/sync_taxonomy', ['uses' => 'AdminTaxonomyController@airtable']); 
 	Route::get('/sync_details', ['uses' => 'AdminDetailController@airtable']);
 
-	Route::get('/sync_greenbook', ['uses' => 'AdminGreenbookController@greenbook']);   
+	Route::get('/sync_greenbook', ['uses' => 'AdminGreenbookController@greenbook']);
+
+	
+	Route::get('/sync_politician_organizations', ['uses' => 'AdminPoliticianOrganizationController@airtable']);   
+	Route::get('/sync_politicians', ['uses' => 'AdminPoliticianController@airtable']); 
+	Route::get('/sync_campaigns', ['uses' => 'AdminCampaignController@airtable']);
+	Route::get('/sync_endorsements', ['uses' => 'AdminEndorsementController@airtable']);
+	Route::get('/sync_offices', ['uses' => 'AdminOfficeController@airtable']);
+	Route::get('/sync_elections', ['uses' => 'AdminElectionController@airtable']);
+	Route::get('/sync_parties', ['uses' => 'AdminPartyController@airtable']);
+	Route::get('/sync_politician_source', ['uses' => 'AdminPoliticianSourceController@airtable']);
+	Route::get('/sync_general_information', ['uses' => 'AdminInformationController@airtable']);
+	Route::get('/sync_city_positions', ['uses' => 'AdminPositionController@airtable']);
+	Route::get('/sync_other_noncity_income', ['uses' => 'AdminNoncityController@airtable']);
+	Route::get('/sync_list_of_money_you_owe', ['uses' => 'AdminMoneyController@airtable']);
+	Route::get('/sync_real_estate', ['uses' => 'AdminRealEstateController@airtable']);
+	Route::get('/sync_securities', ['uses' => 'AdminSecuritiesController@airtable']);
+	Route::get('/sync_trust', ['uses' => 'AdminTrustController@airtable']);
+	Route::get('/sync_relatives', ['uses' => 'AdminRelativesController@airtable']);
+
 
 
 

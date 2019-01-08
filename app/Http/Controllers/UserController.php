@@ -9,6 +9,7 @@ use App\Models\Contacts;
 use App\Models\Budgets;
 use App\Models\Services;
 use App\Models\Greenbook;
+use App\Models\Airtable_politicians;
 
 class UserController extends Controller
 {
@@ -59,6 +60,7 @@ class UserController extends Controller
         $budgets = Budgets::all();
         $contacts = Contacts::all();
         $services = Services::all(); 
+        $politicians = Airtable_politicians::all();
 
         $greenbooks = Greenbook::count();
         if($greenbooks==0)
@@ -67,7 +69,7 @@ class UserController extends Controller
             $greenbook_date = Greenbook::find(1)->created_at;
 
 
-        return view('admin.pages.datasync', compact('budgets', 'contacts', 'services', 'greenbooks', 'greenbook_date'))->withUser($user)->withAccess($access);
+        return view('admin.pages.datasync', compact('budgets', 'contacts', 'services', 'greenbooks', 'greenbook_date', 'politicians'))->withUser($user)->withAccess($access);
     }
 
 //OLD LTE

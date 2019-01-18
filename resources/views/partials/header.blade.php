@@ -13,10 +13,10 @@
 		    </button>
 			<ul class="register_button">
 				<li>
-					<a href="http://v.mygov.nyc/account">Sign in</a>
+					<a href="http://mygov.nyc/account">Sign in</a>
 				</li>
 				<li>
-					<a class="button" href="http://v.mygov.nyc/account">Register</a>
+					<a class="button" href="http://mygov.nyc/account">Register</a>
 				</li>
 			</ul>
 	      </div>
@@ -26,10 +26,10 @@
 		<div class="container">
 			<a href="#" class="mdl-layout__tab menu-link">Sign in</a>
 			<a href="#" class="mdl-layout__tab menu-link">Register</a>
-			<a href="http://v.mygov.nyc/" class="mdl-layout__tab menu-link">Welcome</a>
-			<a href="http://v.mygov.nyc/legislation/processes" class="mdl-layout__tab menu-link">Decide</a>
+			<a href="http://mygov.nyc/" class="mdl-layout__tab menu-link">Welcome</a>
+			<a href="http://mygov.nyc/legislation/processes" class="mdl-layout__tab menu-link">Decide</a>
 			<a href="" class="mdl-layout__tab menu-link  is-active">Research</a>
-			<a href="http://v.mygov.nyc/about" class="mdl-layout__tab menu-link">About</a>
+			<a href="http://mygov.nyc/about" class="mdl-layout__tab menu-link">About</a>
 			<a href="http://mygov.nyc/blog/" class="mdl-layout__tab menu-link">Blog</a>
 			<a href="https://opencollective.com/mygovnyc" class="mdl-layout__tab menu-link">Donate</a>
 			<a href="/organizations" class="mdl-layout__tab menu-link @if(Request::is ('organizations')) is-active @endif">Organizations</a>
@@ -45,10 +45,10 @@
 
 	<div class="mdl-layout__tab-bar mdl-layout__header-row external-menubar ">
 		<div class="container">
-			<a href="http://v.mygov.nyc/" class="mdl-layout__tab menu-link">Welcome</a>
-			<a href="http://v.mygov.nyc/legislation/processes" class="mdl-layout__tab menu-link">Decide</a>
+			<a href="http://mygov.nyc/" class="mdl-layout__tab menu-link">Welcome</a>
+			<a href="http://mygov.nyc/legislation/processes" class="mdl-layout__tab menu-link">Decide</a>
 			<a href="" class="mdl-layout__tab menu-link  is-active">Research</a>
-			<a href="http://v.mygov.nyc/about" class="mdl-layout__tab menu-link">About</a>
+			<a href="http://mygov.nyc/about" class="mdl-layout__tab menu-link">About</a>
 			<a href="http://mygov.nyc/blog/" class="mdl-layout__tab menu-link">Blog</a>
 			<a href="https://opencollective.com/mygovnyc" class="mdl-layout__tab menu-link">Donate</a>
 		</div>

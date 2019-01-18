@@ -13,10 +13,10 @@
 		    </button>
 			<ul class="register_button">
 				<li>
-					<a href="#">Sign in</a>
+					<a href="http://v.mygov.nyc/account">Sign in</a>
 				</li>
 				<li>
-					<a class="button" href="#">Register</a>
+					<a class="button" href="http://v.mygov.nyc/account">Register</a>
 				</li>
 			</ul>
 	      </div>

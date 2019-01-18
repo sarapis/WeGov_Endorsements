@@ -6,7 +6,7 @@
 	</div>
 	<div class="mdl-layout-logo mdl-layout__header-row">
 		<div class="container">
-	  	<a class="logo_left" href="/"><img src="{{URL::asset('images/logo.png')}}" class="img-responsive"></a>
+	  	<a class="logo_left" href="/"><img src="{{URL::asset('images/logo1.png')}}" class="img-responsive"></a>
 	      <div class="top-bar-right">
 	      	<button type="button" class="btn btn-raised btn-block btn-primary menu_filter">
 		        <i class="fa fa-bars" aria-hidden="true"></i> Menu 

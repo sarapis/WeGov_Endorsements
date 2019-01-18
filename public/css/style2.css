@@ -586,6 +586,15 @@ html, body {
 {
 
 }
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: none !important;
+}
+.mdl-color--primary-dark .mdl-layout__tab:hover, .mdl-color--primary-dark .mdl-layout__tab:focus{
+  color: #042c3d;
+}
 
 
 

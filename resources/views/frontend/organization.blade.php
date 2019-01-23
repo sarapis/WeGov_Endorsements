@@ -3,60 +3,104 @@
 
 @section('content')
 
-<div class="demo-container mdl-grid">
+<div class="demo-container mdl-grid inner_organization">
     <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col">
-        <div class="page-title row">
-            <div class="pull-right">
-              <p class="text-tages"> Tags: <?php 
-                $tag_names = explode(',', $organization->tag_names);
-                ?>
-              @foreach($tag_names as $tag_name)
-                @if($tag_name!='')
-                  <span class="badge bg-green">
-                    {{$tag_name}}</span>
-                @endif
-              @endforeach</p>
+        <div class="page-title row ">
+            <div class="col-sm-2 image_main"> 
+              @if($organization->logo!='')
+                  <img src="{{$organization->logo}}" class="img-responsive center" >
+              @endif
             </div>
-            <div class="pull-right" style="padding-left: 20px;padding-right: 10px;">
-              <p class="text-types"> Type: <span class="badge bg-blue">{{$organization_type}}</span></p>
+            <div class="col-sm-10 col-xs-12">
+                <div class="pull-right">
+                    <p class="text-tages"> Tags: <?php 
+                        $tag_names = explode(',', $organization->tag_names);
+                    ?>
+                        @foreach($tag_names as $tag_name)
+                            @if($tag_name!='')
+                            <span class="badge bg-green">{{$tag_name}}</span>
+                            @endif
+                        @endforeach
+                    </p>
+                </div>
+                <div class="pull-right" style="padding-left: 20px;padding-right: 10px;">
+                    <p class="text-types"> Type: 
+                        <span class="badge bg-blue">{{$organization_type}}</span>
+                    </p>
+                </div>
+                <div class="pull-left org_title">{{$organization->name}}</div>
+                <div class="social_icon">
+                    <ul>
+                        <li><a href="#" title="Website"><i class="fas fa-globe"></i></a></li>
+                        <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#" title="RSS"><i class="fas fa-rss"></i></a></li>
+                        <li><a href="#" title="Phone"><i class="fas fa-phone"></i></a></li>
+                        <li><a href="#" title="Email"><i class="fas fa-envelope"></i></a></li>
+                        <li><a href="#" title="Address"><i class="fas fa-map-marker-alt"></i></a></li>
+                    </ul>
+                </div>
+                <input type="hidden" id="organizations_id" value="{{$organization->organizations_id}}">
             </div>
-            <div class="pull-left">{{$organization->name}}</div>
-            <input type="hidden" id="organizations_id" value="{{$organization->organizations_id}}">
         </div>
         <div class="menu-bar row">
 
-            <ul class="nav nav-tabs" role="tablist">
+            <ul class="nav nav-tabs desktop_tab" role="tablist">
                 <li class="active"><a href="/organization_{{$organization->organizations_id}}" class="menu-title">ABOUT</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/projects" id="projects_tab">PROJECTS</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/services" id="services_tab">SERVICES</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
-                <li style="width:216px;"><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
-                <li style="width:125px;"><a href="/organization_{{$organization->organizations_id}}/legislation" id="legislation_tab">LEGISLATION</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/legislation" id="legislation_tab">LEGISLATION</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/endosements" id="laws_tab">ENDORSEMENTS</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
             </ul>
+
+            <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
+
+            <div class="tab_filter_btn">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="/organization_{{$organization->organizations_id}}" class="menu-title">ABOUT</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/projects" id="projects_tab">PROJECTS</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/services" id="services_tab">SERVICES</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/legislation" id="legislation_tab">LEGISLATION</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/endosements" id="laws_tab">ENDORSEMENTS</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
+                </ul>
+            </div>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="about">
                     <div class="row">
                         <div class="col-sm-8">
-                            <div class="box" style="padding: 40px;border-top: 2px solid #d2d6de;min-height: 233px;">
-                                <div class="row">
-                                    <div class="col-md-8" style="padding-top: 5px;">
+                            <div class="box">
+                                <div class="org_about">
+                                    <div class="col-md-8">
+                                    <p>DSNY manages NYC’s municipal and residential solid waste, both refuse and recyclables; clears snow &amp; ice; cleans vacant lots, enforces sanitation laws and removes abandoned vehicles from city streets.</p>
                                     <p>{!! $organization->organization_description !!}</p>
                                     </div>
-                                    <div class="col-md-4">
-                                        @if($organization->logo!='')
+                                    <div class="col-md-4 right_about_btn">
+                                        <h5><span>33</span>Services</h5>
+                                        <h5><span>100</span>Projects</h5>
+                                        <h5><span>90</span>Budget(E)</h5>
+                                        <h5><span>80</span>Budget(C)</h5>
+                                        <h6><a href="">Open data</a></h6> 
+                                        <!-- @if($organization->logo!='')
                                             <a href="http://{{$organization->website}}" target="_blank"><img src="{{$organization->logo}}" class="img-responsive center"></a>
-                                        @endif
+                                        @endif -->
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-6">
                                     <div class="box">
                                         <div class="box-header"><h3 class="box-title">Operating Acitivities</h3></div>
                                         <div class="box-body">
-                                            <div class="row" style="padding: 40px;">
+                                            <div class="row">
                                                 <div class="col-sm-6">
                                                     <h5 class="box-body-operating">NYC Services</h5>
                                                     <h3 class="box-body-operating"><b>@if($original_organization->services!='')
@@ -90,13 +134,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="col-sm-4">
-                            <div class="box" style="border-top: 2px solid #d2d6de;min-height: 574px;">
+                            <div class="box">
                                <div id="mymap"></div>
-                            
-                                <div class="box-footer" style="height: 115px;">
+                                <!-- <div class="box-footer" style="height: 115px;">
                                     <div class="col-xs-3 link-div text-center">
                                     <a class="btn btn-app btn-link" href="tel:{{$organization->phone_number}}">
                                         <i class="fa md md-phone"></i> Call
@@ -121,7 +164,7 @@
                                         <div class=" sharethis-inline-share-buttons"></div>
                                     </a>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -314,5 +357,5 @@
 </script>
 
 
-
+@include('layouts.script')
 @endsection

@@ -49,8 +49,10 @@ html, body {
 .mdl-demo .mdl-layout__tab-bar .mdl-layout__tab {
   height: 48px;
   line-height: 48px;    font-size: 17px;    padding: 0px;
-  margin:0 15px;
+  margin:0 15px; 
 }
+.mdl-demo .mdl-layout__tab-bar.submenu_div .mdl-layout__tab { font-weight: normal; }
+.mdl-demo .mdl-layout__tab-bar.submenu_div .mdl-layout__tab.is-active  {font-weight: 600}
 .mdl-demo .mdl-layout__tab-bar .mdl-layout__tab:first-child { margin-left: 0px;}
 .mdl-demo .mdl-layout__tab-bar .mdl-layout__tab.is-active::after {
   background-color: white;
@@ -481,7 +483,8 @@ html, body {
 .endosment_table table.dataTable tr td a:hover{ color: #042c3d;}
 .table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {    border: 1px solid #d7d7d7;}
 .pagination { padding-right: 15px; }
-
+.org_filter, .tab_filter_btn { display: none;background-color: #004a83 !important; }
+.tab_filter_btn { float: left; width: 100%; }
 
 
 /******************************* responsive css *************************************/
@@ -505,13 +508,28 @@ html, body {
 @media screen and (max-width: 800px)
 {
   .org_title {line-height: 20px;font-size: 14px;}
+  .inner_organization .page-title { margin-bottom: 10px;padding: 0px; }
+  #mymap {height: 300px !important;}
+  .btn.btn-raised.btn-primary.org_filter { display: block;width: 95%;margin: 0 auto; }
+  .desktop_tab { display: none; }
+  .tab_filter_btn .nav-tabs>li { display: block;float: left;width: 100%; text-align: left; }
+  .inner_content .election_menu .box-body div{ height: 150px; }
 }
 @media screen and (max-width: 767px)
 {
-  .organization_left { display: none; margin-bottom: 20px; }
-  .organization_right { border-left: none; }
+  .organization_left { display: none; margin-bottom: 20px; height:inherit;float: left;width: 100%; }
+  .organization_right { border-left: none;float: left; width: 100%; }
   .org_title {height: 40px;}
   .image_main {margin-bottom:20px;}
+  .btn-filter { display: block; margin-bottom: 20px; }
+  .item-list { padding-left: 15px; }
+  .treeview-menu { padding-left: 10px; }
+  .inner_organization .org_title { width: 100%; }
+  .menu-bar.row { padding-top: 0px; }
+  .inner_content .election_menu .box-body div { min-height: 100px; height: auto;}
+  .inner_content .election_menu .box-body h5 { margin: 4% 1% 0px 0; padding: 8px 17px;}
+  .inner_content .election_menu .box p { font-size: 16px;}
+  .inner_content .election_menu .box-body h5 {font-size: 14px;}
 }
 @media screen and (max-width: 736px)
 {
@@ -535,20 +553,22 @@ html, body {
   .mdl-demo .mdl-layout__tab-bar .mdl-layout__tab, .mdl-layout.is-upgraded .mdl-layout__tab.is-active { width: 100%; text-align: left; margin: 0px; }
   .btn.btn-raised.btn-primary.submenu_filter {width: 50%;font-size: 16px; display: inline-block; margin: 0px;padding: 13px 0;float: right; }
   .mdl-demo .mdl-layout__tab-bar { height: inherit;}
+  .mdl-demo .mdl-layout-logo.mdl-layout__header-row .container { width: 100%; padding: 0 10px; }
 
 
   .external-menubar, .submenu_div  { display: none; }
   .responsive_menu { font-size: 16px;margin: 0px;padding: 0px 0;color: #004a83; background: #004a83  !important; }
-  .btn.btn-raised.btn-primary.menu_filter {width:100%;font-size: 17px;text-transform: capitalize; display: inline-block; float: left; margin: 0px; padding: 25px 9px; color: #ffffff;box-shadow: none !important; background: none !important;}
+  .btn.btn-raised.btn-primary.menu_filter {width:100%;font-size: 17px;text-transform: capitalize; display: inline-block; float: left; margin: 0px; padding:14px 9px; color: #ffffff;box-shadow: none !important; background: none !important;}
   .btn.btn-raised.btn-primary.menu_filter i { font-size: 21px; }
   .register_button { display: none; }
-  .logo_left { float: right; }
-  .top-bar-right { float: left; }
+  .logo_left { float: right;width: 32%; }
+  .top-bar-right { float: left; padding-top: 3px; }
   .mdl-layout-logo { height: 64px;}
   .responsive_menu  .container {padding: 0 10px;}
   .mdl-layout__tab.menu-link { color: #fefeff;  font-weight: 500;font-size: 18px;width: 100%;text-align: left; padding: 0px; line-height: 40px; height: auto;}
   .mdl-demo .mdl-layout__tab-bar .mdl-layout__tab, .mdl-layout.is-upgraded .mdl-layout__tab.is-active { width: 100%; text-align: left; margin: 0px; color: #fff !important;    font-weight: 500; }
   .mdl-layout__tab.menu-link.is-active, .mdl-layout__tab.menu-link:hover {    color: #ffffff !important;}
+  .organization_right.people .col-sm-4 {width: 50%;}
 }
 @media screen and (max-width: 568px)
 {
@@ -556,8 +576,9 @@ html, body {
   .org_title { height: auto; }
   .org_inner_right { min-height: inherit; max-height: inherit; }
   .page-title {font-size: 25px;padding-left: 20px;padding-right: 20px;}
-  .logo_left {width: 49%;}
-  .right_about_btn h5, .right_about_btn h5:nth-child(2n+2) { width: 48%; }
+  .right_about_btn h5, .right_about_btn h5:nth-child(2n+2) { width: 44%;    margin: 2% 2% 0px 0; }
+  .org_about { padding: 10px; }
+  .right_about_btn h5 {margin: 2% 2% 0px 0;}
 }
 @media screen and (max-width: 536px)
 {
@@ -565,18 +586,22 @@ html, body {
 }
 @media screen and (max-width: 480px)
 {
-
+  .top-bar-right { padding-top: 0px; }
+  .logo_left { padding-top: 4px; }
 }
 @media screen and (max-width: 414px)
 {
   .register_button { padding-top: 11px; }
   .btn.btn-raised.btn-primary.menu_filter {padding: 17px 9px;}
-  .logo_left {margin-right:24px;}
+  .logo_left {width: 40%;}
+  .organization_right.people .col-sm-4 {width: 100%;}
 }
 @media screen and (max-width: 375px)
 {
   .register_button li a.button {font-size: 12px;padding: 7.5px 11px;}
   .register_button li a {color: #fff; font-size: 13px;padding: 8.5px 12px; }
+  .social_icon ul li a {color: #004a83;font-size: 18px;margin-right: 16px;}
+  .logo_left {width: 47%;}
 }
 @media screen and (max-width: 360px)
 {
@@ -585,15 +610,6 @@ html, body {
 @media screen and (max-width: 320px)
 {
 
-}
-.mdl-layout.is-upgraded .mdl-layout__tab.is-active{
-  text-decoration: none;
-}
-a:hover{
-  text-decoration: none !important;
-}
-.mdl-color--primary-dark .mdl-layout__tab:hover, .mdl-color--primary-dark .mdl-layout__tab:focus{
-  color: #042c3d;
 }
 
 

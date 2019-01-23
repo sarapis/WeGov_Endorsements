@@ -5,43 +5,35 @@
 
 
 <div class="demo-container mdl-grid">
-    <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col" style="padding-top: 0;padding: 20px 5px;">
+    <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col">
         <div class="container">
           <button type="button" class="btn btn-raised btn-block btn-primary btn-filter">Filter</button>
         </div>
         <div class="col-sm-3 side-filter" style="border-right: 1px solid #004a83; height: 100%;">
-            <div class="row">
-                @include('layouts.agency_sidebar')
-            </div>
+            @include('layouts.agency_sidebar')
         </div>
-        <div class="col-sm-9" id="organization_content">
-            <div class="demo-container row">
+        <div class="col-sm-9 organization_right" id="organization_content">
+            <div class="">
                 @foreach ($organizations as $organization)
-                <div class="col-md-4" style="padding: 0;">
-                    <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
-                      <div class="mdl-card__title">
-                        @if($organization->logo!='')
-                            <img src="{{$organization->logo}}" class="img-responsive center" style="height: 50px;">
-                        @endif
-                      </div>
-                      <div class="mdl-card__actions">
-                        <div class="organization_div">
-                        <a href="/organization_{{$organization->organizations_id}}" class="organization_title">{{str_limit($organization->name, 40)}}</a>
+                <div class="col-sm-4 col-md-4 col-xs-6">
+                    <div class="org_inner_right">
+                        <div class="org_img">
+                          @if($organization->logo!='')
+                              <img src="{{$organization->logo}}" class="img-responsive center" >
+                          @endif
                         </div>
-                        <a target="_blank" class="link-website" @if($organization->website!='') href="http://{{$organization->website}}" @endif>
-                          Website <i class="fa fa-fw fa-external-link"></i></a>
-                        <div style="padding-top: 5px;">
-                          <?php 
+                        <h5 class="org_title">
+                            <a href="/organization_{{$organization->organizations_id}}">{{str_limit($organization->name, 40)}}</a>
+                        </h5>
+                        <a target="_blank" class="org_website" @if($organization->website!='') href="http://{{$organization->website}}" @endif > Website <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                        <?php 
                             $tag_names = explode(',', $organization->tags);
                             ?>
                           @foreach($tag_names as $tag_name)
                             @if($tag_name!='')
-                              <span class="badge bg-blue span-tag">
-                                {{$tag_name}}</span>
+                              <span class="org_tags">{{$tag_name}}</span>
                             @endif
                           @endforeach
-                        </div>
-                      </div>
                     </div>
                 </div>
                 @endforeach
@@ -51,4 +43,5 @@
     </div>
 
 </div>
+@include('layouts.script')
 @endsection

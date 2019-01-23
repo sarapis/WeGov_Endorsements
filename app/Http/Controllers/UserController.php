@@ -8,7 +8,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Contacts;
 use App\Models\Budgets;
 use App\Models\Services;
+use App\Models\Agency;
+use App\Models\Organization;
+use App\Models\ServiceOrganization;
 use App\Models\Greenbook;
+use App\Models\PoliticianOrganization;
 use App\Models\Airtable_politicians;
 
 class UserController extends Controller
@@ -68,8 +72,23 @@ class UserController extends Controller
         else
             $greenbook_date = Greenbook::find(1)->created_at;
 
+        $all_agencies = Agency::count();
+        $join_agencies = Agency::whereNotNull('magency')->count();
 
-        return view('admin.pages.datasync', compact('budgets', 'contacts', 'services', 'greenbooks', 'greenbook_date', 'politicians'))->withUser($user)->withAccess($access);
+        $all_organizations = Organization::count();
+        $join_organizations = Organization::whereNotNull('organizations_id')->count();
+
+        $all_serviceorganizations = ServiceOrganization::count();
+        $join_serviceorganizations = ServiceOrganization::whereNotNull('organization_x_id')->count();
+
+        $all_politicians = PoliticianOrganization::count();
+        $join_politicians = PoliticianOrganization::whereNotNull('organizationid')->count();
+
+        $all_greenbooks = Greenbook::count();
+        $join_greenbooks = Greenbook::whereNotNull('organization_code')->count();
+
+
+        return view('admin.pages.datasync', compact('budgets', 'contacts', 'services', 'greenbooks', 'greenbook_date', 'politicians', 'all_agencies', 'join_agencies', 'all_organizations', 'join_organizations' ,'all_serviceorganizations', 'join_serviceorganizations', 'all_politicians', 'join_politicians', 'all_greenbooks', 'join_greenbooks'))->withUser($user)->withAccess($access);
     }
 
 //OLD LTE

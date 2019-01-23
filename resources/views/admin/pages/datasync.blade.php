@@ -44,9 +44,8 @@
                             <h4 class="box-title">Notes:</h4>
                         </div>
                         <div class="col-md-6">
-                            <h4 class="box-title">All Organizations:</h4>
-                            <h4 class="box-title">Coded Organizations:</h4>
-                            <h4 class="box-title">Coded Column Name:</h4>
+                            <h4 class="box-title">All Organizations: {{$all_agencies}}</h4>
+                            <h4 class="box-title">Joined Organizations: {{$join_agencies}}</h4>
                         </div>
                     </div>
 
@@ -95,9 +94,8 @@
                             <h4 class="box-title">Notes:</h4>
                         </div>
                         <div class="col-md-6">
-                            <h4 class="box-title">All Organizations:</h4>
-                            <h4 class="box-title">Coded Organizations:</h4>
-                            <h4 class="box-title">Coded Column Name:</h4>
+                            <h4 class="box-title">All Organizations: {{$all_organizations}}</h4>
+                            <h4 class="box-title">Joined Organizations: {{$join_organizations}}</h4>
                         </div>
                     </div>
 
@@ -146,9 +144,8 @@
                             <h4 class="box-title">Notes:</h4>
                         </div>
                         <div class="col-md-6">
-                            <h4 class="box-title">All Organizations:</h4>
-                            <h4 class="box-title">Coded Organizations:</h4>
-                            <h4 class="box-title">Coded Column Name:</h4>
+                            <h4 class="box-title">All Organizations: {{$all_serviceorganizations}}</h4>
+                            <h4 class="box-title">Joined Organizations: {{$join_serviceorganizations}}</h4>
                         </div>
                     </div>
 
@@ -197,9 +194,8 @@
                             <h4 class="box-title">Notes:</h4>
                         </div>
                         <div class="col-md-6">
-                            <h4 class="box-title">All Organizations:</h4>
-                            <h4 class="box-title">Coded Organizations:</h4>
-                            <h4 class="box-title">Coded Column Name:</h4>
+                            <h4 class="box-title">All Organizations:  {{$all_politicians}}</h4>
+                            <h4 class="box-title">Joined Organizations: {{$join_politicians}}</h4>
                         </div>
                     </div>
 
@@ -248,9 +244,8 @@
                             <h4 class="box-title">Notes:</h4>
                         </div>
                         <div class="col-md-6">
-                            <h4 class="box-title">All Organizations:</h4>
-                            <h4 class="box-title">Coded Organizations:</h4>
-                            <h4 class="box-title">Coded Column Name:</h4>
+                            <h4 class="box-title">All Organizations: {{$all_greenbooks}}</h4>
+                            <h4 class="box-title">Joined Organizations: {{$join_greenbooks}}</h4>
                         </div>
                     </div>
 

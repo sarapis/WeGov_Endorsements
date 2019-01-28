@@ -25,7 +25,7 @@ class AdminProjectController extends Controller
         Project::truncate();
         $airtable = new Airtable(array(
             'api_key'   => 'keyIvQZcMYmjNbtUO',
-            'base'      => 'appytlCBlVIzYxE1o',
+            'base'      => 'appbMzhtOLwRlr1oD',
         ));
 
         $request = $airtable->getContent( 'projects' );

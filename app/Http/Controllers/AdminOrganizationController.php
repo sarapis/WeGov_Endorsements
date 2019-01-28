@@ -50,12 +50,13 @@ class AdminOrganizationController extends Controller
                 $website = str_replace("http://","",$website);
                 $organization->website = $website;
                 $organization->description = isset($record['fields']['short description'])?$record['fields']['short description']:null;
-
-                foreach ($record['fields']['Logo'] as $key => $image) {
-                    try {
-                        $organization->logo .= $image["url"];
-                    } catch (Exception $e) {
-                        echo 'Caught exception: ',  $e->getMessage(), "\n";
+                if(isset($record['fields']['Logo'])){
+                    foreach ($record['fields']['Logo'] as $key => $image) {
+                        try {
+                            $organization->logo .= $image["url"];
+                        } catch (Exception $e) {
+                            echo 'Caught exception: ',  $e->getMessage(), "\n";
+                        }
                     }
                 }
 

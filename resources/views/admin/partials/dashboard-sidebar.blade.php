@@ -58,18 +58,18 @@
             </li>
 
             <li class="treeview">
-              <a href="/datasync">
+              <a href="">
                 <i class="fa fa-table"></i>
-                <span>Tables</span>
+                <span>Indexes</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="/tb_projects"><i class="fa fa-circle-o"></i> Projects </a></li>
+<!--                 <li><a href="/tb_projects"><i class="fa fa-circle-o"></i> Projects </a></li>
                 <li><a href="/tb_commitments"><i class="fa fa-circle-o"></i> Commitments </a></li>
                 <li><a href="/tb_expense"><i class="fa fa-circle-o"></i> Expense </a></li>
-                <li><a href="/tb_organization"><i class="fa fa-circle-o"></i> Organization </a></li>
-                <li><a href="/tb_organizations"><i class="fa fa-circle-o"></i> Organizations </a></li>
-                <li><a href="/tb_contacts"><i class="fa fa-circle-o"></i> Contacts </a></li>
+                <li><a href="/tb_organization"><i class="fa fa-circle-o"></i> Organization </a></li> -->
+                <li><a href="/tb_organizations"><i class="fa fa-circle-o"></i> Organization Index</a></li>
+<!--                 <li><a href="/tb_contacts"><i class="fa fa-circle-o"></i> Contacts </a></li>
                 <li><a href="/tb_services"><i class="fa fa-circle-o"></i> Services </a></li>
                 <li><a href="/tb_locations"><i class="fa fa-circle-o"></i> Locations </a></li>
                 <li><a href="/tb_address"><i class="fa fa-circle-o"></i> Address </a></li>
@@ -78,6 +78,17 @@
                 <li><a href="/tb_programs"><i class="fa fa-circle-o"></i> Programs </a></li>
                 <li><a href="/tb_taxonomy"><i class="fa fa-circle-o"></i> Taxonomy </a></li>
                 <li><a href="/tb_details"><i class="fa fa-circle-o"></i> Details </a></li>
+                <li><a href="/tb_greenbook"><i class="fa fa-circle-o"></i> Greenbook </a></li> -->
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="">
+                <i class="fa fa-table"></i>
+                <span>Joined Tables</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
                 <li><a href="/tb_greenbook"><i class="fa fa-circle-o"></i> Greenbook </a></li>
               </ul>
             </li>

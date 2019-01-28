@@ -1,33 +1,43 @@
-@include('layouts.style')
-<title>People</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-    <style>
-    div.dataTables_wrapper {
-        width: 800px;
-        margin: 0 auto;
-    }
-    </style>
-<body>
+@extends('layouts.app')
+@section('title', 'People')
+@section('content')
 
-    <!--BEGIN BACK TO TOP-->
-    <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
-    <!--END BACK TO TOP-->
-    <!--BEGIN TOPBAR-->
-     @include('layouts.header')
-    <!--END TOPBAR-->
-    
-        <!--BEGIN SIDEBAR MENU-->
-        @include('layouts.menu')
-        <!--END SIDEBAR MENU-->
+<div class="demo-container mdl-grid">
+    <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col">
+        <div class="container">
+          <button type="button" class="btn btn-raised btn-block btn-primary btn-filter">Filter</button>
+        </div>
+        <div class="col-sm-3 side-filter">
+            @include('layouts.sidebar')
+        </div>
+        <div class="col-sm-9 organization_right people" id="organization_content">
+            <div class="">
+                @foreach ($peoples as $people)
+                <div class="col-sm-4 col-md-4 col-xs-6">
+                    <div class="org_inner_right inner_people">
+                        <div class="org_img">
+                            <img src="{{asset('images/image.jpg')}}" class="img-responsive center" >
+                        </div>
+                        <a href="/people_{{$people->contact_id}}">{{$people->name}}</a>
+                        <p>{{$people->office_title}}, {{$people->organization_name}} {{$people->division_name}}
+                        @if($people->parent_division!=''), {{$people->parent_division}}@endif @if($people->grand_parent_division!=''), {{$people->grand_parent_division}}@endif
+                        @if($people->great_grand_parent_division!=''), {{$people->great_grand_parent_division}}@endif</p>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <dir class="text-right col-sm-12" style="float: right;width: 100%;">
+                {{$peoples->links()}}
+            </dir>
+        </div>
+    </div>
+</div>
 
-        <!--BEGIN PAGE WRAPPER-->
-        <div id="wrapper">
+{{-- 
+    <!--BEGIN PAGE WRAPPER-->
+    <!-- <div id="wrapper">
         <div id="page-wrapper">
             @include('layouts.sidebar')
-            <!--BEGIN TITLE & BREADCRUMB PAGE-->
             <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                 <div class="page-header pull-left">
                     <div class="page-title plxxl">
@@ -50,7 +60,6 @@
                 <div class="clearfix">
                 </div>
             </div>
-            <!--END TITLE & BREADCRUMB PAGE-->
             <div id="tab-general">
                 <div class="mbl">
                     <div class="col-lg-12">
@@ -69,7 +78,6 @@
                    
                         <div class="page-content">
                             <div class="panel panel-blue">
-                                <!-- /.box-header -->
                                 <div class="panel-body"  style="overflow-x:auto;">
                                     <table id="example" class="table table-striped table-hover table-bordered display nowra" cellspacing="0" width="100%">
                                         <thead>
@@ -103,19 +111,13 @@
                 </div>
             </div>
 
-            <!--BEGIN FOOTER-->
             <div id="footer">
                 <div class="copyright">
                     <a href="#">&copy; ThemesGround 2015. Designed by ThemesGround </a></div>
             </div>
-            <!--END FOOTER-->
         </div>
-        <!--END CONTENT-->
-    </div>
-    <!--END PAGE WRAPPER-->
-</body>
-@include('layouts.script')
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    </div> -->
+<!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -124,4 +126,6 @@ $(document).ready(function() {
         "scrollX": true
     });
 } );
-</script>
+</script> --> --}}
+@include('layouts.script')
+@endsection

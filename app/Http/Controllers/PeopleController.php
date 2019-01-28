@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
+use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 
 use App\Logic\User\UserRepository;
 use App\Models\Post;
@@ -31,16 +32,20 @@ class PeopleController extends Controller
     {
         $servicetypes = DB::table('taxonomies')->get();
         $organizationtypes = DB::table('organizations')->distinct()->get(['type']);
+
         $projecttypes = DB::table('projects')-> distinct()->get(['project_type']);
         $service_name = '&nbsp;';
         $organization_name = '&nbsp;';
         $project_name = '&nbsp;';
         $filter = collect([$organization_name, $service_name, $project_name]);
 
-        $peoples = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('contacts.*', 'organizations.organizations_id as organizations_id', 'organizations.name as organization_name')->sortable(['name'])->paginate(25);
+        $peoples = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('contacts.*', 'organizations.organizations_id as organizations_id', 'organizations.name as organization_name')->orderBy('name', 'asc')->paginate(28);
+        
         $organization = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('organizations.name as organization_name')->distinct()->get(['organization_name']);
         $organization_type='';
-        return view('frontend.peoples', compact('servicetypes','projecttypes','organizationtypes', 'filter', 'peoples', 'organization', 'organization_type'));
+        $taxonomy_lists = $servicetypes;
+        $organization_lists = DB::table('organizations')->get();
+        return view('frontend.peoples', compact('servicetypes','projecttypes','organizationtypes', 'filter', 'peoples', 'organization', 'organization_type', 'taxonomy_lists', 'organization_lists'));
     }
 
     /**
@@ -48,11 +53,11 @@ class PeopleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function find($id, $people_id)
+    public function find($id, $people_id = null)
     {
-
+        
         $organization = Organization::where('organizations_id','=',$id)->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->select('organizations.*', 'organizations.description as organization_description', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->first();
-
+        
 
         // $peopleid= Contact::where('name','=',$people_id)->first()->contact_id;
 
@@ -60,7 +65,7 @@ class PeopleController extends Controller
 
         $people = Greenbook::where('id', '=', $people_id)->first();
 
-        $greenbook_name = $people->last_name.', '.$people->first_name;
+        $greenbook_name = '$people->last_name'.', '.'$people->first_name';
 
         $contact_id = DB::table('contacts')->where('name','=', $greenbook_name)->first();
 

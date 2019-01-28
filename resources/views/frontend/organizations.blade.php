@@ -9,7 +9,7 @@
         <div class="container">
           <button type="button" class="btn btn-raised btn-block btn-primary btn-filter">Filter</button>
         </div>
-        <div class="col-sm-3 side-filter" style="border-right: 1px solid #004a83; height: 100%;">
+        <div class="col-sm-3 side-filter">
             @include('layouts.agency_sidebar')
         </div>
         <div class="col-sm-9 organization_right" id="organization_content">
@@ -39,9 +39,7 @@
                 @endforeach
             </div>
         </div>
-
     </div>
-
 </div>
 @include('layouts.script')
 @endsection

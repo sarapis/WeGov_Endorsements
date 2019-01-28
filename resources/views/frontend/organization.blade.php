@@ -44,7 +44,6 @@
             </div>
         </div>
         <div class="menu-bar row">
-
             <ul class="nav nav-tabs desktop_tab" role="tablist">
                 <li class="active"><a href="/organization_{{$organization->organizations_id}}" class="menu-title">ABOUT</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/projects" id="projects_tab">PROJECTS</a></li>

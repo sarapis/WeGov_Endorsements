@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Source URL: https://airtable.com/tbleTru4Ts1k45AsV/viwCpJvG1tq0XKQZu</h3>
+                        <h3 class="box-title">Source URL: https://airtable.com/tblB0EE9kyBZTQNO0/viwh3OAXOAbB52PDb</h3>
                     </div>
 
                     <div class="box-body table-responsive">
@@ -38,18 +38,11 @@
                                     <th class="text-center">Alternate Name</th>
                                     <th class="text-center">Name</th> 
                                     <th class="text-center">Type</th>
-                                    <th class="text-center">Contacts</th>
+                                    <th class="text-center">Tags</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Logo</th> 
                                     <th class="text-center">Website</th>
-                                    <th class="text-center">Short Description</th>
-                                    <th class="text-center">Logo</th>  
-                                    <th class="text-center">Checkbook</th>
-                                    <th class="text-center">Internalnotes</th>
-                                    <th class="text-center">Contacts link</th>
-                                    <th class="text-center">Services</th>
-                                    <th class="text-center">Phones</th>
-                                    <th class="text-center">Loactions</th>
-                                    <th class="text-center">Contact</th>
-                                    <th class="text-center">Dedupe</th>
+                                    <th class="text-center">Short Description</th>                         
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -61,43 +54,22 @@
                                     <td class="text-center">{{$organization->alternate_name}}</td>
                                     <td class="text-center">{{$organization->name}}</td>
                                     <td class="text-center"><span class="badge bg-purple">{{$organization->type}}</span></td>
-
-                                    <td class="text-center">@if($organization->contacts==null)
-                                      0
-                                     @else
-                                      {{sizeof(explode(",", $organization->contacts))}}
+                                    <td class="text-center"><?php 
+                                      $tag_names = explode(',', $organization->tags);
+                                      ?>
+                                    @foreach($tag_names as $tag_name)
+                                      @if($tag_name!='')
+                                        <span class="badge bg-green">{{$tag_name}}</span>
                                       @endif
-                                    </td>
-                                    <td class="text-center">{{str_limit($organization->website, 15)}}</td>
-                                    <td class="text-center">{{str_limit($organization->description, 30)}}</td>
+                                    @endforeach</td>
+                                    <td class="text-center">{{$organization->email}}</td>
                                     <td class="text-center">
                                     @if($organization->logo!=null)
                                     <img src="{{$organization->logo}}" style="width: 40px;">
                                     @endif
                                     </td>
-                                    <td class="text-center">{{str_limit($organization->checkbook, 15)}}</td>
-                                    <td class="text-center">{{$organization->internalnote}}</td>
-                                    <td class="text-center">{{str_limit($organization->contacts_link, 15)}}</td>
-                                    <td class="text-center">@if($organization->services==null)
-                                      0
-                                     @else
-                                      {{sizeof(explode(",", $organization->services))}}
-                                      @endif
-                                    </td>
-                                    <td class="text-center">@foreach($organization->phone as $phone)
-                                      <span class="badge bg-green">{{$phone->phone_number}}
-                                    @endforeach
-                                    </span></td>
-                                    <td class="text-center">
-                                    @foreach($organization->location as $location)
-                                      <span class="badge bg-yellow">{{$location->name}}</span>
-                                    @endforeach
-                                    </td>
-                                    <td class="text-center">{{$organization->contact}}</td>
-                                    <td class="text-center">@if($organization->dedupe==1)
-                                      <i class="icon fa fa-check"></i>
-                                      @endif
-                                    </td>
+                                    <td class="text-center">{{str_limit($organization->website, 15)}}</td>
+                                    <td class="text-center">{{str_limit($organization->description, 30)}}</td>
                                     <td class="text-center">
                                         <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$organization->id}}"><i class="fa fa-fw fa-edit"></i>Edit</button>
                                     </td>

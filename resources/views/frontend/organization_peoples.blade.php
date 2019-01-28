@@ -3,7 +3,6 @@
 
 @section('content')
 
-
 <div class="demo-container mdl-grid">
     <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col">
         <div class="page-title row">

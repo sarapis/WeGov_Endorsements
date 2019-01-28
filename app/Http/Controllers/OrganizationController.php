@@ -38,7 +38,6 @@ class OrganizationController extends Controller
         $tags = DB::table('tags')->get();
 
         $organizations = Organization::where('type', '=', 'City Agency')->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->select('organizations.*', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->get();
-
         return view('frontend.organizations', compact('types', 'tags','organizations'));
     }
 

@@ -1,86 +1,78 @@
 @extends('layouts.app')
 @section('title', 'Agencies and Departments')
-
 @section('content')
 
-
-<div class="demo-container mdl-grid">
+<div class="demo-container mdl-grid inner_organization people_content_inner">
     <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col">
-        <div class="page-title row">
-            <div class="pull-right hidden-xs">
-              <p class="text-tages"> Tags: <?php 
-                $tag_names = explode(',', $organization->tag_names);
-                ?>
-              @foreach($tag_names as $tag_name)
-                @if($tag_name!='')
-                  <span class="badge bg-green">
-                    {{$tag_name}}</span>
-                @endif
-              @endforeach</p>
+        <div class="page-title row ">
+            <div class="col-sm-2 image_main"> 
+                <img src="{{asset('images/image.jpg')}}" class="img-responsive center" >
             </div>
-            <div class="pull-right hidden-xs" style="padding-left: 20px;padding-right: 10px;">
-              <p class="text-types"> Type: <span class="badge bg-blue">{{$organization->type}}</span></p>
+            <div class="col-sm-10 col-xs-12">
+                <div class="pull-right">
+                    <p class="text-tages"> Tags: <span class="badge bg-green">Republican</span></p>
+                </div>
+                <div class="pull-right" style="padding-left: 20px;padding-right: 10px;">
+                    <p class="text-types"> Type: 
+                        <span class="badge bg-blue">Politician </span>
+                    </p>
+                </div>
+                <div class="pull-left org_title">Name</div><br/>
+                <div class="pull-left people_title_org">Title, Organization, Division</div>
+                <div class="social_icon">
+                    <ul>
+                        <li><a href="#" title="Website"><i class="fas fa-globe"></i></a></li>
+                        <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#" title="RSS"><i class="fas fa-rss"></i></a></li>
+                        <li><a href="#" title="Phone"><i class="fas fa-phone"></i></a></li>
+                        <li><a href="#" title="Email"><i class="fas fa-envelope"></i></a></li>
+                        <li><a href="#" title="Address"><i class="fas fa-map-marker-alt"></i></a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="pull-left">{{$organization->name}}</div>
-            <input type="hidden" id="organizations_id" value="{{$organization->organizations_id}}">
         </div>
         <div class="menu-bar row">
-
-            <ul class="nav nav-tabs" role="tablist">
-                <li><a href="/organization_{{$organization->organizations_id}}" class="menu-title">ABOUT</a></li>
-                <li><a href="/organization_{{$organization->organizations_id}}/projects" id="projects_tab">PROJECTS</a></li>
-                <li><a href="/organization_{{$organization->organizations_id}}/services" id="services_tab">SERVICES</a></li>
-                <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
-                <li class="active"><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
-                <li style="width:216px;"><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
-                <li style="width:125px;"><a href="/organization_{{$organization->organizations_id}}/legislation" id="legislation_tab">LEGISLATION</a></li>
+            <ul class="nav nav-tabs desktop_tab" role="tablist">
+                <li class="active"><a href="#people_contact" class="menu-title">CONTACT</a></li>
+                <li><a href="#people_campaigns" id="projects_tab">CAMPAIGNS</a></li>
+                <li><a href="#people_endorsement" id="services_tab">ENDORSEMENTS</a></li>
+                <li><a href="#people_disclouser" id="money_tab">DISCLOSURES</a></li>
             </ul>
-            <div class="tab-content">
 
-                <div role="tabpanel" class="tab-pane active" id="people_content">
-                    <div class="container-fluid">
-                        <div id="tab-general">
-                            <div class="mbl">
-                                    <div class="page-content">
-                                        <div class="row">
-                                            <div class="col-lg-8">
+            <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
 
-                                                <div class="panel">
-                                                    <div class="panel-body">
-                                                        <div class="note note-info">
-
-                                                        <p><code> Name:</code> {{$people->first_name}} {{$people->m_i}} {{$people->last_name}}</p>
-                                                        <p><code> Organization:</code> {{$people->agency_name}}</p>
-                                                        <p><code> Title:</code> {{$people->office_title}}</p>
-                                                        <p><code> Division:</code> {{$people->division_name}}
-                                                        @if($people->parent_division!=''), {{$people->parent_division}}@endif @if($people->grand_parent_division!=''), {{$people->grand_parent_division}}@endif
-                                                        @if($people->great_grand_parent_division!=''), {{$people->great_grand_parent_division}}@endif</p>
-                                                        <p><code>Address:</code> {{$people->address}}, {{$people->city}}, {{$people->state}}, {{$people->zip_code}}</p>
-                                                        <p><code> Phone:</code> {{$people->phone_1}}  {{$people->phone_2}}</p>
-                                                        <p><code> Fax: </code> {{$people->fax_1}}  {{$people->fax_2}}</p>
-                                                        <p><code> Agency Primary Phone:</code> {{$people->agency_primary_phone}}</p>
-                                                        <p><code> Division Primary Phone:</code> {{$people->division_primary_phone}}</p>
-                                                        <p><code> Section:</code> {{$people->section}}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4">
-                                                <div class="portlet box">
-                                                    <div class="portlet-header">
-                                                        <div id="mymap_people"></div>
-                                                    </div>
-                                                    <div class="portlet-body">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+            <div class="tab_filter_btn">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#people_contact" class="menu-title">CONTACT</a></li>
+                    <li><a href="#people_campaigns" id="projects_tab">CAMPAIGNS</a></li>
+                    <li><a href="#people_endorsement" id="services_tab">ENDORSEMENTS</a></li>
+                    <li><a href="#people_disclouser" id="money_tab">DISCLOSURES</a></li>
+                </ul>
+            </div>
+             <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="people_contact">
+                    <div class="row">
+                        <div class="col-sm-4 address">
+                            <div class="box">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <h5>Address</h5>
+                                <p>9411 Peachtree Street <br/>Minot, ND 58701</p>
                             </div>
-
+                        </div>
+                        <div class="col-sm-4 address">
+                            <div class="box">
+                                <i class="fas fa-phone"></i>
+                                <h5>Phone</h5>
+                                <p>Agency Phone: 123-456-1234 <br/>Division Phone: 123-456-1456</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 address">
+                            <div class="box">
+                                <i class="fas fa-fax"></i>
+                                <h5>Fax</h5>
+                                <p>Fax Number: 1-888-473-2963</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -120,4 +112,6 @@ $(document).ready(function() {
     $('#example').DataTable();
 } );
 </script>
+
+@include('layouts.script')
 @endsection

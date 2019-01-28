@@ -37,4 +37,30 @@ $(document).ready(function(){
         event.preventDefault();
     });
 });
+
+//--------------- hide show in responsive ----------------
+
+    $(document).ready(function(){
+      $(".btn-filter").click(function(){
+        $(".organization_left").toggle();
+      });
+    });
+
+    $(document).ready(function(){
+      $(".menu_filter").click(function(){
+        $(".responsive_menu").toggle();
+      });
+    });
+
+    $(document).ready(function(){
+      $(".org_filter").click(function(){
+        $(".tab_filter_btn").toggle();
+      });
+    });
+/*
+    $(document).ready(function(){
+      $(".submenu_filter").click(function(){
+        $(".submenu_div").toggle();
+      });
+    });*/
 </script>

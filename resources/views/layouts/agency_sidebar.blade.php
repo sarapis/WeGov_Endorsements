@@ -1,4 +1,4 @@
-<aside class="">
+<aside>
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- search form -->
@@ -24,7 +24,6 @@
             <li style="padding-left: 10px;">
               @foreach($types as $type)
               @if($type->type!='')
-              
               <div class="checkbox">             
                 <label>
                   <input type="checkbox" class="organization-type" value="{{$type->type}}" @if($type->type=='City Agency') checked @endif>  <span class="subitem-list text-uppercase">{{$type->type}}</span>

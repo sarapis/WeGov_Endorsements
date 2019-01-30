@@ -87,83 +87,13 @@
                                         <h5><span>90</span>Budget(E)</h5>
                                         <h5><span>80</span>Budget(C)</h5>
                                         <h6><a href="">Open data</a></h6> 
-                                        <!-- @if($organization->logo!='')
-                                            <a href="http://{{$organization->website}}" target="_blank"><img src="{{$organization->logo}}" class="img-responsive center"></a>
-                                        @endif -->
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- <div class="row">
-                                <div class="col-md-6">
-                                    <div class="box">
-                                        <div class="box-header"><h3 class="box-title">Operating Acitivities</h3></div>
-                                        <div class="box-body">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <h5 class="box-body-operating">NYC Services</h5>
-                                                    <h3 class="box-body-operating"><b>@if($original_organization->services!='')
-                                                        {{sizeof(explode(",", $original_organization->services))}}
-                                                        @else 0 @endif</b></h3>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <h5 class="box-body-operating">Capital Projects</h5>
-                                                    <h3 class="box-body-operating"><b>@if($organization->projects!=null)
-                                                        {{sizeof(explode(",", $organization->projects))}}
-                                                        @else 0 @endif</b></h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="box">
-                                        <div class="box-header"><h3 class="box-title">Total Budgets</h3></div>
-                                        <div class="box-body">
-                                            <div class="row" style="padding: 40px;">
-                                                <div class="col-sm-6">
-                                                    <h5 class="box-body-budget">Expense Budget</h5>
-                                                    <h3 class="box-body-budget"><b>${{$organization->total_project_cost}}</b></h3>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <h5 class="box-body-budget">Capital Budgets</h5>
-                                                    <h3 class="box-body-budget"><b>${{$organization->expenses_budgets}}</b></h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                         <div class="col-sm-4">
                             <div class="box">
                                <div id="mymap"></div>
-                                <!-- <div class="box-footer" style="height: 115px;">
-                                    <div class="col-xs-3 link-div text-center">
-                                    <a class="btn btn-app btn-link" href="tel:{{$organization->phone_number}}">
-                                        <i class="fa md md-phone"></i> Call
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                    </div>
-                                    <div class="col-xs-3 link-div text-center">
-                                    <a class="btn btn-app btn-link" target="_blank" @if($organization->main_address!='') href="https://www.google.com.mm/maps/place/{{$organization->address()->first()->address_1}}, {{$organization->address()->first()->city}}, {{$organization->address()->first()->postal_code}} @endif">
-                                        <i class="fa md md-place"></i> Location
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                    </div>
-                                    <div class="col-xs-3 link-div text-center">
-                                    <a class="btn btn-app btn-link" target="_blank" href="http://{{$organization->website}}">
-                                        <i class="fa md md-link"></i> Website
-                                        <div class="ripple-container"></div>
-                                    </a>
-                                    </div>
-                                    <div class="col-xs-3 link-div text-center">
-                                    <a class="btn btn-app btn-link">
-                                        <i class="fa md md-publish"></i> Share
-                                        <div class=" sharethis-inline-share-buttons"></div>
-                                    </a>
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                     </div>

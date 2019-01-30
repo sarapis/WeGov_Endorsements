@@ -326,6 +326,10 @@ Route::group(['middleware' => 'administrator'], function () {
 
 	Route::resource('tb_greenbook', 'AdminGreenbookController');
 
+	//Entity
+	Route::resource('entity_organizations', 'AdminEntityOrganizationController');
+	Route::resource('entity_people', 'AdminEntityPeopleController');
+
 	Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 });

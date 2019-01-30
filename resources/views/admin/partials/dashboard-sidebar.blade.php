@@ -92,6 +92,17 @@
                 <li><a href="/tb_greenbook"><i class="fa fa-circle-o"></i> Greenbook </a></li>
               </ul>
             </li>
+            <li class="treeview">
+              <a href="">
+                <i class="fa fa-table"></i>
+                <span>Entity Tabs</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/entity_organizations"><i class="fa fa-circle-o"></i> Organization </a></li>
+                <li><a href="/entity_people"><i class="fa fa-circle-o"></i> People </a></li>
+              </ul>
+            </li>
             
             @if (Auth::user()->profile)
                 <li class="treeview">

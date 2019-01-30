@@ -45,6 +45,8 @@ Route::get('/organization_{id}/people', 'OrganizationController@peoples');
 Route::get('/organization_{id}/money', 'OrganizationController@money');
 Route::get('/organization_{id}/laws', 'OrganizationController@laws');
 Route::get('/organization_{id}/legislation', 'OrganizationController@legislation');
+Route::get('/organization_{id}/endorsements', 'OrganizationController@endorsements');
+Route::get('/organization_{id}/candidates', 'OrganizationController@candidates');
 Route::get('/organization_{id}', 'OrganizationController@find');
 
 Route::post('/organizations_filter', 'OrganizationController@filter');

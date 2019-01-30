@@ -155,7 +155,7 @@ class OrganizationController extends Controller
         return view('frontend.organization_legislation', compact('organization'));
     }
 
-    public function endosements($id)
+    public function endorsements($id)
     {
         $organization_type = $organization = Organization::where('organizations_id','=',$id)->first()->type;
         $organizations = Agency::orderBy('magencyacro', 'asc')->get();

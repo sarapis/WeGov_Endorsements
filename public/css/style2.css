@@ -274,25 +274,24 @@ html, body {
   font-size: 18px;
 }
 .mdl-layout__tab.menu-link.is-active, .mdl-layout__tab.menu-link:hover{
-  color: #004a83 !important; text-decoration: underline;
+  color: #004a83 !important;
 }
 .mdl-layout__tab.menu-link.is-active::after, .mdl-layout__tab.menu-link:hover::after {
     height: 4px !important;
-    background: #fff !important;
+    background: #004a83  !important;
     width: 100%;
     display: block;
     content: " ";
     bottom: 0 !important;
     left: 0;
     position: absolute;
-    background: #ff4081; display: none !important;
+    background: #ff4081;
     -webkit-animation: border-expand .2s cubic-bezier(.4,0,.4,1).01s alternate forwards;
     animation: border-expand .2s cubic-bezier(.4,0,.4,1).01s alternate forwards;
     -webkit-transition: all 1s cubic-bezier(.4,0,1,1);
     transition: all 1s cubic-bezier(.4,0,1,1);
 }
-.mdl-demo .mdl-layout__tab-bar .mdl-layout__tab.is-active::after { display: none; }
-.mdl-color--primary-dark .mdl-layout__tab:hover , .mdl-color--primary-dark .mdl-layout__tab:focus  { color: #fff; text-decoration: underline;}
+.mdl-color--primary-dark .mdl-layout__tab:hover , .mdl-color--primary-dark .mdl-layout__tab:focus  { color: #fff;}
 .mdl-color--primary-dark .mdl-layout__tab.is-active::after, .mdl-color--primary-dark .mdl-layout__tab:hover::after, .mdl-color--primary-dark .mdl-layout__tab:focus::after, .mdl-color--primary-dark .mdl-layout__tab.active::after {
   height: 4px !important;
   background: #fff !important;
@@ -302,7 +301,7 @@ html, body {
   bottom: 0 !important;
   left: 0;
   position: absolute;
-  background: #6e6a6c; display: none;
+  background: #6e6a6c;
   -webkit-animation: border-expand .2s cubic-bezier(.4,0,.4,1).01s alternate forwards;
   animation: border-expand .2s cubic-bezier(.4,0,.4,1).01s alternate forwards;
   -webkit-transition: all 1s cubic-bezier(.4,0,1,1);
@@ -498,6 +497,73 @@ html, body {
 .people_content_inner .address .box i {font-size: 130px; position: absolute; right: 20px; top: 16px; color: rgba(0, 74, 131, 0.11);}
 .people_content_inner .address .box h5 {font-size: 25px;font-weight: 600;color: #004a83;margin-top: 0px;font-family: 'Source Sans Pro', sans-serif;}
 .people_content_inner .address .box p {color: #222222; font-size: 17px;}
+
+
+.padding_0 { padding: 0px; }
+.table_data.box { border: none; box-shadow:none; }
+.table-bordered {box-shadow:1.5px 2.6px 5px 0 rgba(178, 176, 176, 0.3)}
+.table-responsive table { margin-top: 0px !important;font-family: 'Source Sans Pro', sans-serif; margin-bottom: 20px !important;  border-bottom: 1px solid #d7d7d7 }
+.table-responsive table th {text-align: center;border-top: none; border-bottom: none; color: #042c3d; font-size: 18px; font-weight: 600;background-color: #ebebeb;}
+.table-responsive table tr td { font-size: 16px; background: #fff; color: #222222; text-align: center; }
+.table-responsive table tr td a{ color: #0073b7;}
+.table-responsive table tr td a:hover{ color: #042c3d;}
+.endosment_table.table-responsive #example3 {margin-bottom: 20px !important;}
+.candidates_tab .col-sm-9 { padding: 0px; }
+.candidates_tab .org_tags {padding: 7px 13px;font-size: 13px;line-height: 15px;margin-top: 12px; width: max-content; display: -webkit-box;}
+.candidates_tab .col-sm-9 .col-sm-4 { padding:0 8px; }
+.candidate_detail {  float: left;  width: 100%; height: 225px; overflow: auto;margin-top: 15px;}
+.candidate_detail ul {padding-left: 27px;color: #004a83;}
+.candidate_detail ul li {font-size: 19px;line-height: 0;margin-bottom: 8px;}
+.candidate_detail ul li span {font-size: 16px;line-height: 20px;}
+.left_election_menu {float: left;width: 100%;background: #004a83;color: #fff;}
+.election_head h3{ margin:0px;font-size: 20px;font-weight: 600;padding: 15px 20px;line-height: 1.1;}
+.election_head ul li { list-style: none; font-size: 16px;padding:0px 0 0 8px;float: left; width: 100%;border-top: 1px solid #fff;}
+.election_head ul  { padding: 0px; }
+.election_head ul li a { color: #fff;float: left; width: 100%; padding: 10px 12px;}
+.election_head ul li a.active, .election_head ul li a:hover, .election_head ul li a:active { text-decoration: none; background: #ebebeb;color: #004a83;}
+.election_menu .box-title {font-size: 18px; font-weight: 600;}
+.election_menu .box-body{ padding: 20px;float: left; width: 100%; }
+.election_menu .box p {color: #222222; font-size: 16px; font-weight: 500;}
+.election_menu .box p i {color: #0e548a; margin-right: 10px;}
+.election_menu .box-body div {padding-left: 28px;margin: 20px 0;height: 100px; overflow: auto;}
+.election_menu .box-body h5 {margin:4% 2% 0px 0; text-align: center; border-radius: 10px;background: #ebebeb;padding: 8px 11px; color: #222222; font-weight: 600;display: inline-block;font-size: 14px;}
+.election_menu .box-body span {display: block; text-align: center; font-size: 18px;margin-bottom: 3px;color: #004a83; font-weight: bold; font-family: lato;}
+.detail_elec .box-header {float: left;width: 100%;} 
+.detail_elec .box-title {float: left; } 
+.election_menu.detail_elec .box-header p { float: right; margin-bottom: 0px; }
+.election_menu.detail_elec .box-body div { height: auto; }
+.election_menu .box-body div.candidate_detail { height: auto; padding: 0px;margin-top: 5px;min-height:inherit; }
+.election_menu.detail_elec .box-body h5 {margin: 3% 7px 0px 0;padding: 8px 20px;}
+.election_menu .candidate_detail {  float: left;  width: 100%; height: 225px; overflow: auto;margin-top: 15px;}
+.election_menu .candidate_detail ul {padding-left: 27px;color: #004a83;}
+.election_menu .candidate_detail ul li {font-size: 20px;line-height: 0;margin-bottom: 8px;}
+.election_menu .candidate_detail ul li span {color: #222;font-size: 16px;line-height: 20px; text-align: left;font-weight: 500;}
+.election_menu .candidate_detail ul li span em{color: #004a83;}
+.election_menu .box .box-header .box-title a{font-size: 16px !important;    font-weight: 600;}
+.election_menu .box .box-header { border-bottom: none; }
+.people_tabpanel { padding:0px; }
+.people_tabpanel .tab-pane { padding: 20px 20px 0 20px; }
+.people_tabpanel #people_disclouser.tab-pane { padding: 0px; } 
+.disclosure_year {background: #004a83;color: #fff;}
+.disclosure_year li a, .disclosure_year li.active a, .disclosure_year li.active a:hover, .disclosure_year li a:hover {color: #fff !important;line-height: 50px;padding: 0 15px;}
+.disclosure_year li a:after {background: #ffffff;height: 5px;}
+.inner_disclosure {float: left; width: 100%;padding: 30px 10px; }
+.left_dis_menu{padding: 0px; list-style: none; float: left;width: 100%; border: 1px solid #ddd; box-shadow: 1.5px 2.6px 5px 0 rgba(178, 176, 176, 0.3);border: 1px solid #ddd;}
+.left_dis_menu li a {font-size: 17px;font-weight: normal;color: #004a83; float: left; width: 100%; background: #fff;padding: 11px 20px;    border-top: 1px solid #004a83;}
+.left_dis_menu li a.active, .left_dis_menu li a:hover  {color: #ffffff; background:#004a83 }
+.right_dis_table h6 { text-transform: capitalize; font-size: 23px;font-weight: 600;color: #004a83; margin: 13px 0;letter-spacing: 0px;}
+.all_year_list { padding: 0px; }
+.all_year_list .tab-pane {padding: 0px;}
+
+
+
+
+
+
+
+
+
+
 /******************************* responsive css *************************************/
 
 
@@ -510,11 +576,15 @@ html, body {
   .nav-tabs>li {margin-right:20px;}
   .nav-tabs > li > a , .nav-tabs > li.active > a{font-size:14px;}
   .organization_right.people .col-sm-4 { width: 33.33%;}
+  .election_menu .box-body h5 {font-size: 12px;}
+  .election_menu .box-body span {font-size: 15px;}
+  .election_menu .box p {font-size: 14px;}
 }
 @media screen and (max-width: 980px)
 {
   #mymap {height: 246px !important;}
   .right_about_btn h5 , .right_about_btn h5:nth-child(2n+2){margin: 4% 2% 0px 0;width: 21%;}
+  .election_menu .box-body h5 {padding: 8px 6px;}
 
 }
 @media screen and (max-width: 800px)
@@ -525,32 +595,40 @@ html, body {
   .btn.btn-raised.btn-primary.org_filter { display: block;width: 95%;margin: 0 auto; }
   .desktop_tab { display: none; }
   .tab_filter_btn .nav-tabs>li { display: block;float: left;width: 100%; text-align: left; }
-  .inner_content .election_menu .box-body div{ height: 150px; }
+  .election_menu .box-body div{ height: 150px; }
   .organization_right.people .col-sm-4 {width: 50%;}
   .inner_people .org_img img {height: 180px;}
   .image_main {    padding: 0 0 0 10px;}
   .people_content_inner .image_main {height: 100px;}
   .people_content_inner .address { width: 50%; }
+  .election_menu .box-body div{ height: 150px; }
+  .disclosure_year { margin-top: 20px; }
 }
 @media screen and (max-width: 767px)
 {
   .organization_left { display: none; margin-bottom: 20px; height:inherit;float: left;width: 100%; }
   .organization_right { border-left: none;float: left; width: 100%; }
   .org_title {height: 40px;}
-  .image_main {margin-bottom:20px;}
+  .image_main {margin-bottom:20px; padding: 0 25px;}
   .btn-filter { display: block; margin-bottom: 20px; }
   .item-list { padding-left: 15px; }
   .treeview-menu { padding-left: 10px; }
   .inner_organization .org_title { width: 100%; }
   .menu-bar.row { padding-top: 0px; }
-  .inner_content .election_menu .box-body div { min-height: 100px; height: auto;}
-  .inner_content .election_menu .box-body h5 { margin: 4% 1% 0px 0; padding: 8px 17px;}
-  .inner_content .election_menu .box p { font-size: 16px;}
-  .inner_content .election_menu .box-body h5 {font-size: 14px;}
+  .election_menu .box-body div { min-height: 100px; height: auto;}
+  .election_menu .box-body h5 { margin: 4% 1% 0px 0; padding: 8px 17px;}
+  .election_menu .box p { font-size: 16px;}
+  .election_menu .box-body h5 {font-size: 14px;}
   .side-filter {height: auto;border-right:none;}
   .organization_right.people .col-sm-4 { width: 33.33%;}
   .inner_people .org_img img {height: 150px;}
   .people_content_inner .address { width: 60%; margin: 0 auto;}
+  .election_menu .box-body div { min-height: 100px; height: auto;}
+  .election_menu .box-body h5 { margin: 4% 1% 0px 0; padding: 8px 17px;}
+  .election_menu .box p { font-size: 16px;}
+  .election_menu .box-body h5 {font-size: 14px;}
+  .endosment_table.table-responsive #example3 {margin-bottom:0px !important;}
+  .inner_dis_row {float: left;width: 100%; margin: 0 0; }
 }
 @media screen and (max-width: 736px)
 {
@@ -624,6 +702,7 @@ html, body {
   .register_button li a {color: #fff; font-size: 13px;padding: 8.5px 12px; }
   .social_icon ul li a {color: #004a83;font-size: 18px;margin-right: 16px;}
   .logo_left {width: 47%;}
+  .image_main { height: auto; }
 }
 @media screen and (max-width: 360px)
 {

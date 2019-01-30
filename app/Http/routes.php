@@ -73,9 +73,14 @@ Route::post('/projects_filter', 'ProjectController@filter');
 
 Route::post('/projects_search', 'ProjectController@search');
 
+//elections
+Route::get('/elections', 'ElectionController@index');
+Route::get('/elections_detail', 'ElectionController@find');
+
 //Peoples
 Route::get('/people', 'PeopleController@index');
 Route::get('/people_{id}', 'PeopleController@find');
+Route::get('/people/disclosures', 'PeopleController@disclosures');
 Route::get('/organization_{id}/people/{people_id}', 'PeopleController@find');
 
 Route::get('/organizationtype_{id}', 'PeopleController@organizationtypefind');

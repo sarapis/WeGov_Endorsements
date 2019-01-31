@@ -1,4 +1,4 @@
-8@extends('admin.layouts.dashboardhome') 
+@extends('admin.layouts.dashboardhome') 
 
 @section('template_title') Edit Get Involve
 @endsection 

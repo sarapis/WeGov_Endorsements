@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Organization;
+use App\Models\EntityOrganization;
 use App\Models\Airtable_people;
 use App\Functions\Airtable;
 use App\Http\Requests;
@@ -19,7 +19,7 @@ class AdminEntityOrganizationController extends Controller
 
     public function index()
     {
-        $organizations = Organization::with('phone')->paginate(15);
+        $organizations = EntityOrganization::all();
         return view('admin.entities.organization')->with('organizations', $organizations);
     }
 
@@ -52,7 +52,7 @@ class AdminEntityOrganizationController extends Controller
      */
     public function show($id)
     {
-        $organization = Organization::where('id', '=', $id)->first();
+        $organization = EntityOrganization::where('id', '=', $id)->first();
         return response()->json($organization);
     }
 
@@ -76,19 +76,17 @@ class AdminEntityOrganizationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $organization = Organization::find($id);
-        $organization->organizations_id = $request->organizations_id;
-        $organization->alternate_name = $request->alternate_name;
-        $organization->name = $request->name;
-        $organization->type = $request->type;
-        $organization->website = $request->website;
-        $organization->description = $request->description;
-        $organization->logo = $request->logo;
-        $organization->checkbook = $request->checkbook;
-        $organization->internalnotes = $request->internalnotes;
-        $organization->contacts_link = $request->contacts_link;
-        $organization->dedupe = $request->dedupe;
-        $organization->flag = 'modified';
+        $organization = EntityOrganization::find($id);
+        $organization->about = $request->about;
+        $organization->projects = $request->projects;
+        $organization->services = $request->services;
+        $organization->money = $request->money;
+        $organization->people = $request->people;
+        $organization->charter = $request->charter;
+        $organization->legislation = $request->legislation;
+        $organization->endorsements = $request->endorsements;
+        $organization->candidates = $request->candidates;
+        $organization->requests = $request->requests;
         $organization->save();
         // var_dump($project);
         // exit();

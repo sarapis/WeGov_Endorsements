@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Organization;
 use App\Models\Airtable_people;
+use App\Models\EntityOrganization;
 use App\Functions\Airtable;
 use App\Http\Requests;
 
@@ -20,6 +21,7 @@ class AdminOrganizationController extends Controller
     {
 
         Organization::truncate();
+        EntityOrganization::truncate();
         $airtable = new Airtable(array(
             'api_key'   => 'keyIvQZcMYmjNbtUO',
             'base'      => 'appBU3zLf0ORYqKjk',
@@ -43,6 +45,17 @@ class AdminOrganizationController extends Controller
                 $organization->name = isset($record['fields']['Name'])?$record['fields']['Name']:null;
                 // $organization->dedupe = isset($record['fields']['dedupe'])?$record['fields']['dedupe']:null;
                 $organization->type = isset($record['fields']['Type'])?$record['fields']['Type']:null;
+
+                $type = EntityOrganization::where('types', '=', $organization->type)->first();
+
+
+                if($type == Null){
+
+                    $entity_organization = new EntityOrganization();
+                    $entity_organization->types=$organization->type;
+                    $entity_organization->save();
+                }
+
                 $organization->tags = isset($record['fields']['tags'])? implode(",", $record['fields']['tags']):null;
                 $organization->child_of = isset($record['fields']['Child of'])? implode(",", $record['fields']['Child of']):null;
                 $website = isset($record['fields']['website'])?$record['fields']['website']:null;

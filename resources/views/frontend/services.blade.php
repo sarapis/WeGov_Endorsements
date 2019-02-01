@@ -4,18 +4,14 @@
 @section('content')
 
 <div class="demo-container mdl-grid">
-    <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col" style="padding-top: 0;">
+    <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col">
         <div class="container">
           <button type="button" class="btn btn-raised btn-block btn-primary btn-filter">Filter</button>
         </div>
-        <div class="col-sm-3 side-filter" style="border-right: 1px solid #3f3f3f; height: 100%;">
-            <div class="row">
-                @include('layouts.service_sidebar')
-            </div>
+        <div class="col-sm-3 side-filter">
+            @include('layouts.service_sidebar')
         </div>
-
-        <div class="col-sm-9"  id="service_content" style="padding: 0;padding-top: 20px;">
-            
+        <div class="col-sm-9 organization_right"  id="service_content">
             <div class="col-sm-8">
                 @foreach($organization_services as $organization_service)
                     @if($organization_service->name!=null)

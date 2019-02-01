@@ -12,8 +12,8 @@ return [
     |
     */
 
-    'title'			=> 'LaraAdmin',
-	'app'			=> 'LaraAdmin | Dashboard',
+    'title'			=> 'app.mygov.nyc',
+	'app'			=> 'app.mygov.nyc | Dashboard',
 	'app2'			=> 'Laravel 5',
 	'home'			=> 'Home',
 	'login'			=> 'Sign in to start your session',

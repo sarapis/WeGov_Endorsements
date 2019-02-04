@@ -78,7 +78,6 @@
                             <div class="box">
                                 <div class="org_about">
                                     <div class="col-md-8">
-                                    <p>DSNY manages NYC’s municipal and residential solid waste, both refuse and recyclables; clears snow &amp; ice; cleans vacant lots, enforces sanitation laws and removes abandoned vehicles from city streets.</p>
                                     <p>{!! $organization->organization_description !!}</p>
                                     </div>
                                     <div class="col-md-4 right_about_btn">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Organization;
+use App\Models\Tag;
 use App\Models\Airtable_people;
 use App\Models\EntityOrganization;
 use App\Functions\Airtable;
@@ -57,6 +58,19 @@ class AdminOrganizationController extends Controller
                 }
 
                 $organization->tags = isset($record['fields']['tags'])? implode(",", $record['fields']['tags']):null;
+
+                if(isset($record['fields']['tags'])){
+                    
+                    foreach ($record['fields']['tags']  as  $value) {
+                        $new_tag = Tag::where('tag_name', '=', $value)->first();
+                        if($new_tag==null){
+                            $tag = new Tag();
+                            $tag->tag_name=$value;
+                            $tag->save();
+                        }
+                    }
+                }
+                
                 $organization->child_of = isset($record['fields']['Child of'])? implode(",", $record['fields']['Child of']):null;
                 $website = isset($record['fields']['website'])?$record['fields']['website']:null;
                 $website = str_replace("https://","",$website);

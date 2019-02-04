@@ -46,7 +46,7 @@
                 @foreach($tags as $tag)
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" class="organization-tag" value="{{$tag->tag_id}}">  <span class="subitem-list text-uppercase">{{$tag->tag_name}}</span>
+                    <input type="checkbox" class="organization-tag" value="{{$tag->tag_name}}">  <span class="subitem-list text-uppercase">{{$tag->tag_name}}</span>
                   </label>
                 </div>
                 @endforeach
@@ -126,13 +126,19 @@
             }
           });
       }      
-      $('.organization-type').on('click', function(e) {
+      // $('.organization-type').on('click', function(e) {
+      //     send_datas();
+      //     document.getElementById("loader").style.display = "block"; 
+      // });
+      // $('.organization-tag').on('click', function(e){
+      //     send_datas();
+      //     document.getElementById("loader").style.display = "block"; 
+      // });
+      $('.checkbox-material').on('click', function(e){
+        setTimeout(function(){
           send_datas();
-          document.getElementById("loader").style.display = "block"; 
-      });
-      $('.organization-tag').on('click', function(e){
-          send_datas();
-          document.getElementById("loader").style.display = "block"; 
+          document.getElementById("loader").style.display = "block";
+        },100);
       });
 
     });

@@ -20,6 +20,7 @@ use App\Models\Location;
 use App\Models\Project;
 use App\Models\Greenbook;
 use App\Models\Organization;
+use App\Models\Tag;
 use App\Services\Numberformat;
 
 class OrganizationController extends Controller
@@ -35,9 +36,9 @@ class OrganizationController extends Controller
       
 
         $types = Organization::distinct()->get(['type']);
-        $tags = DB::table('tags')->get();
+        $tags = Tag::all();
 
-        $organizations = Organization::where('type', '=', 'City Agency')->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->select('organizations.*', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->get();
+        $organizations = Organization::where('type', '=', 'City Agency')->get();
         return view('frontend.organizations', compact('types', 'tags','organizations'));
     }
 
@@ -57,7 +58,7 @@ class OrganizationController extends Controller
         // var_dump($organization_services);
         // exit();
 
-        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'), DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->first();
+        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'), DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->first();
 
         // var_dump($organization->total_project_cost);
         // exit();
@@ -85,7 +86,7 @@ class OrganizationController extends Controller
 
     public function services($id)
     {
-        $organization = Organization::where('organizations_id','=',$id)->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->select('organizations.*', 'organizations.description as organization_description', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->first();
+        $organization = Organization::where('organizations_id','=',$id)->select('organizations.*', 'organizations.description as organization_description')->groupBy('organizations.organization_id')->first();
 
         $organizations_services =DB::table('services_organizations')->where('organization_x_id','like', '%'.$id.'%')->value('organization_name');
 
@@ -107,7 +108,7 @@ class OrganizationController extends Controller
         // var_dump($organization_services);
         // exit();
 
-        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'), DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->first();
+        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'))->groupBy('organizations.organization_id')->first();
 
         // var_dump($organization->total_project_cost);
         // exit();
@@ -130,7 +131,7 @@ class OrganizationController extends Controller
 
     public function peoples($id)
     {
-        $organization = Organization::where('organizations_id','=',$id)->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->select('organizations.*', 'organizations.description as organization_description', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->first();
+        $organization = Organization::where('organizations_id','=',$id)->select('organizations.*', 'organizations.description as organization_description')->groupBy('organizations.organization_id')->first();
 
         // $organization_peoples = Organization::where('organizations_id','=', $id)->leftjoin('contacts', 'organizations.contacts', 'like', DB::raw("concat('%', contacts.contact_id, '%')"))->groupBy('contacts.contact_id')->get();
 
@@ -142,7 +143,7 @@ class OrganizationController extends Controller
 
     public function laws($id)
     {
-        $organization = Organization::where('organizations_id','=',$id)->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->select('organizations.*', 'organizations.description as organization_description', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->first();
+        $organization = Organization::where('organizations_id','=',$id)->select('organizations.*', 'organizations.description as organization_description', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->first();
 
         return view('frontend.organization_laws', compact('organization'));
     }
@@ -150,7 +151,7 @@ class OrganizationController extends Controller
 
     public function legislation($id)
     {
-        $organization = Organization::where('organizations_id','=',$id)->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->select('organizations.*', 'organizations.description as organization_description', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->first();
+        $organization = Organization::where('organizations_id','=',$id)->select('organizations.*', 'organizations.description as organization_description')->groupBy('organizations.organization_id')->first();
 
         return view('frontend.organization_legislation', compact('organization'));
     }
@@ -166,7 +167,7 @@ class OrganizationController extends Controller
         // var_dump($organization_services);
         // exit();
 
-        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'), DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->first();
+        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'))->groupBy('organizations.organization_id')->first();
 
         // var_dump($organization->total_project_cost);
         // exit();
@@ -193,7 +194,7 @@ class OrganizationController extends Controller
         // var_dump($organization_services);
         // exit();
 
-        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'), DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->first();
+        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'))->groupBy('organizations.organization_id')->first();
 
         // var_dump($organization->total_project_cost);
         // exit();
@@ -218,7 +219,7 @@ class OrganizationController extends Controller
     {
         $find = $request->search_agency;
 
-        $organizations = Organization::leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->select('organizations.*', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->where('organizations.name', 'like', '%'.$find.'%')
+        $organizations = Organization::groupBy('organizations.organization_id')->where('organizations.name', 'like', '%'.$find.'%')
             ->orwhere('organizations.description', 'like', '%'.$find.'%')->sortable(['expenses_budgets'])->get();
 
         return view('frontend.organization_filter', compact('organizations'))->render();
@@ -236,7 +237,7 @@ class OrganizationController extends Controller
         }
         if(isset($tags[0])){
             if($check == 0)
-               $organizations = Organization::where('tags',$tags[0]);
+               $organizations = Organization::where('tags', 'like', '%'.$tags[0].'%');
             else
                 // $organizations = $organizations->whereIn('tags', $tags);
             $organizations = $organizations->where(function ($query) use($tags) {
@@ -250,9 +251,9 @@ class OrganizationController extends Controller
         }
       
         if($check == 1)
-            $organizations = $organizations->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->select('organizations.*', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->get();
+            $organizations = $organizations->get();
         else
-            $organizations = Organization::leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->select('organizations.*', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->get();
+            $organizations = Organization::all();
 
         return view('frontend.organization_filter', compact('organizations'))->render();
     }

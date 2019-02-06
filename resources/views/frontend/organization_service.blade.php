@@ -15,7 +15,7 @@
             <div class="col-sm-10 col-xs-12">
                 <div class="pull-right">
                     <p class="text-tages"> Tags: <?php 
-                        $tag_names = explode(',', $organization->tag_names);
+                        $tag_names = explode(',', $organization->tags);
                     ?>
                         @foreach($tag_names as $tag_name)
                             @if($tag_name!='')

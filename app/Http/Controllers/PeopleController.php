@@ -53,10 +53,10 @@ class PeopleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function find($id, $people_id = null)
+    public function find($id, $people_id)
     {
         
-        $organization = Organization::where('organizations_id','=',$id)->leftjoin('tags', 'organizations.tags', 'like', DB::raw("concat('%', tags.tag_id, '%')"))->select('organizations.*', 'organizations.description as organization_description', DB::raw('group_concat(DISTINCT(tags.tag_name)) as tag_names'))->groupBy('organizations.organization_id')->first();
+        $organization = Organization::where('organizations_id','=',$id)->select('organizations.*', 'organizations.description as organization_description')->groupBy('organizations.organization_id')->first();
         
 
         // $peopleid= Contact::where('name','=',$people_id)->first()->contact_id;
@@ -65,7 +65,7 @@ class PeopleController extends Controller
 
         $people = Greenbook::where('id', '=', $people_id)->first();
 
-        $greenbook_name = '$people->last_name'.', '.'$people->first_name';
+        $greenbook_name = $people->last_name.', '.$people->first_name;
 
         $contact_id = DB::table('contacts')->where('name','=', $greenbook_name)->first();
 
@@ -78,7 +78,7 @@ class PeopleController extends Controller
 
         $people_services = Contact::where('contact_id','=', $contact_id)->leftjoin('services', 'contacts.services', 'like', DB::raw("concat('%', services.service_id, '%')"))->select('services.*')->leftjoin('phones', 'services.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'))->groupBy('services.id')->get();
 
-        return view('frontend.organization_people', compact('organization', 'people','people_services', 'organization_map', 'greenbook'));
+        return view('frontend.organization_people', compact('organization', 'people','people_services', 'organization_map', 'greenbook_name'));
     }
 
     /**

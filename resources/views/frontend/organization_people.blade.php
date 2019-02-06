@@ -10,14 +10,22 @@
             </div>
             <div class="col-sm-10 col-xs-12">
                 <div class="pull-right">
-                    <p class="text-tages"> Tags: <span class="badge bg-green">Republican</span></p>
+                    <p class="text-tages"> Tags: <?php 
+                        $tag_names = explode(',', $organization->tags);
+                    ?>
+                        @foreach($tag_names as $tag_name)
+                            @if($tag_name!='')
+                            <span class="badge bg-green">{{$tag_name}}</span>
+                            @endif
+                        @endforeach
+                    </p>
                 </div>
                 <div class="pull-right" style="padding-left: 20px;padding-right: 10px;">
                     <p class="text-types"> Type: 
-                        <span class="badge bg-blue">Politician </span>
+                        <span class="badge bg-blue">{{$organization->type}}</span>
                     </p>
                 </div>
-                <div class="pull-left org_title">Name</div><br/>
+                <div class="pull-left org_title">{{$greenbook_name}}</div><br/>
                 <div class="pull-left people_title_org">Title, Organization, Division</div>
                 <div class="social_icon">
                     <ul>
@@ -34,20 +42,28 @@
         </div>
         <div class="menu-bar row">
             <ul class="nav nav-tabs desktop_tab" role="tablist">
-                <li class="active"><a href="#people_contact" class="menu-title" data-toggle="tab" >CONTACT</a></li>
-                <li><a href="#people_campaigns" data-toggle="tab" >CAMPAIGNS</a></li>
-                <li><a href="#people_endorsement" data-toggle="tab" >ENDORSEMENTS</a></li>
-                <li><a href="#people_disclouser" data-toggle="tab" >DISCLOSURES</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}" class="menu-title">ABOUT</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/projects" id="projects_tab">PROJECTS</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/services" id="services_tab">SERVICES</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
+                <li class="active"><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
             </ul>
 
             <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
 
             <div class="tab_filter_btn">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li class="active"><a href="#people_contact" class="menu-title" data-toggle="tab" >CONTACT</a></li>
-                    <li><a href="#people_campaigns" data-toggle="tab" >CAMPAIGNS</a></li>
-                    <li><a href="#people_endorsement" data-toggle="tab" >ENDORSEMENTS</a></li>
-                    <li><a href="#people_disclouser" data-toggle="tab" >DISCLOSURES</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}" class="menu-title">ABOUT</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/projects" id="projects_tab">PROJECTS</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/services" id="services_tab">SERVICES</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
+                    <li class="active"><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="endorsements_tab">ENDORSEMENTS</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="candidates_tab">CANDIDATES</a></li>
                 </ul>
             </div>
              <div class="tab-content people_tabpanel">
@@ -581,6 +597,4 @@ $(document).ready(function() {
     $('#example').DataTable();
 } );
 </script>
-
-@include('layouts.script')
 @endsection

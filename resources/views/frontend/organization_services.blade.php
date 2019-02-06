@@ -46,24 +46,39 @@
         </div>
         <div class="menu-bar row">
 
-            <ul class="nav nav-tabs" role="tablist">
+            <ul class="nav nav-tabs desktop_tab" role="tablist">
                 <li><a href="/organization_{{$organization->organizations_id}}" class="menu-title">ABOUT</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/projects" id="projects_tab">PROJECTS</a></li>
                 <li class="active"><a href="/organization_{{$organization->organizations_id}}/services" id="services_tab">SERVICES</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
-                <li><a href="/organization_{{$organization->organizations_id}}/legislation" id="legislation_tab">LEGISLATION</a></li>
-                <li><a href="/organization_{{$organization->organizations_id}}/endosements" id="laws_tab">ENDORSEMENTS</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
             </ul>
+
+            <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
+
+            <div class="tab_filter_btn">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li><a href="/organization_{{$organization->organizations_id}}" class="menu-title">ABOUT</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/projects" id="projects_tab">PROJECTS</a></li>
+                    <li class="active"><a href="/organization_{{$organization->organizations_id}}/services" id="services_tab">SERVICES</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="endorsements_tab">ENDORSEMENTS</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="candidates_tab">CANDIDATES</a></li>
+                </ul>
+            </div>
+
             <div class="tab-content">
 
                 <div role="tabpanel" class="tab-pane active" id="services">
                     <div class="row">
                       <div class="col-sm-12" id="service_content" style="padding: 0;">
                           
-                          <div class="col-sm-8">
+                        <div class="col-sm-8">
                           @if($organizations_services)
                               @foreach($organization_services as $organization_service)
                                   <div class="box box-service">
@@ -78,14 +93,14 @@
                           <div class="alert alert-danger"><strong>No Services!</strong>
                           </div>
                           @endif
-                          </div>
-                          <div class="col-sm-4">
-                              <div class="box" style="border-top: 2px solid #d2d6de;">
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="box" style="border-top: 2px solid #d2d6de;">
                               <div id="mymap_service"></div>
-                          </div>
-                          </div>
+                            </div>
+                        </div>
                       </div>
-                  </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -132,8 +147,5 @@
 
 
 </script>
-
-
-
 
 @endsection

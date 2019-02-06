@@ -51,8 +51,7 @@
                 <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
-                <li><a href="/organization_{{$organization->organizations_id}}/legislation" id="legislation_tab">LEGISLATION</a></li>
-                <li><a href="/organization_{{$organization->organizations_id}}/endosements" id="laws_tab">ENDORSEMENTS</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
             </ul>
 
@@ -66,11 +65,11 @@
                     <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
-                    <li><a href="/organization_{{$organization->organizations_id}}/legislation" id="legislation_tab">LEGISLATION</a></li>
-                    <li><a href="/organization_{{$organization->organizations_id}}/endosements" id="laws_tab">ENDORSEMENTS</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
                 </ul>
             </div>
+            
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="about">
                     <div class="row">
@@ -81,11 +80,14 @@
                                     <p>{!! $organization->organization_description !!}</p>
                                     </div>
                                     <div class="col-md-4 right_about_btn">
-                                        <h5><span>33</span>Services</h5>
-                                        <h5><span>100</span>Projects</h5>
-                                        <h5><span>90</span>Budget(E)</h5>
-                                        <h5><span>80</span>Budget(C)</h5>
-                                        <h6><a href="">Open data</a></h6> 
+                                        <h5><a href="/organization_{{$organization->organizations_id}}/services"><span>@if($organizations_services!='')
+                                                        {{sizeof(explode(",", $organizations_services->organization_services))}}
+                                                        @else 0 @endif</span></a>Services</h5>
+                                        <h5><a href="/organization_{{$organization->organizations_id}}/projects"><span>@if($organization->projects!=null)
+                                                        {{sizeof(explode(",", $organization->projects))}}
+                                                        @else 0 @endif</span></a>Projects</h5>
+                                        <h5><a href="/organization_{{$organization->organizations_id}}/money"><span>${{$organization->total_project_cost}}</span></a>Budget(E)</h5>
+                                        <h5><a href="/organization_{{$organization->organizations_id}}/money"><span>${{$organization->expenses_budgets}}</span></a>Budget(C)</h5>
                                     </div>
                                 </div>
                             </div>
@@ -285,5 +287,5 @@
 </script>
 
 
-@include('layouts.script')
+
 @endsection

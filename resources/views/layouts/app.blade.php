@@ -14,7 +14,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">
@@ -37,7 +36,6 @@
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,600,700,300italic,400italic,600italic">
-    <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_purple-pink.min.css"> -->
     <script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
     
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -61,7 +59,7 @@
 
     </div>
     
-
+</body>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{asset('bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -95,8 +93,8 @@
     <script>
       $(function () {
         /* BOOTSTRAP SLIDER */
-        $('.slider').slider()
-      })
+        $('.slider').slider();
+      });
     </script>
     <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5ba15af942fa8c0011745dc1&product=inline-share-buttons' async='async'></script>
     <!-- <script src="{{asset('css/material-design-lite/material.min.js')}}"></script> -->
@@ -117,4 +115,5 @@
             });
         });
     </script>
+    @include('layouts.script')
 </html>

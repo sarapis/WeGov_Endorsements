@@ -46,17 +46,32 @@
         </div>
         <div class="menu-bar row">
 
-            <ul class="nav nav-tabs" role="tablist">
+            <ul class="nav nav-tabs desktop_tab" role="tablist">
                 <li><a href="/organization_{{$organization->organizations_id}}" class="menu-title">ABOUT</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/projects" id="projects_tab">PROJECTS</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/services" id="services_tab">SERVICES</a></li>
                 <li class="active"><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
-                <li><a href="/organization_{{$organization->organizations_id}}/legislation" id="legislation_tab">LEGISLATION</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
             </ul>
+            
+            <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
+
+            <div class="tab_filter_btn">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li><a href="/organization_{{$organization->organizations_id}}" class="menu-title">ABOUT</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/projects" id="projects_tab">PROJECTS</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/services" id="services_tab">SERVICES</a></li>
+                    <li class="active"><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="endosements_tab">ENDORSEMENTS</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="candidates_tab">CANDIDATES</a></li>
+                </ul>
+            </div>
+
             <div class="tab-content">
 
                 <div role="tabpanel" class="tab-pane active" id="money">

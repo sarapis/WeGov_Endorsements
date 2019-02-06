@@ -60,8 +60,8 @@ class OrganizationController extends Controller
 
         $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'))->groupBy('organizations.organization_id')->first();
 
-        // var_dump($organization->total_project_cost);
-        // exit();
+        $organizations_services =DB::table('services_organizations')->where('organization_x_id','like', '%'.$id.'%')->first();
+
         $budgetclass = new Numberformat();
 
         $organization->total_project_cost=$budgetclass->custom_number_format($organization->total_project_cost, 1);
@@ -70,7 +70,7 @@ class OrganizationController extends Controller
         $agency_map = Address::where('organizations','=', $original_organization->organization_id)->first();
 
 
-        return view('frontend.organization', compact('organization', 'organization_expenses', 'organization_map', 'expenses_sum', 'original_organization', 'organization_type', 'agency_map'));
+        return view('frontend.organization', compact('organization', 'organizations_services', 'original_organization', 'organization_type', 'agency_map'));
     }
 
     public function projects($id)
@@ -179,7 +179,7 @@ class OrganizationController extends Controller
         $agency_map = Address::where('organizations','=', $original_organization->organization_id)->first();
 
 
-        return view('frontend.organization_endosements', compact('organization', 'organization_expenses', 'organization_map', 'expenses_sum', 'original_organization', 'organization_type', 'agency_map'));
+        return view('frontend.organization_endorsements', compact('organization', 'organization_expenses', 'organization_map', 'expenses_sum', 'original_organization', 'organization_type', 'agency_map'));
 
     }
 

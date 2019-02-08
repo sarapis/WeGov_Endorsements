@@ -32,7 +32,7 @@
 			<a href="http://mygov.nyc/about" class="mdl-layout__tab menu-link">About</a>
 			<a href="http://mygov.nyc/blog/" class="mdl-layout__tab menu-link">Blog</a>
 			<a href="https://opencollective.com/mygovnyc" class="mdl-layout__tab menu-link">Donate</a>
-			<a href="/organizations" class="mdl-layout__tab menu-link @if(Request::is ('organizations')) is-active @endif">Organizations</a>
+			<a href="/organizations" class="mdl-layout__tab menu-link @if(mb_substr(Request::segment(1), 0, 12) == 'organization') is-active @endif">Organizations</a>
 			<a href="/projects" class="mdl-layout__tab menu-link @if(Request::is ('projects')) is-active @endif">Projects</a>
 			<a href="/services" class="mdl-layout__tab menu-link @if(Request::is ('services')) is-active @endif">Services</a>
 			<a href="/people" class="mdl-layout__tab menu-link @if(Request::is ('people')) is-active @endif">People</a>
@@ -55,7 +55,7 @@
 	</div>
 	<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark submenu_div">
 		<div class="container">
-			<a href="/organizations" class="mdl-layout__tab @if(Request::is ('organizations')) is-active @endif">Organizations</a>
+			<a href="/organizations" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 12) == 'organization') is-active @endif">Organizations</a>
 			<a href="/projects" class="mdl-layout__tab @if(Request::is ('projects')) is-active @endif">Projects</a>
 			<a href="/services" class="mdl-layout__tab @if(Request::is ('services')) is-active @endif">Services</a>
 			<a href="/people" class="mdl-layout__tab @if(Request::is ('people')) is-active @endif">People</a>

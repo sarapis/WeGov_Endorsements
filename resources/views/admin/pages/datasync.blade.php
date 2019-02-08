@@ -49,7 +49,7 @@
                                 <h4 class="box-title">Joined Organizations: {{$join_agencies}}</h4>
                             </div>
                             <div class="col-md-6 text-right">
-                                <button class="btn btn-primary btn-sm">Edit</button>
+                                <button class="btn btn-primary btn-sm open_modal" value="1">Edit</button>
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                                     <td class="text-center">{{$budget->last_synced}}</td>
                                     <td class="text-center">
                                         <button class="badge bg-yellow sync_now {{$budget->table_name}}">Sync Now</button>
-                                        <button class="badge bg-blue"><a href="tb_{!! strtolower($budget->table_name) !!}" style="color: white;">View Table</a></button>
+                                       <!--  <button class="badge bg-blue"><a href="tb_{!! strtolower($budget->table_name) !!}" style="color: white;">View Table</a></button> -->
                                     </td>
                                 </tr>
                                 @endforeach
@@ -104,7 +104,7 @@
                                 <h4 class="box-title">Joined Organizations: {{$join_organizations}}</h4>
                             </div>
                             <div class="col-md-6 text-right">
-                                <button class="btn btn-primary btn-sm">Edit</button>
+                                <button class="btn btn-primary btn-sm open_modal" value="2">Edit</button>
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                                     <td class="text-center">{{$contact->last_synced}}</td>
                                     <td class="text-center">
                                         <button class="badge bg-yellow sync_now">Sync Now</button>
-                                        <button class="badge bg-blue"><a href="/tb_{!! strtolower($contact->table_name) !!}" style="color: white;">View Table</a></button>
+                                       <!--  <button class="badge bg-blue"><a href="/tb_{!! strtolower($contact->table_name) !!}" style="color: white;">View Table</a></button> -->
                                     </td>
                                 </tr>
                                 @endforeach
@@ -159,7 +159,7 @@
                                 <h4 class="box-title">Joined Organizations: {{$join_serviceorganizations}}</h4>
                             </div>
                             <div class="col-md-6 text-right">
-                                <button class="btn btn-primary btn-sm">Edit</button>
+                                <button class="btn btn-primary btn-sm open_modal" value="3">Edit</button>
                             </div>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
                                     <td class="text-center">{{$service->last_synced}}</td>
                                     <td class="text-center">
                                         <button class="badge bg-yellow sync_now">Sync Now</button>
-                                        <button class="badge bg-blue"><a href="/tb_{!! strtolower($service->table_name) !!}" style="color: white;">View Table</a></button>
+                                       <!--  <button class="badge bg-blue"><a href="/tb_{!! strtolower($service->table_name) !!}" style="color: white;">View Table</a></button> -->
                                     </td>
                                 </tr>
                                 @endforeach
@@ -214,7 +214,7 @@
                                 <h4 class="box-title">Joined Organizations: {{$join_politicians}}</h4>
                             </div>
                             <div class="col-md-6 text-right">
-                                <button class="btn btn-primary btn-sm">Edit</button>
+                                <button class="btn btn-primary btn-sm open_modal" value="4">Edit</button>
                             </div>
                         </div>
                     </div>
@@ -239,7 +239,7 @@
                                     <td class="text-center">{{$politician->last_synced}}</td>
                                     <td class="text-center">
                                         <button class="badge bg-yellow sync_now">Sync Now</button>
-                                        <button class="badge bg-blue"><a href="/tb_{!! strtolower($service->table_name) !!}" style="color: white;">View Table</a></button>
+                                        <!-- <button class="badge bg-blue"><a href="/tb_{!! strtolower($service->table_name) !!}" style="color: white;">View Table</a></button> -->
                                     </td>
                                 </tr>
                                 @endforeach
@@ -269,7 +269,7 @@
                                 <h4 class="box-title">Joined Organizations: {{$join_greenbooks}}</h4>
                             </div>
                             <div class="col-md-6 text-right">
-                                <button class="btn btn-primary btn-sm">Edit</button>
+                                <button class="btn btn-primary btn-sm open_modal" value="5">Edit</button>
                             </div>
                         </div>
                     </div>
@@ -293,7 +293,7 @@
                                     <td class="text-center">{{$greenbook_date}}</td>
                                     <td class="text-center">
                                         <button class="badge bg-yellow sync_now">Sync Now</button>
-                                        <button class="badge bg-blue"><a href="/tb_greenbook" style="color: white;">View Table</a></button>
+                                       <!--  <button class="badge bg-blue"><a href="/tb_greenbook" style="color: white;">View Table</a></button> -->
                                     </td>
                                 </tr>
                             </tbody>
@@ -304,10 +304,73 @@
                 </div>
             </div>
         </div>
+        <!-- Passing BASE URL to AJAX -->
+        <input id="url" type="hidden" value="{{ \Request::url() }}">
+
+        <div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content form-horizontal">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">Edit Dataset</h4>
+                    </div>
+                    <form class=" form-horizontal user" id="frmProducts" name="frmProducts"  novalidate="">
+                        <div class="modal-body">
+                            <div class="form-group">
+                              <label for="inputPassword3" class="col-sm-4 control-label">Dataset Name</label>
+
+                              <div class="col-sm-7">
+                                <input type="text" class="form-control" id="address_1" name="address_1" value="">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="inputPassword3" class="col-sm-4 control-label">Format</label>
+
+                              <div class="col-sm-7">
+                                <input type="text" class="form-control" id="city" name="city" value=""></input>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="inputPassword3" class="col-sm-4 control-label">API Path</label>
+
+                              <div class="col-sm-7">
+                                <input type="text" class="form-control" id="state_province" name="state_province" value="">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="inputPassword3" class="col-sm-4 control-label">API Key</label>
+
+                              <div class="col-sm-7">
+                                <input type="text" class="form-control" id="postal_code" name="postal_code" value="">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="inputPassword3" class="col-sm-4 control-label">Notes</label>
+
+                              <div class="col-sm-7">
+                                <input type="text" class="form-control" id="attention" name="attention" value="">
+                              </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="btn-save" value="add">Save</button>
+                            <input type="hidden" id="address_id" name="address_id" value="0">
+                        </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
     </section>
 </div>
 
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="{{asset('js/address_ajaxscript.js')}}"></script>
 <style type="text/css">
     button{
         width: 85px !important;

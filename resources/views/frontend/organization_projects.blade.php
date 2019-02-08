@@ -19,7 +19,7 @@
                     ?>
                         @foreach($tag_names as $tag_name)
                             @if($tag_name!='')
-                            <span class="badge bg-green">{{$tag_name}}</span>
+                            <span class="badge bg-blue">{{$tag_name}}</span>
                             @endif
                         @endforeach
                     </p>
@@ -55,6 +55,7 @@
                 <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
             </ul>
 
             <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
@@ -69,6 +70,7 @@
                     <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="endorsements_tab">ENDORSEMENTS</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="candidates_tab">CANDIDATES</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
                 </ul>
             </div>
             
@@ -78,25 +80,25 @@
                     <div class="row">
                       <div class="col-sm-12"  id="project_content" style="padding: 0;">
                         <div class="col-sm-8">
-                          <div class="box">
+                          <div class="box padding_0 table_data">
                             <!-- /.box-header -->
                             @if($organization_projects!=null)
-                            <div class="box-body no-padding">
-                                <table id="example3" class="table table-hover" cellspacing="0" width="100%" style="margin-top: 0 !important;">
+                            <div class="padding_0 table-responsive">
+                                <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
-                                            <th>Project Description</th>
-                                            <th class="text-right" style="padding-right: 50px;">Cost ($)</th>
-                                            <th class="text-center">ID</th>
+                                            <th style="text-align: center; width: 20%;">Project ID</th>
+                                            <th style="text-align: left;" class="text-left">Project Description</th>
+                                            <th style="text-align: right; width: 20%;" class="text-right">City Cost ($)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($organization_projects as $organization_project)
                                             @if($organization_project->project_description!=null)
                                                 <tr>
-                                                  <td>{{$organization_project->project_description}}</td>
-                                                  <td class="text-right" style="padding-right: 50px;">${{number_format($organization_project->project_totalcost)}}</td>
                                                   <td class="project-link"><a href="/organization_{{$organization->organizations_id}}/projects/{{$organization_project->project_projectid}}">{{$organization_project->project_projectid}}</a></td>
+                                                  <td>{{$organization_project->project_description}}</td>
+                                                  <td class="text-right">${{number_format($organization_project->project_totalcost)}}</td>
                                                 </tr>
                                             @endif
                                         @endforeach
@@ -132,10 +134,10 @@ $(document).ready(function() {
     $('#example3').DataTable({
       'paging'      : true,
       'pageLength'  : 20,
-      'lengthChange': false,
-      'searching'   : false,
+      'lengthChange': true,
+      'searching'   : true,
       'ordering'    : true,
-      'info'        : false,
+      'info'        : true,
       'autoWidth'   : true
     });
 } );

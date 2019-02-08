@@ -19,14 +19,14 @@
                     ?>
                         @foreach($tag_names as $tag_name)
                             @if($tag_name!='')
-                            <span class="badge bg-green">{{$tag_name}}</span>
+                            <span class="badge bg-blue">{{$tag_name}}</span>
                             @endif
                         @endforeach
                     </p>
                 </div>
                 <div class="pull-right" style="padding-left: 20px;padding-right: 10px;">
                     <p class="text-types"> Type: 
-                        <span class="badge bg-blue">{{$organization->type}}</span>
+                        <span class="badge bg-blue">{{$organization_type}}</span>
                     </p>
                 </div>
                 <div class="pull-left org_title">{{$organization->name}}</div>
@@ -87,40 +87,42 @@
                             </div>
                         </div> 
                     </div>
-                    <div class="box">
-                        <table class="table">
-                            <thead>
-                            <tr class="info">
-                                <th class="text-left" style="padding-left: 50px;">Budget</th>
-                                <th class="text-right" style="padding-right: 50px;">Year 1</th>
-                                <th class="text-right" style="padding-right: 50px;">Year 2</th>
-                                <th class="text-right" style="padding-right: 50px;">Year 3</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                
-                                @foreach($organization_expenses as $organizaiton_expense)
+                    <div class="box padding_0 table_data">
+                        <div class="money-tb padding_0 endosment_table table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
                                 <tr>
-                                    <td class="text-left"  style="padding-left: 50px;">{{$organizaiton_expense->line_number_description}}</td>
-                                    <td class="text-right" style="padding-right: 50px;">${{number_format($organizaiton_expense->year1_forecast)}}</td>
-                                    <td class="text-right" style="padding-right: 50px;">${{number_format($organizaiton_expense->year2_estimate)}}</td>
-                                    <td class="text-right" style="padding-right: 50px;">${{number_format($organizaiton_expense->year3_estimate)}}</td>
+                                    <th class="text-left" style="padding-left: 50px;">Budget</th>
+                                    <th class="text-right" style="padding-right: 50px;">Year 1</th>
+                                    <th class="text-right" style="padding-right: 50px;">Year 2</th>
+                                    <th class="text-right" style="padding-right: 50px;">Year 3</th>
                                 </tr>
-                                @endforeach
-                                <tfoot class="budget-foot">
-                                    <tr class="budget-tb">
-                                        <td class="text-left" style="padding-left: 50px;"><b>Total Expense Budget</b></td>
-                                        <td class="text-right" style="padding-right: 50px;"><b>${{number_format($expenses_sum->expenses_year1)}}</b></td>
-                                        <td class="text-right" style="padding-right: 50px;"><b>${{number_format($expenses_sum->expenses_year2)}}</b></td>
-                                        <td class="text-right" style="padding-right: 50px;"><b>${{number_format($expenses_sum->expenses_year3)}}<b></td>
+                                </thead>
+                                <tbody>
+                                    
+                                    @foreach($organization_expenses as $organizaiton_expense)
+                                    <tr>
+                                        <td class="text-left"  style="padding-left: 50px;">{{$organizaiton_expense->line_number_description}}</td>
+                                        <td class="text-right" style="padding-right: 50px;">${{number_format($organizaiton_expense->year1_forecast)}}</td>
+                                        <td class="text-right" style="padding-right: 50px;">${{number_format($organizaiton_expense->year2_estimate)}}</td>
+                                        <td class="text-right" style="padding-right: 50px;">${{number_format($organizaiton_expense->year3_estimate)}}</td>
                                     </tr>
-                                    <tr class="budget-tb">
-                                        <td class="text-left" style="padding-left: 50px;"><b>Total Capital Budget</b></td>
-                                        <td class="text-right" colspan="3" style="padding-right: 50px;"><b>${!! $organization->total_project_cost !!}<b></td>
-                                    </tr>
-                                </tfoot>
-                            </tbody>
-                        </table>
+                                    @endforeach
+                                    <tfoot class="budget-foot">
+                                        <tr class="budget-tb">
+                                            <td class="text-left" style="padding-left: 50px;"><b>Total Expense Budget</b></td>
+                                            <td class="text-right" style="padding-right: 50px;"><b>${{number_format($expenses_sum->expenses_year1)}}</b></td>
+                                            <td class="text-right" style="padding-right: 50px;"><b>${{number_format($expenses_sum->expenses_year2)}}</b></td>
+                                            <td class="text-right" style="padding-right: 50px;"><b>${{number_format($expenses_sum->expenses_year3)}}</b></td>
+                                        </tr>
+                                        <tr class="budget-tb">
+                                            <td class="text-left" style="padding-left: 50px;"><b>Total Capital Budget</b></td>
+                                            <td class="text-right" colspan="3" style="padding-right: 50px;"><b>${!! $organization->total_project_cost !!}</b></td>
+                                        </tr>
+                                    </tfoot>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

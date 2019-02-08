@@ -42,6 +42,7 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5XHJ6oNL9-qh0XsL0G74y1xbcxNGkSxw&callback=initMap">
     </script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
 
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
@@ -89,15 +90,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script>
       $(function () {
         /* BOOTSTRAP SLIDER */
         $('.slider').slider();
       });
     </script>
+
     <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5ba15af942fa8c0011745dc1&product=inline-share-buttons' async='async'></script>
-    <!-- <script src="{{asset('css/material-design-lite/material.min.js')}}"></script> -->
      <script type="text/javascript">
         var csrfToken = $('[name="csrf_token"]').attr('content');
         setInterval(refreshToken, 3600000); // 1 hour 

@@ -14,11 +14,11 @@
             <div class="col-sm-10 col-xs-12">
                 <div class="pull-right">
                     <p class="text-tages"> Tags: <?php 
-                        $tag_names = explode(',', $organization->tags);
+                        $tag_names = explode(',', $organization->tag_names);
                     ?>
                         @foreach($tag_names as $tag_name)
                             @if($tag_name!='')
-                            <span class="badge bg-blue">{{$tag_name}}</span>
+                            <span class="badge bg-green">{{$tag_name}}</span>
                             @endif
                         @endforeach
                     </p>
@@ -51,9 +51,10 @@
                 <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
-                <li  class="active"><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/legislation" id="legislation_tab">LEGISLATION</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
-                <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
+                <li  class="active"><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
             </ul>
 
             <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
@@ -66,13 +67,14 @@
                     <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
-                    <li  class="active"><a href="/organization_{{$organization->organizations_id}}/endorsements" id="endosements_tab">ENDORSEMENTS</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/legislation" id="legislation_tab">LEGISLATION</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/endosements" id="endosements_tab">ENDORSEMENTS</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="candidates_tab">CANDIDATES</a></li>
-                    <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
+                    <li  class="active"><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
                 </ul>
             </div>
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="endosements_tab">
+                <div role="tabpanel" class="tab-pane active" id="requests_tab">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="box padding_0 table_data">
@@ -80,55 +82,62 @@
                                     <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th style="text-align: center;width: 15%;">Election</th>
-                                                <th style="text-align: center;">Candidate Name</th>
-                                                <th style="text-align: center;width: 10%;">Party</th>
-                                                <th style="text-align: center;">Office</th>
-                                                <th style="text-align: center;width: 10%;">Log</th>
+                                                <th style="text-align: center;">Tracking Code</th>
+                                                <th style="text-align: center;">Borough</th>
+                                                <th style="text-align: center;">Community District</th>
+                                                <th style="text-align: center;">Priority Number</th>
+                                                <th style="text-align: center;">Request</th>
+                                                <th style="text-align: center;">Responsible Agency</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>2017 General</td>
-                                                <td style="text-align: left;">Adams, Eric L</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">Brooklyn Borough President</a></td>
-                                                <td># ID</td>
+                                                <td><a href="/organization_{{$organization->organizations_id}}/requests_details">101201901C</a></td>
+                                                <td>Bronx</td>
+                                                <td>Community District 1</td>
+                                                <td>01</td>
+                                                <td style="text-align: left;">Brooklyn Borough President</td>
+                                                <td style="text-align: left;"><a href="#">Department of Environment</a></td>
                                             </tr>
                                             <tr>
-                                                <td>2017 Primary</td>
-                                                <td style="text-align: left;">Ampry-Samuel, Allcka</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">City Council District 41</a></td>
-                                                <td># ID</td>
+                                                <td><a href="/organization_{{$organization->organizations_id}}/requests_details">101201902C</a></td>
+                                                <td>Bronx</td>
+                                                <td>Community District 2</td>
+                                                <td>02</td>
+                                                <td style="text-align: left;">Brooklyn Borough President</td>
+                                                <td style="text-align: left;"><a href="#">Department of Environment</a></td>
                                             </tr>
                                             <tr>
-                                                <td>2017 General</td>
-                                                <td style="text-align: left;">Adams, Eric L</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">Brooklyn Borough President</a></td>
-                                                <td># ID</td>
+                                                <td><a href="/organization_{{$organization->organizations_id}}/requests_details">101201903C</a></td>
+                                                <td>Bronx</td>
+                                                <td>Community District 3</td>
+                                                <td>03</td>
+                                                <td style="text-align: left;">Brooklyn Borough President</td>
+                                                <td style="text-align: left;"><a href="#">Department of Environment</a></td>
                                             </tr>
                                             <tr>
-                                                <td>2017 Primary</td>
-                                                <td style="text-align: left;">Ampry-Samuel, Allcka</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">City Council District 41</a></td>
-                                                <td># ID</td>
+                                                <td><a href="/organization_{{$organization->organizations_id}}/requests_details">101201904C</a></td>
+                                                <td>Bronx</td>
+                                                <td>Community District 4</td>
+                                                <td>04</td>
+                                                <td style="text-align: left;">Brooklyn Borough President</td>
+                                                <td style="text-align: left;"><a href="#">Department of Environment</a></td>
                                             </tr>
                                             <tr>
-                                                <td>2017 General</td>
-                                                <td style="text-align: left;">Adams, Eric L</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">Brooklyn Borough President</a></td>
-                                                <td># ID</td>
+                                                <td><a href="/organization_{{$organization->organizations_id}}/requests_details">101201905C</a></td>
+                                                <td>Bronx</td>
+                                                <td>Community District 5</td>
+                                                <td>05</td>
+                                                <td style="text-align: left;">Brooklyn Borough President</td>
+                                                <td style="text-align: left;"><a href="#">Department of Environment</a></td>
                                             </tr>
                                             <tr>
-                                                <td>2017 Primary</td>
-                                                <td style="text-align: left;">Ampry-Samuel, Allcka</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">City Council District 41</a></td>
-                                                <td># ID</td>
+                                                <td><a href="/organization_{{$organization->organizations_id}}/requests_details">101201906C</a></td>
+                                                <td>Bronx</td>
+                                                <td>Community District 6</td>
+                                                <td>06</td>
+                                                <td style="text-align: left;">Brooklyn Borough President</td>
+                                                <td style="text-align: left;"><a href="#">Department of Environment</a></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -184,4 +193,6 @@
 
 </script>
 
+
+@include('layouts.script')
 @endsection

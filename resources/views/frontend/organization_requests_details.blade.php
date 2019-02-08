@@ -14,11 +14,11 @@
             <div class="col-sm-10 col-xs-12">
                 <div class="pull-right">
                     <p class="text-tages"> Tags: <?php 
-                        $tag_names = explode(',', $organization->tags);
+                        $tag_names = explode(',', $organization->tag_names);
                     ?>
                         @foreach($tag_names as $tag_name)
                             @if($tag_name!='')
-                            <span class="badge bg-blue">{{$tag_name}}</span>
+                            <span class="badge bg-green">{{$tag_name}}</span>
                             @endif
                         @endforeach
                     </p>
@@ -51,9 +51,10 @@
                 <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
-                <li  class="active"><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/legislation" id="legislation_tab">LEGISLATION</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
-                <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
+                <li  class="active"><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
             </ul>
 
             <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
@@ -66,75 +67,50 @@
                     <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
-                    <li  class="active"><a href="/organization_{{$organization->organizations_id}}/endorsements" id="endosements_tab">ENDORSEMENTS</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/legislation" id="legislation_tab">LEGISLATION</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/endosements" id="endosements_tab">ENDORSEMENTS</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="candidates_tab">CANDIDATES</a></li>
-                    <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
+                    <li  class="active"><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
                 </ul>
             </div>
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="endosements_tab">
+                <div role="tabpanel" class="tab-pane active" id="requests_tab">
                     <div class="row">
-                        <div class="col-sm-12">
-                            <div class="box padding_0 table_data">
-                                <div class="padding_0 endosment_table table-responsive">
-                                    <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <th style="text-align: center;width: 15%;">Election</th>
-                                                <th style="text-align: center;">Candidate Name</th>
-                                                <th style="text-align: center;width: 10%;">Party</th>
-                                                <th style="text-align: center;">Office</th>
-                                                <th style="text-align: center;width: 10%;">Log</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>2017 General</td>
-                                                <td style="text-align: left;">Adams, Eric L</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">Brooklyn Borough President</a></td>
-                                                <td># ID</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017 Primary</td>
-                                                <td style="text-align: left;">Ampry-Samuel, Allcka</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">City Council District 41</a></td>
-                                                <td># ID</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017 General</td>
-                                                <td style="text-align: left;">Adams, Eric L</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">Brooklyn Borough President</a></td>
-                                                <td># ID</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017 Primary</td>
-                                                <td style="text-align: left;">Ampry-Samuel, Allcka</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">City Council District 41</a></td>
-                                                <td># ID</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017 General</td>
-                                                <td style="text-align: left;">Adams, Eric L</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">Brooklyn Borough President</a></td>
-                                                <td># ID</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017 Primary</td>
-                                                <td style="text-align: left;">Ampry-Samuel, Allcka</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">City Council District 41</a></td>
-                                                <td># ID</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="election_menu">
+			                <div class="col-sm-12">
+			                    <div class="box padding_0">
+			                        <div class="box-header">
+			                            <h3 class="box-title"><a href="/elections_detail">Tracking Code : 101201901C</a></h3>
+			                        </div>
+			                        <div class="box-body inner_request_detail">
+			                        	<div class="row">
+			                        		<div class="col-sm-7">
+			                            		<h4>Borough: <p>Bronx</p></h4>
+			                            		<h4>Community District: <a class="blue_color" href="#">Community District 1</a></h4>
+			                            		<h4>Priority Number: <p>01</p></h4>
+			                            		<h4>Request: <p>Build new, expand or repair storm...</p></h4>
+			                            		<h4>Explanation: <p>Allocated funds for capital sewer work to be performed in the area located on Beekman Avenue</p></h4>
+			                            		<h4>Responsible Agency : <a class="blue_color" href="#">Department of Environmental</a></h4>
+			                            		<h4>Response: <p>OMB supports the agency's position as follows: More information is needed from the community board before making a funding decision...</p></h4>
+			                            		<h4>Budget Line: <p>sdsnsdsdjs</p></h4>
+			                            		<h4>Project ID: <a class="blue_color" href="#">1204678C</a></h4>
+			                            		<h4>Supported By: <a class="blue_color" href="#">annasajajjjshjahs</a></h4>
+			                            	</div>
+			                            	<div class="col-sm-5">
+								                <div id="mymap"></div>
+								                <br/>
+								                <h4>Location Name: <p></p></h4>
+			                            		<h4>Location Address: <p>Beekman Avenue</p></h4>
+			                            		<h4>Cross Street 1: <p>East 141st Street</p></h4>
+			                            		<h4>Cross Street 2: <p>st. Ann's Avenue</p></h4>
+			                            		<h4>Site Block: <p></p></h4>
+			                            		<h4>LOT: <p></p></h4>
+									        </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
                     </div>
                 </div>
             </div>
@@ -184,4 +160,6 @@
 
 </script>
 
+
+@include('layouts.script')
 @endsection

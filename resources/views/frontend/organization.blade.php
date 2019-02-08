@@ -18,7 +18,7 @@
                     ?>
                         @foreach($tag_names as $tag_name)
                             @if($tag_name!='')
-                            <span class="badge bg-green">{{$tag_name}}</span>
+                            <span class="badge bg-blue">{{$tag_name}}</span>
                             @endif
                         @endforeach
                     </p>
@@ -53,6 +53,7 @@
                 <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
             </ul>
 
             <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
@@ -67,6 +68,7 @@
                     <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
                 </ul>
             </div>
             
@@ -107,7 +109,6 @@
                                 @if($organization->Twitter)
                                 <div class="embed-responsive embed-responsive-16by9" style="overflow: overlay;padding-right:24px;">
                                     <a class="twitter-timeline" href="{{$organization->Twitter}}?ref_src=twsrc%5Etfw">Tweets by NYCSanitation</a> 
-                                     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                                 </div>
                                 @elseif($organization->RSS || $organization->Facebook)
                                     <div class="embed-responsive embed-responsive-16by9">

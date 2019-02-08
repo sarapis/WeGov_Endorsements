@@ -17,7 +17,7 @@ a.mdl-badge {
 }
 
 footer.mdl-mini-footer{
-  background-color: #042c3d;
+  background-color: #002d50;
   text-align: center;
   min-height: 260px;
 }
@@ -221,15 +221,16 @@ footer.mdl-mini-footer{
 .btn-charter{
   width: 197.2px;
     border-radius: 2px;
-    background-color: #07aaec;
+    background-color: #004a83;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     color: white !important;
     text-transform: none;
     margin-top: 15px;
     line-height: 40px;
+    font-size: 16px;
 }
 .btn-charter:hover, .btn-charter:focus{
-  color: #07aaec !important;
+  color: #004a83 !important;
 }
 .nav-tabs { border-bottom: 2px solid #f1f1f1; padding-left: 25px;}
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }

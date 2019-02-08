@@ -12,7 +12,7 @@
         </div>
         <div class="col-sm-9 organization_right" id="project_content" >
           <div class="col-sm-8">
-            <div class="box" style="margin-bottom: 0;">
+            <div class="box padding_0 table_data">
               <!-- /.box-header -->
 
               <div class="box-body no-padding">

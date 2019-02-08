@@ -18,7 +18,7 @@
                     ?>
                         @foreach($tag_names as $tag_name)
                             @if($tag_name!='')
-                            <span class="badge bg-green">{{$tag_name}}</span>
+                            <span class="badge bg-blue">{{$tag_name}}</span>
                             @endif
                         @endforeach
                     </p>
@@ -54,6 +54,7 @@
                 <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
             </ul>
 
             <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
@@ -68,34 +69,37 @@
                     <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="endorsements_tab">ENDORSEMENTS</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="candidates_tab">CANDIDATES</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
                 </ul>
             </div>
             
             <div class="tab-content">
 
                 <div role="tabpanel" class="tab-pane active" id="projects">
-                  <div id="people_content">
-                    <table id="example1" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
-                        <thead>
-                            <tr class="info">
-                                <th>Name</th>
-                                <th>Title</th>
-                                <th>Division</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($organization_peoples as $organization_people)
-                            <tr>
-                                <td class="people-link" id="{{$organization_people->contact_id}}"><a href="/organization_{{$organization->organizations_id}}/people/{{$organization_people->id}}">{{$organization_people->first_name}} {{$organization_people->last_name}}</a></td>
-                                <td>{{$organization_people->office_title}}</td>
-                                <td>{{$organization_people->division_name}}
-                                @if($organization_people->parent_division!=''), {{$organization_people->parent_division}}@endif @if($organization_people->grand_parent_division!=''), {{$organization_people->grand_parent_division}}@endif
-                                @if($organization_people->great_grand_parent_division!=''), {{$organization_people->great_grand_parent_division}}@endif</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                  </div>
+                    <div id="people_content">
+                        <div class="padding_0 table-responsive">
+                            <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: left; width: 20%;">Name</th>
+                                        <th style="text-align: left;" class="text-left">Title</th>
+                                        <th style="text-align: center; width: 20%;">Division</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($organization_peoples as $organization_people)
+                                    <tr>
+                                        <td class="people-link" id="{{$organization_people->contact_id}}"><a href="/organization_{{$organization->organizations_id}}/people/{{$organization_people->id}}">{{$organization_people->first_name}} {{$organization_people->last_name}}</a></td>
+                                        <td>{{$organization_people->office_title}}</td>
+                                        <td class="text-center">{{$organization_people->division_name}}
+                                        @if($organization_people->parent_division!=''), {{$organization_people->parent_division}}@endif @if($organization_people->grand_parent_division!=''), {{$organization_people->grand_parent_division}}@endif
+                                        @if($organization_people->great_grand_parent_division!=''), {{$organization_people->great_grand_parent_division}}@endif</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,7 +112,15 @@
 <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script>
 $(document).ready(function() {
-    $('#example1').DataTable();
+    $('#example3').DataTable({
+      'paging'      : true,
+      'pageLength'  : 20,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true
+    });
 } );
 </script>
 @endsection

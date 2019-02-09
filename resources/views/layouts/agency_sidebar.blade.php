@@ -13,7 +13,7 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="treeview">
+        <li class="treeview menu-open">
         
             <span class="item-list">Type</span>
 <!--             <span class="pull-right-container">

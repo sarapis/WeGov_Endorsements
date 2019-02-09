@@ -19,7 +19,7 @@
                     ?>
                         @foreach($tag_names as $tag_name)
                             @if($tag_name!='')
-                            <span class="badge bg-green">{{$tag_name}}</span>
+                            <span class="badge bg-blue">{{$tag_name}}</span>
                             @endif
                         @endforeach
                     </p>
@@ -55,6 +55,7 @@
                 <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
                 <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
             </ul>
 
             <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
@@ -69,6 +70,7 @@
                     <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="endorsements_tab">ENDORSEMENTS</a></li>
                     <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="candidates_tab">CANDIDATES</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
                 </ul>
             </div>
             
@@ -118,32 +120,34 @@
                                                             @endif
                                                         </div>
                                                     </div>
-                                                    <table id="example" class="table table-striped table-hover table-bordered" cellspacing="0" width="100%">
-                                                        <thead>
-                                                            <tr class="info">
-                                                                <th>Description</th>
-                                                                <th>Commitment Date</th>
-                                                                <th>Non-City Cost</th>
-                                                                <th>City Cost</th>
-                                                                <th>Budgetline</th>
-                                                                <th>FMS Number</th>
-                                                                <th>Commitment Code</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody id="tblData">
-                                                            @foreach ($commitments as $commitment)
-                                                            <tr>
-                                                                <td>{{$commitment->description}}</td>
-                                                                <td>{{$commitment->plancommdate}}</td>
-                                                                <td>${{number_format($commitment->noncitycost)}}</td>
-                                                                <td>${{number_format($commitment->citycost)}}</td>
-                                                                <td>{{$commitment->budgetline}}</td>
-                                                                <td>{{$commitment->fmsnumber}}</td>
-                                                                <td>{{$commitment->commitmentcode}}</td>
-                                                            </tr>
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
+                                                    <div class="padding_0 table-responsive">
+                                                        <table id="example" class="table table-bordered" cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Description</th>
+                                                                    <th>Commitment Date</th>
+                                                                    <th>Non-City Cost</th>
+                                                                    <th>City Cost</th>
+                                                                    <th>Budgetline</th>
+                                                                    <th>FMS Number</th>
+                                                                    <th>Commitment Code</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="tblData">
+                                                                @foreach ($commitments as $commitment)
+                                                                <tr>
+                                                                    <td>{{$commitment->description}}</td>
+                                                                    <td>{{$commitment->plancommdate}}</td>
+                                                                    <td>${{number_format($commitment->noncitycost)}}</td>
+                                                                    <td>${{number_format($commitment->citycost)}}</td>
+                                                                    <td>{{$commitment->budgetline}}</td>
+                                                                    <td>{{$commitment->fmsnumber}}</td>
+                                                                    <td>{{$commitment->commitmentcode}}</td>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                     <dir class="text-right">
                                                             
                                                     </dir>

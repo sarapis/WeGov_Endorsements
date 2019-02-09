@@ -116,4 +116,5 @@
         });
     </script>
     @include('layouts.script')
+    
 </html>

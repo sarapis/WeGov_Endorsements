@@ -83,7 +83,7 @@
                                     <tr>
                                         <th style="text-align: left; width: 20%;">Name</th>
                                         <th style="text-align: left;" class="text-left">Title</th>
-                                        <th style="text-align: center; width: 20%;">Division</th>
+                                        <th style="text-align: center; width: 30%;">Division</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -1,6 +1,6 @@
 <aside class="">
     <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar"  style="padding-top: 20px;">
+    <section class="sidebar">
       <!-- search form -->
       <div class="sidebar-form">
         <div class="has-feedback">
@@ -10,12 +10,10 @@
           </div>        
         </div>
       </div>
-
-      <hr>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="treeview">
+        <li class="treeview  menu-open">
             <span class="item-list">Project Type</span>
           <ul class="treeview-menu" style="display: block !important;">
             <li style="padding-left: 10px;">
@@ -31,8 +29,8 @@
             </li>
           </ul>
         </li>
-        <hr>
-        <li class="treeview">
+       
+        <li class="treeview menu-open">
             <span class="item-list">Managing Agency</span>
 
           <ul class="treeview-menu" style="display: block !important;">
@@ -55,7 +53,6 @@
     </section>
     <!-- /.sidebar -->
   </aside>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
   <script type="text/javascript">
     $(document).ready(function () {
 
@@ -129,13 +126,11 @@
             }
           });
       }      
-      $('.organization-checkbox').on('click', function(e) {
+      $('.checkbox-material').on('click', function(e){
+        setTimeout(function(){
           send_datas();
           document.getElementById("loader").style.display = "block";
-      });
-      $('.project-type').on('click', function(e){
-          send_datas();
-          document.getElementById("loader").style.display = "block";     
+        },100);
       });
 
     });

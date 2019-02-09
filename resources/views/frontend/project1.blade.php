@@ -3,16 +3,16 @@
 
 @section('content')
 <div class="demo-container mdl-grid">
-    <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col" style="padding-top: 0;">
+    <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col">
         <div class="container">
           <button type="button" class="btn btn-raised btn-block btn-primary btn-filter">Filter</button>
         </div>
-    <div class="col-sm-3 side-filter" style="border-right: 1px solid #3f3f3f; height: 100%;">
-      <div class="row">
+    <div class="col-sm-3 side-filter">
+      
           @include('layouts.project_sidebar')
-      </div>
+      
     </div>
-    <div class="col-sm-9"  id="project_content" style="padding-top: 10px;">
+    <div class="col-sm-9"  id="project_content" style="padding-top: 0px;">
         <div id="wrapper">
         <!--BEGIN PAGE WRAPPER-->
             <div id="page-wrapper">
@@ -31,7 +31,7 @@
 
                         <div>
                             <div class="page-content">
-                              <div class="panel" style="padding-top: 20px;">
+                              <div class="panel" style="padding-top: 10px;">
                                   <div class="panel-body">
                                       <div class="row" style="padding:0 !important;">
                                           <div class="col-lg-8">

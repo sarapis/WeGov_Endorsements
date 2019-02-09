@@ -11,69 +11,51 @@
           @include('layouts.project_sidebar')
         </div>
         <div class="col-sm-9 organization_right" id="project_content" >
-          <div class="col-sm-8">
+          <div class="col-sm-12" style="padding-left:0px;">
             <div class="box padding_0 table_data">
-              <!-- /.box-header -->
-
-              <div class="box-body no-padding">
-                  <table id="example3" class="table table-hover" cellspacing="0" width="100%">
+                <div class="padding_0 table-responsive">
+                    <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
                       <thead>
                           <tr>
-                              <th>@sortablelink('project_description', 'Project Description')</th>
-                              <th class="text-right" style="padding-right: 50px;">@sortablelink('project_totalcost', 'Cost ($)')</th>
-                              <th class="text-center">@sortablelink('project_projectid', 'ID')</th>
+                              <th>Project ID</th>
+                              <th>Agency</th>
+                              <th style="text-align: left;">Project Description</th>
+                              <th style="padding-right: 50px;">Cost</th>
                           </tr>
                       </thead>
                       <tbody>
                           @foreach($allprojects as $organization_project)
                               @if($organization_project->project_description!=null)
                                   <tr>
-                                    <td>{{$organization_project->project_description}}</td>
-                                    <td class="text-right" style="padding-right: 50px;">${{number_format($organization_project->project_totalcost)}}</td>
-                                    <td class="project-link" id="{{$organization_project->project_projectid}}">{{$organization_project->project_projectid}}</td>
+                                    <td class="project-link" id="{{$organization_project->project_projectid}}"><a> {{$organization_project->project_projectid}}</a></td>
+                                    <td>AGD SHAN</td>
+                                    <td style="text-align: left;">{{$organization_project->project_description}}</td>
+                                    <td class="text-right">${{number_format($organization_project->project_totalcost)}}</td>
                                   </tr>
                               @endif
                           @endforeach
                       </tbody>
-                  </table>
-              </div>
+                    </table>
+                </div>
             </div>
           </div>
-          <div class="col-sm-4">
-              <div class="box" style="border-top: 2px solid #d2d6de;">
-                  <div id="mymap_service"></div>
-              </div>
-          </div>
+        </div>
     </div>
 </div>
 <script src="{{ asset('js/frontend/organization_project_ajax.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
-<script type="text/javascript">
-
-    var locations = <?php print_r(json_encode($projects)) ?>;
-
-
-    var mymap_service = new GMaps({
-      el: '#mymap_service',
-      lat: 40.712722,
-      lng: -74.006058,
-      zoom:10
+<script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script>
+$(document).ready(function() {
+    $('#example3').DataTable({
+      'paging'      : true,
+      'pageLength'  : 30,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : false,
+      'autoWidth'   : true
     });
-
-    $.each( locations, function( index, value){
-
-        if (value.project_lat && value.project_long) {
-            mymap_service.addMarker({
-                lat: value.project_lat,
-                lng: value.project_long,
-                title: value.project_projectid,
-                infoWindow: {
-                    content: ('<a>'+value.project_projectid+'</a></br>')
-                }
-            });
-        }
-    });
-
-
+} );
 </script>
 @endsection

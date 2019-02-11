@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PoliticianOrganization;
 use App\Models\Airtable_politicians;
+use App\Models\Dataset_api;
 use App\Functions\Airtable;
 use App\Http\Requests;
 
@@ -20,9 +21,11 @@ class AdminPoliticianOrganizationController extends Controller
     {
 
         PoliticianOrganization::truncate();
+        $api = Dataset_api::find(4);
+
         $airtable = new Airtable(array(
-            'api_key'   => 'keyIvQZcMYmjNbtUO',
-            'base'      => 'appkzwotOzqU65CKW',
+            'api_key'   => $api->api_key,
+            'base'      => $api->api_base,
         ));
 
         $request = $airtable->getContent( 'Organizations' );
@@ -43,18 +46,17 @@ class AdminPoliticianOrganizationController extends Controller
                 $organization->organizationid = isset($record['fields']['Organization ID'])?$record['fields']['Organization ID']:null;
                 $organization->type = isset($record['fields']['Type'])?$record['fields']['Type']:null;
                 $organization->tags = isset($record['fields']['Tags'])? implode(",", $record['fields']['Tags']):null;  
-                $organization->email = isset($record['fields']['Email'])?$record['fields']['Email']:null;
+                $organization->neighborhoods = isset($record['fields']['Neightborhoods'])? implode(",", $record['fields']['Neightborhoods']):null;  
 
-                $organization->twitter = isset($record['fields']['Twitter'])?$record['fields']['Twitter']:null;
-                $organization->website = isset($record['fields']['Website'])?$record['fields']['Website']:null;
-                $organization->facebook = isset($record['fields']['Facebook'])?$record['fields']['Facebook']:null;
-                $organization->phone = isset($record['fields']['Phone'])?$record['fields']['Phone']:null;
-
-                $organization->address = isset($record['fields']['Address'])?$record['fields']['Address']:null;
-                $organization->endorsement_log = isset($record['fields']['Endorsement Log'])? implode(",", $record['fields']['Endorsement Log']):null;  
-
-                $organization->description = isset($record['fields']['Description'])?$record['fields']['Description']:null;  
+                $organization->boroughs = isset($record['fields']['Boroughs'])? implode(",", $record['fields']['Boroughs']):null;
                 $organization->notes = isset($record['fields']['Notes'])?$record['fields']['Notes']:null;
+
+                $organization->endorsements_given = isset($record['fields']['Endorsements Given'])? implode(",", $record['fields']['Endorsements Given']):null;
+
+                $organization->endorsements_received = isset($record['fields']['Endorsements Received'])? implode(",", $record['fields']['Endorsements Received']):null;  
+
+                $organization->office_holder = isset($record['fields']['Office Holder'])? implode(",", $record['fields']['Office Holder']):null;  
+
                 $organization ->save();
             }
             

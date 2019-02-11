@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Airtable_money;
 use App\Functions\Airtable;
+use App\Models\Dataset_api;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -23,9 +24,11 @@ class AdminProjectController extends Controller
     {
 
         Project::truncate();
+        $api = Dataset_api::find(1);
+
         $airtable = new Airtable(array(
-            'api_key'   => 'keyIvQZcMYmjNbtUO',
-            'base'      => 'appbMzhtOLwRlr1oD',
+            'api_key'   => $api->api_key,
+            'base'      => $api->api_base,
         ));
 
         $request = $airtable->getContent( 'projects' );

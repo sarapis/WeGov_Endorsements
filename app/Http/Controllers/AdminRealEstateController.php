@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Realestate;
 use App\Models\Airtable_politicians;
+use App\Models\Dataset_api;
 use App\Functions\Airtable;
 use App\Http\Requests;
 
@@ -20,9 +21,11 @@ class AdminRealEstateController extends Controller
     {
 
         Realestate::truncate();
+        $api = Dataset_api::find(4);
+
         $airtable = new Airtable(array(
-            'api_key'   => 'keyIvQZcMYmjNbtUO',
-            'base'      => 'appkzwotOzqU65CKW',
+            'api_key'   => $api->api_key,
+            'base'      => $api->api_base,
         ));
 
         $request = $airtable->getContent( 'Real Estate' );

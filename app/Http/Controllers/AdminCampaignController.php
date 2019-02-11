@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Campaign;
 use App\Models\Airtable_politicians;
+use App\Models\Dataset_api;
 use App\Functions\Airtable;
 use App\Http\Requests;
 
@@ -20,9 +21,11 @@ class AdminCampaignController extends Controller
     {
 
         Campaign::truncate();
+        $api = Dataset_api::find(4);
+
         $airtable = new Airtable(array(
-            'api_key'   => 'keyIvQZcMYmjNbtUO',
-            'base'      => 'appkzwotOzqU65CKW',
+            'api_key'   => $api->api_key,
+            'base'      => $api->api_base,
         ));
 
         $request = $airtable->getContent( 'Campaigns' );
@@ -38,20 +41,12 @@ class AdminCampaignController extends Controller
 
                 $campaign = new Campaign();
                 $campaign->recordid = $record[ 'id' ];
-                $campaign->campaign_id = isset($record['fields']['ID'])?$record['fields']['ID']:null;
-                $campaign->office = isset($record['fields']['Office'])? implode(",", $record['fields']['Office']):null; 
-                $campaign->politician = isset($record['fields']['Politician'])? implode(",", $record['fields']['Politician']):null; 
-                $campaign->parties = isset($record['fields']['Parties'])? implode(",", $record['fields']['Parties']):null; 
-                $campaign->cycle = isset($record['fields']['Cycle'])? implode(",", $record['fields']['Cycle']):null; 
+                $campaign->campaign_name = isset($record['fields']['Campaign Name'])?$record['fields']['Campaign Name']:null;
                 $campaign->endorsements = isset($record['fields']['Endorsements'])? implode(",", $record['fields']['Endorsements']):null; 
-                $campaign->status = isset($record['fields']['Status'])?$record['fields']['Status']:null;
-                $campaign->website = isset($record['fields']['Website'])?$record['fields']['Website']:null;
-                $campaign->facebook = isset($record['fields']['Facebook'])?$record['fields']['Facebook']:null;
-                $campaign->twitter = isset($record['fields']['Twitter'])?$record['fields']['Twitter']:null;
-                $campaign->address = isset($record['fields']['Address'])?$record['fields']['Address']:null;
-                $campaign->image = isset($record['fields']['Image'])?$record['fields']['Image']:null;
-                $campaign->profiles = isset($record['fields']['Profiles'])?$record['fields']['Profiles']:null;
-                $campaign->notes = isset($record['fields']['Notes'])?$record['fields']['Notes']:null;     
+                $campaign->politician = isset($record['fields']['Politician'])? implode(",", $record['fields']['Politician']):null; 
+                $campaign->office = isset($record['fields']['Office'])? implode(",", $record['fields']['Office']):null;               
+                $campaign->election = isset($record['fields']['Election'])? implode(",", $record['fields']['Election']):null; 
+                $campaign->parties = isset($record['fields']['Parties'])? implode(",", $record['fields']['Parties']):null;      
                 $campaign ->save();
             }
             

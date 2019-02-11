@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Information;
 use App\Models\Airtable_politicians;
+use App\Models\Dataset_api;
 use App\Functions\Airtable;
 use App\Http\Requests;
 
@@ -20,9 +21,11 @@ class AdminInformationController extends Controller
     {
 
         Information::truncate();
+        $api = Dataset_api::find(4);
+
         $airtable = new Airtable(array(
-            'api_key'   => 'keyIvQZcMYmjNbtUO',
-            'base'      => 'appkzwotOzqU65CKW',
+            'api_key'   => $api->api_key,
+            'base'      => $api->api_base,
         ));
 
         $request = $airtable->getContent( 'General Information' );
@@ -71,7 +74,7 @@ class AdminInformationController extends Controller
                 $information->info21 = isset($record['fields']['21'])?$record['fields']['21']:null;
                 $information->info22 = isset($record['fields']['22'])?$record['fields']['22']:null;
                 $information->report_link = isset($record['fields']['Report Link'])?$record['fields']['Report Link']:null;
-                $information->pdf_report = isset($record['fields']['PDF Report'])?$record['fields']['PDF Report']:null;
+
                 $information ->save();
             }
             

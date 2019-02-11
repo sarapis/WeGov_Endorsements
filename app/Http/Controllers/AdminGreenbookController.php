@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Greenbook;
 use App\Models\Organization;
+use App\Models\Dataset_api;
 use App\Http\Requests;
 use File;
 
@@ -21,7 +22,9 @@ class AdminGreenbookController extends Controller
 
         Greenbook::truncate();
 
-        $url="https://data.cityofnewyork.us/resource/25gq-py4s.json?%24limit=5000";
+        $path = Dataset_api::find(5)->api_path;
+
+        $url= $path."?%24limit=5000";
         $json = file_get_contents($url);
         $data = json_decode($json);
 

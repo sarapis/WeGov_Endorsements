@@ -37,11 +37,11 @@
                 <div class="box">
                     <div class="box-header">
                         <div class="col-md-6">
-                            <h4 class="box-title">Dataset Name: mygovnyc-money</h4>
+                            <h4 class="box-title">Dataset Name: {{$dataset[0]->name}}</h4>
                             <h4 class="box-title">Format: Airtable API</h4>
-                            <h4 class="box-title">API Path: https://api.airtable.com/v0/appd1eQuF0gFcOMsV</h4>
-                            <h4 class="box-title">API Key: keyIvQZcMYmjNbtUO</h4>
-                            <h4 class="box-title">Notes:</h4>
+                            <h4 class="box-title">API Path: https://api.airtable.com/v0/{{$dataset[0]->api_base}}</h4>
+                            <h4 class="box-title">API Key: {{$dataset[0]->api_key}}</h4>
+                            <h4 class="box-title">Notes: {{$dataset[0]->notes}}</h4>
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-6">
@@ -92,11 +92,11 @@
                 <div class="box">
                     <div class="box-header">
                         <div class="col-md-6">
-                            <h4 class="box-title">Dataset Name: mygovnyc-organizations</h4>
+                            <h4 class="box-title">Dataset Name: {{$dataset[1]->name}}</h4>
                             <h4 class="box-title">Format: Airtable API</h4>
-                            <h4 class="box-title">API Path: https://api.airtable.com/v0/appBU3zLf0ORYqKjk</h4>
-                            <h4 class="box-title">API Key: keyIvQZcMYmjNbtUO</h4>
-                            <h4 class="box-title">Notes:</h4>
+                            <h4 class="box-title">API Path: https://api.airtable.com/v0/{{$dataset[1]->api_base}}</h4>
+                            <h4 class="box-title">API Key: {{$dataset[1]->api_key}}</h4>
+                            <h4 class="box-title">Notes: {{$dataset[1]->notes}}</h4>
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-6">
@@ -147,11 +147,11 @@
                 <div class="box">
                     <div class="box-header">
                         <div class="col-md-6">
-                            <h4 class="box-title">Dataset Name: mygovnyc-services</h4>
+                            <h4 class="box-title">Dataset Name: {{$dataset[2]->name}}</h4>
                             <h4 class="box-title">Format: Airtable API</h4>
-                            <h4 class="box-title">API Path: https://api.airtable.com/v0/app2sk6MlzyikwbzL</h4>
-                            <h4 class="box-title">API Key: keyIvQZcMYmjNbtUO</h4>
-                            <h4 class="box-title">Notes:</h4>
+                            <h4 class="box-title">API Path: https://api.airtable.com/v0/{{$dataset[2]->api_base}}</h4>
+                            <h4 class="box-title">API Key: {{$dataset[2]->api_key}}</h4>
+                            <h4 class="box-title">Notes: {{$dataset[2]->notes}}</h4>
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-6">
@@ -202,11 +202,11 @@
                 <div class="box">
                     <div class="box-header">
                         <div class="col-md-6">
-                            <h4 class="box-title">Dataset Name: mygovnyc-politicians</h4>
+                            <h4 class="box-title">Dataset Name: {{$dataset[3]->name}}</h4>
                             <h4 class="box-title">Format: Airtable API</h4>
-                            <h4 class="box-title">API Path: https://api.airtable.com/v0/appkzwotOzqU65CKW</h4>
-                            <h4 class="box-title">API Key: keyIvQZcMYmjNbtUO</h4>
-                            <h4 class="box-title">Notes:</h4>
+                            <h4 class="box-title">API Path: https://api.airtable.com/v0/{{$dataset[3]->api_base}}</h4>
+                            <h4 class="box-title">API Key: {{$dataset[3]->api_key}}</h4>
+                            <h4 class="box-title">Notes: {{$dataset[3]->notes}}</h4>
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-6">
@@ -257,11 +257,10 @@
                 <div class="box">
                     <div class="box-header">
                         <div class="col-md-6">
-                            <h4 class="box-title">Dataset Name: NYC OpenData-Greenbook</h4>
+                            <h4 class="box-title">Dataset Name: {{$dataset[4]->name}}</h4>
                             <h4 class="box-title">Format: Socrata</h4>
-                            <h4 class="box-title">Api Path: https://data.cityofnewyork.us/resource/25gq-py4s.json</h4>
-                            <h4 class="box-title">API Key: </h4>
-                            <h4 class="box-title">Notes:</h4>
+                            <h4 class="box-title">Api Path: {{$dataset[4]->api_path}}</h4>
+                            <h4 class="box-title">Notes: {{$dataset[4]->notes}}</h4>
                         </div>
                         <div class="col-md-6">
                             <div class="col-md-6">
@@ -321,42 +320,53 @@
                               <label for="inputPassword3" class="col-sm-4 control-label">Dataset Name</label>
 
                               <div class="col-sm-7">
-                                <input type="text" class="form-control" id="address_1" name="address_1" value="">
+                                <input type="text" class="form-control" id="name" name="name" value="">
                               </div>
                             </div>
-                            <div class="form-group">
-                              <label for="inputPassword3" class="col-sm-4 control-label">Format</label>
 
-                              <div class="col-sm-7">
-                                <input type="text" class="form-control" id="city" name="city" value=""></input>
-                              </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Format</label>
+                                <div class="col-sm-7">
+                                <select class="form-control" id="format" name="format" disabled="">
+                                    <option value="airtable">Airtable</option>
+                                    <option value="socrata">Scorata</option>
+                                  </select>
+                                </div>
                             </div>
+
                             <div class="form-group">
                               <label for="inputPassword3" class="col-sm-4 control-label">API Path</label>
 
                               <div class="col-sm-7">
-                                <input type="text" class="form-control" id="state_province" name="state_province" value="">
+                                <input type="text" class="form-control" id="api_path" name="api_path" value="">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="inputPassword3" class="col-sm-4 control-label">API Base</label>
+
+                              <div class="col-sm-7">
+                                <input type="text" class="form-control" id="api_base" name="api_base" value="">
                               </div>
                             </div>
                             <div class="form-group">
                               <label for="inputPassword3" class="col-sm-4 control-label">API Key</label>
 
                               <div class="col-sm-7">
-                                <input type="text" class="form-control" id="postal_code" name="postal_code" value="">
+                                <input type="text" class="form-control" id="api_key" name="api_key" value="">
                               </div>
                             </div>
                             <div class="form-group">
                               <label for="inputPassword3" class="col-sm-4 control-label">Notes</label>
 
                               <div class="col-sm-7">
-                                <input type="text" class="form-control" id="attention" name="attention" value="">
+                                <input type="text" class="form-control" id="notes" name="notes" value="">
                               </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary" id="btn-save" value="add">Save</button>
-                            <input type="hidden" id="address_id" name="address_id" value="0">
+                            <input type="hidden" id="id" name="id" value="0">
                         </div>
                     </form>
                 </div>
@@ -370,7 +380,7 @@
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="{{asset('js/address_ajaxscript.js')}}"></script>
+<script src="{{asset('js/datasync_ajaxscript.js')}}"></script>
 <style type="text/css">
     button{
         width: 85px !important;

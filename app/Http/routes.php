@@ -252,10 +252,7 @@ Route::group(['middleware' => 'administrator'], function () {
 		'uses' 			=> 'DataController@index'
 	]);
 
-	Route::get('/datasync', [
-		'as' 			=> '{username}',
-		'uses' 			=> 'UserController@datasync'
-	]);
+	Route::resource('datasync', 'DatasyncController');
 
 	// Route::get('/sync_address', ['uses' => 'AdminAddressController@airtable']);
 	// Route::get('/sync_contacts', ['uses' => 'AdminContactController@airtable']);
@@ -267,6 +264,7 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::get('/sync_commitments', ['uses' => 'AdminCommitmentController@airtable']);
 	Route::get('/sync_expenses', ['uses' => 'AdminExpenseController@airtable']); 
 	Route::get('/sync_organization', ['uses' => 'AdminAgencyController@airtable']);
+	Route::get('/sync_cb_requests', ['uses' => 'AdminRequestController@airtable']);
 	Route::get('/sync_services', ['uses' => 'AdminServiceController@airtable']);
 	Route::get('/sync_locations', ['uses' => 'AdminLocationController@airtable']); 
 	Route::get('/sync_services_organizations', ['uses' => 'AdminServiceOrganizationController@airtable']); 

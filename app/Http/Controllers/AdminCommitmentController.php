@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Commitments;
 use App\Models\Airtable_money;
+use App\Models\Dataset_api;
 use App\Functions\Airtable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
@@ -24,9 +25,10 @@ class AdminCommitmentController extends Controller
     {
 
         Commitments::truncate();
+        $api = Dataset_api::find(1);
         $airtable = new Airtable(array(
-            'api_key'   => 'keyIvQZcMYmjNbtUO',
-            'base'      => 'appbMzhtOLwRlr1oD',
+            'api_key'   => $api->api_key,
+            'base'      => $api->api_base,
         ));
 
         $request = $airtable->getContent( 'commitments' );

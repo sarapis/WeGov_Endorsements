@@ -7,6 +7,7 @@ use App\Models\Organization;
 use App\Models\Tag;
 use App\Models\Airtable_people;
 use App\Models\EntityOrganization;
+use App\Models\Dataset_api;
 use App\Functions\Airtable;
 use App\Http\Requests;
 
@@ -23,9 +24,12 @@ class AdminOrganizationController extends Controller
 
         Organization::truncate();
         EntityOrganization::truncate();
+
+        $api = Dataset_api::find(2);
+
         $airtable = new Airtable(array(
-            'api_key'   => 'keyIvQZcMYmjNbtUO',
-            'base'      => 'appBU3zLf0ORYqKjk',
+            'api_key'   => $api->api_key,
+            'base'      => $api->api_base,
         ));
 
         $request = $airtable->getContent( 'organizations' );

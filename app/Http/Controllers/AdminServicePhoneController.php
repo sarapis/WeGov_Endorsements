@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ServicePhone;
 use App\Models\Airtable_services;
+use App\Models\Dataset_api;
 use App\Functions\Airtable;
 use App\Http\Requests;
 
@@ -19,11 +20,13 @@ class AdminServicePhoneController extends Controller
     {
 
         ServicePhone::truncate();
-        $airtable = new Airtable(array(
-            'api_key'   => 'keyIvQZcMYmjNbtUO',
-            'base'      => 'app2sk6MlzyikwbzL',
-        ));
+        $api = Dataset_api::find(3);
 
+        $airtable = new Airtable(array(
+            'api_key'   => $api->api_key,
+            'base'      => $api->api_base,
+        ));
+        
         $request = $airtable->getContent( 'phones' );
 
         do {

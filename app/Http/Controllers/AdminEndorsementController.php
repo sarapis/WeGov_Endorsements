@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Endorsement;
 use App\Models\Airtable_politicians;
+use App\Models\Dataset_api;
 use App\Functions\Airtable;
 use App\Http\Requests;
 
@@ -20,9 +21,11 @@ class AdminEndorsementController extends Controller
     {
 
         Endorsement::truncate();
+        $api = Dataset_api::find(4);
+
         $airtable = new Airtable(array(
-            'api_key'   => 'keyIvQZcMYmjNbtUO',
-            'base'      => 'appkzwotOzqU65CKW',
+            'api_key'   => $api->api_key,
+            'base'      => $api->api_base,
         ));
 
         $request = $airtable->getContent( 'Endorsements' );
@@ -39,19 +42,18 @@ class AdminEndorsementController extends Controller
                 $endorsement = new Endorsement();
                 $endorsement->recordid = $record[ 'id' ];
                 $endorsement->endorsement_id = isset($record['fields']['ID'])?$record['fields']['ID']:null;
-                $endorsement->organizations = isset($record['fields']['Organizations'])? implode(",", $record['fields']['Organizations']):null; 
-                $endorsement->endorsed = isset($record['fields']['Endorsed'])? implode(",", $record['fields']['Endorsed']):null; 
-                $endorsement->office = isset($record['fields']['Office'])? implode(",", $record['fields']['Office']):null; 
-                $endorsement->election = isset($record['fields']['Election'])? implode(",", $record['fields']['Election']):null;
+                $endorsement->organizations = isset($record['fields']['Organizations'])? implode(",", $record['fields']['Organizations']):null;
+                $endorsement->campaigns = isset($record['fields']['Campaigns'])? implode(",", $record['fields']['Campaigns']):null; 
                 $endorsement->link = isset($record['fields']['Link'])?$record['fields']['Link']:null;
                 $endorsement->statement = isset($record['fields']['Statement'])?$record['fields']['Statement']:null;
                 $endorsement->date_published = isset($record['fields']['Date Published'])?$record['fields']['Date Published']:null;  
-                $endorsement->campaigns = isset($record['fields']['Campaigns'])? implode(",", $record['fields']['Campaigns']):null;  
+                  
                 $endorsement->file = isset($record['fields']['File'])?$record['fields']['File']:null;
-                $endorsement->date_recorded = isset($record['fields']['Date Recorded'])?$record['fields']['Date Recorded']:null;
+                $endorsement->date_created = isset($record['fields']['Date Created'])?$record['fields']['Date Created']:null;              
                 $endorsement->submission_name = isset($record['fields']['Submission Name'])?$record['fields']['Submission Name']:null;
                 $endorsement->submitted_email = isset($record['fields']['Submitted Email'])?$record['fields']['Submitted Email']:null;
-                $endorsement->submitted_phone = isset($record['fields']['Submitted Phone'])?$record['fields']['Submitted Phone']:null;   
+                $endorsement->submitted_phone = isset($record['fields']['Submitted Phone'])?$record['fields']['Submitted Phone']:null; 
+                $endorsement->date_recorded = isset($record['fields']['Date Recorded'])?$record['fields']['Date Recorded']:null;   
                 $endorsement ->save();
             }
             

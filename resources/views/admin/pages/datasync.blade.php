@@ -329,7 +329,7 @@
                                 <div class="col-sm-7">
                                 <select class="form-control" id="format" name="format" disabled="">
                                     <option value="airtable">Airtable</option>
-                                    <option value="socrata">Scorata</option>
+                                    <option value="socrata">Socrata</option>
                                   </select>
                                 </div>
                             </div>

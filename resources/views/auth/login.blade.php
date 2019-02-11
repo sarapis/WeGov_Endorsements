@@ -15,7 +15,7 @@
 @section('content')
     <div class="login-box">
 		<div class="login-logo">
-			<a href="/"><strong>data.mygov.nyc</strong></a>
+			<a href="/"><strong>app.mygov.nyc</strong></a>
 		</div>
 		<div class="login-box-body">
 

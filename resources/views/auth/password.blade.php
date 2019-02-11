@@ -16,7 +16,7 @@
 
     <div class="lockscreen-wrapper">
         <div class="lockscreen-logo">
-            <a href="/">Lara<b>Admin</b>LTE</a>
+            <a href="/">app.mygov.nyc</a>
         </div>
 
         @include('admin.partials.return-messages')

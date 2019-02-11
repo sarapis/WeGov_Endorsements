@@ -15,7 +15,7 @@
 @section('content')
     <div class="login-box">
 		<div class="login-logo">
-			<a href="/">Lara<strong>Admin</strong>LTE</a>
+			<a href="/">app.mygov.nyc</a>
 		</div>
 
 		@include('admin.partials.return-messages')

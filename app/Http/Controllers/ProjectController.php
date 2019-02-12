@@ -70,11 +70,11 @@ class ProjectController extends Controller
         }
 
         if($check == 1)
-            $allprojects = $allprojects->get();
+            $allprojects = $allprojects->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.project_projectid', 'agencies.magency', 'agencies.magencyacro', 'agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_citycost','projects.project_noncitycost','projects.project_type','projects.project_lat','projects.project_long')->get();
         else
-            $allprojects =  Project::all();
+            $allprojects =  Project::leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.project_projectid', 'agencies.magency', 'agencies.magencyacro', 'agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_citycost','projects.project_noncitycost','projects.project_type','projects.project_lat','projects.project_long')->get();
 
-        $projects = Project::all();
+        $projects = Project::leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.project_projectid', 'agencies.magency', 'agencies.magencyacro', 'agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_citycost','projects.project_noncitycost','projects.project_type','projects.project_lat','projects.project_long')->get();
 
         return view('frontend.projects_filter', compact('allprojects', 'projects'))->render();
     }
@@ -85,7 +85,7 @@ class ProjectController extends Controller
         $find = $request->search_project;
 
         $allprojects = Project::where('project_projectid', 'like', '%'.$find.'%')
-            ->orwhere('project_description', 'like', '%'.$find.'%')->get();
+            ->orwhere('project_description', 'like', '%'.$find.'%')->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.project_projectid', 'agencies.magency', 'agencies.magencyacro', 'agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_citycost','projects.project_noncitycost','projects.project_type','projects.project_lat','projects.project_long')->get();
 
         return view('frontend.projects_filter', compact('allprojects'))->render();
     }
@@ -109,7 +109,7 @@ class ProjectController extends Controller
 
         $projectid = DB::table('projects')->where('project_projectid', $id)->first()->project_recordid;
 
-        $organization_id = DB::table('organizations')->where('name', '=', $project->magencyacro)->first()->organizations_id;
+        $organization_id = DB::table('organizations')->where('organizations_id', '=', $project->magency)->first()->organizations_id;
 
         $commitments = DB::table('commitments')->where('projectid', '=', $projectid)->get();
         return view('frontend.project', compact('organization_id', 'commitments','project'))->render();
@@ -122,9 +122,10 @@ class ProjectController extends Controller
 
         $project = DB::table('projects')->where('project_projectid', $id)->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.project_projectid', 'agencies.magency', 'agencies.magencyacro', 'agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_citycost','projects.project_noncitycost','projects.project_type','projects.project_lat','projects.project_long')->first();
 
-        $projectid = DB::table('projects')->where('project_projectid', $id)->first()->project_recordid;
 
-        $organization_id = DB::table('organizations')->where('name', '=', $project->magencyacro)->first()->organizations_id;
+        $projectid = DB::table('projects')->where('project_projectid', $id)->first()->project_recordid;
+        
+        $organization_id = DB::table('organizations')->where('organizations_id', '=', $project->magency)->first()->organizations_id;
 
         $commitments = DB::table('commitments')->where('projectid', $projectid)->get();
         return view('frontend.project1', compact('project_types', 'organizations', 'organization_id', 'commitments','project'))->render();

@@ -16,7 +16,7 @@
                       @if($organization_project->project_description!=null)
                           <tr>
                             <td class="project-link" id="{{$organization_project->project_projectid}}"><a> {{$organization_project->project_projectid}}</a></td>
-                            <td>AGD SHAN</td>
+                            <td><a href="organization_{{$organization_project->magency}}">{{$organization_project->magency}}</a></td>
                             <td style="text-align: left;">{{$organization_project->project_description}}</td>
                             <td class="text-right">${{number_format($organization_project->project_totalcost)}}</td>
                           </tr>

@@ -156,7 +156,7 @@ class OrganizationController extends Controller
 
     public function endorsements($id)
     {
-        $organization_type = $organization = Organization::where('organizations_id','=',$id)->first()->type;
+        $organization_type = Organization::where('organizations_id','=',$id)->first()->type;
         $organizations = Agency::orderBy('magencyacro', 'asc')->get();
 
         $original_organization = Organization::where('organizations_id','=',$id)->first();
@@ -210,30 +210,18 @@ class OrganizationController extends Controller
 
     public function requests($id)
     {
-        $organization_type = $organization = Organization::where('organizations_id','=',$id)->first()->type;
-        $organizations = Agency::orderBy('magencyacro', 'asc')->get();
+        $organization_type = Organization::where('organizations_id','=',$id)->first()->type;
+        $agency_recordid = Agency::where('magency', '=', $id)->first()->agency_recordid;
 
-        $original_organization = Organization::where('organizations_id','=',$id)->first();
-        $original_agency = DB::table('agencies')->where('magency','=',$id)->first();
+        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->first();    
 
-        // var_dump($organization_services);
-        // exit();
-
-        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'))->groupBy('organizations.organization_id')->first();
-
-        // var_dump($organization->total_project_cost);
-        // exit();
-        $budgetclass = new Numberformat();
-
-        $organization->total_project_cost=$budgetclass->custom_number_format($organization->total_project_cost, 1);
-        $organization->expenses_budgets=$budgetclass->custom_number_format($organization->expenses_budgets, 1);
-
-        $agency_map = Address::where('organizations','=', $original_organization->organization_id)->first();
+        $requests = DB::table('requests')->where('community_board', '=', $agency_recordid)->get();
 
 
-        return view('frontend.organization_requests', compact('organization', 'organization_expenses', 'organization_map', 'expenses_sum', 'original_organization', 'organization_type', 'agency_map'));
+        return view('frontend.organization_requests', compact('organization', 'organization_type', 'requests'));
 
     } 
+
     public function requests_details($id)
     {
         $organization_type = $organization = Organization::where('organizations_id','=',$id)->first()->type;

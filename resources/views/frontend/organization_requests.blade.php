@@ -14,7 +14,7 @@
             <div class="col-sm-10 col-xs-12">
                 <div class="pull-right">
                     <p class="text-tages"> Tags: <?php 
-                        $tag_names = explode(',', $organization->tag_names);
+                        $tag_names = explode(',', $organization->tags);
                     ?>
                         @foreach($tag_names as $tag_name)
                             @if($tag_name!='')
@@ -80,63 +80,23 @@
                                     <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th style="text-align: center;">Tracking Code</th>
-                                                <th style="text-align: center;">Borough</th>
-                                                <th style="text-align: center;">Community District</th>
-                                                <th style="text-align: center;">Priority Number</th>
+                                                <th style="text-align: center; width: 10%;">Tracking Code</th>
+                                                <th style="text-align: center;">Requested By</th>
+                                                <th style="text-align: center;">Priority</th>
                                                 <th style="text-align: center;">Request</th>
-                                                <th style="text-align: center;">Responsible Agency</th>
+                                                <th style="text-align: center;">Requested From</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($requests as $request)
                                             <tr>
-                                                <td><a href="/organization_{{$organization->organizations_id}}/requests_details">101201901C</a></td>
-                                                <td>Bronx</td>
-                                                <td>Community District 1</td>
-                                                <td>01</td>
-                                                <td style="text-align: left;">Brooklyn Borough President</td>
-                                                <td style="text-align: left;"><a href="#">Department of Environment</a></td>
+                                                <td style="width: 15%;"><a href="/organization_{{$organization->organizations_id}}/{{$request->tracking_code}}">{{$request->tracking_code}}</a></td>
+                                                <td>{{$request->requested_by}}</td>
+                                                <td style="width: 5%;">{{$request->priority}}</td>
+                                                <td style="text-align: left;">{{$request->request}}</td>
+                                                <td style="text-align: left;">{{$request->requested_from}}</td>
                                             </tr>
-                                            <tr>
-                                                <td><a href="/organization_{{$organization->organizations_id}}/requests_details">101201902C</a></td>
-                                                <td>Bronx</td>
-                                                <td>Community District 2</td>
-                                                <td>02</td>
-                                                <td style="text-align: left;">Brooklyn Borough President</td>
-                                                <td style="text-align: left;"><a href="#">Department of Environment</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="/organization_{{$organization->organizations_id}}/requests_details">101201903C</a></td>
-                                                <td>Bronx</td>
-                                                <td>Community District 3</td>
-                                                <td>03</td>
-                                                <td style="text-align: left;">Brooklyn Borough President</td>
-                                                <td style="text-align: left;"><a href="#">Department of Environment</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="/organization_{{$organization->organizations_id}}/requests_details">101201904C</a></td>
-                                                <td>Bronx</td>
-                                                <td>Community District 4</td>
-                                                <td>04</td>
-                                                <td style="text-align: left;">Brooklyn Borough President</td>
-                                                <td style="text-align: left;"><a href="#">Department of Environment</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="/organization_{{$organization->organizations_id}}/requests_details">101201905C</a></td>
-                                                <td>Bronx</td>
-                                                <td>Community District 5</td>
-                                                <td>05</td>
-                                                <td style="text-align: left;">Brooklyn Borough President</td>
-                                                <td style="text-align: left;"><a href="#">Department of Environment</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="/organization_{{$organization->organizations_id}}/requests_details">101201906C</a></td>
-                                                <td>Bronx</td>
-                                                <td>Community District 6</td>
-                                                <td>06</td>
-                                                <td style="text-align: left;">Brooklyn Borough President</td>
-                                                <td style="text-align: left;"><a href="#">Department of Environment</a></td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -151,46 +111,19 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
-
-<script type="text/javascript">
-
-    var locations = <?php print_r(json_encode($agency_map)) ?>;
-
-    if (locations !== null) {
-        var mymap = new GMaps({
-          el: '#mymap',
-          lat: locations.latitude,
-          lng: locations.longitude,
-          zoom:10
-        });
-    }
-    else{
-        var mymap = new GMaps({
-          el: '#mymap',
-          lat: 40.712722,
-          lng: -74.006058,
-          zoom:10
-        });
-    }
-
-    if (locations !== null) {
-        mymap.addMarker({
-            lat: locations.latitude,
-            lng: locations.longitude,
-            title: locations.name,
-            infoWindow: {
-            content: ('<span>' +locations.address_1+', ' +locations.city+', '+locations.state_province+', '+locations.postal_code+'</span>')
-            }
-        });
-    }
-
-  setTimeout(function(){var iframe = $('#newsiframe');
-  $('.rss2html-note',iframe.contents()).hide();},5000);
-
-    
-
+<script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script>
+$(document).ready(function() {
+    $('#example3').DataTable({
+      'paging'      : true,
+      'pageLength'  : 20,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true
+    });
+} );
 </script>
-
-
-@include('layouts.script')
 @endsection

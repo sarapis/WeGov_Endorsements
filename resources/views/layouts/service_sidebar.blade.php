@@ -122,18 +122,19 @@
               taxonomy_value: taxonomy_value
             },
             success: function(data){
+                $('#loader').hide();
                 $('#service_content').html(data);
                  window.history.replaceState({url: "" + window.location.href + ""}, '','/services');
             }
           });
       } 
     
-      $('.services-checkbox').on('click', function(e) {
-          send_datas();
-      });
 
-      $('.taxonomy-checkbox').on('click', function(e){
+      $('.checkbox-material').on('click', function(e){
+        setTimeout(function(){
           send_datas();
+          document.getElementById("loader").style.display = "block";
+        },100);
       });
 
       $(document).on('click', ".taxonomyid", function () {
@@ -156,6 +157,7 @@
               taxonomy_value: taxonomy_value
             },
             success: function(data){
+                $('#loader').hide();
                 $('#service_content').html(data);
                 window.history.replaceState({url: "" + window.location.href + ""}, '','/services');
             }
@@ -182,6 +184,7 @@
               taxonomy_value: taxonomy_value
             },
             success: function(data){
+                $('#loader').hide();
                 $('#service_content').html(data);
                 window.history.replaceState({url: "" + window.location.href + ""}, '','/services');
             }

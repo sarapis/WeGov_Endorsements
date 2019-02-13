@@ -32,13 +32,13 @@
                 <div class="pull-left org_title">{{$organization->name}}</div>
                 <div class="social_icon">
                     <ul>
-                        <li><a href="#" title="Website"><i class="fas fa-globe"></i></a></li>
-                        <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#" title="RSS"><i class="fas fa-rss"></i></a></li>
-                        <li><a href="#" title="Phone"><i class="fas fa-phone"></i></a></li>
-                        <li><a href="#" title="Email"><i class="fas fa-envelope"></i></a></li>
-                        <li><a href="#" title="Address"><i class="fas fa-map-marker-alt"></i></a></li>
+                        <li><a target="_blank" href="http://{{$organization->website}}" title="Website"><i class="fas fa-globe"></i></a></li>
+                        <li><a target="_blank" href="http://{{$organization->Facebook}}" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a target="_blank" href="http://{{$organization->Twitter}}" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a target="_blank" href="http://{{$organization->RSS}}" title="RSS"><i class="fas fa-rss"></i></a></li>
+                        <li><a href="tel: {{$organization->phones}}" title="Phone"><i class="fas fa-phone"></i></a></li>
+                        <li><a href="mailto: {{$organization->email}}" title="Email"><i class="fas fa-envelope"></i></a></li>
+                        <li><a target="_blank" href="https://www.google.com/maps/place/{{$organization->main_address}}" title="Address"><i class="fas fa-map-marker-alt"></i></a></li>
                     </ul>
                 </div>
                 <input type="hidden" id="organizations_id" value="{{$organization->organizations_id}}">

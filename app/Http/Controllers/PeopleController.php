@@ -39,7 +39,7 @@ class PeopleController extends Controller
         $project_name = '&nbsp;';
         $filter = collect([$organization_name, $service_name, $project_name]);
 
-        $peoples = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('contacts.*', 'organizations.organizations_id as organizations_id', 'organizations.name as organization_name')->orderBy('name', 'asc')->paginate(28);
+        $peoples = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('contacts.*', 'organizations.name as organization_name')->orderBy('name', 'asc')->paginate(20);
         
         $organization = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('organizations.name as organization_name')->distinct()->get(['organization_name']);
         $organization_type='';

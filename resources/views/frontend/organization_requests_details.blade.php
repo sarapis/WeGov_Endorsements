@@ -14,7 +14,7 @@
             <div class="col-sm-10 col-xs-12">
                 <div class="pull-right">
                     <p class="text-tages"> Tags: <?php 
-                        $tag_names = explode(',', $organization->tag_names);
+                        $tag_names = explode(',', $organization->tags);
                     ?>
                         @foreach($tag_names as $tag_name)
                             @if($tag_name!='')
@@ -78,31 +78,31 @@
 			                <div class="col-sm-12">
 			                    <div class="box padding_0">
 			                        <div class="box-header">
-			                            <h3 class="box-title"><a href="/elections_detail">Tracking Code : 101201901C</a></h3>
+			                            <h3 class="box-title"><a href="/elections_detail">Tracking Code : {{$request->tracking_code}}</a></h3>
 			                        </div>
 			                        <div class="box-body inner_request_detail">
 			                        	<div class="row">
 			                        		<div class="col-sm-7">
-			                            		<h4>Borough: <p>Bronx</p></h4>
-			                            		<h4>Community District: <a class="blue_color" href="#">Community District 1</a></h4>
-			                            		<h4>Priority Number: <p>01</p></h4>
-			                            		<h4>Request: <p>Build new, expand or repair storm...</p></h4>
-			                            		<h4>Explanation: <p>Allocated funds for capital sewer work to be performed in the area located on Beekman Avenue</p></h4>
-			                            		<h4>Responsible Agency : <a class="blue_color" href="#">Department of Environmental</a></h4>
-			                            		<h4>Response: <p>OMB supports the agency's position as follows: More information is needed from the community board before making a funding decision...</p></h4>
-			                            		<h4>Budget Line: <p>sdsnsdsdjs</p></h4>
-			                            		<h4>Project ID: <a class="blue_color" href="#">1204678C</a></h4>
-			                            		<h4>Supported By: <a class="blue_color" href="#">annasajajjjshjahs</a></h4>
+			                            		<h4>Borough: <p>{{$request->borough}}</p></h4>
+			                            		<h4>Community District: <a class="blue_color" href="">{{$request->district}}</a></h4>
+			                            		<h4>Priority Number: <p>{{$request->priority}}</p></h4>
+			                            		<h4>Request: <p>{{$request->request}}</p></h4>
+			                            		<h4>Explanation: <p>{{$request->explanation}}</p></h4>
+			                            		<h4>Responsible Agency : <a class="blue_color" href="/organization_{{$responsible_agency}}">{{$responsible_agency}}</a></h4>
+			                            		<h4>Response: <p>{{$request->response}}</p></h4>
+			                            		<h4>Budget Line: <p>{{$request->budget_line}}</p></h4>
+			                            		<h4>Project ID: <a class="blue_color" href="#">{{$request->project_id}}</a></h4>
+			                            		<h4>Supported By: <a class="blue_color" href="#">{{$request->supported_by}}</a></h4>
 			                            	</div>
 			                            	<div class="col-sm-5">
 								                <div id="mymap"></div>
 								                <br/>
-								                <h4>Location Name: <p></p></h4>
-			                            		<h4>Location Address: <p>Beekman Avenue</p></h4>
-			                            		<h4>Cross Street 1: <p>East 141st Street</p></h4>
-			                            		<h4>Cross Street 2: <p>st. Ann's Avenue</p></h4>
-			                            		<h4>Site Block: <p></p></h4>
-			                            		<h4>LOT: <p></p></h4>
+								                <h4>Location Name: <p>{{$request->location_name}}</p></h4>
+			                            		<h4>Location Address: <p>{{$request->location_address}}</p></h4>
+			                            		<h4>Cross Street 1: <p>{{$request->cross_street_1}}</p></h4>
+			                            		<h4>Cross Street 2: <p>{{$request->cross_street_2}}</p></h4>
+			                            		<h4>Site Block: <p>{{$request->site_block}}</p></h4>
+			                            		<h4>LOT: <p>{{$request->lot}}</p></h4>
 									        </div>
 			                            </div>
 			                        </div>
@@ -121,7 +121,7 @@
 
 <script type="text/javascript">
 
-    var locations = <?php print_r(json_encode($agency_map)) ?>;
+    var locations = null
 
     if (locations !== null) {
         var mymap = new GMaps({
@@ -150,14 +150,7 @@
             }
         });
     }
-
-  setTimeout(function(){var iframe = $('#newsiframe');
-  $('.rss2html-note',iframe.contents()).hide();},5000);
-
-    
+   
 
 </script>
-
-
-@include('layouts.script')
 @endsection

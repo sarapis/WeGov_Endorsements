@@ -48,7 +48,7 @@ Route::get('/organization_{id}/legislation', 'OrganizationController@legislation
 Route::get('/organization_{id}/endorsements', 'OrganizationController@endorsements');
 Route::get('/organization_{id}/candidates', 'OrganizationController@candidates');
 Route::get('/organization_{id}/requests', 'OrganizationController@requests');
-Route::get('/organization_{id}/requests_details', 'OrganizationController@requests_details');
+Route::get('/organization_{id}/requests/{tracking_code}', 'OrganizationController@requests_details');
 Route::get('/organization_{id}', 'OrganizationController@find');
 
 Route::post('/organizations_filter', 'OrganizationController@filter');
@@ -85,7 +85,7 @@ Route::get('/elections_detail', 'ElectionController@find');
 Route::get('/people', 'PeopleController@index');
 Route::get('/people_{id}', 'PeopleController@find');
 Route::get('/people/disclosures', 'PeopleController@disclosures');
-Route::get('/organization_{id}/people/{people_id}', 'PeopleController@oragnization_find');
+Route::get('/organization_{id}/people/{people_id}', 'PeopleController@organization_find');
 
 Route::get('/organizationtype_{id}', 'PeopleController@organizationtypefind');
 

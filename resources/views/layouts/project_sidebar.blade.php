@@ -95,6 +95,7 @@
       function send_datas(){
           var organization_value = [];
           var cboxes = $('.organization-checkbox:checked');
+
           for(i = 0; i < cboxes.length; i ++)
             organization_value[i] = cboxes[i].value;
 
@@ -105,26 +106,30 @@
 
           console.log(organization_value);
           console.log(project_type);
+          if(project_type.length == 0 && organization_value.length == 0){
+            window.location.href = '/projects';
+          }
+          else {
+            $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+            })
 
-          $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-          })
-
-          $.ajax({
-            type: 'POST',
-            url: '/projects_filter',
-            data: {
-              organization_value: organization_value,
-              project_type: project_type
-            },
-            success: function(data){
-                $('#loader').hide();
-                $('#project_content').html(data);
-                window.history.replaceState({url: "" + window.location.href + ""}, '','/projects');
-            }
-          });
+            $.ajax({
+              type: 'POST',
+              url: '/projects_filter',
+              data: {
+                organization_value: organization_value,
+                project_type: project_type
+              },
+              success: function(data){
+                  $('#loader').hide();
+                  $('#project_content').html(data);
+                  window.history.replaceState({url: "" + window.location.href + ""}, '','/projects');
+              }
+            });
+          }
       }      
       $('.checkbox-material').on('click', function(e){
         setTimeout(function(){

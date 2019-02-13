@@ -41,7 +41,7 @@ class PeopleController extends Controller
 
         $peoples = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('contacts.*', 'organizations.name as organization_name')->orderBy('name', 'asc')->paginate(20);
         
-        $organization = Contact::leftjoin('organizations', 'contacts.organization', '=', 'organizations.organization_id')->select('organizations.name as organization_name')->distinct()->get(['organization_name']);
+        
         $organization_type='';
         $taxonomy_lists = $servicetypes;
         $organization_lists = DB::table('organizations')->get();

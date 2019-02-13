@@ -88,8 +88,8 @@
                                         <h5><a href="/organization_{{$organization->organizations_id}}/projects"><span>@if($organization->projects!=null)
                                                         {{sizeof(explode(",", $organization->projects))}}
                                                         @else 0 @endif</span></a>Projects</h5>
-                                        <h5><a href="/organization_{{$organization->organizations_id}}/money"><span>${{$organization->total_project_cost}}</span></a>Budget(E)</h5>
-                                        <h5><a href="/organization_{{$organization->organizations_id}}/money"><span>${{$organization->expenses_budgets}}</span></a>Budget(C)</h5>
+                                        <h5><a href="/organization_{{$organization->organizations_id}}/money"><span>${{$organization->expenses_budgets}}</span></a>Budget(E)</h5>
+                                        <h5><a href="/organization_{{$organization->organizations_id}}/money"><span>${{$organization->total_project_cost}}</span></a>Budget(C)</h5>
                                     </div>
                                 </div>
                             </div>

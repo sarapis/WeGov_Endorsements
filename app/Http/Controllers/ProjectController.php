@@ -35,7 +35,7 @@ class ProjectController extends Controller
     public function projectview()
     {
         $project_types = Project::distinct()->get(['project_type']);
-        $organizations = Agency::orderBy('magencyacro', 'asc')->get();
+        $organizations = Agency::whereNotNull('projects')->orderBy('magencyacro', 'asc')->get();
 
         $allprojects = Project::leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid','agencies.magency','agencies.magencyacro','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->orderBy('project_projectid', 'asc')->paginate(20);
 

@@ -36,6 +36,8 @@
                           @endforeach
                       </tbody>
                     </table>
+                    <div class="text-right">{{ $allprojects->links() }}</div>
+                    <style type="text/css">.pagination{margin-top: 0;}</style>
                 </div>
             </div>
           </div>
@@ -48,8 +50,8 @@
 <script>
 $(document).ready(function() {
     $('#example3').DataTable({
-      'paging'      : true,
-      'pageLength'  : 30,
+      'paging'      : false,
+      'pageLength'  : 20,
       'lengthChange': false,
       'searching'   : false,
       'ordering'    : true,

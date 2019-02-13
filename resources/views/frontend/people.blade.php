@@ -223,8 +223,8 @@
                         <div role="tabpanel" class="tab-pane active" id="2017" style="padding: 0px;">
                             <div class="inner_disclosure">
                                 <div class="col-sm-3">
-                                    <ul class="left_dis_menu" role="tablist">
-                                        <li><a class="active" href="#general_info" data-toggle="tab">General Info</a></li>
+                                    <ul class="election_head" role="tablist">
+                                        <li class="active"><a href="#general_info" data-toggle="tab">General Info</a></li>
                                         <li><a href="#city_position" data-toggle="tab">City Positions</a></li>
                                         <li><a href="#other_income" data-toggle="tab">Other Income</a></li>
                                         <li><a href="#debts" data-toggle="tab">Debts</a></li>

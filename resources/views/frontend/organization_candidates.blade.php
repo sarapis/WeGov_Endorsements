@@ -80,82 +80,155 @@
                                 <div class="left_election_menu">
                                     <div class="election_head">
                                         <h3>Elections</h3>
-                                        <ul>
-                                            <li><a href="#" class="active">2019 Primary</a></li>
-                                            <li><a href="#">2017 General</a></li>
-                                            <li><a href="#">2017 Primary</a></li>
-                                            <li><a href="#">2016 General</a></li>
+                                        <ul role="tablist">
+                                            <li class="active"><a href="#2017" data-toggle="tab">2017 Primary</a></li>
+                                            <li><a href="#2013" data-toggle="tab" >2013 Primary</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-9">
-                            <div class="col-sm-4">
-                                <div class="box padding_0">
-                                    <div class="box-header">
-                                        <h3 class="box-title">Adams, Eric L</h3>
+                            <div class="tab-content" style="padding: 0;">
+                                <div role="tabpanel" class="tab-pane active" id="2017">
+                                    <div class="col-sm-4">
+                                        <div class="box padding_0">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Adams, Eric L</h3>
+                                            </div>
+                                            <div class="box-body">
+                                                <span class="org_tags">Democrats</span>
+                                                <span class="org_tags">Endorsements : 3</span>
+                                                <div class="candidate_detail">
+                                                    <ul>
+                                                        <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
+                                                        <li><span>Amsterdam News</span></li>
+                                                        <li><span>Bay Ridge Democrats</span></li>
+                                                        <li><span>Brooklyn Democrats for Change</span></li>
+                                                        <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
+                                                        <li><span>Amsterdam News</span></li>
+                                                        <li><span>Bay Ridge Democrats</span></li>
+                                                        <li><span>Brooklyn Democrats for Change</span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="box-body">
-                                        <span class="org_tags">Democrats</span>
-                                        <span class="org_tags">Endorsements : 3</span>
-                                        <div class="candidate_detail">
-                                            <ul>
-                                                <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
-                                                <li><span>Amsterdam News</span></li>
-                                                <li><span>Bay Ridge Democrats</span></li>
-                                                <li><span>Brooklyn Democrats for Change</span></li>
-                                                <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
-                                                <li><span>Amsterdam News</span></li>
-                                                <li><span>Bay Ridge Democrats</span></li>
-                                                <li><span>Brooklyn Democrats for Change</span></li>
-                                            </ul>
+                                    <div class="col-sm-4">
+                                        <div class="box padding_0">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Adams, Eric L</h3>
+                                            </div>
+                                            <div class="box-body">
+                                                <span class="org_tags">Democrats</span>
+                                                <span class="org_tags">Endorsements : 3</span>
+                                                <div class="candidate_detail">
+                                                    <ul>
+                                                        <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
+                                                        <li><span>Amsterdam News</span></li>
+                                                        <li><span>Bay Ridge Democrats</span></li>
+                                                        <li><span>Brooklyn Democrats for Change</span></li>
+                                                        <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
+                                                        <li><span>Amsterdam News</span></li>
+                                                        <li><span>Bay Ridge Democrats</span></li>
+                                                        <li><span>Brooklyn Democrats for Change</span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="box padding_0">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Adams, Eric L</h3>
+                                            </div>
+                                            <div class="box-body">
+                                                <span class="org_tags">Democrats</span>
+                                                <span class="org_tags">Endorsements : 3</span>
+                                                <div class="candidate_detail">
+                                                    <ul>
+                                                        <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
+                                                        <li><span>Amsterdam News</span></li>
+                                                        <li><span>Bay Ridge Democrats</span></li>
+                                                        <li><span>Brooklyn Democrats for Change</span></li>
+                                                        <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
+                                                        <li><span>Amsterdam News</span></li>
+                                                        <li><span>Bay Ridge Democrats</span></li>
+                                                        <li><span>Brooklyn Democrats for Change</span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="box padding_0">
-                                    <div class="box-header">
-                                        <h3 class="box-title">Adams, Eric L</h3>
-                                    </div>
-                                    <div class="box-body">
-                                        <span class="org_tags">Democrats</span>
-                                        <span class="org_tags">Endorsements : 3</span>
-                                        <div class="candidate_detail">
-                                            <ul>
-                                                <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
-                                                <li><span>Amsterdam News</span></li>
-                                                <li><span>Bay Ridge Democrats</span></li>
-                                                <li><span>Brooklyn Democrats for Change</span></li>
-                                                <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
-                                                <li><span>Amsterdam News</span></li>
-                                                <li><span>Bay Ridge Democrats</span></li>
-                                                <li><span>Brooklyn Democrats for Change</span></li>
-                                            </ul>
+                                <div role="tabpanel" class="tab-pane" id="2013">
+                                    <div class="col-sm-4">
+                                        <div class="box padding_0">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Adams</h3>
+                                            </div>
+                                            <div class="box-body">
+                                                <span class="org_tags">Democrats</span>
+                                                <span class="org_tags">Endorsements : 3</span>
+                                                <div class="candidate_detail">
+                                                    <ul>
+                                                        <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
+                                                        <li><span>Amsterdam News</span></li>
+                                                        <li><span>Bay Ridge Democrats</span></li>
+                                                        <li><span>Brooklyn Democrats for Change</span></li>
+                                                        <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
+                                                        <li><span>Amsterdam News</span></li>
+                                                        <li><span>Bay Ridge Democrats</span></li>
+                                                        <li><span>Brooklyn Democrats for Change</span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="box padding_0">
-                                    <div class="box-header">
-                                        <h3 class="box-title">Adams, Eric L</h3>
+                                    <div class="col-sm-4">
+                                        <div class="box padding_0">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Adams, Eric L</h3>
+                                            </div>
+                                            <div class="box-body">
+                                                <span class="org_tags">Democrats</span>
+                                                <span class="org_tags">Endorsements : 3</span>
+                                                <div class="candidate_detail">
+                                                    <ul>
+                                                        <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
+                                                        <li><span>Amsterdam News</span></li>
+                                                        <li><span>Bay Ridge Democrats</span></li>
+                                                        <li><span>Brooklyn Democrats for Change</span></li>
+                                                        <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
+                                                        <li><span>Amsterdam News</span></li>
+                                                        <li><span>Bay Ridge Democrats</span></li>
+                                                        <li><span>Brooklyn Democrats for Change</span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="box-body">
-                                        <span class="org_tags">Democrats</span>
-                                        <span class="org_tags">Endorsements : 3</span>
-                                        <div class="candidate_detail">
-                                            <ul>
-                                                <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
-                                                <li><span>Amsterdam News</span></li>
-                                                <li><span>Bay Ridge Democrats</span></li>
-                                                <li><span>Brooklyn Democrats for Change</span></li>
-                                                <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
-                                                <li><span>Amsterdam News</span></li>
-                                                <li><span>Bay Ridge Democrats</span></li>
-                                                <li><span>Brooklyn Democrats for Change</span></li>
-                                            </ul>
+                                    <div class="col-sm-4">
+                                        <div class="box padding_0">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Adams, Eric L</h3>
+                                            </div>
+                                            <div class="box-body">
+                                                <span class="org_tags">Democrats</span>
+                                                <span class="org_tags">Endorsements : 3</span>
+                                                <div class="candidate_detail">
+                                                    <ul>
+                                                        <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
+                                                        <li><span>Amsterdam News</span></li>
+                                                        <li><span>Bay Ridge Democrats</span></li>
+                                                        <li><span>Brooklyn Democrats for Change</span></li>
+                                                        <li><span>32BJ SEIU (Service Employees International Union) Building Workers</span></li>
+                                                        <li><span>Amsterdam News</span></li>
+                                                        <li><span>Bay Ridge Democrats</span></li>
+                                                        <li><span>Brooklyn Democrats for Change</span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

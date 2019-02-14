@@ -163,7 +163,7 @@
 			                            		<h4>Response: <p>{{$request->response}}</p></h4>
 			                            		<h4>Budget Line: <p>{{$request->budget_line}}</p></h4>
 			                            		<h4>Project ID: <a class="blue_color" href="#">{{$request->project_id}}</a></h4>
-			                            		<h4>Supported By: <a class="blue_color" href="#">{{$request->supported_by}}</a></h4>
+			                            		<h4>Supported By: <p>{{$request->supported_by}}</p></h4>
 			                            	</div>
 			                            	<div class="col-sm-5">
 								                <div id="mymap"></div>

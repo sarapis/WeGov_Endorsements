@@ -66,22 +66,9 @@ class PeopleController extends Controller
 
         $people = Greenbook::where('id', '=', $people_id)->first();
 
-        $greenbook_name = $people->last_name.', '.$people->first_name;
-
-        $contact_id = DB::table('contacts')->where('name','=', $greenbook_name)->first();
-
-        if($contact_id)
-            $contact_id = $contact_id->contact_id;
-        else
-            $contact_id = '';
-        
-        $organization_map = DB::table('contacts')->where('contact_id','=', $contact_id)->leftjoin('services_organizations', 'contacts.organization', 'like', DB::raw("concat('%', services_organizations.organization_x_id, '%')"))->leftjoin('locations', 'services_organizations.organization_locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->select('services_organizations.*', 'locations.*', 'address.*')->groupBy('services_organizations.id')->get();
-
-        $people_services = Contact::where('contact_id','=', $contact_id)->leftjoin('services', 'contacts.services', 'like', DB::raw("concat('%', services.service_id, '%')"))->select('services.*')->leftjoin('phones', 'services.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'))->groupBy('services.id')->get();
-
         $entity = EntityOrganization::where('types', '=', $organization->type)->first();
 
-        return view('frontend.organization_people', compact('organization', 'people','people_services', 'organization_map', 'greenbook_name', 'entity'));
+        return view('frontend.organization_people', compact('organization', 'people', 'entity'));
     }
 
     public function find($id)

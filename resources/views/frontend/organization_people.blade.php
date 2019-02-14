@@ -25,8 +25,8 @@
                         <span class="badge type_badge bg-blue">{{$organization->type}}</span>
                     </p>
                 </div>
-                <div class="pull-left org_title">{{$greenbook_name}}</div><br/>
-                <div class="pull-left people_title_org">Title, Organization, Division</div>
+                <div class="pull-left org_title">{{$people->first_name}} {{$people->m_i}} {{$people->last_name}}</div><br/>
+                <div class="pull-left people_title_org">{{$people->office_title}}, {{$organization->name}}, {{$people->division_name}}</div>
                 <div class="social_icon">
                     <ul>
                         <li>@if($organization->website)
@@ -139,28 +139,28 @@
                     @endif
                 </ul>
             </div>
-             <div class="tab-content people_tabpanel">
+            <div class="tab-content people_tabpanel">
                 <div role="tabpanel" class="tab-pane active" id="people_contact">
                     <div class="row">
                         <div class="col-sm-4 address">
                             <div class="box">
                                 <i class="fas fa-map-marker-alt"></i>
                                 <h5>Address</h5>
-                                <p>9411 Peachtree Street <br/>Minot, ND 58701</p>
+                                <p>{{$people->address}} <br/>{{$people->city}}, {{$people->state}} {{$people->zip_code}}</p>
                             </div>
                         </div>
                         <div class="col-sm-4 address">
                             <div class="box">
                                 <i class="fas fa-phone"></i>
                                 <h5>Phone</h5>
-                                <p>Agency Phone: 123-456-1234 <br/>Division Phone: 123-456-1456</p>
+                                <p>Agency Phone: {{$people->agency_primary_phone}} <br/>Division Phone: {{$people->division_primary_phone}}</p>
                             </div>
                         </div>
                         <div class="col-sm-4 address">
                             <div class="box">
                                 <i class="fas fa-fax"></i>
                                 <h5>Fax</h5>
-                                <p>Fax Number: 1-888-473-2963</p>
+                                <p>Fax Number: {{$people->fax_1}}</p>
                             </div>
                         </div>
                     </div>
@@ -660,32 +660,9 @@
         $('#organization_form').submit();
     })
 </script>
-<script type="text/javascript">
-
-    var locations = <?php print_r(json_encode($organization_map)) ?>;
-
-    var mymap_people = new GMaps({
-      el: '#mymap_people',
-      lat: 40.712722,
-      lng: -74.006058,
-      zoom:10
-    });
-
-    $.each( locations, function( index, value ){
-        mymap_people.addMarker({
-          lat: value.latitude,
-          lng: value.longitude,
-          title: value.name,
-         infoWindow: {
-            content: ('<a href="location_'+value.location_id+'">'+value.name+'</a></br>' +value.address_1+', ' +value.city+', '+value.state_province+', '+value.postal_code)
-        }
-   });
-});
-
-</script>
 <script>
 $(document).ready(function() {
-    $('#example').DataTable();
+    $('#example3').DataTable();
 } );
 </script>
 @endsection

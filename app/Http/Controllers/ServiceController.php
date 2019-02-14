@@ -20,6 +20,7 @@ use App\Models\Organization;
 use App\Models\Detail;
 use App\Models\Program;
 use App\Models\Contact;
+use App\Models\EntityOrganization;
 
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 
@@ -166,8 +167,10 @@ class ServiceController extends Controller
 
         
         $service_details = DB::table('services')->where('name', '=', $service_id)->leftjoin('details', 'services.details', 'like', DB::raw("concat('%', details.detail_id, '%')"))->select('details.value', 'details.detail_type')->get();
+
+        $entity = EntityOrganization::where('types', '=', $organization->type)->first(); 
  
-        return view('frontend.organization_service', compact('organization', 'taxonomys','service_name','service','organization','program','taxonomy', 'contacts', 'service_map', 'service_details','servicename'));
+        return view('frontend.organization_service', compact('organization', 'taxonomys','service_name','service','organization','program','taxonomy', 'contacts', 'service_map', 'service_details','servicename', 'entity'));
     }
 
     /**

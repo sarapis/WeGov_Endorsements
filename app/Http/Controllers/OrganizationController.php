@@ -21,6 +21,7 @@ use App\Models\Project;
 use App\Models\Greenbook;
 use App\Models\Organization;
 use App\Models\Tag;
+use App\Models\EntityOrganization;
 use App\Services\Numberformat;
 
 class OrganizationController extends Controller
@@ -68,21 +69,24 @@ class OrganizationController extends Controller
         $organization->total_project_cost=$budgetclass->custom_number_format($organization->total_project_cost, 1);
         $organization->expenses_budgets=$budgetclass->custom_number_format($organization->expenses_budgets, 1);
 
-        $agency_map = Address::where('organizations','=', $original_organization->organization_id)->first();
+        $entity = EntityOrganization::where('types', '=', $organization_type)->first();  
 
-
-        return view('frontend.organization', compact('organization', 'organizations_services', 'original_organization', 'organization_type', 'agency_map'));
+        return view('frontend.organization', compact('organization', 'organizations_services', 'original_organization', 'organization_type', 'entity'));
     }
 
     public function projects($id)
     {
         $organization = Organization::where('organizations_id','=',$id)->select('organizations.*', 'organizations.description as organization_description')->groupBy('organizations.organization_id')->first();
+        $agency_recordid = Agency::where('magency', '=', $id)->first()->agency_recordid;
+        
 
-        $organization_projects = Organization::where('organizations_id','=', $id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('projects', 'agencies.projects', 'like', DB::raw("concat('%', projects.project_recordid, '%')"))->groupBy('projects.project_recordid')->get();
+        $organization_projects = Project::where('project_managingagency', '=', $agency_recordid)->paginate(20);
 
-        $organization_map = DB::table('services_organizations')->where('organization_x_id','=', $id)->leftjoin('locations', 'services_organizations.organization_locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->leftjoin('address', 'locations.address', 'like', DB::raw("concat('%', address.address_id, '%')"))->leftjoin('agencies', 'services_organizations.organization_recordid', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('projects', 'agencies.projects', 'like', DB::raw("concat('%', projects.project_recordid, '%')"))->groupBy('projects.project_recordid')->select('services_organizations.*', 'locations.*', 'projects.*', 'address.*')->groupBy('locations.id')->get();
+        $organization_map = DB::table('services_organizations')->where('organization_x_id','=', $id)->leftjoin('locations', 'services_organizations.organization_locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->leftjoin('agencies', 'services_organizations.organization_recordid', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('projects', 'agencies.projects', 'like', DB::raw("concat('%', projects.project_recordid, '%')"))->groupBy('projects.project_recordid')->select('services_organizations.*', 'locations.*', 'projects.*')->groupBy('locations.id')->get();
 
-        return view('frontend.organization_projects', compact('organization','organization_projects', 'organization_map'));
+        $entity = EntityOrganization::where('types', '=', $organization->type)->first(); 
+
+        return view('frontend.organization_projects', compact('organization','organization_projects', 'organization_map', 'entity'));
     }
 
     public function services($id)
@@ -95,18 +99,15 @@ class OrganizationController extends Controller
 
         $organization_map = DB::table('services_organizations')->where('organization_x_id','=', $id)->leftjoin('locations', 'services_organizations.organization_locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->leftjoin('services_address', 'locations.address', 'like', DB::raw("concat('%', services_address.address_recordid, '%')"))->leftjoin('agencies', 'services_organizations.organization_recordid', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('projects', 'agencies.projects', 'like', DB::raw("concat('%', projects.project_recordid, '%')"))->groupBy('projects.project_recordid')->select('services_organizations.*', 'locations.*', 'projects.*', 'services_address.*')->groupBy('locations.id')->get();
 
-        return view('frontend.organization_services', compact('organization', 'organizations_services', 'organization_services', 'organization_map'))->render();
+        $entity = EntityOrganization::where('types', '=', $organization->type)->first(); 
+
+        return view('frontend.organization_services', compact('organization', 'organizations_services', 'organization_services', 'organization_map', 'entity'))->render();
     }
 
     public function money($id)
     {   
         $organization_type = Organization::where('organizations_id','=',$id)->first()->type;
-        $organizations = Agency::orderBy('magencyacro', 'asc')->get();
-
-        $original_organization = Organization::where('organizations_id','=',$id)->first();
-        $original_agency = DB::table('agencies')->where('magency','=',$id)->first();
-
-       
+             
 
         $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'))->groupBy('organizations.organization_id')->first();
 
@@ -123,27 +124,30 @@ class OrganizationController extends Controller
 
         $expenses_sum = Organization::where('organizations_id','=', $id)->leftjoin('agencies', 'organizations.organizations_id', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->select(DB::raw('sum(expenses.year1_forecast) as expenses_year1'), DB::raw('sum(expenses.year2_estimate) as expenses_year2'), DB::raw('sum(expenses.year3_estimate) as expenses_year3'))->first();  
 
+        $entity = EntityOrganization::where('types', '=', $organization_type)->first();
 
-        return view('frontend.organization_money', compact('organization', 'organization_peoples', 'organization_expenses', 'organization_map', 'expenses_sum', 'capital_budget', 'expense_budget', 'organization_type', 'organizations', 'organization_projects', 'agency_map'));
+
+        return view('frontend.organization_money', compact('organization', 'organization_expenses', 'expenses_sum', 'capital_budget', 'expense_budget', 'organization_type', 'entity'));
     }
 
     public function peoples($id)
     {
         $organization = Organization::where('organizations_id','=',$id)->select('organizations.*', 'organizations.description as organization_description')->groupBy('organizations.organization_id')->first();
 
-        // $organization_peoples = Organization::where('organizations_id','=', $id)->leftjoin('contacts', 'organizations.contacts', 'like', DB::raw("concat('%', contacts.contact_id, '%')"))->groupBy('contacts.contact_id')->get();
-
         $organization_peoples = Greenbook::where('organization_code', '=', $id)->get();
 
-        return view('frontend.organization_peoples', compact('organization', 'organization_peoples'))->render();
+        $entity = EntityOrganization::where('types', '=', $organization->type)->first();
+
+        return view('frontend.organization_peoples', compact('organization', 'organization_peoples', 'entity'))->render();
     }
 
 
     public function laws($id)
     {
         $organization = Organization::where('organizations_id','=',$id)->select('organizations.*', 'organizations.description as organization_description')->groupBy('organizations.organization_id')->first();
+        $entity = EntityOrganization::where('types', '=', $organization->type)->first();
 
-        return view('frontend.organization_laws', compact('organization'));
+        return view('frontend.organization_laws', compact('organization', 'entity'));
     }
 
 
@@ -174,10 +178,10 @@ class OrganizationController extends Controller
         $organization->total_project_cost=$budgetclass->custom_number_format($organization->total_project_cost, 1);
         $organization->expenses_budgets=$budgetclass->custom_number_format($organization->expenses_budgets, 1);
 
-        $agency_map = Address::where('organizations','=', $original_organization->organization_id)->first();
+        $entity = EntityOrganization::where('types', '=', $organization_type)->first();
 
 
-        return view('frontend.organization_endorsements', compact('organization', 'organization_expenses', 'organization_map', 'expenses_sum', 'original_organization', 'organization_type', 'agency_map'));
+        return view('frontend.organization_endorsements', compact('organization', 'organization_expenses', 'organization_map', 'expenses_sum', 'original_organization', 'organization_type', 'entity'));
 
     }
 
@@ -203,8 +207,10 @@ class OrganizationController extends Controller
 
         $agency_map = Address::where('organizations','=', $original_organization->organization_id)->first();
 
+        $entity = EntityOrganization::where('types', '=', $organization_type)->first();
 
-        return view('frontend.organization_candidates', compact('organization', 'organization_expenses', 'organization_map', 'expenses_sum', 'original_organization', 'organization_type', 'agency_map'));
+
+        return view('frontend.organization_candidates', compact('organization', 'organization_expenses', 'organization_map', 'expenses_sum', 'original_organization', 'organization_type', 'agency_map', 'entity'));
 
     }
 
@@ -217,8 +223,9 @@ class OrganizationController extends Controller
 
         $requests = DB::table('requests')->where('community_board', '=', $agency_recordid)->get();
 
+        $entity = EntityOrganization::where('types', '=', $organization_type)->first();
 
-        return view('frontend.organization_requests', compact('organization', 'organization_type', 'requests'));
+        return view('frontend.organization_requests', compact('organization', 'organization_type', 'requests', 'entity'));
 
     } 
 
@@ -231,12 +238,14 @@ class OrganizationController extends Controller
 
         $request = DB::table('requests')->where('tracking_code', '=', $tracking_code)->first();
 
-        $responsible_agency = Agency::where('agency_recordid', '=', $request->responsible_agency)->first()->magency;
+        $responsible_agency = Agency::where('agency_recordid', '=', $request->responsible_agency)->first();
 
         $agency_map = Address::where('organizations','=', $request->responsible_agency)->first();
 
+        $entity = EntityOrganization::where('types', '=', $organization_type)->first();
 
-        return view('frontend.organization_requests_details', compact('organization', 'organization_type', 'community_board', 'request', 'responsible_agency', 'agency_map'));
+
+        return view('frontend.organization_requests_details', compact('organization', 'organization_type', 'community_board', 'request', 'responsible_agency', 'agency_map', 'entity'));
 
     }
     

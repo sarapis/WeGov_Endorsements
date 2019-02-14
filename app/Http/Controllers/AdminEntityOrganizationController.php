@@ -83,7 +83,6 @@ class AdminEntityOrganizationController extends Controller
         $organization->money = $request->money;
         $organization->people = $request->people;
         $organization->charter = $request->charter;
-        $organization->legislation = $request->legislation;
         $organization->endorsements = $request->endorsements;
         $organization->candidates = $request->candidates;
         $organization->requests = $request->requests;

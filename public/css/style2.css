@@ -723,3 +723,6 @@ html, body {
 
 .election_head ul li.active a { text-decoration: none; background: #ebebeb;color: #004a83;}
 .left_dis_menu li.active a{color: #ffffff; background:#004a83 }
+.bg-disable{
+  color: #d2d6de;
+}

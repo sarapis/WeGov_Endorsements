@@ -37,8 +37,6 @@ $(document).ready(function(){
                     $('#people').attr('checked','checked');
                 if(data.charter == 'On')
                     $('#charter').attr('checked','checked');
-                if(data.legislation == 'On')
-                    $('#legislation').attr('checked','checked');
                 if(data.endorsements == 'On')
                     $('#endorsements').attr('checked','checked');
                 if(data.candidates == 'On')
@@ -77,7 +75,6 @@ $(document).ready(function(){
             money: $('#money').prop('checked')==1?'On':'Off',
             people: $('#people').prop('checked')==1?'On':'Off',
             charter: $('#charter').prop('checked')==1?'On':'Off',
-            legislation:$('#legislation').prop('checked')==1?'On':'Off',
             endorsements:$('#endorsements').prop('checked')==1?'On':'Off',
             candidates:$('#candidates').prop('checked')==1?'On':'Off',
             requests:$('#requests').prop('checked')==1?'On':'Off',

@@ -11,6 +11,7 @@ use App\Models\Service;
 use App\Models\Location;
 use App\Models\Organization;
 use App\Models\Agency;
+use App\Models\EntityOrganization;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -99,7 +100,10 @@ class ProjectController extends Controller
         $project = DB::table('projects')->where('project_projectid', $project_id)->leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.project_projectid', 'agencies.magency', 'agencies.magencyacro', 'agencies.magencyname','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_citycost','projects.project_noncitycost','projects.project_type','projects.project_lat','projects.project_long')->first();
 
         $commitments = DB::table('commitments')->where('projectid', $id)->get();
-        return view('frontend.organization_project', compact('organization', 'commitments','project'))->render();
+
+        $entity = EntityOrganization::where('types', '=', $organization->type)->first(); 
+
+        return view('frontend.organization_project', compact('organization', 'commitments','project', 'entity'))->render();
     }
 
     public function projectfind($id)

@@ -20,6 +20,7 @@ use App\Models\Project;
 use App\Models\Organization;
 use App\Models\Contact;
 use App\Models\Greenbook;
+use App\Models\EntityOrganization;
 
 class PeopleController extends Controller
 {
@@ -78,7 +79,9 @@ class PeopleController extends Controller
 
         $people_services = Contact::where('contact_id','=', $contact_id)->leftjoin('services', 'contacts.services', 'like', DB::raw("concat('%', services.service_id, '%')"))->select('services.*')->leftjoin('phones', 'services.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->select('services.*', DB::raw('group_concat(phones.phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'))->groupBy('services.id')->get();
 
-        return view('frontend.organization_people', compact('organization', 'people','people_services', 'organization_map', 'greenbook_name'));
+        $entity = EntityOrganization::where('types', '=', $organization->type)->first();
+
+        return view('frontend.organization_people', compact('organization', 'people','people_services', 'organization_map', 'greenbook_name', 'entity'));
     }
 
     public function find($id)

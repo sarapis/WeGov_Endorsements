@@ -1,4 +1,4 @@
-@extends('admin.layouts.dashboard') @section('template_title') Entity @endsection @section('template_fastload_css') @endsection @section('content')
+@extends('admin.layouts.dashboard') @section('template_title') Entity Organizations @endsection @section('template_fastload_css') @endsection @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     tr.modified{
@@ -42,7 +42,6 @@
                                     <th class="text-center">Money</th>
                                     <th class="text-center">People</th>
                                     <th class="text-center">Charter</th>
-                                    <th class="text-center">Legislation</th> 
                                     <th class="text-center">Endorsements</th>
                                     <th class="text-center">Candidates</th>
                                     <th class="text-center">Requests</th>                          
@@ -59,7 +58,6 @@
                                     <td class="text-center"><span class="badge bg-{{$organization->money}}">{{$organization->money}}</span></td>
                                     <td class="text-center"><span class="badge bg-{{$organization->people}}">{{$organization->people}}</span></td>
                                     <td class="text-center"><span class="badge bg-{{$organization->charter}}">{{$organization->charter}}</span></td>
-                                    <td class="text-center"><span class="badge bg-{{$organization->legislation}}">{{$organization->legislation}}</span></td>
                                     <td class="text-center"><span class="badge bg-{{$organization->endorsements}}">{{$organization->endorsements}}</span></td>
                                     <td class="text-center"><span class="badge bg-{{$organization->candidates}}">{{$organization->candidates}}</td>
                                     <td class="text-center"><span class="badge bg-{{$organization->requests}}">{{$organization->requests}}</span></td>
@@ -133,13 +131,6 @@
 
                       <div class="col-sm-7">
                         <input type="checkbox" style="margin-top: 10px;" id="charter" name="charter">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="text" class="col-sm-5 control-label">Legislation</label>
-
-                      <div class="col-sm-7">
-                        <input type="checkbox" style="margin-top: 10px;" id="legislation" name="legislation">
                       </div>
                     </div>
                     <div class="form-group">

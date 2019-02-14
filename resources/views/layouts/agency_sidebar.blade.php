@@ -23,12 +23,21 @@
           <ul class="treeview-menu" style="display: block !important;">
             <li style="padding-left: 10px;">
               @foreach($types as $type)
+              
               @if($type->type!='')
-              <div class="checkbox">             
-                <label>
-                  <input type="checkbox" class="organization-type" value="{{$type->type}}" @if($type->type=='City Agency') checked @endif>  <span class="subitem-list text-uppercase">{{$type->type}}</span>
-                </label>
-              </div>
+                @if (isset($post_type) && $post_type == "type")
+                  <div class="checkbox">             
+                    <label>
+                      <input type="checkbox" class="organization-type" value="{{$type->type}}" @if($type->type==$post_value) checked @endif>  <span class="subitem-list text-uppercase">{{$type->type}}</span>
+                    </label>
+                  </div>
+                @else
+                  <div class="checkbox">             
+                    <label>
+                      <input type="checkbox" class="organization-type" value="{{$type->type}}" @if($type->type=='City Agency' && (!isset($post_type) || $post_type!="tag")) checked @endif>  <span class="subitem-list text-uppercase">{{$type->type}}</span>
+                    </label>
+                  </div>
+                @endif
               @endif
               @endforeach
             </li>
@@ -44,11 +53,19 @@
             <li style="padding-left: 10px;">
               
                 @foreach($tags as $tag)
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" class="organization-tag" value="{{$tag->tag_name}}">  <span class="subitem-list text-uppercase">{{$tag->tag_name}}</span>
-                  </label>
-                </div>
+                  @if (isset($post_type) && $post_type == "tag")
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" class="organization-tag" value="{{$tag->tag_name}}" @if($tag->tag_name==$post_value) checked @endif>  <span class="subitem-list text-uppercase">{{$tag->tag_name}}</span>
+                      </label>
+                    </div>
+                  @else
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" class="organization-tag" value="{{$tag->tag_name}}">  <span class="subitem-list text-uppercase">{{$tag->tag_name}}</span>
+                      </label>
+                    </div>
+                  @endif
                 @endforeach
               
             </li>

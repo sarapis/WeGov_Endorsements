@@ -18,14 +18,14 @@
                     ?>
                         @foreach($tag_names as $tag_name)
                             @if($tag_name!='')
-                            <span class="badge bg-blue">{{$tag_name}}</span>
+                            <span class="badge tag_badge bg-blue">{{$tag_name}}</span>
                             @endif
                         @endforeach
                     </p>
                 </div>
                 <div class="pull-right" style="padding-left: 20px;padding-right: 10px;">
                     <p class="text-types"> Type: 
-                        <span class="badge bg-blue">{{$organization_type}}</span>
+                        <span class="badge type_badge bg-blue">{{$organization_type}}</span>
                     </p>
                 </div>
                 <div class="pull-left org_title">{{$organization->name}}</div>
@@ -211,12 +211,30 @@
             </div>
         </div>
     </div>
-
+    <form action="/organizations" method="POST" id="organization_form" class="hidden">
+        {!! csrf_field() !!}
+        <input value="" id="post_value" name="post_value">
+        <input value="" id="post_type" name="post_type">
+    </form>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
 <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script type="text/javascript">
+    $('.tag_badge').click(function(){
+        val = $(this).text();
+        $('#post_type').val('tag');
+        $('#post_value').val(val);
+        $('#organization_form').submit();
+    });
+    $('.type_badge').click(function(){
+        val = $(this).text();
+        $('#post_type').val('type');
+        $('#post_value').val(val);
+        $('#organization_form').submit();
+    })
+</script>
 <script>
 $(document).ready(function() {
     $('#example3').DataTable({

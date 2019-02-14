@@ -43,6 +43,28 @@ class OrganizationController extends Controller
         return view('frontend.organizations', compact('types', 'tags','organizations'));
     }
 
+    public function allpost(Request $request)
+    {
+        
+
+        $types = Organization::distinct()->get(['type']);
+        $tags = Tag::all();
+
+        $post_type = $request->input('post_type');
+        $post_value = $request->input('post_value');
+        // var_dump($post_value, $post_type);
+        // exit();
+
+        if($post_type == 'type'){
+            $organizations = Organization::where('type', '=', $post_value)->get();
+        }
+        else{
+            $organizations = Organization::where('tags', 'like', '%'.$post_value.'%')->get();
+        }
+
+        return view('frontend.organizations', compact('types', 'tags','organizations', 'post_value', 'post_type'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -77,8 +99,13 @@ class OrganizationController extends Controller
     public function projects($id)
     {
         $organization = Organization::where('organizations_id','=',$id)->select('organizations.*', 'organizations.description as organization_description')->groupBy('organizations.organization_id')->first();
-        $agency_recordid = Agency::where('magency', '=', $id)->first()->agency_recordid;
         
+        $agency = Agency::where('magency', '=', $id)->first();
+
+        if($agency)
+            $agency_recordid = $agency->agency_recordid;
+        else
+            $agency_recordid = '';
 
         $organization_projects = Project::where('project_managingagency', '=', $agency_recordid)->paginate(20);
 
@@ -217,7 +244,13 @@ class OrganizationController extends Controller
     public function requests($id)
     {
         $organization_type = Organization::where('organizations_id','=',$id)->first()->type;
-        $agency_recordid = Agency::where('magency', '=', $id)->first()->agency_recordid;
+
+        $agency = Agency::where('magency', '=', $id)->first();
+
+        if($agency)
+            $agency_recordid = $agency->agency_recordid;
+        else
+            $agency_recordid = '';
 
         $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->first();    
 

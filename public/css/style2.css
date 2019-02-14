@@ -726,3 +726,5 @@ html, body {
 .bg-disable{
   color: #d2d6de;
 }
+.type_badge{cursor: pointer; }
+.tag_badge{cursor: pointer; }

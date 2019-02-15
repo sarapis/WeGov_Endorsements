@@ -21,6 +21,7 @@ use App\Models\Project;
 use App\Models\Greenbook;
 use App\Models\Organization;
 use App\Models\Tag;
+use App\Models\Endorsement;
 use App\Models\EntityOrganization;
 use App\Services\Numberformat;
 
@@ -188,27 +189,24 @@ class OrganizationController extends Controller
     public function endorsements($id)
     {
         $organization_type = Organization::where('organizations_id','=',$id)->first()->type;
-        $organizations = Agency::orderBy('magencyacro', 'asc')->get();
-
-        $original_organization = Organization::where('organizations_id','=',$id)->first();
-        $original_agency = DB::table('agencies')->where('magency','=',$id)->first();
-
-        // var_dump($organization_services);
-        // exit();
-
+        
         $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'))->groupBy('organizations.organization_id')->first();
 
-        // var_dump($organization->total_project_cost);
-        // exit();
-        $budgetclass = new Numberformat();
+        $politician_organization = DB::table('politician_organizations')->where('organizationid', '=', $id)->first();
 
-        $organization->total_project_cost=$budgetclass->custom_number_format($organization->total_project_cost, 1);
-        $organization->expenses_budgets=$budgetclass->custom_number_format($organization->expenses_budgets, 1);
+        if($politician_organization)
+            $organization_recordid = $politician_organization->recordid;
+        else
+            $organization_recordid = '';
+
+
+        $endorsements = Endorsement::where('organizations', '=', $organization_recordid)->leftjoin('parties', 'endorsements.party','like', DB::raw("concat('%', parties.recordid, '%')"))->select('endorsements.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('endorsements.id')->get();
+       
 
         $entity = EntityOrganization::where('types', '=', $organization_type)->first();
 
 
-        return view('frontend.organization_endorsements', compact('organization', 'organization_expenses', 'organization_map', 'expenses_sum', 'original_organization', 'organization_type', 'entity'));
+        return view('frontend.organization_endorsements', compact('organization', 'organization_type', 'endorsements', 'entity'));
 
     }
 

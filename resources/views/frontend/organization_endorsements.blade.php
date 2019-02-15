@@ -155,52 +155,19 @@
                                                 <th style="text-align: center;">Candidate Name</th>
                                                 <th style="text-align: center;width: 10%;">Party</th>
                                                 <th style="text-align: center;">Office</th>
-                                                <th style="text-align: center;width: 10%;">Log</th>
+                                                <th style="text-align: center;width: 10%;">Date Recorded</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($endorsements as $endorsement)
                                             <tr>
-                                                <td>2017 General</td>
-                                                <td style="text-align: left;">Adams, Eric L</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">Brooklyn Borough President</a></td>
-                                                <td># ID</td>
+                                                <td>{{$endorsement->elections()->first()->name}}</td>
+                                                <td style="text-align: left;">{{$endorsement->candidate()->first()->name}}</td>
+                                                <td>{{$endorsement->parties_name}}</td>
+                                                <td style="text-align: left;">@if(isset($endorsement->offices()->first()->organization))<a href="/organization_{{$endorsement->offices()->first()->organizationid}}"> {{$endorsement->offices()->first()->organization}}</a>@endif</td>
+                                                <td>{{$endorsement->date_recorded}}</td>
                                             </tr>
-                                            <tr>
-                                                <td>2017 Primary</td>
-                                                <td style="text-align: left;">Ampry-Samuel, Allcka</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">City Council District 41</a></td>
-                                                <td># ID</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017 General</td>
-                                                <td style="text-align: left;">Adams, Eric L</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">Brooklyn Borough President</a></td>
-                                                <td># ID</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017 Primary</td>
-                                                <td style="text-align: left;">Ampry-Samuel, Allcka</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">City Council District 41</a></td>
-                                                <td># ID</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017 General</td>
-                                                <td style="text-align: left;">Adams, Eric L</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">Brooklyn Borough President</a></td>
-                                                <td># ID</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017 Primary</td>
-                                                <td style="text-align: left;">Ampry-Samuel, Allcka</td>
-                                                <td></td>
-                                                <td style="text-align: left;"><a href="#">City Council District 41</a></td>
-                                                <td># ID</td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

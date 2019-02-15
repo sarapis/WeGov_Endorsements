@@ -53,7 +53,11 @@ class AdminEndorsementController extends Controller
                 $endorsement->submission_name = isset($record['fields']['Submission Name'])?$record['fields']['Submission Name']:null;
                 $endorsement->submitted_email = isset($record['fields']['Submitted Email'])?$record['fields']['Submitted Email']:null;
                 $endorsement->submitted_phone = isset($record['fields']['Submitted Phone'])?$record['fields']['Submitted Phone']:null; 
-                $endorsement->date_recorded = isset($record['fields']['Date Recorded'])?$record['fields']['Date Recorded']:null;   
+                $endorsement->date_recorded = isset($record['fields']['Date Recorded'])?$record['fields']['Date Recorded']:null;
+                $endorsement->candidate_name = isset($record['fields']['Candidate Name'])? implode(",", $record['fields']['Candidate Name']):null; 
+                $endorsement->party = isset($record['fields']['Party'])? implode(",", $record['fields']['Party']):null;   
+                $endorsement->office = isset($record['fields']['Office'])? implode(",", $record['fields']['Office']):null;  
+                $endorsement->election = isset($record['fields']['Election'])? implode(",", $record['fields']['Election']):null; 
                 $endorsement ->save();
             }
             

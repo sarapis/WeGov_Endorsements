@@ -42,7 +42,7 @@ class AdminElectionController extends Controller
                 $election = new Election();
                 $election->recordid = $record[ 'id' ];
                 $election->name = isset($record['fields']['Name'])?$record['fields']['Name']:null;
-                $election->campaigns = isset($record['fields']['Campaigns'])? implode(",", $record['fields']['Campaigns']):null; 
+                $election->altcampaigns = isset($record['fields']['altCampaigns'])? implode(",", $record['fields']['altCampaigns']):null; 
                 $election->election_day = isset($record['fields']['Election Day'])?$record['fields']['Name']:null;
                 $election->description = isset($record['fields']['Description'])?$record['fields']['Description']:null;
                 $election->field9 = isset($record['fields']['Field 9'])?$record['fields']['Field 9']:null;

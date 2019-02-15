@@ -161,8 +161,8 @@
                                         <tbody>
                                             @foreach($endorsements as $endorsement)
                                             <tr>
-                                                <td>@if($endorsement->elections()->first()) {{$endorsement->elections()->first()->name}} @endif</td>
-                                                <td style="text-align: left; width: 20%;">{{$endorsement->candidate()->first()->name}}</td>
+                                                <td style="width: 10%;">@if($endorsement->elections()->first()) {{$endorsement->elections()->first()->name}} @endif</td>
+                                                <td style="text-align: left; width: 25%;">{{$endorsement->candidate()->first()->name}}</td>
                                                 <td style="width: 30%;">{{$endorsement->parties_name}}</td>
                                                 <td style="text-align: left;">@if(isset($endorsement->offices()->first()->organization))<a href="/organization_{{$endorsement->offices()->first()->organizationid}}"> {{$endorsement->offices()->first()->organization}}</a>@endif</td>
                                                 <td>{{$endorsement->date_recorded}}</td>

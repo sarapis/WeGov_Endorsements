@@ -179,10 +179,11 @@
                                                 
                                                     <ul>
                                                     @foreach($endorsement_ids as $endorsement)
-
-                                                        <li><span>
-                                                            {{$endorsement->organization_name}}</span>
+                                                        @if($endorsement->organization_name)
+                                                        <li>
+                                                            <a href="organization_{{ $endorsement->organizations_id }}"><span>{{ $endorsement->organization_name }}</span></a>
                                                         </li>
+                                                        @endif
                                                     @endforeach
                                                     </ul>
 
@@ -200,7 +201,7 @@
                                                 <h3 class="box-title">{{$politician->name}}</h3>
                                             </div>
                                             <div class="box-body">
-                                                <span class="org_tags">@if($politician->parties_name) {{$politician->parties_name}} @else &nbsp&nbsp @endif</span>
+                                                <span class="org_tags">{{$politician->parties_name}}</span>
                                                 <span class="org_tags">Endorsements : @if($politician->endorsements) {{sizeof(explode(",", $politician->endorsements))}} @else 0  @endif</span>
                                                 @php
                                                     $endorsement_ids = $endorsements->where('candidate_name', $politician->recordid)
@@ -210,10 +211,11 @@
                                                 
                                                     <ul>
                                                     @foreach($endorsement_ids as $endorsement)
-
-                                                        <li><span>
-                                                            {{$endorsement->organization_name}}</span>
+                                                        @if($endorsement->organization_name)
+                                                        <li>
+                                                            <a href="organization_{{ $endorsement->organizations_id }}"><span>{{ $endorsement->organization_name }}</span></a>
                                                         </li>
+                                                        @endif
                                                     @endforeach
                                                     </ul>
 

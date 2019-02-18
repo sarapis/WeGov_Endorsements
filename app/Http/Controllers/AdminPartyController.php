@@ -43,7 +43,8 @@ class AdminPartyController extends Controller
                 $party->recordid = $record[ 'id' ];
                 $party->name = isset($record['fields']['Name'])?$record['fields']['Name']:null;
                 $party->campaigns = isset($record['fields']['Campaigns'])? implode(",", $record['fields']['Campaigns']):null; 
-                $party->politicians = isset($record['fields']['Politicians'])?$record['fields']['Politicians']:null;
+                $party->politicians = isset($record['fields']['Politicians'])? implode(",", $record['fields']['Politicians']):null;
+                $party->Endorsements = isset($record['fields']['Endorsements'])? implode(",", $record['fields']['Endorsements']):null;
                 $party ->save();
             }
             

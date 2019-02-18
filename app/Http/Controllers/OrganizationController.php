@@ -233,7 +233,7 @@ class OrganizationController extends Controller
         $politicians_2013 = Politician::where('seeking_office', 'like', '%'.$organization_recordid.'%')->where('election_year', 'like', '%'.$election_2013_recordid.'%')->leftjoin('parties', 'politicians.with_parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('politicians.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('politicians.id')->get();
 
 
-        $endorsements = Endorsement::leftjoin('politician_organizations', 'endorsements.organizations','like', DB::raw("concat('%', politician_organizations.recordid, '%')"))->select('endorsements.*', DB::raw('group_concat(politician_organizations.organization) as organization_name'))->groupBy('endorsements.id')->get();
+        $endorsements = Endorsement::leftjoin('politician_organizations', 'endorsements.organizations','like', DB::raw("concat('%', politician_organizations.recordid, '%')"))->select('endorsements.*', DB::raw('group_concat(politician_organizations.organization) as organization_name'), DB::raw('group_concat(politician_organizations.organizationid) as organizations_id'))->groupBy('endorsements.id')->get();
 
         // var_dump($endorsements->organization);
         // exit();

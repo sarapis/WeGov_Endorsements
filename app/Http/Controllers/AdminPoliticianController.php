@@ -45,6 +45,10 @@ class AdminPoliticianController extends Controller
                 $politician->name = isset($record['fields']['Name'])?$record['fields']['Name']:null;
                 $politician->campaigns = isset($record['fields']['Campaigns'])? implode(",", $record['fields']['Campaigns']):null;
                 $politician->type = isset($record['fields']['Type'])?$record['fields']['Type']:null;
+                $politician->election_year = isset($record['fields']['Election Year'])? implode(",", $record['fields']['Election Year']):null;
+                $politician->seeking_office = isset($record['fields']['Seeking Office'])? implode(",", $record['fields']['Seeking Office']):null;
+                $politician->with_parties = isset($record['fields']['With Parties'])? implode(",", $record['fields']['With Parties']):null;
+                $politician->endorsements = isset($record['fields']['Endorsements'])? implode(",", $record['fields']['Endorsements']):null;
                 $politician->elected_to = isset($record['fields']['Elected to'])? implode(",", $record['fields']['Elected to']):null; 
                 $politician->general_information = isset($record['fields']['General Information'])? implode(",", $record['fields']['General Information']):null; 
                 $politician->city_positions = isset($record['fields']['City Positions'])? implode(",", $record['fields']['City Positions']):null; 

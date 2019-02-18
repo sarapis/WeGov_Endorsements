@@ -22,6 +22,8 @@ use App\Models\Greenbook;
 use App\Models\Organization;
 use App\Models\Tag;
 use App\Models\Endorsement;
+use App\Models\Politician;
+use App\Models\Election;
 use App\Models\EntityOrganization;
 use App\Services\Numberformat;
 
@@ -37,8 +39,8 @@ class OrganizationController extends Controller
 
       
 
-        $types = Organization::distinct()->get(['type']);
-        $tags = Tag::all();
+        $types = Organization::distinct()->orderBy('type')->get(['type']);
+        $tags = Tag::orderBy('tag_name')->get();
 
         $organizations = Organization::where('type', '=', 'City Agency')->get();
         return view('frontend.organizations', compact('types', 'tags','organizations'));
@@ -48,8 +50,8 @@ class OrganizationController extends Controller
     {
         
 
-        $types = Organization::distinct()->get(['type']);
-        $tags = Tag::all();
+        $types = Organization::distinct()->orderBy('type')->get(['type']);
+        $tags = Tag::orderBy('tag_name')->get();
 
         $post_type = $request->input('post_type');
         $post_value = $request->input('post_value');
@@ -190,7 +192,7 @@ class OrganizationController extends Controller
     {
         $organization_type = Organization::where('organizations_id','=',$id)->first()->type;
         
-        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'))->groupBy('organizations.organization_id')->first();
+        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->groupBy('organizations.organization_id')->first();
 
         $politician_organization = DB::table('politician_organizations')->where('organizationid', '=', $id)->first();
 
@@ -212,30 +214,29 @@ class OrganizationController extends Controller
 
     public function candidates($id)
     {
-        $organization_type = $organization = Organization::where('organizations_id','=',$id)->first()->type;
-        $organizations = Agency::orderBy('magencyacro', 'asc')->get();
+        $organization_type  = Organization::where('organizations_id','=',$id)->first()->type;
+    
+        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->groupBy('organizations.organization_id')->first();
 
-        $original_organization = Organization::where('organizations_id','=',$id)->first();
-        $original_agency = DB::table('agencies')->where('magency','=',$id)->first();
+        $politician_organization = DB::table('politician_organizations')->where('organizationid', '=', $id)->first();
 
-        // var_dump($organization_services);
-        // exit();
+        if($politician_organization)
+            $organization_recordid = $politician_organization->recordid;
+        else
+            $organization_recordid = '';
 
-        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'))->groupBy('organizations.organization_id')->first();
+        $election_2017_recordid = Election::where('name', '=', '2017')->first()->recordid;
+        $election_2013_recordid = Election::where('name', '=', '2013')->first()->recordid;
 
-        // var_dump($organization->total_project_cost);
-        // exit();
-        $budgetclass = new Numberformat();
+        $politicians_2017 = Politician::where('seeking_office', 'like', '%'.$organization_recordid.'%')->where('election_year', 'like', '%'.$election_2017_recordid.'%')->leftjoin('parties', 'politicians.with_parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('politicians.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('politicians.id')->get();
 
-        $organization->total_project_cost=$budgetclass->custom_number_format($organization->total_project_cost, 1);
-        $organization->expenses_budgets=$budgetclass->custom_number_format($organization->expenses_budgets, 1);
+        $politicians_2013 = Politician::where('seeking_office', 'like', '%'.$organization_recordid.'%')->where('election_year', 'like', '%'.$election_2013_recordid.'%')->leftjoin('parties', 'politicians.with_parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('politicians.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('politicians.id')->get();
 
-        $agency_map = Address::where('organizations','=', $original_organization->organization_id)->first();
 
         $entity = EntityOrganization::where('types', '=', $organization_type)->first();
 
 
-        return view('frontend.organization_candidates', compact('organization', 'organization_expenses', 'organization_map', 'expenses_sum', 'original_organization', 'organization_type', 'agency_map', 'entity'));
+        return view('frontend.organization_candidates', compact('organization', 'organization_type', 'entity', 'politicians_2017', 'politicians_2013'));
 
     }
 

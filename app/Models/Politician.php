@@ -11,7 +11,7 @@ class Politician extends Model
 
 
     public function endorsement() {
-        return $this->hasMany('App\Models\Endorsement',  'recordid', 'candidate_name') ;
+        return $this->belongsTo('App\Models\Endorsement',  'candidate_name', 'recordid') ;
     }
 
 }

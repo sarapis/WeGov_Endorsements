@@ -181,7 +181,7 @@
                                                     @foreach($endorsement_ids as $endorsement)
                                                         @if($endorsement->organization_name)
                                                         <li>
-                                                            <a href="organization_{{ $endorsement->organizations_id }}"><span>{{ $endorsement->organization_name }}</span></a>
+                                                            <a href="/organization_{{ $endorsement->organizations_id }}/endorsements"><span>{{ $endorsement->organization_name }}</span></a>
                                                         </li>
                                                         @endif
                                                     @endforeach
@@ -213,7 +213,7 @@
                                                     @foreach($endorsement_ids as $endorsement)
                                                         @if($endorsement->organization_name)
                                                         <li>
-                                                            <a href="organization_{{ $endorsement->organizations_id }}"><span>{{ $endorsement->organization_name }}</span></a>
+                                                            <a href="/organization_{{ $endorsement->organizations_id }}/endorsements"><span>{{ $endorsement->organization_name }}</span></a>
                                                         </li>
                                                         @endif
                                                     @endforeach

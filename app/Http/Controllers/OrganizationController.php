@@ -225,8 +225,8 @@ class OrganizationController extends Controller
         else
             $organization_recordid = '';
 
-        $election_2017_recordid = Election::where('name', '=', '2017')->first()->recordid;
-        $election_2013_recordid = Election::where('name', '=', '2013')->first()->recordid;
+        $election_2017_recordid = Election::where('year', '=', '2017')->first()->recordid;
+        $election_2013_recordid = Election::where('year', '=', '2013')->first()->recordid;
 
         $politicians_2017 = Politician::where('seeking_office', 'like', '%'.$organization_recordid.'%')->where('election_year', 'like', '%'.$election_2017_recordid.'%')->leftjoin('parties', 'politicians.with_parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('politicians.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('politicians.id')->get();
 

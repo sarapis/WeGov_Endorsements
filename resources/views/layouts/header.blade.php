@@ -4,7 +4,7 @@
             <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
             <a id="logo" href="/home" class="navbar-brand">
                 <div class="news-update-box hidden-xs">
-                    <span class="mrm pull-left text-white">beta.mygov.nyc</span>
+                    <span class="mrm pull-left text-white">app.mygov.nyc</span>
                 </div>
             </a>
         </div>

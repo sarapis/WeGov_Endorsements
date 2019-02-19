@@ -18,7 +18,7 @@
                         <div class="org_img">
                             <img src="{{asset('images/image.jpg')}}" class="img-responsive center" >
                         </div>
-                        <a href="/people_{{$people->contact_id}}">{{$people->name}}</a>
+                        <a href="/people_{{$people->id}}">{{$people->first_name}}, {{$people->last_name}}</a>
                         <p>{{$people->office_title}}, {{$people->organization_name}} {{$people->division_name}}
                         @if($people->parent_division!=''), {{$people->parent_division}}@endif @if($people->grand_parent_division!=''), {{$people->grand_parent_division}}@endif
                         @if($people->great_grand_parent_division!=''), {{$people->great_grand_parent_division}}@endif</p>

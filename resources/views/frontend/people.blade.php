@@ -17,8 +17,8 @@
                         <span class="badge bg-blue">Politician </span>
                     </p>
                 </div>
-                <div class="pull-left org_title">Name</div><br/>
-                <div class="pull-left people_title_org">Title, Organization, Division</div>
+                <div class="pull-left org_title">{{ $contact->first_name }}, {{ $contact->last_name }}</div><br/>
+                <div class="pull-left people_title_org">{{ $contact->office_title }}, {{ $contact->organization_name ? $contact->organization_name : '' }} {{ $contact->organization_name && $contact->division_name ? ' +' : '' }} {{ $contact->division_name }}</div>
                 <div class="social_icon">
                     <ul>
                         <li><a href="#" title="Website"><i class="fas fa-globe"></i></a></li>
@@ -57,21 +57,21 @@
                             <div class="box">
                                 <i class="fas fa-map-marker-alt"></i>
                                 <h5>Address</h5>
-                                <p>9411 Peachtree Street <br/>Minot, ND 58701</p>
+                                <p>{{ $contact->address }}<br/>{{ $contact->city }}, {{ $contact->state_province }} {{ $contact->postal_code }}</p>
                             </div>
                         </div>
                         <div class="col-sm-4 address">
                             <div class="box">
                                 <i class="fas fa-phone"></i>
                                 <h5>Phone</h5>
-                                <p>Agency Phone: 123-456-1234 <br/>Division Phone: 123-456-1456</p>
+                                <p>Agency Phone: {{ $contact->agency_primary_phone }} <br/>Division Phone: {{ $contact->division_primary_phone }}</p>
                             </div>
                         </div>
                         <div class="col-sm-4 address">
                             <div class="box">
                                 <i class="fas fa-fax"></i>
                                 <h5>Fax</h5>
-                                <p>Fax Number: 1-888-473-2963</p>
+                                <p>Fax Number: {{ $contact->fax_1 }}</p>
                             </div>
                         </div>
                     </div>
@@ -87,60 +87,24 @@
                                                 <th style="text-align: center;width: 15%;">Election</th>
                                                 <th style="text-align: left;">Office</th>
                                                 <th style="text-align: left;width: 15%;">Party</th>
-                                                <th style="text-align: left;">Wbsite</th>
+                                                <th style="text-align: left;">Website</th>
                                                 <th style="text-align: center;width: 10%;">Outcome</th>
                                                 <th style="text-align: center;width: 10%;">Endorsements</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>2017 General</td>
-                                                <td style="text-align: left;">Mayor</td>
-                                                <td style="text-align: left;">Democrat</td>
-                                                <td style="text-align: left;"><a href="#">skdaskjaslkd.com</a></td>
-                                                <td>Won</td>
-                                                <td>1034</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017 Primary</td>
-                                                <td style="text-align: left;">Mayor</td>
-                                                <td style="text-align: left;">Democrat</td>
-                                                <td style="text-align: left;"><a href="#">skdaskjaslkd.com</a></td>
-                                                <td>Won</td>
-                                                <td>80</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017 General</td>
-                                                <td style="text-align: left;">Mayor</td>
-                                                <td style="text-align: left;">Democrat</td>
-                                                <td style="text-align: left;"><a href="#">skdaskjaslkd.com</a></td>
-                                                <td>Won</td>
-                                                <td>90</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017 Primary</td>
-                                                <td style="text-align: left;">Mayor</td>
-                                                <td style="text-align: left;">Democrat</td>
-                                                <td style="text-align: left;"><a href="#">skdaskjaslkd.com</a></td>
-                                                <td>Won</td>
-                                                <td>1000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017 General</td>
-                                                <td style="text-align: left;">Mayor</td>
-                                                <td style="text-align: left;">Democrat</td>
-                                                <td style="text-align: left;"><a href="#">skdaskjaslkd.com</a></td>
-                                                <td>Won</td>
-                                                <td>985</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2017 Primary</td>
-                                                <td style="text-align: left;">Mayor</td>
-                                                <td style="text-align: left;">Democrat</td>
-                                                <td style="text-align: left;"><a href="#">skdaskjaslkd.com</a></td>
-                                                <td>Won</td>
-                                                <td>1034</td>
-                                            </tr>
+                                            @if(count($campaingn) > 0)
+                                            @foreach($campaingn as $key => $value)
+                                                <tr>
+                                                    <td>{{$value->election}}</td>
+                                                    <td style="text-align: left;">{{$value->office}}</td>
+                                                    <td style="text-align: left;">{{$value->parties}}</td>
+                                                    <td style="text-align: left;"><a href="#"></a></td>
+                                                    <td></td>
+                                                    <td>{{$value->endorsements}}</td>
+                                                </tr>
+                                            @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -223,8 +187,8 @@
                         <div role="tabpanel" class="tab-pane active" id="2017" style="padding: 0px;">
                             <div class="inner_disclosure">
                                 <div class="col-sm-3">
-                                    <ul class="election_head" role="tablist">
-                                        <li class="active"><a href="#general_info" data-toggle="tab">General Info</a></li>
+                                    <ul class="left_dis_menu" role="tablist">
+                                        <li><a class="active" href="#general_info" data-toggle="tab">General Info</a></li>
                                         <li><a href="#city_position" data-toggle="tab">City Positions</a></li>
                                         <li><a href="#other_income" data-toggle="tab">Other Income</a></li>
                                         <li><a href="#debts" data-toggle="tab">Debts</a></li>
@@ -286,20 +250,29 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                            @if(count($realYear[2017]['cityPosition']) > 0)
+                                                            @foreach ($realYear[2017]['cityPosition'] as $key => $value)
                                                                 <tr>
-                                                                    <td>Mayor’s office</td>
-                                                                    <td>office</td>
-                                                                    <td>New York</td>
-                                                                    <td>1</td>
-                                                                    <td>City Hall</td>
-                                                                    <td>212-456-4123</td>
-                                                                    <td>Mayor</td>
-                                                                    <td>Salary</td>
-                                                                    <td>$100,000,00</td>
-                                                                    <td>Answer</td>
+                                                                    <td>{{$value->current_final_agency}}</td>
+                                                                    <td>{{$value->status}}</td>
+                                                                    <td>{{$value->borough}}</td>
+                                                                    <td>{{$value->district}}</td>
+                                                                    <td>{{$value->address}}</td>
+                                                                    <td>{{$value->telephone}}</td>
+                                                                    <td>{{$value->position_title}}</td>
+                                                                    <td>{{$value->nature_of_income}}</td>
+                                                                    <td>{{$value->income}}</td>
+                                                                    <td>{{$value->comments}}</td>
                                                                 </tr>
+                                                                @endforeach
+                                                                @endif
                                                             </tbody>
                                                         </table>
+                                                        @if(count($realYear[2017]['cityPosition']) > 0)
+                                                        <div class="text-right">
+                                                            {{$realYear[2017]['cityPosition']->links()}}
+                                                        </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -320,14 +293,23 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                                @if(count($realYear[2017]['otherIncome']) > 0)
+                                                                @foreach ($realYear[2017]   ['otherIncome'] as $key => $value)
                                                                 <tr>
-                                                                    <td>Source of Income</td>
-                                                                    <td>$100,000,00 - $47,999,99</td>
-                                                                    <td>Rental Income</td>
-                                                                    <td>Moved out on April 15th ,...</td>
+                                                                    <td>{{$value->source_of_income}}</td>
+                                                                    <td>{{$value->amount_of_income}}</td>
+                                                                    <td>{{$value->nature_of_income}}</td>
+                                                                    <td>{{$value->nature_of_income}}</td>
                                                                 </tr>
+                                                                @endforeach
+                                                                @endif
                                                             </tbody>
                                                         </table>
+                                                        @if(count($realYear[2017]['otherIncome']) > 0)
+                                                            <div class="text-right">
+                                                                {{$realYear[2017]['otherIncome']->links()}}
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -351,17 +333,26 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                            @if(count($realYear[2017]['debts']) > 0)
+                                                                @foreach ($realYear[2017]   ['debts'] as $key => $value)
                                                                 <tr>
-                                                                    <td>Wells Fargo</td>
-                                                                    <td>Mortgage</td>
-                                                                    <td></td>
-                                                                    <td>House Residential</td>
-                                                                    <td></td>
-                                                                    <td>$100,000,00 </td>
-                                                                    <td></td>
+                                                                    <td>{{$value->name_of_creditor}}</td>
+                                                                    <td>{{$value->type_of_loan}}</td>
+                                                                    <td>{{$value->other_liability}}</td>
+                                                                    <td>{{$value->nature_of_collateral}}</td>
+                                                                    <td>{{$value->name_of_guarantor}}</td>
+                                                                    <td>{{$value->amount_owed}} </td>
+                                                                    <td>{{$value->comments}}</td>
                                                                 </tr>
+                                                                @endforeach
+                                                                @endif
                                                             </tbody>
                                                         </table>
+                                                        @if(count($realYear[2017]['debts']) > 0)
+                                                            <div class="text-right">
+                                                                {{$realYear[2017]['debts']->links()}}
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -386,18 +377,27 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                            @if(count($realYear[2017]['realEstate']) > 0)
+                                                                @foreach ($realYear[2017]   ['realEstate'] as $key => $value)
                                                                 <tr>
-                                                                    <td>Mayor’s</td>
-                                                                    <td>office</td>
-                                                                    <td>New York</td>
-                                                                    <td>1</td>
-                                                                    <td>June 24</td>
-                                                                    <td>100%</td>
-                                                                    <td>$100,000,00  or more</td>
-                                                                    <td>Answer</td>
+                                                                    <td>{{$value->address}}</td>
+                                                                    <td>{{$value->size_of_property}}</td>
+                                                                    <td>{{$value->nature_of_property}}</td>
+                                                                    <td>{{$value->describe}}</td>
+                                                                    <td>{{$value->acquisition_date}}</td>
+                                                                    <td>{{$value->percentage}}</td>
+                                                                    <td>{{$value->market_value}}</td>
+                                                                    <td>{{$value->comments}}</td>
                                                                 </tr>
+                                                                @endforeach
+                                                                @endif
                                                             </tbody>
                                                         </table>
+                                                        @if(count($realYear[2017]['realEstate']) > 0)
+                                                            <div class="text-right">
+                                                                {{$realYear[2017]['realEstate']->links()}}
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -423,18 +423,27 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                            @if(count($realYear[2017]['securities']) > 0)
+                                                                @foreach ($realYear[2017]   ['securities'] as $key => $value)
                                                                 <tr>
-                                                                    <td>Mayor’s</td>
-                                                                    <td>office</td>
-                                                                    <td>New York</td>
-                                                                    <td>1</td>
-                                                                    <td>June 24</td>
-                                                                    <td>100%</td>
-                                                                    <td>$100,000,00  or more</td>
-                                                                    <td>Answer</td>
+                                                                    <td>{{$value->issuing_entity}}</td>
+                                                                    <td>{{$value->type_of_security}}</td>
+                                                                    <td>{{$value->market_value}}</td>
+                                                                    <td>{{$value->percent}}</td>
+                                                                    <td>{{$value->owns_real_estate}}</td>
+                                                                    <td>{{$value->owns_securities}}</td>
+                                                                    <td>{{$value->held}}</td>
+                                                                    <td>{{$value->comments}}</td>
                                                                 </tr>
+                                                                @endforeach
+                                                                @endif
                                                             </tbody>
                                                         </table>
+                                                        @if(count($realYear[2017]['securities']) > 0)
+                                                            <div class="text-right">
+                                                                {{$realYear[2017]['securities']->links()}}
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -456,15 +465,24 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                            @if(count($realYear[2017]['trust']) > 0)
+                                                                @foreach ($realYear[2017]   ['trust'] as $key => $value)
                                                                 <tr>
-                                                                    <td>Source of Income</td>
-                                                                    <td>Source of Income</td>
-                                                                    <td>Source of Income</td>
-                                                                    <td>Moved out</td>
-                                                                    <td>Moved out</td>
+                                                                    <td>{{$value->identify}}</td>
+                                                                    <td>{{$value->nature_of_beneficial}}</td>
+                                                                    <td>{{$value->value_of_beneficial}}</td>
+                                                                    <td>{{$value->contents}}</td>
+                                                                    <td>{{$value->comments}}</td>
                                                                 </tr>
+                                                                @endforeach
+                                                                @endif
                                                             </tbody>
                                                         </table>
+                                                        @if(count($realYear[2017]['trust']) > 0)
+                                                            <div class="text-right">
+                                                                {{$realYear[2017]['trust']->links()}}
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -487,16 +505,25 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                            @if(count($realYear[2017]['relatives']) > 0)
+                                                                @foreach ($realYear[2017]   ['relatives'] as $key => $value)
                                                                 <tr>
-                                                                    <td>Mayor</td>
-                                                                    <td>Source of Income</td>
-                                                                    <td></td>
-                                                                    <td>Mayor</td>
-                                                                    <td>Moved out</td>
-                                                                    <td>Moved out</td>
+                                                                    <td>{{$value->name}}</td>
+                                                                    <td>{{$value->agency_name}}</td>
+                                                                    <td>{{$value->title}}</td>
+                                                                    <td>{{$value->position}}</td>
+                                                                    <td>{{$value->relationship}}</td>
+                                                                    <td>{{$value->comments}}</td>
                                                                 </tr>
+                                                                @endforeach
+                                                                @endif
                                                             </tbody>
                                                         </table>
+                                                        @if(count($realYear[2017]['relatives']) > 0)
+                                                            <div class="text-right">
+                                                                {{$realYear[2017]['relatives']->links()}}
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>

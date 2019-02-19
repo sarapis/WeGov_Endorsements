@@ -35,7 +35,7 @@
 			<a href="/organizations" class="mdl-layout__tab menu-link @if(mb_substr(Request::segment(1), 0, 12) == 'organization') is-active @endif">Organizations</a>
 			<a href="/projects" class="mdl-layout__tab menu-link @if(Request::is ('projects')) is-active @endif">Projects</a>
 			<a href="/services" class="mdl-layout__tab menu-link @if(Request::is ('services')) is-active @endif">Services</a>
-			<a href="/people" class="mdl-layout__tab menu-link @if(Request::is ('people')) is-active @endif">People</a>
+			<a href="/people" class="mdl-layout__tab menu-link @if(mb_substr(Request::segment(1), 0, 6) == 'people') is-active @endif">People</a>
 			<a href="/elections" class="mdl-layout__tab menu-link @if(Request::is ('elections')) is-active @endif">Elections</a>
 			<a href="/laws" class="mdl-layout__tab menu-link @if(Request::is ('laws')) is-active @endif">Laws</a>
 		</div>
@@ -58,7 +58,7 @@
 			<a href="/organizations" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 12) == 'organization') is-active @endif">Organizations</a>
 			<a href="/projects" class="mdl-layout__tab @if(Request::is ('projects')) is-active @endif">Projects</a>
 			<a href="/services" class="mdl-layout__tab @if(Request::is ('services')) is-active @endif">Services</a>
-			<a href="/people" class="mdl-layout__tab @if(Request::is ('people')) is-active @endif">People</a>
+			<a href="/people" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 6) == 'people') is-active @endif">People</a>
 			<a href="/elections" class="mdl-layout__tab @if(Request::is ('elections')) is-active @endif">Elections</a>
 			<a href="/laws" class="mdl-layout__tab @if(Request::is ('laws')) is-active @endif">Laws</a>
 		</div>

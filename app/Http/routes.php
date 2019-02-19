@@ -80,7 +80,7 @@ Route::post('/projects_search', 'ProjectController@search');
 
 //elections
 Route::get('/elections', 'ElectionController@index');
-Route::get('/elections_detail', 'ElectionController@find');
+Route::get('/elections/{id}', 'ElectionController@find');
 
 //Peoples
 Route::get('/people', 'PeopleController@index');

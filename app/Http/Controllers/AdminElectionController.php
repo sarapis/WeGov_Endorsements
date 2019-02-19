@@ -42,13 +42,14 @@ class AdminElectionController extends Controller
                 $election = new Election();
                 $election->recordid = $record[ 'id' ];
                 $election->name = isset($record['fields']['Name'])?$record['fields']['Name']:null;
-                $election->altcampaigns = isset($record['fields']['altCampaigns'])? implode(",", $record['fields']['altCampaigns']):null; 
-                $election->election_day = isset($record['fields']['Election Day'])?$record['fields']['Name']:null;
-                $election->description = isset($record['fields']['Description'])?$record['fields']['Description']:null;
-                $election->field9 = isset($record['fields']['Field 9'])?$record['fields']['Field 9']:null;
-                $election->offices = isset($record['fields']['Offices'])?$record['fields']['Offices']:null;
-                $election->candidates = isset($record['fields']['Candidates'])?$record['fields']['Candidates']:null;
-                $election->endorsements = isset($record['fields']['Endorsements'])?$record['fields']['Endorsements']:null;
+                $election->campaigns = isset($record['fields']['Campaigns'])? implode(",", $record['fields']['Campaigns']):null; 
+                $election->election_day = isset($record['fields']['Election Day'])?$record['fields']['Election Day']:null;
+                $election->year = isset($record['fields']['Year'])?$record['fields']['Year']:null;
+                $election->description = isset($record['fields']['Description'])?$record['fields']['Description']:null;             
+                $election->offices = isset($record['fields']['Offices'])? implode(",", $record['fields']['Offices']):null; 
+                $election->of_offices = isset($record['fields']['# of Offices'])?$record['fields']['# of Offices']:null;
+                $election->of_candidates = isset($record['fields']['# of Candidates'])?$record['fields']['# of Candidates']:null;
+                $election->of_endorsements = isset($record['fields']['# of Endorsements'])?$record['fields']['# of Endorsements']:null;
                 $election ->save();
             }
             

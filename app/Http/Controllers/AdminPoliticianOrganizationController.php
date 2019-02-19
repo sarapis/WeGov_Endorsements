@@ -53,9 +53,13 @@ class AdminPoliticianOrganizationController extends Controller
 
                 $organization->endorsements_given = isset($record['fields']['Endorsements Given'])? implode(",", $record['fields']['Endorsements Given']):null;
 
-                $organization->endorsements_received = isset($record['fields']['Endorsements Received'])? implode(",", $record['fields']['Endorsements Received']):null;  
+                $organization->campaigns = isset($record['fields']['Campaigns'])? implode(",", $record['fields']['Campaigns']):null;  
 
                 $organization->office_holder = isset($record['fields']['Office Holder'])? implode(",", $record['fields']['Office Holder']):null;  
+
+                $organization->candidates = isset($record['fields']['# Candidates'])?$record['fields']['# Candidates']:null;
+
+                $organization->elections = isset($record['fields']['Elections'])? implode(",", $record['fields']['Elections']):null;  
 
                 $organization ->save();
             }

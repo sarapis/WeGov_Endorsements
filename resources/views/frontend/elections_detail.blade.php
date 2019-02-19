@@ -37,7 +37,7 @@
                                 <tbody>
                                     @foreach($offices as $office)
                                     <tr>
-                                        <td class="people-link">@if(isset($office->office)) {{$office->organization()->first()->organization}} @endif</td>
+                                        <td class="people-link">@if(isset($office->office)) <a href="/organization_{{$office->organization()->first()->organizationid}}">{{$office->organization()->first()->organization}}</a> @endif</td>
                                         <td class="text-right">{{$office->sum_candidates}}</td>
                                         <td class="text-right">{{$office->sum_endorsements}}</td>
                                         <td class="text-center">@if(isset($office->politician)) {{$office->politicians()->first()->name}} @endif</td>

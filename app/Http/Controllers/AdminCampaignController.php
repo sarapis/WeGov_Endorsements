@@ -46,7 +46,9 @@ class AdminCampaignController extends Controller
                 $campaign->politician = isset($record['fields']['Politician'])? implode(",", $record['fields']['Politician']):null; 
                 $campaign->office = isset($record['fields']['Office'])? implode(",", $record['fields']['Office']):null;               
                 $campaign->election = isset($record['fields']['Election'])? implode(",", $record['fields']['Election']):null; 
-                $campaign->parties = isset($record['fields']['Parties'])? implode(",", $record['fields']['Parties']):null;      
+                $campaign->parties = isset($record['fields']['Parties'])? implode(",", $record['fields']['Parties']):null;
+                $campaign->of_endorsements = isset($record['fields']['# of Endorsements'])?$record['fields']['# of Endorsements']:null;
+                $campaign->winner = isset($record['fields']['Winner'])?$record['fields']['Winner']:null;      
                 $campaign ->save();
             }
             

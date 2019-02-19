@@ -13,7 +13,7 @@ use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 
 use App\Logic\User\UserRepository;
 use App\Models\Election;
-
+use App\Models\Campaign;
 
 class ElectionController extends Controller
 {
@@ -29,6 +29,8 @@ class ElectionController extends Controller
     {
         $election = Election::where('year', '=', $id)->first();
 
-        return view('frontend.elections_detail', compact('election'));
+        $offices = Campaign::where('election', '=', $election->recordid)->groupBy('campaigns.office')->select('campaigns.*', DB::raw('sum(campaigns.of_endorsements) as sum_endorsements'), DB::raw('count(campaigns.id) as sum_candidates'))->get();
+
+        return view('frontend.elections_detail', compact('election', 'offices'));
     }
 }

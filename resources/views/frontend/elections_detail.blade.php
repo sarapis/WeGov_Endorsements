@@ -28,21 +28,21 @@
                             <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th style="text-align: left; width: 20%;">Office</th>
+                                        <th style="text-align: left; width: 30%;">Office</th>
                                         <th style="text-align: right;" class="text-left"># of Candidates</th>
-                                        <th style="text-align: right; width: 30%;"># of Endorsements</th>
+                                        <th style="text-align: right;"># of Endorsements</th>
                                         <th style="text-align: center; width: 30%;">Winner</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                    @foreach($offices as $office)
                                     <tr>
-                                        <td class="people-link"></td>
-                                        <td></td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
+                                        <td class="people-link">@if(isset($office->office)) {{$office->organization()->first()->organization}} @endif</td>
+                                        <td class="text-right">{{$office->sum_candidates}}</td>
+                                        <td class="text-right">{{$office->sum_endorsements}}</td>
+                                        <td class="text-center">@if(isset($office->politician)) {{$office->politicians()->first()->name}} @endif</td>
                                     </tr>
-
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

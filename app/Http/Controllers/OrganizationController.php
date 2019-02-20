@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
@@ -25,6 +24,7 @@ use App\Models\Endorsement;
 use App\Models\Politician;
 use App\Models\Election;
 use App\Models\Campaign;
+use App\Models\Requests;
 use App\Models\EntityOrganization;
 use App\Services\Numberformat;
 
@@ -293,7 +293,7 @@ class OrganizationController extends Controller
 
         $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->first();    
 
-        $requests = DB::table('requests')->where('community_board', '=', $agency_recordid)->get();
+        $requests = Requests::where('community_board', '=', $agency_recordid)->get();
 
         $entity = EntityOrganization::where('types', '=', $organization_type)->first();
 

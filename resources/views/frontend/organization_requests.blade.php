@@ -162,10 +162,10 @@
                                             @foreach($requests as $request)
                                             <tr>
                                                 <td style="width: 15%;"><a href="/organization_{{$organization->organizations_id}}/requests/{{$request->tracking_code}}">{{$request->tracking_code}}</a></td>
-                                                <td>{{$request->requested_by}}</td>
+                                                <td><a href="/organization_{{$request->community->magency}}/requests">{{$request->requested_by}}</a></td>
                                                 <td style="width: 5%;">{{$request->priority}}</td>
                                                 <td style="text-align: left;">{{$request->request}}</td>
-                                                <td style="text-align: left;">{{$request->requested_from}}</td>
+                                                <td style="text-align: left;"><a href="/organization_{{$request->responsible->magency}}/requests">{{$request->requested_from}}</a></td>
                                             </tr>
                                             @endforeach
                                         </tbody>

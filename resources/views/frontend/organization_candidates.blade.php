@@ -166,13 +166,13 @@
                                     <div class="col-sm-4">
                                         <div class="box padding_0">
                                             <div class="box-header">
-                                                <a href="/candidates/{{$politician->id}}"><h3 class="box-title">{{$politician->name}}</h3> @if($politician->elected_to) <span class="glyphicon glyphicon-star pull-right box-title"></span> @endif</a>
+                                                <a href="/candidates/{{$politician->politicians()->first()->id}}"><h3 class="box-title">{{$politician->politicians()->first()->name}}</h3> @if($politician->winner) <span class="glyphicon glyphicon-star pull-right box-title"></span> @endif</a>
                                             </div>
                                             <div class="box-body">
-                                                <span class="org_tags">@if($politician->parties_name) {{$politician->parties_name}} @else &nbsp&nbsp @endif</span>
-                                                <span class="org_tags">Endorsements : @if($politician->endorsements) {{sizeof(explode(",", $politician->endorsements))}} @else 0  @endif</span>
+                                                <span class="org_tags">@if($politician->parties) {{$politician->parties_name}} @else &nbsp&nbsp @endif</span>
+                                                <span class="org_tags">Endorsements : {{$politician->of_endorsements}}</span>
                                                 @php
-                                                    $endorsement_ids = $endorsements->where('candidate_name', $politician->recordid)
+                                                    $endorsement_ids = $endorsements->where('campaigns', $politician->recordid)
                                                     
                                                 @endphp
                                                 <div class="candidate_detail">
@@ -198,13 +198,13 @@
                                     <div class="col-sm-4">
                                         <div class="box padding_0">
                                             <div class="box-header">
-                                                <a href="/candidates/{{$politician->id}}"><h3 class="box-title">{{$politician->name}}</h3> @if($politician->elected_to) <span class="glyphicon glyphicon-star pull-right box-title"></span> @endif</a>
+                                                <a href="/candidates/{{$politician->politicians()->first()->id}}"><h3 class="box-title">{{$politician->politicians()->first()->name}}</h3> @if($politician->winner) <span class="glyphicon glyphicon-star pull-right box-title"></span> @endif</a>
                                             </div>
                                             <div class="box-body">
-                                                <span class="org_tags">{{$politician->parties_name}}</span>
-                                                <span class="org_tags">Endorsements : @if($politician->endorsements) {{sizeof(explode(",", $politician->endorsements))}} @else 0  @endif</span>
+                                                <span class="org_tags">@if($politician->parties) {{$politician->parties_name}} @else &nbsp&nbsp @endif</span>
+                                                <span class="org_tags">Endorsements : {{$politician->of_endorsements}}</span>
                                                 @php
-                                                    $endorsement_ids = $endorsements->where('candidate_name', $politician->recordid)
+                                                    $endorsement_ids = $endorsements->where('campaigns', $politician->recordid)
                                                     
                                                 @endphp
                                                 <div class="candidate_detail">

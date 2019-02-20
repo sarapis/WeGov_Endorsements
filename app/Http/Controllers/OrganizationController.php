@@ -226,8 +226,12 @@ class OrganizationController extends Controller
 
         if(isset($politician_organization))
         {
-            $politicians_2017 = Politician::where('seeking_office', 'like', '%'.$politician_organization->recordid.'%')->where('election_year', 'like', '%'.$election_2017_recordid.'%')->leftjoin('parties', 'politicians.with_parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('politicians.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('politicians.id')->orderBy('politicians.elected_to', 'desc')->get();
-            $politicians_2013 = Politician::where('seeking_office', 'like', '%'.$politician_organization->recordid.'%')->where('election_year', 'like', '%'.$election_2013_recordid.'%')->leftjoin('parties', 'politicians.with_parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('politicians.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('politicians.id')->orderBy('politicians.elected_to', 'desc')->get();
+            // $politicians_2017 = Politician::where('seeking_office', 'like', '%'.$politician_organization->recordid.'%')->where('election_year', 'like', '%'.$election_2017_recordid.'%')->leftjoin('parties', 'politicians.with_parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('politicians.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('politicians.id')->orderBy('politicians.elected_to', 'desc')->get();
+
+
+            $politicians_2017 = Campaign::where('office', '=', $politician_organization->recordid)->where('election', '=', $election_2017_recordid)->leftjoin('parties', 'campaigns.parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('campaigns.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('campaigns.id')->orderBy('campaigns.winner', 'desc')->get();
+
+            $politicians_2013 = Campaign::where('office', '=', $politician_organization->recordid)->where('election', '=', $election_2013_recordid)->leftjoin('parties', 'campaigns.parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('campaigns.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('campaigns.id')->orderBy('campaigns.winner', 'desc')->get();
         }
         else{
             $politicians_2017 = [];

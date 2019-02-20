@@ -38,7 +38,7 @@ class PeopleController extends Controller
     public function index()
     {
 
-        $peoples = GreenBook::leftjoin('organizations', 'greenbook.organization_code', '=', 'organizations.organizations_id')->select('greenbook.*', 'organizations.organizations_id as organizations_id', 'organizations.name as organization_name')->orderBy('first_name', 'asc')->paginate(28);
+        $peoples = GreenBook::leftjoin('organizations', 'greenbook.organization_code', '=', 'organizations.organizations_id')->select('greenbook.*', 'organizations.organizations_id as organizations_id', 'organizations.name as organization_name')->orderBy('first_name', 'asc')->paginate(16);
         
        
         return view('frontend.peoples', compact('servicetypes','projecttypes','organizationtypes', 'filter', 'peoples', 'organization', 'organization_type', 'taxonomy_lists', 'organization_lists'));

@@ -10,7 +10,7 @@
         <div class="col-sm-12 organization_right people" id="organization_content">
             <div class="">
                 @foreach ($peoples as $people)
-                <div class="col-people col-md-3 col-xs-6">
+                <div class="col-sm-3 col-md-3 col-xs-6">
                     <div class="org_inner_right inner_people">
                         <div class="org_img">
                             <img src="{{asset('images/image.jpg')}}" class="img-responsive center" >

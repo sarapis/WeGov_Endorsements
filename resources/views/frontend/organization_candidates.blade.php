@@ -166,7 +166,7 @@
                                     <div class="col-sm-4">
                                         <div class="box padding_0">
                                             <div class="box-header">
-                                                <h3 class="box-title">{{$politician->name}}</h3>
+                                                <h3 class="box-title"><a href="/organization_{{$organization->organizations_id}}/candidates/{{$politician->id}}">{{$politician->name}}</a></h3>
                                             </div>
                                             <div class="box-body">
                                                 <span class="org_tags">@if($politician->parties_name) {{$politician->parties_name}} @else &nbsp&nbsp @endif</span>

@@ -24,6 +24,7 @@ use App\Models\Tag;
 use App\Models\Endorsement;
 use App\Models\Politician;
 use App\Models\Election;
+use App\Models\Campaign;
 use App\Models\EntityOrganization;
 use App\Services\Numberformat;
 
@@ -220,17 +221,19 @@ class OrganizationController extends Controller
 
         $politician_organization = DB::table('politician_organizations')->where('organizationid', '=', $id)->first();
 
-        if($politician_organization)
-            $organization_recordid = $politician_organization->recordid;
-        else
-            $organization_recordid = '';
-
         $election_2017_recordid = Election::where('year', '=', '2017')->first()->recordid;
         $election_2013_recordid = Election::where('year', '=', '2013')->first()->recordid;
 
-        $politicians_2017 = Politician::where('seeking_office', 'like', '%'.$organization_recordid.'%')->where('election_year', 'like', '%'.$election_2017_recordid.'%')->leftjoin('parties', 'politicians.with_parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('politicians.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('politicians.id')->get();
+        if(isset($politician_organization))
+        {
+            $politicians_2017 = Politician::where('seeking_office', 'like', '%'.$politician_organization->recordid.'%')->where('election_year', 'like', '%'.$election_2017_recordid.'%')->leftjoin('parties', 'politicians.with_parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('politicians.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('politicians.id')->get();
+            $politicians_2013 = Politician::where('seeking_office', 'like', '%'.$politician_organization->recordid.'%')->where('election_year', 'like', '%'.$election_2013_recordid.'%')->leftjoin('parties', 'politicians.with_parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('politicians.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('politicians.id')->get();
+        }
+        else{
+            $politicians_2017 = [];
+            $politicians_2013 = [];
 
-        $politicians_2013 = Politician::where('seeking_office', 'like', '%'.$organization_recordid.'%')->where('election_year', 'like', '%'.$election_2013_recordid.'%')->leftjoin('parties', 'politicians.with_parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('politicians.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('politicians.id')->get();
+        }
 
 
         $endorsements = Endorsement::leftjoin('politician_organizations', 'endorsements.organizations','like', DB::raw("concat('%', politician_organizations.recordid, '%')"))->select('endorsements.*', DB::raw('group_concat(politician_organizations.organization) as organization_name'), DB::raw('group_concat(politician_organizations.organizationid) as organizations_id'))->groupBy('endorsements.id')->get();
@@ -243,6 +246,37 @@ class OrganizationController extends Controller
 
 
         return view('frontend.organization_candidates', compact('organization', 'organization_type', 'entity', 'politicians_2017', 'politicians_2013', 'endorsements'));
+
+    }
+
+    public function candidates_detail($id, $politician_id)
+    {
+        $organization_type  = Organization::where('organizations_id','=',$id)->first()->type;
+    
+        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->groupBy('organizations.organization_id')->first();
+
+        $politician_organization = DB::table('politician_organizations')->where('organizationid', '=', $id)->first();
+
+        $politician = Politician::find($politician_id);
+
+        if($politician_organization){
+            $campaigns = Campaign::where('office', '=', $politician_organization->recordid)->where('politician', '=', $politician->recordid)->leftjoin('parties', 'campaigns.parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('campaigns.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('campaigns.id')->get();
+             $endorsements = Endorsement::where('candidate_name', '=', $politician->recordid)->get();
+        }
+        else
+            $organization_recordid = '';
+
+        
+       
+
+        // var_dump($endorsements->organization);
+        // exit();
+
+
+        // $entity = EntityOrganization::where('types', '=', $organization_type)->first();
+
+
+        return view('frontend.organization_candidate', compact('organization', 'organization_type', 'endorsements', 'politician', 'campaigns', 'endorsements'));
 
     }
 

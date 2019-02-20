@@ -23,4 +23,9 @@ class Endorsement extends Model
         return $this->BelongsTo('App\Models\PoliticianOrganization', 'office', 'recordid');
     }
 
+    public function organization()
+    {
+        return $this->BelongsTo('App\Models\PoliticianOrganization', 'organizations', 'recordid');
+    }
+
 }

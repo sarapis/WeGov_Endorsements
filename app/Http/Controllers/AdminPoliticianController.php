@@ -49,6 +49,7 @@ class AdminPoliticianController extends Controller
                 $politician->seeking_office = isset($record['fields']['Seeking Office'])? implode(",", $record['fields']['Seeking Office']):null;
                 $politician->with_parties = isset($record['fields']['With Parties'])? implode(",", $record['fields']['With Parties']):null;
                 $politician->endorsements = isset($record['fields']['Endorsements'])? implode(",", $record['fields']['Endorsements']):null;
+                $politician->current_party_affiliations = isset($record['fields']['Current Party Affiliations'])? implode(",", $record['fields']['Current Party Affiliations']):null;
                 $politician->elected_to = isset($record['fields']['Elected to'])? implode(",", $record['fields']['Elected to']):null; 
                 $politician->general_information = isset($record['fields']['General Information'])? implode(",", $record['fields']['General Information']):null; 
                 $politician->city_positions = isset($record['fields']['City Positions'])? implode(",", $record['fields']['City Positions']):null; 
@@ -62,9 +63,13 @@ class AdminPoliticianController extends Controller
                 $politician->email = isset($record['fields']['Email'])?$record['fields']['Email']:null;
                 $politician->phone = isset($record['fields']['Phone'])?$record['fields']['Phone']:null;
 
-                $politician->contact_link = isset($record['fields']['Contact Link'])?$record['fields']['Contact Link']:null;
+                $politician->rss = isset($record['fields']['RSS'])?$record['fields']['RSS']:null;
+                $politician->twitter = isset($record['fields']['Twitter'])?$record['fields']['Twitter']:null;
+                $politician->facebook = isset($record['fields']['Facebook'])?$record['fields']['Facebook']:null;
+                $politician->website = isset($record['fields']['Website'])?$record['fields']['Website']:null;
+                $politician->address = isset($record['fields']['Address'])?$record['fields']['Address']:null;
                 $politician->picture = isset($record['fields']['Picture'])?$record['fields']['Picture']:null;
-                $politician->current_party_affiliations = isset($record['fields']['Current Party Affiliations'])? implode(",", $record['fields']['Current Party Affiliations']):null;             
+                             
                 $politician ->save();
             }
             

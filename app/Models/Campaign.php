@@ -17,4 +17,8 @@ class Campaign extends Model
         return $this->hasMany('App\Models\Politician',  'recordid', 'politician') ;
     }
 
+    public function elections() {
+        return $this->hasMany('App\Models\Election',  'recordid', 'election') ;
+    }
+
 }

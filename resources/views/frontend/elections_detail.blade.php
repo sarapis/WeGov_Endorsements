@@ -40,7 +40,7 @@
                                         <td class="people-link">@if(isset($office->office)) <a href="/organization_{{$office->organization()->first()->organizationid}}/candidates">{{$office->organization()->first()->organization}}</a> @endif</td>
                                         <td class="text-right">{{$office->sum_candidates}}</td>
                                         <td class="text-right">{{$office->sum_endorsements}}</td>
-                                        <td class="text-center">@if(isset($office->politician)) {{$office->politicians()->first()->name}} @endif</td>
+                                        <td class="text-center">@if(isset($office->politician)) <a href="/candidates/{{$office->politicians()->first()->id}}">{{$office->politicians()->first()->name}}</a> @endif</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

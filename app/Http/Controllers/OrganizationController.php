@@ -249,34 +249,17 @@ class OrganizationController extends Controller
 
     }
 
-    public function candidates_detail($id, $politician_id)
+    public function candidates_detail($politician_id)
     {
-        $organization_type  = Organization::where('organizations_id','=',$id)->first()->type;
-    
-        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->groupBy('organizations.organization_id')->first();
-
-        $politician_organization = DB::table('politician_organizations')->where('organizationid', '=', $id)->first();
 
         $politician = Politician::find($politician_id);
 
-        if($politician_organization){
-            $campaigns = Campaign::where('office', '=', $politician_organization->recordid)->where('politician', '=', $politician->recordid)->leftjoin('parties', 'campaigns.parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('campaigns.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('campaigns.id')->get();
-             $endorsements = Endorsement::where('candidate_name', '=', $politician->recordid)->get();
-        }
-        else
-            $organization_recordid = '';
+        $campaigns = Campaign::where('politician', '=', $politician->recordid)->leftjoin('parties', 'campaigns.parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('campaigns.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('campaigns.id')->get();
+        $endorsements = Endorsement::where('candidate_name', '=', $politician->recordid)->get();
 
         
-       
 
-        // var_dump($endorsements->organization);
-        // exit();
-
-
-        // $entity = EntityOrganization::where('types', '=', $organization_type)->first();
-
-
-        return view('frontend.organization_candidate', compact('organization', 'organization_type', 'endorsements', 'politician', 'campaigns', 'endorsements'));
+        return view('frontend.candidate', compact('endorsements', 'politician', 'campaigns', 'endorsements'));
 
     }
 

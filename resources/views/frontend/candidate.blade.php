@@ -98,7 +98,7 @@
                                                 @foreach($campaigns as $campaign)
                                                 <tr>
                                                     <td><a href="/elections/{{$campaign->elections()->first()->year}}">{{$campaign->elections()->first()->name}}</a></td>
-                                                    <td style="text-align: left;"></td>
+                                                    <td style="text-align: left;">@if(isset($campaign->office)) <a href="/organization_{{$campaign->organization()->first()->organizationid}}/candidates">{{$campaign->organization()->first()->organization}}</a> @endif</td>
                                                     <td style="text-align: left;">{{$campaign->parties_name}}</td>
                                                     <td>{{$campaign->of_endorsements}}</td>
                                                 </tr>

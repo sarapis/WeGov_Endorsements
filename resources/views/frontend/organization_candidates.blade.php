@@ -166,7 +166,7 @@
                                     <div class="col-sm-4">
                                         <div class="box padding_0">
                                             <div class="box-header">
-                                                <h3 class="box-title"><a href="/organization_{{$organization->organizations_id}}/candidates/{{$politician->id}}">{{$politician->name}}</a></h3>
+                                                <a href="/organization_{{$organization->organizations_id}}/candidates/{{$politician->id}}"><h3 class="box-title">{{$politician->name}}</h3> @if($politician->elected_to) <span class="glyphicon glyphicon-star pull-right box-title"></span> @endif</a>
                                             </div>
                                             <div class="box-body">
                                                 <span class="org_tags">@if($politician->parties_name) {{$politician->parties_name}} @else &nbsp&nbsp @endif</span>
@@ -198,7 +198,7 @@
                                     <div class="col-sm-4">
                                         <div class="box padding_0">
                                             <div class="box-header">
-                                                <h3 class="box-title">{{$politician->name}}</h3>
+                                                <a href="/organization_{{$organization->organizations_id}}/candidates/{{$politician->id}}"><h3 class="box-title">{{$politician->name}}</h3> @if($politician->elected_to) <span class="glyphicon glyphicon-star pull-right box-title"></span> @endif</a>
                                             </div>
                                             <div class="box-body">
                                                 <span class="org_tags">{{$politician->parties_name}}</span>

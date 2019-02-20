@@ -198,7 +198,7 @@
                                     <div class="col-sm-4">
                                         <div class="box padding_0">
                                             <div class="box-header">
-                                                <a href="/organization_{{$organization->organizations_id}}/candidates/{{$politician->id}}"><h3 class="box-title">{{$politician->name}}</h3> @if($politician->elected_to) <span class="glyphicon glyphicon-star pull-right box-title"></span> @endif</a>
+                                                <a href="/candidates/{{$politician->id}}"><h3 class="box-title">{{$politician->name}}</h3> @if($politician->elected_to) <span class="glyphicon glyphicon-star pull-right box-title"></span> @endif</a>
                                             </div>
                                             <div class="box-body">
                                                 <span class="org_tags">{{$politician->parties_name}}</span>

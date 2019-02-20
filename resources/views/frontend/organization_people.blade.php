@@ -26,7 +26,7 @@
                     </p>
                 </div> -->
                 <div class="pull-left org_title">{{$people->first_name}} {{$people->m_i}} {{$people->last_name}}</div><br/>
-                <div class="pull-left people_title_org">{{$people->office_title}}, {{$people->division_name}}<br/><a href="/organization_{{$organization->organizations_id}}">{{$organization->name}}</a></div>
+                <div class="pull-left people_title_org">{{$people->office_title}} @if($people->division_name) , {{$people->division_name}} @endif<br/><a href="/organization_{{$organization->organizations_id}}">{{$organization->name}}</a></div>
                 <div class="social_icon">
                     <ul>
                         <li>@if($organization->website)

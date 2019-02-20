@@ -7,18 +7,15 @@
         <div class="container">
           <button type="button" class="btn btn-raised btn-block btn-primary btn-filter">Filter</button>
         </div>
-        <div class="col-sm-3 side-filter">
-            @include('layouts.sidebar')
-        </div>
-        <div class="col-sm-9 organization_right people" id="organization_content">
+        <div class="col-sm-12 organization_right people" id="organization_content">
             <div class="">
                 @foreach ($peoples as $people)
-                <div class="col-sm-4 col-md-4 col-xs-6">
+                <div class="col-people col-md-3 col-xs-6">
                     <div class="org_inner_right inner_people">
                         <div class="org_img">
                             <img src="{{asset('images/image.jpg')}}" class="img-responsive center" >
                         </div>
-                        <a href="/people_{{$people->id}}">{{$people->first_name}} {{$people->last_name}}</a>
+                        <a href="/people/{{$people->id}}">{{$people->first_name}} {{$people->last_name}}</a>
                         <p>{{$people->office_title}}, {{$people->organization_name}} {{$people->division_name}}
                         @if($people->parent_division!=''), {{$people->parent_division}}@endif @if($people->grand_parent_division!=''), {{$people->grand_parent_division}}@endif
                         @if($people->great_grand_parent_division!=''), {{$people->great_grand_parent_division}}@endif</p>

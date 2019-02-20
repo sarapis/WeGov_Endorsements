@@ -85,9 +85,8 @@ Route::get('/elections/{id}', 'ElectionController@find');
 
 //Peoples
 Route::get('/people', 'PeopleController@index');
-Route::get('/people_{id}', 'PeopleController@find');
 Route::get('/people/disclosures', 'PeopleController@disclosures');
-Route::get('/organization_{id}/people/{people_id}', 'PeopleController@organization_find');
+Route::get('/people/{people_id}', 'PeopleController@find');
 
 Route::get('/organizationtype_{id}', 'PeopleController@organizationtypefind');
 

@@ -160,7 +160,7 @@
                                 <tbody>
                                     @foreach($organization_peoples as $organization_people)
                                     <tr>
-                                        <td class="people-link" id="{{$organization_people->contact_id}}"><a href="/organization_{{$organization->organizations_id}}/people/{{$organization_people->id}}">{{$organization_people->first_name}} {{$organization_people->last_name}}</a></td>
+                                        <td class="people-link" id="{{$organization_people->contact_id}}"><a href="/people/{{$organization_people->id}}">{{$organization_people->first_name}} {{$organization_people->last_name}}</a></td>
                                         <td>{{$organization_people->office_title}}</td>
                                         <td class="text-center">{{$organization_people->division_name}}
                                         @if($organization_people->parent_division!=''), {{$organization_people->parent_division}}@endif @if($organization_people->grand_parent_division!=''), {{$organization_people->grand_parent_division}}@endif

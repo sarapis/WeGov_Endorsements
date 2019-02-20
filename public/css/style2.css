@@ -728,3 +728,11 @@ html, body {
 }
 .type_badge{cursor: pointer; }
 .tag_badge{cursor: pointer; }
+.col-people{
+    width: 20%;
+}
+@media screen and (max-width: 767px)
+{
+  .col-people{
+    width: 40%;
+}

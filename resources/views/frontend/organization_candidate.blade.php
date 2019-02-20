@@ -135,8 +135,8 @@
                                         <thead>
                                             <tr>
                                                 <th style="text-align: center;width: 15%;">Election</th>
-                                                <th style="text-align: left;">Office</th>
-                                                <th style="text-align: left;">Organization</th>
+                                                <th style="text-align: left;width: 305%;">Office</th>
+                                                <th style="text-align: left;width: 30%;">Organization</th>
                                                 <th style="text-align: left;">URL</th>
                                                 <th style="text-align: center;">Recorded Date</t h>
                                             </tr>
@@ -145,8 +145,8 @@
                                             @foreach($endorsements as $endorsement)
                                             <tr>
                                                 <td>{{$endorsement->elections()->first()->name}}</td>
-                                                <td style="text-align: left;">{{$endorsement->offices()->first()->name}}</td>
-                                                <td style="text-align: left;">@if(isset($endorsement->organizations)) {{$endorsement->organization()->first()->name}} @endif</td>
+                                                <td style="text-align: left;">{{$endorsement->offices()->first()->organization}}</td>
+                                                <td style="text-align: left;">@if(isset($endorsement->organizations)) {{$endorsement->organization()->first()->organization}} @endif</td>
                                                 <td style="text-align: left;"><a href="{{$endorsement->link}}"></a></td>
                                                 <td>{{$endorsement->date_created}}</td>
                                             </tr>

@@ -20,12 +20,12 @@ class Endorsement extends Model
 
     public function offices()
     {
-        return $this->BelongsTo('App\Models\PoliticianOrganization', 'office', 'recordid');
+        return $this->hasMany('App\Models\PoliticianOrganization',  'recordid', 'office');
     }
 
     public function organization()
     {
-        return $this->BelongsTo('App\Models\PoliticianOrganization', 'organizations', 'recordid');
+        return $this->hasMany('App\Models\PoliticianOrganization', 'recordid', 'organizations');
     }
 
 }

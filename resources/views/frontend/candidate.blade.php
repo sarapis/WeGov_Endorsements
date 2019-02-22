@@ -175,18 +175,36 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th style="text-align: left;">Question text</th>
-                                                                    <th style="width: 20%;">Answer</th>
+                                                                    <th  class="text-center" style="width: 20%;">Answer</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td style="text-align: left;">Question</td>
-                                                                    <td>Answer</td>
+                                                                    <td style="text-align: left;">Report For</td>
+                                                                    <td class="text-center">{{$politician->name}}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="text-align: left;">Blabh blah blah</td>
-                                                                    <td>Yes</td>
+                                                                    <td style="text-align: left;">Reporting Year</td>
+                                                                    <td class="text-center">@if(isset($information->reporting_year)) {{$information->reporting_year}} @endif</td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <td style="text-align: left;">Is Termination Report</td>
+                                                                    <td class="text-center">@if(isset($information->termination_report)) {{$information->termination_report}} @endif</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="text-align: left;">Termination Date</td>
+                                                                    <td class="text-center">@if(isset($information->termination_date)) {{$information->termination_date}} @endif</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="text-align: left;">Reason for Filing</td>
+                                                                    <td class="text-center">@if(isset($information->reason_for_filing)) {{$information->reason_for_filing}} @endif</td>
+                                                                </tr>
+                                                                @foreach($questions as $question)
+                                                                <tr>
+                                                                    <td style="text-align: left;">{{$question->notes}}</td>
+                                                                    <td class="text-center">@if(isset($information['info'.$question->question_id])) {{$information['info'.$question->question_id]}} @endif</td>
+                                                                </tr>
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -215,20 +233,22 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                      
+                                                                @foreach($positions as $position)
                                                                 <tr>
-                                                                   
-                                                                    <td></td>
-                                                                    
+                                                                    <td>{{$position->current_final_agency}}</td>
+                                                                    <td>{{$position->status}}</td>
+                                                                    <td>{{$position->borough}}</td>
+                                                                    <td>{{$position->district}}</td>
+                                                                    <td>{{$position->address}}</td>
+                                                                    <td>{{$position->telephone}}</td>
+                                                                    <td>{{$position->position_title}}</td>
+                                                                    <td>{{$position->nature_of_income}}</td>
+                                                                    <td>{{$position->income}}</td>
+                                                                    <td>{{$position->comments}}</td>
                                                                 </tr>
-                                                              
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
-                                                       
-                                                        <div class="text-right">
-                                                         
-                                                        </div>
-                                                       
                                                     </div>
                                                 </div>
                                             </div>
@@ -249,21 +269,16 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                               
+                                                                @foreach($incomes as $income)
                                                                 <tr>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
+                                                                    <td>{{$income->source_of_income}}</td>
+                                                                    <td>{{$income->amount_of_income}}</td>
+                                                                    <td>{{$income->nature_of_income}}</td>
+                                                                    <td>{{$income->comments}}</td>
                                                                 </tr>
-                                                               
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
-                                                     
-                                                            <div class="text-right">
-                                                              
-                                                            </div>
-                                                    
                                                     </div>
                                                 </div>
                                             </div>
@@ -287,19 +302,19 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                    
+                                                                @foreach($depts as $dept)
                                                                 <tr>
-                                                                    <td></td>
-                                                                  
+                                                                    <td>{{$dept->name_of_creditor}}</td>
+                                                                    <td>{{$dept->type_of_loan}}</td>
+                                                                    <td>{{$dept->other_liability}}</td>
+                                                                    <td>{{$dept->nature_of_collateral}}</td>
+                                                                    <td>{{$dept->number_of_guarantor}}</td>
+                                                                    <td>{{$dept->amount_owed}}</td>
+                                                                    <td>{{$dept->comments}}</td>
                                                                 </tr>
-                                                     
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
-                                                       
-                                                            <div class="text-right">
-                                                             
-                                                            </div>
-                                                   
                                                     </div>
                                                 </div>
                                             </div>
@@ -324,12 +339,18 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                   
+                                                                @foreach($realestates as $realestate)
                                                                 <tr>
-                                                                    <td></td>
-                                                                  
+                                                                    <td>{{$realestate->address}}</td>
+                                                                    <td>{{$realestate->size_of_property}}</td>
+                                                                    <td>{{$realestate->nature_of_property}}</td>
+                                                                    <td>{{$realestate->describe}}</td>
+                                                                    <td>{{$realestate->acquisition_date}}</td>
+                                                                    <td>{{$realestate->percentage}}</td>
+                                                                    <td>{{$realestate->market_value}}</td>
+                                                                    <td>{{$realestate->comments}}</td>
                                                                 </tr>
-                                                         
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
                                                        
@@ -362,12 +383,18 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                        
+                                                                @foreach($securities as $security)
                                                                 <tr>
-                                                                    <td></td>
-                                                               
+                                                                    <td>{{$security->issuing_entity}}</td>
+                                                                    <td>{{$security->type_of_security}}</td>
+                                                                    <td>{{$security->market_value}}</td>
+                                                                    <td>{{$security->percent}}</td>
+                                                                    <td>{{$security->owns_real_estate}}</td>
+                                                                    <td>{{$security->owns_securites}}</td>
+                                                                    <td>{{$security->held}}</td>
+                                                                    <td>{{$security->comments}}</td>
                                                                 </tr>
-                                                               
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
                                                         
@@ -392,12 +419,15 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                         
+                                                                @foreach($trusts as $trust)
                                                                 <tr>
-                                                                    <td></td>
-                                                                   
+                                                                    <td>{{$trust->identify}}</td>
+                                                                    <td>{{$trust->nature_of_beneficial}}</td>
+                                                                    <td>{{$trust->value_of_beneficial}}</td>  
+                                                                    <td>{{$trust->contents}}</td>  
+                                                                    <td>{{$trust->comments}}</td>  
                                                                 </tr>
-                                                              
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
                                                        
@@ -427,11 +457,16 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                           
+                                                                @foreach($relatives as $relative)
                                                                 <tr>
-                                                                    <td></td>
-                                                                    
-                                                               
+                                                                    <td>{{$relative->name}}</td>
+                                                                    <td>{{$relative->agency_name}}</td>
+                                                                    <td>{{$relative->title}}</td>
+                                                                    <td>{{$relative->position}}</td>
+                                                                    <td>{{$relative->relationship}}</td>
+                                                                    <td>{{$relative->comments}}</td>
+                                                                </tr>   
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
                                                       
@@ -499,11 +534,9 @@
 $(document).ready(function() {
     $('#example1').DataTable();
     $('#example2').DataTable();
-    $('#example3').DataTable();
+    // $('#example3').DataTable();
 } );
 </script>
-
-@include('layouts.script')
 @endsection
 
 

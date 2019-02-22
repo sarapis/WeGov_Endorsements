@@ -26,6 +26,15 @@ use App\Models\Election;
 use App\Models\Campaign;
 use App\Models\Requests;
 use App\Models\EntityOrganization;
+use App\Models\Information;
+use App\Models\Question;
+use App\Models\Position;
+use App\Models\Noncity_income;
+use App\Models\Money;
+use App\Models\Realestate;
+use App\Models\Securities;
+use App\Models\Trust;
+use App\Models\Relatives;
 use App\Services\Numberformat;
 
 class OrganizationController extends Controller
@@ -261,9 +270,30 @@ class OrganizationController extends Controller
         $campaigns = Campaign::where('politician', '=', $politician->recordid)->leftjoin('parties', 'campaigns.parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('campaigns.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('campaigns.id')->get();
         $endorsements = Endorsement::where('candidate_name', '=', $politician->recordid)->get();
 
-        
+        $information = Information::where('politician', '=', $politician->recordid)->first();
 
-        return view('frontend.candidate', compact('endorsements', 'politician', 'campaigns', 'endorsements'));
+        
+        if($information == Null){
+            $information =[];
+        }
+
+        $questions = Question::orderBy('question_id', 'asc')->get();
+
+        $positions = Position::where('politician', '=', $politician->recordid)->get();
+
+        $incomes = Noncity_income::where('politician', '=', $politician->recordid)->get();
+
+        $depts = Money::where('politician', '=', $politician->recordid)->get();
+
+        $realestates = Realestate::where('politician', '=', $politician->recordid)->get();
+
+        $securities = Securities::where('politician', '=', $politician->recordid)->get();
+
+        $trusts = Trust::where('politician', '=', $politician->recordid)->get();
+
+        $relatives = Relatives::where('politician', '=', $politician->recordid)->get();
+
+        return view('frontend.candidate', compact('endorsements', 'politician', 'campaigns', 'endorsements', 'information', 'questions', 'positions', 'incomes', 'depts', 'realestates', 'securities', 'trusts', 'relatives'));
 
     }
 

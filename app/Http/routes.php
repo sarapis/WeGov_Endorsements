@@ -296,6 +296,7 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::get('/sync_securities', ['uses' => 'AdminSecuritiesController@airtable']);
 	Route::get('/sync_trust', ['uses' => 'AdminTrustController@airtable']);
 	Route::get('/sync_relatives', ['uses' => 'AdminRelativesController@airtable']);
+	Route::get('/sync_questions', ['uses' => 'AdminQuestionController@airtable']);
 
 
 

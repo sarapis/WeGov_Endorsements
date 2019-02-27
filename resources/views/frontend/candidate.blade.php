@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Agencies and Departments')
+@section('title', 'Candidate')
 @section('content')
 
 <div class="demo-container mdl-grid inner_organization people_content_inner">
@@ -145,15 +145,14 @@
                 <div role="tabpanel" class="tab-pane" id="people_disclouser">
                     <ul class="nav nav-tabs disclosure_year" role="tablist">
                         <li class="active"><a href="#2017" data-toggle="tab" >2017</a></li>
-                        <li><a href="#2016" data-toggle="tab" >2016</a></li>
-                        <li><a href="#2015" data-toggle="tab" >2015</a></li>
+                        <li><a href="#2016" data-toggle="tab">2016</a></li>
                     </ul>
                     <div class="tab-content people_tabpanel">
                         <div role="tabpanel" class="tab-pane active" id="2017" style="padding: 0px;">
                             <div class="inner_disclosure">
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <ul class="left_dis_menu" role="tablist">
-                                        <li><a class="active" href="#general_info" data-toggle="tab">General Info</a></li>
+                                        <li class="active"><a href="#general_info" data-toggle="tab">General Info</a></li>
                                         <li><a href="#city_position" data-toggle="tab">City Positions</a></li>
                                         <li><a href="#other_income" data-toggle="tab">Other Income</a></li>
                                         <li><a href="#debts" data-toggle="tab">Debts</a></li>
@@ -163,7 +162,7 @@
                                         <li><a href="#relatives" data-toggle="tab">Relatives</a></li>
                                     </ul>
                                 </div>
-                                <div class="col-sm-9">
+                                <div class="col-sm-10">
                                     <div class="row inner_dis_row">
                                         <div class="tab-content all_year_list">
                                             <!-- start general info -->
@@ -175,7 +174,7 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th style="text-align: left;">Question text</th>
-                                                                    <th  class="text-center" style="width: 20%;">Answer</th>
+                                                                    <th  class="text-center" style="width: 10%;">Answer</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -185,24 +184,24 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td style="text-align: left;">Reporting Year</td>
-                                                                    <td class="text-center">@if(isset($information->reporting_year)) {{$information->reporting_year}} @endif</td>
+                                                                    <td class="text-center">@if(isset($information_2017->reporting_year)) {{$information_2017->reporting_year}} @endif</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td style="text-align: left;">Is Termination Report</td>
-                                                                    <td class="text-center">@if(isset($information->termination_report)) {{$information->termination_report}} @endif</td>
+                                                                    <td class="text-center">@if(isset($information_2017->termination_report)) {{$information_2017->termination_report}} @endif</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td style="text-align: left;">Termination Date</td>
-                                                                    <td class="text-center">@if(isset($information->termination_date)) {{$information->termination_date}} @endif</td>
+                                                                    <td class="text-center">@if(isset($information_2017->termination_date)) {{$information_2017->termination_date}} @endif</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td style="text-align: left;">Reason for Filing</td>
-                                                                    <td class="text-center">@if(isset($information->reason_for_filing)) {{$information->reason_for_filing}} @endif</td>
+                                                                    <td class="text-center">@if(isset($information_2017->reason_for_filing)) {{$information_2017->reason_for_filing}} @endif</td>
                                                                 </tr>
                                                                 @foreach($questions as $question)
                                                                 <tr>
                                                                     <td style="text-align: left;">{{$question->notes}}</td>
-                                                                    <td class="text-center">@if(isset($information['info'.$question->question_id])) {{$information['info'.$question->question_id]}} @endif</td>
+                                                                    <td class="text-center">@if(isset($information_2017['info'.$question->question_id])) {{$information_2017['info'.$question->question_id]}} @endif</td>
                                                                 </tr>
                                                                 @endforeach
                                                             </tbody>
@@ -233,7 +232,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach($positions as $position)
+                                                                @foreach($position_2017 as $position)
                                                                 <tr>
                                                                     <td>{{$position->current_final_agency}}</td>
                                                                     <td>{{$position->status}}</td>
@@ -254,8 +253,8 @@
                                             </div>
                                              <!-- end city position -->
 
-                                             <!-- start Other Incomes -->
-                                             <div role="tabpanel" class="tab-pane" id="other_income">
+                                            <!-- start Other Incomes -->
+                                            <div role="tabpanel" class="tab-pane" id="other_income">
                                                 <div class="right_dis_table">
                                                     <h6>Other Income</h6>
                                                     <div class="padding_0 endosment_table table-responsive">
@@ -269,7 +268,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach($incomes as $income)
+                                                                @foreach($incomes_2017 as $income)
                                                                 <tr>
                                                                     <td>{{$income->source_of_income}}</td>
                                                                     <td>{{$income->amount_of_income}}</td>
@@ -282,10 +281,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                             <!-- end Other Incomes -->
+                                            <!-- end Other Incomes -->
 
-                                             <!-- start Debts -->
-                                             <div role="tabpanel" class="tab-pane" id="debts">
+                                            <!-- start Debts -->
+                                            <div role="tabpanel" class="tab-pane" id="debts">
                                                 <div class="right_dis_table">
                                                     <h6>Debts</h6>
                                                     <div class="padding_0 endosment_table table-responsive">
@@ -302,7 +301,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach($depts as $dept)
+                                                                @foreach($depts_2017 as $dept)
                                                                 <tr>
                                                                     <td>{{$dept->name_of_creditor}}</td>
                                                                     <td>{{$dept->type_of_loan}}</td>
@@ -318,10 +317,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                             <!-- end Debts -->
+                                            <!-- end Debts -->
 
-                                             <!-- start Real Estate -->
-                                             <div role="tabpanel" class="tab-pane" id="real_estate">
+                                            <!-- start Real Estate -->
+                                            <div role="tabpanel" class="tab-pane" id="real_estate">
                                                 <div class="right_dis_table">
                                                     <h6>Real Estate</h6>
                                                     <div class="padding_0 endosment_table table-responsive">
@@ -339,7 +338,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach($realestates as $realestate)
+                                                                @foreach($realestates_2017 as $realestate)
                                                                 <tr>
                                                                     <td>{{$realestate->address}}</td>
                                                                     <td>{{$realestate->size_of_property}}</td>
@@ -353,16 +352,11 @@
                                                                 @endforeach
                                                             </tbody>
                                                         </table>
-                                                       
-                                                            <div class="text-right">
-                                                            
-                                                            </div>
                                                       
                                                     </div>
                                                 </div>
                                             </div>
                                              <!-- end Real Estate -->
-
 
                                             <!-- start Securities -->
                                             <div role="tabpanel" class="tab-pane" id="securities">
@@ -383,7 +377,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach($securities as $security)
+                                                                @foreach($securities_2017 as $security)
                                                                 <tr>
                                                                     <td>{{$security->issuing_entity}}</td>
                                                                     <td>{{$security->type_of_security}}</td>
@@ -419,7 +413,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach($trusts as $trust)
+                                                                @foreach($trusts_2017 as $trust)
                                                                 <tr>
                                                                     <td>{{$trust->identify}}</td>
                                                                     <td>{{$trust->nature_of_beneficial}}</td>
@@ -430,18 +424,14 @@
                                                                 @endforeach
                                                             </tbody>
                                                         </table>
-                                                       
-                                                            <div class="text-right">
-                                                             
-                                                            </div>
                                                       
                                                     </div>
                                                 </div>
                                             </div>
-                                             <!-- end Trusts -->
+                                            <!-- end Trusts -->
 
-                                             <!-- start Relatives -->
-                                             <div role="tabpanel" class="tab-pane" id="relatives">
+                                            <!-- start Relatives -->
+                                            <div role="tabpanel" class="tab-pane" id="relatives">
                                                 <div class="right_dis_table">
                                                     <h6>Relatives</h6>
                                                     <div class="padding_0 endosment_table table-responsive">
@@ -457,7 +447,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @foreach($relatives as $relative)
+                                                                @foreach($relatives_2017 as $relative)
                                                                 <tr>
                                                                     <td>{{$relative->name}}</td>
                                                                     <td>{{$relative->agency_name}}</td>
@@ -469,11 +459,6 @@
                                                                 @endforeach
                                                             </tbody>
                                                         </table>
-                                                      
-                                                            <div class="text-right">
-                                                              
-                                                            </div>
-                                                       
                                                     </div>
                                                 </div>
                                             </div>
@@ -485,11 +470,23 @@
                         </div>
                         <div role="tabpanel" class="tab-pane" id="2016" style="padding: 0px;">
                             <div class="inner_disclosure">
-                                <div class="col-sm-12">
+                                <div class="col-sm-2">
+                                    <ul class="left_dis_menu" role="tablist">
+                                        <li class="active"><a href="#general_info_2016" data-toggle="tab">General Info</a></li>
+                                        <li><a href="#city_position_2016" data-toggle="tab">City Positions</a></li>
+                                        <li><a href="#other_income_2016" data-toggle="tab">Other Income</a></li>
+                                        <li><a href="#debts_2016" data-toggle="tab">Debts</a></li>
+                                        <li><a href="#real_estate_2016" data-toggle="tab">Real Estate</a></li>
+                                        <li><a href="#securities_2016" data-toggle="tab">Securities</a></li>
+                                        <li><a href="#trust_2016" data-toggle="tab">Trust</a></li>
+                                        <li><a href="#relatives_2016" data-toggle="tab">Relatives</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-10">
                                     <div class="row inner_dis_row">
                                         <div class="tab-content all_year_list">
                                             <!-- start general info -->
-                                            <div role="tabpanel" class="tab-pane active" id="general_info">
+                                            <div role="tabpanel" class="tab-pane active" id="general_info_2016">
                                                 <div class="right_dis_table">
                                                     <h6>General Info</h6>
                                                     <div class="padding_0 endosment_table table-responsive">
@@ -497,24 +494,297 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th style="text-align: left;">Question text</th>
-                                                                    <th style="width: 20%;">Answer</th>
+                                                                    <th  class="text-center" style="width: 10%;">Answer</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td style="text-align: left;">Question</td>
-                                                                    <td>Answer</td>
+                                                                    <td style="text-align: left;">Report For</td>
+                                                                    <td class="text-center">{{$politician->name}}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td style="text-align: left;">Blabh blah blah</td>
-                                                                    <td>Yes</td>
+                                                                    <td style="text-align: left;">Reporting Year</td>
+                                                                    <td class="text-center">@if(isset($information_2016->reporting_year)) {{$information_2016->reporting_year}} @endif</td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <td style="text-align: left;">Is Termination Report</td>
+                                                                    <td class="text-center">@if(isset($information_2016->termination_report)) {{$information_2016->termination_report}} @endif</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="text-align: left;">Termination Date</td>
+                                                                    <td class="text-center">@if(isset($information_2016->termination_date)) {{$information_2016->termination_date}} @endif</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="text-align: left;">Reason for Filing</td>
+                                                                    <td class="text-center">@if(isset($information_2016->reason_for_filing)) {{$information_2016->reason_for_filing}} @endif</td>
+                                                                </tr>
+                                                                @foreach($questions as $question)
+                                                                <tr>
+                                                                    <td style="text-align: left;">{{$question->notes}}</td>
+                                                                    <td class="text-center">@if(isset($information_2016['info'.$question->question_id])) {{$information_2016['info'.$question->question_id]}} @endif</td>
+                                                                </tr>
+                                                                @endforeach
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!--end general info -->
+
+                                            <!-- start city position -->
+                                            <div role="tabpanel" class="tab-pane" id="city_position_2016">
+                                                <div class="right_dis_table">
+                                                    <h6>City Positions</h6>
+                                                    <div class="padding_0 endosment_table table-responsive">
+                                                        <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr style="vertical-align: middle;">
+                                                                    <th style="vertical-align: middle;">Current/Final Agency</th>
+                                                                    <th style="vertical-align: middle;">Status</th>
+                                                                    <th style="vertical-align: middle;">Borough</th>
+                                                                    <th style="vertical-align: middle;">District</th>
+                                                                    <th style="vertical-align: middle;">Address</th>
+                                                                    <th style="vertical-align: middle;">Telephone</th>
+                                                                    <th style="vertical-align: middle;">Position Title</th>
+                                                                    <th style="vertical-align: middle;">Nature</th>
+                                                                    <th style="vertical-align: middle;">Income</th>
+                                                                    <th style="vertical-align: middle;">Comments</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($position_2016 as $position)
+                                                                <tr>
+                                                                    <td>{{$position->current_final_agency}}</td>
+                                                                    <td>{{$position->status}}</td>
+                                                                    <td>{{$position->borough}}</td>
+                                                                    <td>{{$position->district}}</td>
+                                                                    <td>{{$position->address}}</td>
+                                                                    <td>{{$position->telephone}}</td>
+                                                                    <td>{{$position->position_title}}</td>
+                                                                    <td>{{$position->nature_of_income}}</td>
+                                                                    <td>{{$position->income}}</td>
+                                                                    <td>{{$position->comments}}</td>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <!-- end city position -->
+
+                                            <!-- start Other Incomes -->
+                                            <div role="tabpanel" class="tab-pane" id="other_income_2016">
+                                                <div class="right_dis_table">
+                                                    <h6>Other Income</h6>
+                                                    <div class="padding_0 endosment_table table-responsive">
+                                                        <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr style="vertical-align: middle;">
+                                                                    <th style="vertical-align: middle;">Source of Income</th>
+                                                                    <th style="vertical-align: middle;">Amount of Income</th>
+                                                                    <th style="vertical-align: middle;">Nature of Income</th>
+                                                                    <th style="vertical-align: middle;">Comments</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($incomes_2016 as $income)
+                                                                <tr>
+                                                                    <td>{{$income->source_of_income}}</td>
+                                                                    <td>{{$income->amount_of_income}}</td>
+                                                                    <td>{{$income->nature_of_income}}</td>
+                                                                    <td>{{$income->comments}}</td>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end Other Incomes -->
+
+                                            <!-- start Debts -->
+                                            <div role="tabpanel" class="tab-pane" id="debts_2016">
+                                                <div class="right_dis_table">
+                                                    <h6>Debts</h6>
+                                                    <div class="padding_0 endosment_table table-responsive">
+                                                        <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr style="vertical-align: middle;">
+                                                                    <th style="vertical-align: middle;">Name of Creditor</th>
+                                                                    <th style="vertical-align: middle;">Type of Loan</th>
+                                                                    <th style="vertical-align: middle;">Other Liability</th>
+                                                                    <th style="vertical-align: middle;">Nature of Collateral</th>
+                                                                    <th style="vertical-align: middle;">Name of Guarantor</th>
+                                                                    <th style="vertical-align: middle;">Amount Owed</th>
+                                                                    <th style="vertical-align: middle;">Comments</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($depts_2016 as $dept)
+                                                                <tr>
+                                                                    <td>{{$dept->name_of_creditor}}</td>
+                                                                    <td>{{$dept->type_of_loan}}</td>
+                                                                    <td>{{$dept->other_liability}}</td>
+                                                                    <td>{{$dept->nature_of_collateral}}</td>
+                                                                    <td>{{$dept->number_of_guarantor}}</td>
+                                                                    <td>{{$dept->amount_owed}}</td>
+                                                                    <td>{{$dept->comments}}</td>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end Debts -->
+
+                                            <!-- start Real Estate -->
+                                            <div role="tabpanel" class="tab-pane" id="real_estate_2016">
+                                                <div class="right_dis_table">
+                                                    <h6>Real Estate</h6>
+                                                    <div class="padding_0 endosment_table table-responsive">
+                                                        <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr style="vertical-align: middle;">
+                                                                    <th style="vertical-align: middle;">Address</th>
+                                                                    <th style="vertical-align: middle;">Size of Property</th>
+                                                                    <th style="vertical-align: middle;">Nature of Property</th>
+                                                                    <th style="vertical-align: middle;">If Other, Describe</th>
+                                                                    <th style="vertical-align: middle;">Acquisition Date</th>
+                                                                    <th style="vertical-align: middle;">Percentage Owned</th>
+                                                                    <th style="vertical-align: middle;">Market Value</th>
+                                                                    <th style="vertical-align: middle;">Comments</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($realestates_2016 as $realestate)
+                                                                <tr>
+                                                                    <td>{{$realestate->address}}</td>
+                                                                    <td>{{$realestate->size_of_property}}</td>
+                                                                    <td>{{$realestate->nature_of_property}}</td>
+                                                                    <td>{{$realestate->describe}}</td>
+                                                                    <td>{{$realestate->acquisition_date}}</td>
+                                                                    <td>{{$realestate->percentage}}</td>
+                                                                    <td>{{$realestate->market_value}}</td>
+                                                                    <td>{{$realestate->comments}}</td>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <!-- end Real Estate -->
+
+                                            <!-- start Securities -->
+                                            <div role="tabpanel" class="tab-pane" id="securities_2016">
+                                                <div class="right_dis_table">
+                                                    <h6>Securities</h6>
+                                                    <div class="padding_0 endosment_table table-responsive">
+                                                        <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr style="vertical-align: middle;">
+                                                                    <th style="vertical-align: middle;">Issuing Entity</th>
+                                                                    <th style="vertical-align: middle;">Type of Security</th>
+                                                                    <th style="vertical-align: middle;">Market Value</th>
+                                                                    <th style="vertical-align: middle;">Percentage Ownership</th>
+                                                                    <th style="vertical-align: middle;">Owns Real Estate</th>
+                                                                    <th style="vertical-align: middle;">Owns Securities</th>
+                                                                    <th style="vertical-align: middle;">Held in Trust</th>
+                                                                    <th style="vertical-align: middle;">Comments</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($securities_2016 as $security)
+                                                                <tr>
+                                                                    <td>{{$security->issuing_entity}}</td>
+                                                                    <td>{{$security->type_of_security}}</td>
+                                                                    <td>{{$security->market_value}}</td>
+                                                                    <td>{{$security->percent}}</td>
+                                                                    <td>{{$security->owns_real_estate}}</td>
+                                                                    <td>{{$security->owns_securites}}</td>
+                                                                    <td>{{$security->held}}</td>
+                                                                    <td>{{$security->comments}}</td>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <!-- end Securities -->
+
+                                            <!-- start Trusts -->
+                                            <div role="tabpanel" class="tab-pane" id="trust_2016">
+                                                <div class="right_dis_table">
+                                                    <h6>Trusts</h6>
+                                                    <div class="padding_0 endosment_table table-responsive">
+                                                        <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr style="vertical-align: middle;">
+                                                                    <th style="vertical-align: middle;">Identify of Beneficiary</th>
+                                                                    <th style="vertical-align: middle;">Nature of Beneficiary</th>
+                                                                    <th style="vertical-align: middle;">Value of Beneficial Interest</th>
+                                                                    <th style="vertical-align: middle;">Contents of Trust</th>
+                                                                    <th style="vertical-align: middle;">Comments</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($trusts_2016 as $trust)
+                                                                <tr>
+                                                                    <td>{{$trust->identify}}</td>
+                                                                    <td>{{$trust->nature_of_beneficial}}</td>
+                                                                    <td>{{$trust->value_of_beneficial}}</td>  
+                                                                    <td>{{$trust->contents}}</td>  
+                                                                    <td>{{$trust->comments}}</td>  
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                      
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end Trusts -->
+
+                                            <!-- start Relatives -->
+                                            <div role="tabpanel" class="tab-pane" id="relatives_2016">
+                                                <div class="right_dis_table">
+                                                    <h6>Relatives</h6>
+                                                    <div class="padding_0 endosment_table table-responsive">
+                                                        <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
+                                                            <thead>
+                                                                <tr style="vertical-align: middle;">
+                                                                    <th style="vertical-align: middle;">Name</th>
+                                                                    <th style="vertical-align: middle;">Agency Name</th>
+                                                                    <th style="vertical-align: middle;">Title</th>
+                                                                    <th style="vertical-align: middle;">Position</th>
+                                                                    <th style="vertical-align: middle;">Relationship to Filer</th>
+                                                                    <th style="vertical-align: middle;">Comments</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($relatives_2016 as $relative)
+                                                                <tr>
+                                                                    <td>{{$relative->name}}</td>
+                                                                    <td>{{$relative->agency_name}}</td>
+                                                                    <td>{{$relative->title}}</td>
+                                                                    <td>{{$relative->position}}</td>
+                                                                    <td>{{$relative->relationship}}</td>
+                                                                    <td>{{$relative->comments}}</td>
+                                                                </tr>   
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end Relatives -->
+
                                         </div>
                                     </div>
                                 </div>

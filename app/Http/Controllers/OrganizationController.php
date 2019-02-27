@@ -270,30 +270,35 @@ class OrganizationController extends Controller
         $campaigns = Campaign::where('politician', '=', $politician->recordid)->leftjoin('parties', 'campaigns.parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('campaigns.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('campaigns.id')->get();
         $endorsements = Endorsement::where('candidate_name', '=', $politician->recordid)->get();
 
-        $information = Information::where('politician', '=', $politician->recordid)->first();
+        $information_2017 = Information::where('politician', '=', $politician->recordid)->where('reporting_year', '2017')->first();
+
+        $information_2016 = Information::where('politician', '=', $politician->recordid)->where('reporting_year', '2016')->first();
 
         
-        if($information == Null){
-            $information =[];
-        }
-
         $questions = Question::orderBy('question_id', 'asc')->get();
 
-        $positions = Position::where('politician', '=', $politician->recordid)->get();
+        $position_2017 = Position::where('politician', '=', $politician->recordid)->where('reporting_year', '2017')->get();
+        $position_2016 = Position::where('politician', '=', $politician->recordid)->where('reporting_year', '2016')->get();
 
-        $incomes = Noncity_income::where('politician', '=', $politician->recordid)->get();
+        $incomes_2017 = Noncity_income::where('politician', '=', $politician->recordid)->where('reporting_year', '2017')->get();
+        $incomes_2016 = Noncity_income::where('politician', '=', $politician->recordid)->where('reporting_year', '2016')->get();
 
-        $depts = Money::where('politician', '=', $politician->recordid)->get();
+        $depts_2017 = Money::where('politician', '=', $politician->recordid)->where('reporting_year', '2017')->get();
+        $depts_2016 = Money::where('politician', '=', $politician->recordid)->where('reporting_year', '2016')->get();
 
-        $realestates = Realestate::where('politician', '=', $politician->recordid)->get();
+        $realestates_2017 = Realestate::where('politician', '=', $politician->recordid)->where('reporting_year', '2017')->get();
+        $realestates_2016 = Realestate::where('politician', '=', $politician->recordid)->where('reporting_year', '2016')->get();
 
-        $securities = Securities::where('politician', '=', $politician->recordid)->get();
+        $securities_2017 = Securities::where('politician', '=', $politician->recordid)->where('reporting_year', '2017')->get();
+        $securities_2016 = Securities::where('politician', '=', $politician->recordid)->where('reporting_year', '2016')->get();
 
-        $trusts = Trust::where('politician', '=', $politician->recordid)->get();
+        $trusts_2017 = Trust::where('politician', '=', $politician->recordid)->where('reporting_year', '2017')->get();
+        $trusts_2016 = Trust::where('politician', '=', $politician->recordid)->where('reporting_year', '2016')->get();
 
-        $relatives = Relatives::where('politician', '=', $politician->recordid)->get();
+        $relatives_2017 = Relatives::where('politician', '=', $politician->recordid)->where('reporting_year', '2017')->get();
+        $relatives_2016 = Relatives::where('politician', '=', $politician->recordid)->where('reporting_year', '2016')->get();
 
-        return view('frontend.candidate', compact('endorsements', 'politician', 'campaigns', 'endorsements', 'information', 'questions', 'positions', 'incomes', 'depts', 'realestates', 'securities', 'trusts', 'relatives'));
+        return view('frontend.candidate', compact('endorsements', 'politician', 'campaigns', 'endorsements', 'information_2017', 'information_2016', 'questions', 'position_2017', 'position_2016', 'incomes_2017', 'incomes_2016', 'depts_2017',  'depts_2016', 'realestates_2017', 'realestates_2016', 'securities_2017', 'securities_2016', 'trusts_2017', 'trusts_2016', 'relatives_2017', 'relatives_2016'));
 
     }
 

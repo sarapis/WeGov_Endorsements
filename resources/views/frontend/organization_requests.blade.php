@@ -107,6 +107,9 @@
                 @if($entity->requests == 'On')
                 <li class="active"><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
                 @endif
+                @if($entity->requests_from == 'On')
+                <li><a href="/organization_{{$organization->organizations_id}}/requests_from" id="requests_tab">RECEIVED REQUESTS</a></li>
+                @endif
             </ul>
 
             <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
@@ -139,6 +142,9 @@
                     @endif
                     @if($entity->requests == 'On')
                     <li class="active"><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
+                    @endif
+                    @if($entity->requests_from == 'On')
+                    <li><a href="/organization_{{$organization->organizations_id}}/requests_from" id="requests_tab">RECEIVED REQUESTS</a></li>
                     @endif
                 </ul>
             </div>

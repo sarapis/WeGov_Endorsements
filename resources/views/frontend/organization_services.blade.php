@@ -109,6 +109,9 @@
                 @if($entity->requests == 'On')
                 <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
                 @endif
+                @if($entity->requests_from == 'On')
+                <li><a href="/organization_{{$organization->organizations_id}}/requests_from" id="requests_tab">RECEIVED REQUESTS</a></li>
+                @endif
             </ul>
 
             <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
@@ -116,32 +119,35 @@
             <div class="tab_filter_btn">
                 <ul class="nav nav-tabs" role="tablist">
                     @if($entity->about == 'On')
-                <li><a href="/organization_{{$organization->organizations_id}}" class="menu-title">ABOUT</a></li>
-                @endif
-                @if($entity->projects == 'On')
-                <li><a href="/organization_{{$organization->organizations_id}}/projects" id="projects_tab">PROJECTS</a></li>
-                @endif
-                @if($entity->services == 'On')
-                <li class="active"><a href="/organization_{{$organization->organizations_id}}/services" id="services_tab">SERVICES</a></li>
-                @endif
-                @if($entity->money == 'On')
-                <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
-                @endif
-                @if($entity->people == 'On')
-                <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
-                @endif
-                @if($entity->charter == 'On')
-                <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
-                @endif
-                @if($entity->endorsements == 'On')
-                <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
-                @endif
-                @if($entity->candidates == 'On')
-                <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
-                @endif
-                @if($entity->requests == 'On')
-                <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
-                @endif
+                    <li><a href="/organization_{{$organization->organizations_id}}" class="menu-title">ABOUT</a></li>
+                    @endif
+                    @if($entity->projects == 'On')
+                    <li><a href="/organization_{{$organization->organizations_id}}/projects" id="projects_tab">PROJECTS</a></li>
+                    @endif
+                    @if($entity->services == 'On')
+                    <li class="active"><a href="/organization_{{$organization->organizations_id}}/services" id="services_tab">SERVICES</a></li>
+                    @endif
+                    @if($entity->money == 'On')
+                    <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
+                    @endif
+                    @if($entity->people == 'On')
+                    <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
+                    @endif
+                    @if($entity->charter == 'On')
+                    <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
+                    @endif
+                    @if($entity->endorsements == 'On')
+                    <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
+                    @endif
+                    @if($entity->candidates == 'On')
+                    <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
+                    @endif
+                    @if($entity->requests == 'On')
+                    <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
+                    @endif
+                    @if($entity->requests_from == 'On')
+                    <li><a href="/organization_{{$organization->organizations_id}}/requests_from" id="requests_tab">RECEIVED REQUESTS</a></li>
+                    @endif
                 </ul>
             </div>
 

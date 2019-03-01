@@ -323,6 +323,27 @@ class OrganizationController extends Controller
 
     } 
 
+    public function requests_from($id)
+    {
+        $organization_type = Organization::where('organizations_id','=',$id)->first()->type;
+
+        $agency = Agency::where('magency', '=', $id)->first();
+
+        if($agency)
+            $agency_recordid = $agency->agency_recordid;
+        else
+            $agency_recordid = '';
+
+        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->first();    
+
+        $requests = Requests::where('responsible_agency', '=', $agency_recordid)->get();
+
+        $entity = EntityOrganization::where('types', '=', $organization_type)->first();
+
+        return view('frontend.organization_requests', compact('organization', 'organization_type', 'requests', 'entity'));
+
+    } 
+
     public function requests_details($id, $tracking_code)
     {
         $organization_type = $organization = Organization::where('organizations_id','=',$id)->first()->type;

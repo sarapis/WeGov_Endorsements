@@ -50,6 +50,7 @@ Route::get('/organization_{id}/endorsements', 'OrganizationController@endorsemen
 Route::get('/organization_{id}/candidates', 'OrganizationController@candidates');
 Route::get('/candidates/{politician_id}', 'OrganizationController@candidates_detail');
 Route::get('/organization_{id}/requests', 'OrganizationController@requests');
+Route::get('/organization_{id}/requests_from', 'OrganizationController@requests_from');
 Route::get('/organization_{id}/requests/{tracking_code}', 'OrganizationController@requests_details');
 Route::get('/organization_{id}', 'OrganizationController@find');
 

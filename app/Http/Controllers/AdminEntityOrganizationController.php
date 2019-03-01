@@ -86,6 +86,7 @@ class AdminEntityOrganizationController extends Controller
         $organization->endorsements = $request->endorsements;
         $organization->candidates = $request->candidates;
         $organization->requests = $request->requests;
+        $organization->requests_from = $request->requests_from;
         $organization->save();
         // var_dump($project);
         // exit();

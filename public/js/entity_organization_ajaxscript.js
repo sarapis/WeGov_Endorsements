@@ -43,6 +43,8 @@ $(document).ready(function(){
                     $('#candidates').attr('checked','checked');
                 if(data.requests == 'On')
                     $('#requests').attr('checked','checked');
+                if(data.requests_from == 'On')
+                    $('#requests_from').attr('checked','checked');
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');
             },
@@ -78,6 +80,7 @@ $(document).ready(function(){
             endorsements:$('#endorsements').prop('checked')==1?'On':'Off',
             candidates:$('#candidates').prop('checked')==1?'On':'Off',
             requests:$('#requests').prop('checked')==1?'On':'Off',
+            requests_from:$('#requests_from').prop('checked')==1?'On':'Off',
         }
 
         //used to determine the http verb to use [add=POST], [update=PUT]

@@ -44,7 +44,8 @@
                                     <th class="text-center">Charter</th>
                                     <th class="text-center">Endorsements</th>
                                     <th class="text-center">Candidates</th>
-                                    <th class="text-center">Requests</th>                          
+                                    <th class="text-center">Requests</th>
+                                    <th class="text-center">Requests From</th>                          
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -61,6 +62,7 @@
                                     <td class="text-center"><span class="badge bg-{{$organization->endorsements}}">{{$organization->endorsements}}</span></td>
                                     <td class="text-center"><span class="badge bg-{{$organization->candidates}}">{{$organization->candidates}}</td>
                                     <td class="text-center"><span class="badge bg-{{$organization->requests}}">{{$organization->requests}}</span></td>
+                                    <td class="text-center"><span class="badge bg-{{$organization->requests_from}}">{{$organization->requests_from}}</span></td>
                                     <td class="text-center">
                                         <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$organization->id}}"><i class="fa fa-fw fa-edit"></i>Edit</button>
                                     </td>
@@ -90,68 +92,75 @@
                 <div class="modal-body row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="text" class="col-sm-5 control-label">About</label>
+                      <label for="text" class="col-sm-6 control-label">About</label>
 
-                      <div class="col-sm-7">
+                      <div class="col-sm-6">
                         <input type="checkbox" style="margin-top: 10px;" id="about" name="about">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="text" class="col-sm-5 control-label">Projects</label>
+                      <label for="text" class="col-sm-6 control-label">Projects</label>
 
-                      <div class="col-sm-7">
+                      <div class="col-sm-6">
                         <input type="checkbox" style="margin-top: 10px;" id="projects" name="projects">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="text" class="col-sm-5 control-label">Services</label>
+                      <label for="text" class="col-sm-6 control-label">Services</label>
 
-                      <div class="col-sm-7">
+                      <div class="col-sm-6">
                         <input type="checkbox" style="margin-top: 10px;" id="services" name="services">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="text" class="col-sm-5 control-label">Money</label>
+                      <label for="text" class="col-sm-6 control-label">Money</label>
 
-                      <div class="col-sm-7">
+                      <div class="col-sm-6">
                         <input type="checkbox" style="margin-top: 10px;" id="money" name="money">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="text" class="col-sm-5 control-label">People</label>
+                      <label for="text" class="col-sm-6 control-label">People</label>
 
-                      <div class="col-sm-7">
+                      <div class="col-sm-6">
                         <input type="checkbox" style="margin-top: 10px;" id="people" name="people">
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="text" class="col-sm-5 control-label">Charter</label>
+                      <label for="text" class="col-sm-6 control-label">Charter</label>
 
-                      <div class="col-sm-7">
+                      <div class="col-sm-6">
                         <input type="checkbox" style="margin-top: 10px;" id="charter" name="charter">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="text" class="col-sm-5 control-label">Endorsements</label>
+                      <label for="text" class="col-sm-6 control-label">Endorsements</label>
 
-                      <div class="col-sm-7">
+                      <div class="col-sm-6">
                         <input type="checkbox" style="margin-top: 10px;" id="endorsements" name="endorsements">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="text" class="col-sm-5 control-label">Candidates</label>
+                      <label for="text" class="col-sm-6 control-label">Candidates</label>
 
-                      <div class="col-sm-7">
+                      <div class="col-sm-6">
                         <input type="checkbox" style="margin-top: 10px;" id="candidates" name="candidates">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="text" class="col-sm-5 control-label">Requests</label>
+                      <label for="text" class="col-sm-6 control-label">Requests</label>
 
-                      <div class="col-sm-7">
+                      <div class="col-sm-6">
                         <input type="checkbox" style="margin-top: 10px;" id="requests" name="requests">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="text" class="col-sm-6 control-label">Requests From</label>
+
+                      <div class="col-sm-6">
+                        <input type="checkbox" style="margin-top: 10px;" id="requests_from" name="requests_from">
                       </div>
                     </div>
                   </div>

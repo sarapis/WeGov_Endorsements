@@ -99,7 +99,7 @@
                 <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
                 @endif
                 @if($entity->endorsements == 'On')
-                <li class="active"><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
+                <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
                 @endif
                 @if($entity->candidates == 'On')
                 <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
@@ -108,7 +108,7 @@
                 <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
                 @endif
                 @if($entity->requests_from == 'On')
-                <li><a href="/organization_{{$organization->organizations_id}}/requests_from" id="requests_tab">RECEIVED REQUESTS</a></li>
+                <li class="active"><a href="/organization_{{$organization->organizations_id}}/requests_from" id="requests_tab">RECEIVED REQUESTS</a></li>
                 @endif
             </ul>
 
@@ -135,7 +135,7 @@
                     <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
                     @endif
                     @if($entity->endorsements == 'On')
-                    <li class="active"><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
+                    <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
                     @endif
                     @if($entity->candidates == 'On')
                     <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
@@ -144,12 +144,12 @@
                     <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
                     @endif
                     @if($entity->requests_from == 'On')
-                    <li><a href="/organization_{{$organization->organizations_id}}/requests_from" id="requests_tab">RECEIVED REQUESTS</a></li>
+                    <li class="active"><a href="/organization_{{$organization->organizations_id}}/requests_from" id="requests_tab">RECEIVED REQUESTS</a></li>
                     @endif
                 </ul>
             </div>
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="endosements_tab">
+                <div role="tabpanel" class="tab-pane active" id="requests_tab">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="box padding_0 table_data">
@@ -157,21 +157,21 @@
                                     <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th style="text-align: center;width: 15%;">Election</th>
-                                                <th style="text-align: center;">Candidate Name</th>
-                                                <th style="text-align: center;width: 10%;">Party</th>
-                                                <th style="text-align: center;">Office</th>
-                                                <th style="text-align: center;width: 10%;">Date Recorded</th>
+                                                <th style="text-align: center; width: 10%;">Tracking Code</th>
+                                                <th style="text-align: center;">Requested By</th>
+                                                <th style="text-align: center;">Priority</th>
+                                                <th style="text-align: center;">Request</th>
+                                                <th style="text-align: center;">Requested From</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($endorsements as $endorsement)
+                                            @foreach($requests as $request)
                                             <tr>
-                                                <td style="width: 10%;">@if($endorsement->elections()->first()) <a href="/elections/{{$endorsement->elections()->first()->year}}">{{$endorsement->elections()->first()->name}}</a> @endif</td>
-                                                <td style="text-align: left; width: 25%;"><a href="/candidates/{{$endorsement->candidate()->first()->id}}">{{$endorsement->candidate()->first()->name}}</a></td>
-                                                <td style="width: 20%;">{{$endorsement->parties_name}}</td>
-                                                <td style="text-align: left;">@if(isset($endorsement->offices()->first()->organization))<a href="/organization_{{$endorsement->offices()->first()->organizationid}}/candidates"> {{$endorsement->offices()->first()->organization}}</a>@endif</td>
-                                                <td style="width: 15%;">{{$endorsement->date_recorded}}</td>
+                                                <td style="width: 15%;"><a href="/organization_{{$organization->organizations_id}}/requests/{{$request->tracking_code}}">{{$request->tracking_code}}</a></td>
+                                                <td><a href="/organization_{{$request->community->magency}}/requests">{{$request->requested_by}}</a></td>
+                                                <td style="width: 5%;">{{$request->priority}}</td>
+                                                <td style="text-align: left;">{{$request->request}}</td>
+                                                <td style="text-align: left;"><a href="/organization_{{$request->responsible->magency}}/requests">{{$request->requested_from}}</a></td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -194,6 +194,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
 <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+
 <script type="text/javascript">
     $('.tag_badge').click(function(){
         val = $(this).text();
@@ -208,6 +209,7 @@
         $('#organization_form').submit();
     })
 </script>
+
 <script>
 $(document).ready(function() {
     $('#example3').DataTable({
@@ -221,5 +223,4 @@ $(document).ready(function() {
     });
 } );
 </script>
-
 @endsection

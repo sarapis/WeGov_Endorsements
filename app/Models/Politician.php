@@ -14,4 +14,8 @@ class Politician extends Model
         return $this->belongsTo('App\Models\Endorsement',  'candidate_name', 'recordid') ;
     }
 
+    public function elected() {
+        return $this->belongsTo('App\Models\PoliticianOrganization',  'elected_to', 'recordid') ;
+    }
+
 }

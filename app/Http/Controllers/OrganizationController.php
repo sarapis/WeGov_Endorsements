@@ -340,7 +340,7 @@ class OrganizationController extends Controller
 
         $entity = EntityOrganization::where('types', '=', $organization_type)->first();
 
-        return view('frontend.organization_requests', compact('organization', 'organization_type', 'requests', 'entity'));
+        return view('frontend.organization_requests_from', compact('organization', 'organization_type', 'requests', 'entity'));
 
     } 
 

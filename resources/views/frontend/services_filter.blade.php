@@ -2,7 +2,9 @@
     @foreach($organization_services as $organization_service)
         @if($organization_service->name!=null)
         <div class="box box-service">
-            <p class="text-aqua" id="{{$organization_service->name}}">{{$organization_service->name}}</p>
+            <!-- <p class="text-aqua" id="{{$organization_service->name}}">{{$organization_service->name}}</p> -->
+
+            <a href="{{URL::to('organization_'.$organization_service->organization_x_id.'/services/'.$organization_service->name)}}" class="text-aqua">{{$organization_service->name}}</a>
 
             <p>Category: <span class="taxonomyid" id="{{$organization_service->taxonomy}}">{{$organization_service->taxonomy()->first()->name}}</span></p>
 

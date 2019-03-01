@@ -107,6 +107,9 @@
                 @if($entity->requests == 'On')
                 <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
                 @endif
+
+                <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">RECEIVED REQUESTS</a></li>
+               
             </ul>
 
             <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>

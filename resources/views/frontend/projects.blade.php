@@ -27,7 +27,8 @@
                           @foreach($allprojects as $organization_project)
                               @if($organization_project->project_description!=null)
                                   <tr>
-                                    <td class="project-link" id="{{$organization_project->project_projectid}}"><a> {{$organization_project->project_projectid}}</a></td>
+                                    <!-- <td class="project-link" id="{{$organization_project->project_projectid}}"><a> {{$organization_project->project_projectid}}</a></td> -->
+                                    <td><a href="{{URL::to('organization_'.$organization_project->magency.'/projects/'.$organization_project->project_projectid)}}">{{$organization_project->project_projectid}}</a></td>
                                     <td><a href="organization_{{$organization_project->magency}}">{{$organization_project->magencyacro}}</a></td>
                                     <td style="text-align: left;">{{$organization_project->project_description}}</td>
                                     <td class="text-right">${{number_format($organization_project->project_totalcost)}}</td>

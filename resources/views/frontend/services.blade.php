@@ -16,7 +16,10 @@
                 @foreach($organization_services as $organization_service)
                     @if($organization_service->name!=null)
                     <div class="box box-service">
-                        <p class="text-aqua" id="{{$organization_service->name}}">{{$organization_service->name}}</p>
+                        <!-- <p class="text-aqua" id="{{$organization_service->name}}">{{$organization_service->name}}</p> -->
+                        <a href="{{URL::to('organization_'.$organization_service->organization_x_id.'/services/'.$organization_service->name)}}" class="text-aqua">{{$organization_service->name}}</a>
+
+                        <p>{{$organization_service->organization_x_id}}</p>
 
                         <p>Category: <span class="taxonomyid" id="{{$organization_service->taxonomy}}">{{$organization_service->taxonomy()->first()->name}}</span></p>
         
@@ -36,7 +39,7 @@
     </div>
 </div>
 
-<script src="{{ asset('js/frontend/organization_service_ajax.js') }}"></script>
+<!-- <script src="{{ asset('js/frontend/organization_service_ajax.js') }}"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
 <script type="text/javascript">
 

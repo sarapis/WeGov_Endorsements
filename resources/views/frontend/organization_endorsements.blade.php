@@ -28,7 +28,8 @@
                         <span class="badge type_badge bg-blue">{{$organization_type}}</span>
                     </p>
                 </div>
-                <div class="pull-left org_title">{{$organization->name}}</div>
+                <div class="pull-left org_title">{{$organization->name}}</div><br/>
+<!--                 <div class="pull-left people_title_org"><a href="/organization_">{{$organization->name}}</a></div> -->
                 <div class="social_icon">
                     <ul>
                         <li>@if($organization->website)

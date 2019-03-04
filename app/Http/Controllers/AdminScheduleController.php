@@ -43,7 +43,7 @@ class AdminScheduleController extends Controller
                 $schedule->schedule_services = isset($record['fields']['services'])? implode(",", $record['fields']['services']):null;
                 $schedule->schedule_locations = isset($record['fields']['locations'])? implode(",", $record['fields']['locations']):null;
                 $schedule->x_phones = isset($record['fields']['x-phones'])? implode(",", $record['fields']['x-phones']):null;
-                $schedule->days_of_week = isset($record['fields']['days_of_week'])?$record['fields']['days_of_week']:null;
+                $schedule->days_of_week = isset($record['fields']['weekday'])?$record['fields']['weekday']:null;
                 $schedule->opens_at = isset($record['fields']['open_at'])?$record['fields']['open_at']:null;
                 $schedule->closes_at = isset($record['fields']['closes_at'])?$record['fields']['closes_at']:null;
                 $schedule->holiday = isset($record['fields']['holiday'])?$record['fields']['holiday']:null;

@@ -47,6 +47,8 @@ class AdminTaxonomyController extends Controller
                 $taxonomy->x_description = isset($record['fields']['x-description'])?$record['fields']['x-description']:null;
                 $taxonomy->x_notes = isset($record['fields']['x-notes'])?$record['fields']['x-notes']:null;
                 $taxonomy->services = isset($record['fields']['services'])? implode(",", $record['fields']['services']):null;
+                $taxonomy->taxonomyid = isset($record['fields']['id'])? implode(",", $record['fields']['id']):null;
+                $taxonomy->parent_id = isset($record['fields']['parent_id'])? implode(",", $record['fields']['parent_id']):null;
                 $taxonomy->save();
 
             }

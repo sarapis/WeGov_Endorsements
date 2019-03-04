@@ -41,6 +41,7 @@ class AdminServiceController extends Controller
                 $service = new Service();
                 $service->service_id = $record[ 'id' ];
                 $service->name = isset($record['fields']['name'])?$record['fields']['name']:null;
+                $service->serviceid = isset($record['fields']['id'])?$record['fields']['id']:null;
                 $service->organization = isset($record['fields']['organization'])? implode(",", $record['fields']['organization']):null;
                 $service->alternate_name = isset($record['fields']['alternate_name'])?$record['fields']['alternate_name']:null;
                 $service->description = isset($record['fields']['description'])?$record['fields']['description']:null;
@@ -48,6 +49,7 @@ class AdminServiceController extends Controller
                 $service->url = isset($record['fields']['url'])?$record['fields']['url']:null;
                 $service->email = isset($record['fields']['email'])?$record['fields']['email']:null;
                 $service->status = isset($record['fields']['status'])? implode(",", $record['fields']['status']):null;
+                $service->interpretation_services = isset($record['fields']['interpretation_services'])? implode(",", $record['fields']['interpretation_services']):null;
                 $service->taxonomy = isset($record['fields']['taxonomy'])? implode(",", $record['fields']['taxonomy']):null;
                 $service->application_process = isset($record['fields']['application_process'])?$record['fields']['application_process']:null;
                 $service->wait_time = isset($record['fields']['wait_time'])?$record['fields']['wait_time']:null;

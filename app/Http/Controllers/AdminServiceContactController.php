@@ -40,6 +40,7 @@ class AdminServiceContactController extends Controller
 
                 $service_contact = new ServiceContact();
                 $service_contact->contact_recordid = $record[ 'id' ];
+                $service_contact->contact_id = isset($record['fields']['id'])?$record['fields']['id']:null;
                 $service_contact->contact_name = isset($record['fields']['name'])?$record['fields']['name']:null;
                 $service_contact->contact_organization = isset($record['fields']['organizations'])? implode(",", $record['fields']['organizations']):null;
                 $service_contact->contact_services = isset($record['fields']['services'])? implode(",", $record['fields']['services']):null;

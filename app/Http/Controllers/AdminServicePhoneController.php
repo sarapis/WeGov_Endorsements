@@ -40,11 +40,13 @@ class AdminServicePhoneController extends Controller
 
                 $service_phone = new ServicePhone();
                 $service_phone->phone_recordid = $record[ 'id' ];
+                $service_phone->services_phone_id = isset($record['fields']['id'])?$record['fields']['id']:null;
                 $service_phone->services_phone_number = isset($record['fields']['number'])?$record['fields']['number']:null;
                 $service_phone->services_phone_locations = isset($record['fields']['locations'])? implode(",", $record['fields']['locations']):null;
                 $service_phone->services_phone_services = isset($record['fields']['services'])? implode(",", $record['fields']['services']):null;
                 $service_phone->services_phone_organizations = isset($record['fields']['organizations'])? implode(",", $record['fields']['organizations']):null;
                 $service_phone->services_phone_contacts = isset($record['fields']['contacts'])?$record['fields']['contacts']:null;
+                $service_phone->services_phone_details = isset($record['fields']['details'])? implode(",", $record['fields']['details']):null;
                 $service_phone->services_phone_extension = isset($record['fields']['extension'])?$record['fields']['extension']:null;
                 $service_phone->services_phone_type = isset($record['fields']['type'])?$record['fields']['type']:null;
                 $service_phone->services_phone_language = isset($record['fields']['language'])? implode(",", $record['fields']['language']):null;

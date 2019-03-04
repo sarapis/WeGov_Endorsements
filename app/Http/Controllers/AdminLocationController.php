@@ -40,6 +40,7 @@ class AdminLocationController extends Controller
 
                 $location = new Location();
                 $location->location_id = $record[ 'id' ];
+                $location->locationid = isset($record['fields']['id'])?$record['fields']['id']:null;
                 $location->name = isset($record['fields']['name'])?$record['fields']['name']:null;
                 $location->organization = isset($record['fields']['organization'])? implode(",", $record['fields']['organization']):null;
                 $location->alternate_name = isset($record['fields']['alternate_name'])?$record['fields']['alternate_name']:null;

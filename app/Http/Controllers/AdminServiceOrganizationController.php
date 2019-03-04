@@ -40,7 +40,7 @@ class AdminServiceOrganizationController extends Controller
 
                 $service_organization = new ServiceOrganization();
                 $service_organization->organization_recordid = $record[ 'id' ];
-                $service_organization->organization_x_id = isset($record['fields']['x-id'])?$record['fields']['x-id']:null;
+                $service_organization->organization_x_id = isset($record['fields']['id'])?$record['fields']['id']:null;
                 $service_organization->organization_name = isset($record['fields']['name'])?$record['fields']['name']:null;
                 $service_organization->organization_alternate_name = isset($record['fields']['alternate_name'])?$record['fields']['alternate_name']:null;
                 $service_organization->organization_description = isset($record['fields']['description'])?$record['fields']['description']:null;

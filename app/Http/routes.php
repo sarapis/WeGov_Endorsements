@@ -300,7 +300,7 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::get('/sync_questions', ['uses' => 'AdminQuestionController@airtable']);
 
 
-
+	Route::resource('appearance', 'AppearanceController');
 
 	// resource routes for posts
 	Route::resource('posts', 'PostsController');

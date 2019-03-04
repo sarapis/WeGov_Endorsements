@@ -45,9 +45,9 @@ class AdminOrganizationController extends Controller
 
                 $organization = new Organization();
                 $organization->organization_id = $record[ 'id' ];
-                $organization->organizations_id = isset($record['fields']['ID'])?$record['fields']['ID']:null;
+                $organization->organizations_id = isset($record['fields']['id'])?$record['fields']['id']:null;
                 $organization->alternate_name = isset($record['fields']['alternate_name'])?$record['fields']['alternate_name']:null;
-                $organization->name = isset($record['fields']['Name'])?$record['fields']['Name']:null;
+                $organization->name = isset($record['fields']['name'])?$record['fields']['name']:null;
                 // $organization->dedupe = isset($record['fields']['dedupe'])?$record['fields']['dedupe']:null;
                 $organization->type = isset($record['fields']['Type'])?$record['fields']['Type']:null;
 
@@ -76,11 +76,11 @@ class AdminOrganizationController extends Controller
                 }
                 
                 $organization->child_of = isset($record['fields']['Child of'])? implode(",", $record['fields']['Child of']):null;
-                $website = isset($record['fields']['website'])?$record['fields']['website']:null;
+                $website = isset($record['fields']['url'])?$record['fields']['url']:null;
                 $website = str_replace("https://","",$website);
                 $website = str_replace("http://","",$website);
                 $organization->website = $website;
-                $organization->description = isset($record['fields']['short description'])?$record['fields']['short description']:null;
+                $organization->description = isset($record['fields']['description'])?$record['fields']['description']:null;
                 if(isset($record['fields']['Logo'])){
                     foreach ($record['fields']['Logo'] as $key => $image) {
                         try {

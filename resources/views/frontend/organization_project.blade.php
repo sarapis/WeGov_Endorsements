@@ -152,94 +152,71 @@
             </div>
             
             <div class="tab-content">
-
                 <div role="tabpanel" class="tab-pane active" id="projects">
-                    <div class="container-fluid">
-                        <div id="page-wrapper">
-                            <!--BEGIN TITLE & BREADCRUMB PAGE-->
-                            <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
-                                <h2 class="page-header">{{$project->project_description}}</h2>
+                    <div class="election_menu">
+                        <div class="col-sm-12">
+                            <div class="box padding_0">
+                                <div class="box-header">
+                                    <h3 class="box-title"><a>{{$project->project_description}}</a></h3>
+                                </div>
+                                <div class="box-body inner_request_detail">
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                            <h4>Project ID: <p>{{$project->project_projectid}}</p></h4>
+                                            <h4>Organization: <p>{{$project->magencyacro}}</p></h4>
+                                            <h4>Description: <p>{{$project->project_description}}</p></h4>
+                                            <h4>City Cost: <p> ${{number_format($project->project_citycost)}}</p></h4>
+                                            <h4>Non-City Cost: <p>${{number_format($project->project_noncitycost)}}</p></h4>
+                                            <h4>Total Cost : <p> ${{number_format($project->project_totalcost)}}</p></h4>
+                                            <h4>#Commitments: <p>{{sizeof(explode(",", $project->project_commitments))}}</p></h4>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            @if ($project->project_lat==0 && $project->project_long==0)
+                                              <p style="font-size: 16px; padding-right: 40px; padding-top: 60px;">There is no map data. Please add some by clicking "Add Information" and submitting an address for the project.</p>
+                                            @else
+                                            <div id="mymap_project_type"></div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <!--END TITLE & BREADCRUMB PAGE-->
-                            <div id="tab-general">
-                                <div class="mbl">
-                                    <div class="col-lg-12">
-
-                                        <div class="col-md-12">
-                                            <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">
-                                            </div>
+                            <div class="box padding_0">
+                                <div class=" inner_request_detail">
+                                    <div class="">
+                                        <div class="padding_0 table-responsive">
+                                            <table id="example" class="table table-bordered" cellspacing="0" width="100%" style="margin-bottom: 0px !important;border: none;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Description</th>
+                                                        <th>Commitment Date</th>
+                                                        <th>Non-City Cost</th>
+                                                        <th>City Cost</th>
+                                                        <th>Budgetline</th>
+                                                        <th>FMS Number</th>
+                                                        <th>Commitment Code</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblData">
+                                                    @foreach ($commitments as $commitment)
+                                                    <tr>
+                                                        <td>{{$commitment->description}}</td>
+                                                        <td>{{$commitment->plancommdate}}</td>
+                                                        <td>${{number_format($commitment->noncitycost)}}</td>
+                                                        <td>${{number_format($commitment->citycost)}}</td>
+                                                        <td>{{$commitment->budgetline}}</td>
+                                                        <td>{{$commitment->fmsnumber}}</td>
+                                                        <td>{{$commitment->commitmentcode}}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
                                         </div>
-
                                     </div>
-
-                                    <div>
-                                        <div class="page-content">
-                                            <div class="panel panel-blue">
-
-                                                <div class="panel-body">
-                                                    <div class="row" style="margin: 0;padding-bottom:30px;">
-                                                        <div class="col-md-6">
-                                                            <dl class="dl-horizontal">
-                                                                <dt>Project ID: </dt><dd>{{$project->project_projectid}}</dd>
-                                                                <dt>Organization: </dt><dd>{{$project->magencyacro}}</dd>
-                                                                <dt>Description: </dt> <dd> {{$project->project_description}}</dd>
-                                                                <dt>City Cost: </dt><dd> ${{number_format($project->project_citycost)}}</dd>
-                                                                <dt>Non-City Cost: </dt><dd> ${{number_format($project->project_noncitycost)}}</dd>
-                                                                <dt>Total Cost: </dt> <dd> ${{number_format($project->project_totalcost)}}</dd>
-                                                                <dt>#Commitments:</dt> <dd>{{sizeof(explode(",", $project->project_commitments))}}</dd>
-                                                            </dl>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            @if ($project->project_lat==0 && $project->project_long==0)
-                                                              <p style="font-size: 16px; padding-right: 40px; padding-top: 60px;">There is no map data. Please add some by clicking "Add Information" and submitting an address for the project.</p>
-                                                            @else
-                                                            <div id="mymap_project_type"></div>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                    <div class="padding_0 table-responsive">
-                                                        <table id="example" class="table table-bordered" cellspacing="0" width="100%">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Description</th>
-                                                                    <th>Commitment Date</th>
-                                                                    <th>Non-City Cost</th>
-                                                                    <th>City Cost</th>
-                                                                    <th>Budgetline</th>
-                                                                    <th>FMS Number</th>
-                                                                    <th>Commitment Code</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="tblData">
-                                                                @foreach ($commitments as $commitment)
-                                                                <tr>
-                                                                    <td>{{$commitment->description}}</td>
-                                                                    <td>{{$commitment->plancommdate}}</td>
-                                                                    <td>${{number_format($commitment->noncitycost)}}</td>
-                                                                    <td>${{number_format($commitment->citycost)}}</td>
-                                                                    <td>{{$commitment->budgetline}}</td>
-                                                                    <td>{{$commitment->fmsnumber}}</td>
-                                                                    <td>{{$commitment->commitmentcode}}</td>
-                                                                </tr>
-                                                                @endforeach
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <dir class="text-right">
-                                                            
-                                                    </dir>
-                                                </div>
-                                                <!-- /.box-body -->
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    
                                 </div>
                             </div>
                         </div>
-                        <!--END CONTENT-->
                     </div>
+
                 </div>
             </div>
         </div>

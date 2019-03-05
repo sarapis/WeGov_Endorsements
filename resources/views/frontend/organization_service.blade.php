@@ -157,83 +157,62 @@
                     <div id="wrapper">
                         <!--BEGIN PAGE WRAPPER-->
                             <div id="page-wrapper">
-
                                 <!--END TITLE & BREADCRUMB PAGE-->
                                 <div id="tab-general">
                                     <div class="mbl">
                                         <div class="col-lg-12">
-
                                             <div class="col-md-12">
                                                 <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">
                                                 </div>
                                             </div>
-
                                         </div>
-
-                                        <div>
-                                            <div class="page-content">
-                                                <div class="container-fluid" style="padding:0 !important;">
-                                                    <div class="col-lg-8">
-                                                        <div class="panel" style="padding-top: 20px;">
-                                                            <div class="panel-body">
-                                                                <p style="font-size: 25px;color: #357ca5;">{{$servicename}}</p>
-
-                                                                <p><code> Alternate Name</code>{{$service->alternate_name}}</p>
-
-                                                                <p><code> Organization</code> {{$organization->name}}</p>
-
-                                                                <p><code> Description</code>{!! $service->description !!}</p>
-
-                                                                <p><code> Status</code><span class="badge badge-green">{{$service->status}}</span></p>
-
-                                                                <p><code> Service Category</code> {{$taxonomy->name}}</p>
-
-                                                                <a class="btn-yellow btn-sm" href="{{$service->url}}" target="_blank">Goto Website</a>
-
-                                                                <p style="padding-top: 12px;"><code> Email:</code>{!! $service->email !!}</p>
-
-                                                                <p><code> Program</code></p>
-
-                                                                <div class="divider">
-                                                                    <h4>Additional Info</h4>
-                                                                    <p><code> Application Process</code>{!! $service->application_process !!}</p>
-                                                                    <p><code> Wait Time</code>{{$service->wait_time}}</p>
-                                                                    <p><code> Fees</code>{{$service->fees}}</p>
-                                                                    <p><code> Accreditations</code>{{$service->accreditations}}</p>
-                                                                    <p><code> Licenses</code>{{$service->licenses}}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                        <div class="election_menu">
+                                            <div class="col-sm-12">
+                                                <div class="box padding_0">
+                                                    <div class="box-header">
+                                                        <h3 class="box-title"><a>{{$servicename}}</a>
                                                     </div>
-                                                    <div class="col-lg-4">
-                                                        <div class="portlet box">
-                                                            <div class="portlet-header">
-
-                                                                    <div id="mymap_service_profile"></div>
-
+                                                    <div class="box-body inner_request_detail">
+                                                        <div class="row">
+                                                            <div class="col-sm-7">
+                                                                <h4>Alternate Name: <p>{{$service->alternate_name}}</p></h4>
+                                                                <h4>Organization: <p>{{$organization->name}}</p></h4>
+                                                                <h4>Description: <p>{!! $service->description !!}</p></h4>
+                                                                <h4>Status: <p> <span class="badge badge-green">{{$service->status}}</span></p></h4>
+                                                                <h4>Service Category: <p>{{$taxonomy->name}}</p></h4>
+                                                                <h4><a class="btn-yellow btn-sm" href="{{$service->url}}" target="_blank">Goto Website</a></h4>
+                                                                <h4>Email: <p>{!! $service->email !!}</p></h4>
+                                                                <h4>Program: <p></p></h4>
+                                                                <br/>
+                                                                <h4>Additional Info</h4>
+                                                                <h4>Application Process: <p>{!! $service->application_process !!}</p></h4>
+                                                                <h4>Wait Time: <p>{{$service->wait_time}}</p></h4>
+                                                                <h4>Fees: <p>{{$service->fees}}</p></h4>
+                                                                <h4>Accreditations: <p>{{$service->accreditations}}</p></h4>
+                                                                <h4>Licenses: <p>{{$service->licenses}}</p></h4>
                                                             </div>
-                                                            <div class="portlet-body">
-                                                                <p><code>Address</code></p>
+                                                            <div class="col-sm-5">
+                                                                <div id="mymap_service_profile"></div>
+                                                                <h4>Address</h4>
                                                                     @if($service->locations!='')
                                                                         @foreach($service_map as $servicemap)
                                                                             <p><a href="location_{{$servicemap->location_id}}">{{$servicemap->name}}</a>: {{$servicemap->address_1}}, {{$servicemap->city}}, {{$servicemap->state_province}}, {{$servicemap->postal_code}}</p>
                                                                         @endforeach
                                                                     @endif
-                                                                <p><code>Contact</code>{{$contacts}}</p>
-                                                                <p><code>Regular schedule</code></p>
-                                                                <p><code>holiday schedule</code></p>
-                                                                <h4>Details</h4>
-                                                                @foreach($service_details as $service_detail)
-                                                                    <p><span class="badge badge-yellow">{{$service_detail->detail_type}}</span> {!! $service_detail->value !!}</p>
-                                                                @endforeach
+                                                                
+                                                                <h4>Contact: <p>{{$contacts}}</p></h4>
+                                                                <h4>Regular schedule: </h4>
+                                                                <h4>holiday schedule: <p></p></h4>
+                                                                <h4>Details:<br/> <p>@foreach($service_details as $service_detail)
+                                                                    <p><span class="badge badge-yellow bg_color_badges">{{$service_detail->detail_type}}</span> {!! $service_detail->value !!}</p><br/>
+                                                                @endforeach</p></h4>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

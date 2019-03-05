@@ -95,8 +95,8 @@
                 @if($entity->people == 'On')
                 <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
                 @endif
-                @if($entity->charter == 'On')
-                <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
+                @if($entity->laws == 'On')
+                <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">LAWS</a></li>
                 @endif
                 @if($entity->endorsements == 'On')
                 <li class="active"><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
@@ -131,8 +131,8 @@
                     @if($entity->people == 'On')
                     <li><a href="/organization_{{$organization->organizations_id}}/people" id="peoples_tab">PEOPLE</a></li>
                     @endif
-                    @if($entity->charter == 'On')
-                    <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">CHARTER, CODE & RULES</a></li>
+                    @if($entity->laws == 'On')
+                    <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">LAWS</a></li>
                     @endif
                     @if($entity->endorsements == 'On')
                     <li class="active"><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>

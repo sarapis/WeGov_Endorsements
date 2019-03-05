@@ -558,12 +558,26 @@ html, body {
 .inner_request_detail h4 {margin: 0px;margin-bottom: 6px;font-size: 16px !important;color: #042c3d;font-weight: 600;}
 .election_menu .box .inner_request_detail p {display: initial;margin-bottom: 0px;}
 .election_menu .box .inner_request_detail a { color: #0073b7; }
-
-
-
-
-
-
+.election_menu .box-body span.bg_color_badges {display: inline-block;color: #fff;font-size: 14px;}
+.laws_div #pl-1193 .so-panel h3{background-color: #ebebeb; margin-top: 0px; margin-bottom: 0px; font-size: 16px !important;font-weight: 600; padding: 0px 20px;color: #042c3d;}
+.laws_div #pl-1193 #panel-1193-1-0-0, .laws_div #pl-1193 #panel-1193-1-1-0 , .laws_div #pl-1193 #panel-1193-1-2-0{ margin-bottom: 0px; border: 1px solid #ebebeb; }
+.laws_div #pl-1193 .so-panel.widget_text .textwidget { padding: 15px; }
+.election_menu .box-body.inner_request_detail div.laws_div .col-md-12 { padding: 0px; }
+.election_menu .box .inner_request_detail a.ow-icon-placement-left{background-color: #004a83;width: 100%; display: block; font-size: 15px;}
+.inner_request_detail button.btn.btn-raised.btn-info{background-color: #004a83;}
+.election_menu .box .inner_request_detail a.ow-icon-placement-left span { color: #fff;font-size: 15px; }
+#panel-1193-1-2-1 { padding-top: 0px !important; }
+#pgc-1193-1-2 { padding-right: 0px; }
+.home_bg { background: url(welcome.jpg); width: 100%; background-size: 100%;float: left;width: 100%; }
+.home_bg h4{float: left;width: 100%;font-size: 50px;color: #fff;font-weight: 600;margin-top: 15%;font-family: 'Source Sans Pro', sans-serif;    float: left;}
+.home_bg h5 { color: #fff;font-family: 'Source Sans Pro', sans-serif;font-size: 26px;font-weight: 300; width: 54%;    float: left;
+    margin-top: 0px;margin-bottom: 15%; line-height: initial;}
+.inner_left_home { margin-top: 40px; }
+.icon_images_home {font-size: 45px;color: #004a83;text-align: center; margin-top: 10px;}
+.right_home_text h4, .right_home_text a{ color: #004a83;font-weight: 600; margin-top: 0px;margin-bottom: 5px;font-size: 30px;font-family: 'Source Sans Pro', sans-serif;}
+.right_home_text p{font-family: 'Source Sans Pro', sans-serif;color: #004a83;font-weight:500;}
+.last_home_text {color: #004a83; margin-top: 30px; margin-bottom: 30px;}
+ .right_home_text a:hover { text-decoration: underline; }
 
 /******************************* responsive css *************************************/
 

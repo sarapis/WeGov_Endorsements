@@ -1,4 +1,4 @@
-@extends('admin.layouts.dashboard') @section('template_title') Entity Organizations @endsection @section('template_fastload_css') @endsection @section('content')
+@extends('admin.layouts.dashboard') @section('template_title') Organization Menu @endsection @section('template_fastload_css') @endsection @section('content')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     tr.modified{
@@ -19,7 +19,7 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-        Entity - Organizations
+        Organization Menu
         <small>Administrator Access</small>
       </h1>
 
@@ -41,7 +41,7 @@
                                     <th class="text-center">Services</th> 
                                     <th class="text-center">Money</th>
                                     <th class="text-center">People</th>
-                                    <th class="text-center">Charter</th>
+                                    <th class="text-center">Laws</th>
                                     <th class="text-center">Endorsements</th>
                                     <th class="text-center">Candidates</th>
                                     <th class="text-center">Requests</th>
@@ -58,7 +58,7 @@
                                     <td class="text-center"><span class="badge bg-{{$organization->services}}">{{$organization->services}}</span></td>
                                     <td class="text-center"><span class="badge bg-{{$organization->money}}">{{$organization->money}}</span></td>
                                     <td class="text-center"><span class="badge bg-{{$organization->people}}">{{$organization->people}}</span></td>
-                                    <td class="text-center"><span class="badge bg-{{$organization->charter}}">{{$organization->charter}}</span></td>
+                                    <td class="text-center"><span class="badge bg-{{$organization->laws}}">{{$organization->laws}}</span></td>
                                     <td class="text-center"><span class="badge bg-{{$organization->endorsements}}">{{$organization->endorsements}}</span></td>
                                     <td class="text-center"><span class="badge bg-{{$organization->candidates}}">{{$organization->candidates}}</td>
                                     <td class="text-center"><span class="badge bg-{{$organization->requests}}">{{$organization->requests}}</span></td>
@@ -129,10 +129,10 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="text" class="col-sm-6 control-label">Charter</label>
+                      <label for="text" class="col-sm-6 control-label">Laws</label>
 
                       <div class="col-sm-6">
-                        <input type="checkbox" style="margin-top: 10px;" id="charter" name="charter">
+                        <input type="checkbox" style="margin-top: 10px;" id="laws" name="laws">
                       </div>
                     </div>
                     <div class="form-group">

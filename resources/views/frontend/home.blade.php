@@ -4,81 +4,89 @@
 @section('content')
 
 
-<div class="demo-container mdl-grid">
-    <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col">
-        <div class="page-title row">
-            <div class="pull-left">{{$posts->title}}</div>
-        </div>
-        <div class="menu-bar row">
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="about">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="box" style="padding: 40px;border-top: 2px solid #d2d6de;">
-                                <div class="row">
-                                    <div class="col-md-8" style="padding-top: 5px;">
-                                        <p>{!! $posts->body !!}</p>
-                                    </div>
-                                    <div class="col-md-4">
-                                       
-                                            <img src="{{asset('images/logo.png')}}" class="img-responsive">
-                                        
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="box">
-                                        <div class="box-header"><h3 class="box-title">Acitivities</h3></div>
-                                        <div class="box-body">
-                                            <div class="row" style="padding: 40px;">
-                                                <div class="col-sm-6">
-                                                    <h5 class="box-body-operating"> Services</h5>
-                                                    <h3 class="box-body-operating"><b>{{number_format($quantity_services)}}</b></h3>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <h5 class="box-body-operating">Projects</h5>
-                                                    <h3 class="box-body-operating"><b>{{$quantity_project}}</b></h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="box">
-                                        <div class="box-header"><h3 class="box-title">Budgets</h3></div>
-                                        <div class="box-body">
-                                            <div class="row" style="padding: 40px;">
-                                                <div class="col-sm-6">
-                                                    <h5 class="box-body-budget">Expense</h5>
-                                                    <h3 class="box-body-budget"><b>${{$budgets}}</b></h3>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <h5 class="box-body-budget">Capital</h5>
-                                                    <h3 class="box-body-budget"><b>${{$capital}}</b></h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<div class="home_bg">
+    <div class="container">
+        <h4>MyGov.NYC Research Center</h4>
+        <h5>We create, collect and connect open datasets together to give you a data-driven view of New York City government.</h5>
+    </div>
+</div>
+<div class="below_home">
+    <div class="container">
+        <div class="col-sm-12 col-md-12">
+            <div class="row">
+                <div class="col-sm-6 pull-left">
+                    <div class="inner_left_home">
+                        <div class="col-sm-2 col-md-2 icon_images_home">
+                           <i class="fas fa-landmark"></i> 
                         </div>
-                    </div>
-
-                    <div class="box" style="padding: 40px;border-top: 2px solid #d2d6de;">
-                        <div class="row">
-                            <div class="col-md-12" style="padding-top: 5px;">
-                            <p>{!! $posts->bottom !!}</p>
-                            </div>
+                        <div class="col-sm-8 col-md-8 right_home_text">
+                            <h4><a href="#">Organizations</a> </h4>
+                            <p>The city and state agencies, elected offices and political groups leading New York City</p>
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-6 pull-left">
+                    <div class="inner_left_home">
+                        <div class="col-sm-2 col-md-2 icon_images_home">
+                           <i class="fas fa-hammer"></i>
+                        </div>
+                        <div class="col-sm-8 col-md-8 right_home_text">
+                            <h4><a href="#">Capital Projects</a> </h4>
+                            <p>New York City’s entire capital budget available in open data and organized by agency.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 pull-left">
+                    <div class="inner_left_home">
+                        <div class="col-sm-2 col-md-2 icon_images_home">
+                           <i class="fas fa-concierge-bell"></i>
+                        </div>
+                        <div class="col-sm-8 col-md-8 right_home_text">
+                            <h4><a href="#">City Services</a> </h4>
+                            <p>All services the city published in Open Referral format. We’re adding more all the time. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 pull-left">
+                    <div class="inner_left_home">
+                        <div class="col-sm-2 col-md-2 icon_images_home">
+                           <i class="fas fa-users"></i> 
+                        </div>
+                        <div class="col-sm-8 col-md-8 right_home_text">
+                            <h4><a href="#">People</a>  </h4>
+                            <p>Contact information for over 4000 government employees at over 100 city and state agencies.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 pull-left">
+                    <div class="inner_left_home">
+                        <div class="col-sm-2 col-md-2 icon_images_home">
+                           <i class="fas fa-vote-yea"></i> 
+                        </div>
+                        <div class="col-sm-8 col-md-8 right_home_text">
+                            <h4><a href="#">Elections</a></h4>
+                            <p>Candidates running for office and the organizations that have endorsed them.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 pull-left">
+                    <div class="inner_left_home">
+                        <div class="col-sm-2 col-md-2 icon_images_home">
+                           <i class="fas fa-gavel"></i>
+                        </div>
+                        <div class="col-sm-8 col-md-8 right_home_text">
+                            <h4><a href="#">Laws</a></h4>
+                            <p>Accessible, mobile friendly versions of the city charter, rules and administrative code. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 last_home_text">
+                    <p><i class="fas fa-file-alt"></i> Toward a More Transparent New York City - Do you have ideas for how New York City can offer more useful open data sets? We do too. Tell us your thoughts.</p>
+                </div>
             </div>
         </div>
-         <!-- @include('partials.footer') -->
     </div>
-
 </div>
+
 @include('layouts.script')
 @endsection

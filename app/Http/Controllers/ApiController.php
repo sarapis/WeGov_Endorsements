@@ -15,7 +15,7 @@ use Input;
 use Response;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 
-class AppearanceController extends Controller
+class ApiController extends Controller
 {
     /**
      * Post Repository

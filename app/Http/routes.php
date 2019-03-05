@@ -302,6 +302,8 @@ Route::group(['middleware' => 'administrator'], function () {
 
 	Route::resource('appearance', 'AppearanceController');
 
+	Route::resource('apis', 'ApiController');
+
 	// resource routes for posts
 	Route::resource('posts', 'PostsController');
 

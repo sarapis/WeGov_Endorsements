@@ -448,6 +448,7 @@ dt{
 .text-aqua{
   cursor: pointer;
   font-size: 24px;
+  color: #004a83 !important;
 }
 .portlet-body{
   padding: 10px;

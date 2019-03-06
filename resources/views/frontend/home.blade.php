@@ -20,7 +20,7 @@
                            <i class="fas fa-landmark"></i> 
                         </div>
                         <div class="col-sm-8 col-md-8 right_home_text">
-                            <h4><a href="#">Organizations</a> </h4>
+                            <h4><a href="/organizations">Organizations</a> </h4>
                             <p>The city and state agencies, elected offices and political groups leading New York City</p>
                         </div>
                     </div>
@@ -31,8 +31,8 @@
                            <i class="fas fa-hammer"></i>
                         </div>
                         <div class="col-sm-8 col-md-8 right_home_text">
-                            <h4><a href="#">Capital Projects</a> </h4>
-                            <p>New York City’s entire capital budget available in open data and organized by agency.</p>
+                            <h4><a href="/projects">Capital Projects</a> </h4>
+                            <p>New York City’s entire capital budget available in open data and organized by agency</p>
                         </div>
                     </div>
                 </div>
@@ -42,8 +42,8 @@
                            <i class="fas fa-concierge-bell"></i>
                         </div>
                         <div class="col-sm-8 col-md-8 right_home_text">
-                            <h4><a href="#">City Services</a> </h4>
-                            <p>All services the city published in Open Referral format. We’re adding more all the time. </p>
+                            <h4><a href="/services">City Services</a> </h4>
+                            <p>All health, human and social services the city published in Open Referral format</p>
                         </div>
                     </div>
                 </div>
@@ -53,8 +53,8 @@
                            <i class="fas fa-users"></i> 
                         </div>
                         <div class="col-sm-8 col-md-8 right_home_text">
-                            <h4><a href="#">People</a>  </h4>
-                            <p>Contact information for over 4000 government employees at over 100 city and state agencies.</p>
+                            <h4><a href="/people">People</a>  </h4>
+                            <p>Contact information for over 4000 government employees at over 100 city and state agencies</p>
                         </div>
                     </div>
                 </div>
@@ -64,8 +64,8 @@
                            <i class="fas fa-vote-yea"></i> 
                         </div>
                         <div class="col-sm-8 col-md-8 right_home_text">
-                            <h4><a href="#">Elections</a></h4>
-                            <p>Candidates running for office and the organizations that have endorsed them.</p>
+                            <h4><a href="/elections">Elections</a></h4>
+                            <p>Candidates running for office and the organizations that have endorsed them</p>
                         </div>
                     </div>
                 </div>
@@ -75,13 +75,13 @@
                            <i class="fas fa-gavel"></i>
                         </div>
                         <div class="col-sm-8 col-md-8 right_home_text">
-                            <h4><a href="#">Laws</a></h4>
-                            <p>Accessible, mobile friendly versions of the city charter, rules and administrative code. </p>
+                            <h4><a href="/laws">Laws</a></h4>
+                            <p>Accessible, mobile friendly versions of the city charter, rules and administrative code </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12 last_home_text">
-                    <p><i class="fas fa-file-alt"></i> Toward a More Transparent New York City - Do you have ideas for how New York City can offer more useful open data sets? We do too. Tell us your thoughts.</p>
+                    <p><i class="fas fa-file-alt"></i> Toward a More Transparent New York City - Do you have ideas for how New York City can offer more useful open data sets? We do too. Tell us your thoughts</p>
                 </div>
             </div>
         </div>

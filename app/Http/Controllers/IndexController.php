@@ -42,18 +42,9 @@ class IndexController extends Controller
     {
         // return $tree;
         //return view('files.treeview',compact('tree'));
-        $posts = $this->post->first();
-        $quantity_organizations = DB::table('organizations')->count();
-        $budget = DB::table('expenses')->sum('year1_forecast');
-        $budgetclass = new Numberformat();
-        $budgets = $budgetclass->custom_number_format($budget, 1);
-        $quantity_services = DB::table('services')->count();
-        $quantity_project = DB::table('projects')->count();
-        $quantity_projects = $budgetclass->custom_number_format($quantity_project, 2);
-        $total_project_cost = DB::table('agencies')->sum('total_project_cost');
-        $capital=$budgetclass->custom_number_format($total_project_cost, 1);
+        $post = $this->post->first();
 
-        return view('frontend.home', compact('posts', 'quantity_organizations', 'budgets', 'quantity_services', 'quantity_project', 'capital'));
+        return view('frontend.home', compact('post'));
     }
  
 

@@ -6,8 +6,8 @@
 
 <div class="home_bg">
     <div class="container">
-        <h4>MyGov.NYC Research Center</h4>
-        <h5>We create, collect and connect open datasets together to give you a data-driven view of New York City government.</h5>
+        <h4>{{$post->title}}</h4>
+        <h5>{!! $post->body !!}</h5>
     </div>
 </div>
 <div class="below_home">
@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12 last_home_text">
-                    <p><i class="fas fa-file-alt"></i> Toward a More Transparent New York City - Do you have ideas for how New York City can offer more useful open data sets? We do too. Tell us your thoughts</p>
+                    <p><!-- <i class="fas fa-file-alt"></i> --> {!! $post->bottom !!}</p>
                 </div>
             </div>
         </div>

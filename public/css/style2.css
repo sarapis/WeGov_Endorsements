@@ -750,3 +750,12 @@ html, body {
   .col-people{
     width: 40%;
 }
+}
+.d-inline {
+    display: inline!important;
+}
+.site-name{
+  color: white;
+  font-size: 40px;
+  vertical-align: middle;
+}

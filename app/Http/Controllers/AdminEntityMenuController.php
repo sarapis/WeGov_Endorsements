@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\EntityOrganization;
+use App\Models\EntityMenu;
 use App\Models\Airtable_people;
 use App\Functions\Airtable;
 use App\Http\Requests;
 
-class AdminEntityPeopleController extends Controller
+class AdminEntityMenuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +19,8 @@ class AdminEntityPeopleController extends Controller
 
     public function index()
     {
-        $organizations = EntityOrganization::all();
-        return view('admin.entities.organization')->with('organizations', $organizations);
+        $menus = EntityMenu::all();
+        return view('admin.entities.menu')->with('menus', $menus);
     }
 
     /**
@@ -39,9 +39,25 @@ class AdminEntityPeopleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function inarray($a, $array)
+    {
+        for($i = 0; $i < count($array); $i ++)
+            if($a == $array[$i])
+                return 1;
+        return 0;
+    }
+
     public function store(Request $request)
     {
-        //
+        $menus = $request->input('menu');
+        for($i = 1; $i<=6; $i++){
+            $main_menu = EntityMenu::find($i);
+            $main_menu->action = $this->inarray($i, $menus);
+            $main_menu->save();
+        }
+
+        return redirect('entity_main');
     }
 
     /**
@@ -76,18 +92,7 @@ class AdminEntityPeopleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $organization = EntityOrganization::find($id);
-        $organization->about = $request->about;
-        $organization->projects = $request->projects;
-        $organization->services = $request->services;
-        $organization->money = $request->money;
-        $organization->people = $request->people;
-        $organization->charter = $request->charter;
-        $organization->legislation = $request->legislation;
-        $organization->endorsements = $request->endorsements;
-        $organization->candidates = $request->candidates;
-        $organization->requests = $request->requests;
-        $organization->save();
+
         // var_dump($project);
         // exit();
         return response()->json($organization);

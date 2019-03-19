@@ -335,7 +335,10 @@ Route::group(['middleware' => 'administrator'], function () {
 
 	//Entity
 	Route::resource('entity_organizations', 'AdminEntityOrganizationController');
-	Route::resource('entity_people', 'AdminEntityPeopleController');
+	Route::resource('entity_main', 'AdminEntityMenuController');
+
+	//Apis
+	Route::resource('apis', 'AdminApiController');
 
 	Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 

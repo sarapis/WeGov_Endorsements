@@ -9,13 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Logic\User\UserRepository;
-use App\Models\Layout;
+use App\Models\Api;
 use Validator;
 use Input;
 use Response;
+use Session;
+use Image;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 
-class ApiController extends Controller
+class AdminApiController extends Controller
 {
     /**
      * Post Repository
@@ -36,35 +38,8 @@ class ApiController extends Controller
      */
     public function index()
     {
-        $layout = Layout::all();
-        $user                   = \Auth::user();
-        $users              = \DB::table('users')->get();
-        $total_users        = \DB::table('users')->count();
-        $userRole           = $user->hasRole('user');
-        $editorRole         = $user->hasRole('editor');
-        $adminRole          = $user->hasRole('administrator');
-
-        $userRole               = $user->hasRole('user');
-        $editorRole             = $user->hasRole('editor');
-        $adminRole              = $user->hasRole('administrator');
-
-        if($userRole)
-        {
-            $access = 'User';
-        } elseif ($editorRole) {
-            $access = 'Editor';
-        } elseif ($adminRole) {
-            $access = 'Administrator';
-        }
-
-             return view('admin.pages.appearance', [
-            'users'             => $users,
-            'total_users'       => $total_users,
-            'user'              => $user,
-            'access'            => $access,
-            'success' => '', 
-            'errors' => '', 
-            'message' => '',], compact('layout'));
+        $apis = Api::all();
+        return view('admin.pages.api')->with('apis', $apis);
     }
 
     /**
@@ -82,56 +57,16 @@ class ApiController extends Controller
      *
      * @return Response
      */
-    public function store()
-    {
-        $about = $this->about->first();
-    	$user               = \Auth::user();
-        $users              = \DB::table('users')->get();
-        $total_users        = \DB::table('users')->count();
-        $userRole           = $user->hasRole('user');
-        $editorRole         = $user->hasRole('editor');
-        $adminRole          = $user->hasRole('administrator');
+    public function store(Request $request)
+    {   
+        $api=Api::find(1);
+        $api->api_key=$request->google_map_api;
+        $api->save();
 
-        $userRole               = $user->hasRole('user');
-        $editorRole             = $user->hasRole('editor');
-        $adminRole              = $user->hasRole('administrator');
+        Session::flash('message', 'API updated!');
+        Session::flash('status', 'success');
 
-        if($userRole)
-        {
-            $access = 'User';
-        } elseif ($editorRole) {
-            $access = 'Editor';
-        } elseif ($adminRole) {
-            $access = 'Administrator';
-        }
-
-        $input = Input::all();
-        $validation = Validator::make($input, About::$rules);
-
-        if ($validation->passes())
-        {	
-        	$about = $this->about->first();
-            $about->update($input);
-            //$this->post->create($input);
-
-            return view('admin.pages.edit-about', [
-	            'users'             => $users,
-	            'total_users'       => $total_users,
-	            'user'              => $user,
-	            'access'            => $access,
-	            'success' 			=> 'true', 
-	            'errors' 			=> '', 
-	            'message' 			=> 'Post created successfully.',], compact('about'));
-        }
-
-        return view('admin.pages.edit-about', [
-	            'users'             => $users,
-	            'total_users'       => $total_users,
-	            'user'              => $user,
-	            'access'            => $access,
-	            'success' => 'false', 
-	            'errors' => $validation, 
-	            'message' => 'All fields are required.',], compact('about'));
+        return redirect('apis');
     }
 
     /**

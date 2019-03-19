@@ -6,7 +6,7 @@
 	</div> -->
 	<div class="mdl-layout-logo mdl-layout__header-row">
 		<div class="container">
-	  	<a class="logo_left" href="/"><img src="{{URL::asset('images/mygov.png')}}" class="img-responsive"></a>
+	  	<a class="logo_left" href="/">@if($layout->find(1)->action ==1 ) <p class="d-inline site-name">{{$layout->find(1)->link}}</p> @endif @if($layout->find(3)->action ==1 ) <img src="/upload/images/{{$layout->find(3)->link}}" class="img-responsive d-inline"> @endif @if($layout->find(2)->action ==1 ) <p class="d-inline site-name">{{$layout->find(2)->link}}</p> @endif </a>
 	      <div class="top-bar-right">
 	      	<button type="button" class="btn btn-raised btn-block btn-primary menu_filter">
 		        <i class="fa fa-bars" aria-hidden="true"></i> Menu 
@@ -33,12 +33,12 @@
 			<a href="http://mygov.nyc/blog/" class="mdl-layout__tab menu-link">Blog</a>
 			<a href="https://opencollective.com/mygovnyc" class="mdl-layout__tab menu-link">Donate</a>
 			<a href="http://blog.mygov.nyc/get-involved/" class="mdl-layout__tab menu-link">Get Involved</a>
-			<a href="/organizations" class="mdl-layout__tab menu-link @if(mb_substr(Request::segment(1), 0, 12) == 'organization') is-active @endif">Organizations</a>
-			<a href="/projects" class="mdl-layout__tab menu-link @if(Request::is ('projects')) is-active @endif">Projects</a>
-			<a href="/services" class="mdl-layout__tab menu-link @if(Request::is ('services')) is-active @endif">Services</a>
-			<a href="/people" class="mdl-layout__tab menu-link @if(mb_substr(Request::segment(1), 0, 6) == 'people') is-active @endif">People</a>
-			<a href="/elections" class="mdl-layout__tab menu-link @if(mb_substr(Request::segment(1), 0, 9) == 'elections') is-active @endif">Elections</a>
-			<a href="/laws" class="mdl-layout__tab menu-link @if(Request::is ('laws')) is-active @endif">Laws</a>
+			@if($menu->find(1)->action ==1) <a href="/organizations" class="mdl-layout__tab menu-link @if(mb_substr(Request::segment(1), 0, 12) == 'organization') is-active @endif">Organizations</a> @endif
+			@if($menu->find(2)->action ==1) <a href="/projects" class="mdl-layout__tab menu-link @if(Request::is ('projects')) is-active @endif">Projects</a> @endif
+			@if($menu->find(3)->action ==1) <a href="/services" class="mdl-layout__tab menu-link @if(Request::is ('services')) is-active @endif">Services</a> @endif
+			@if($menu->find(4)->action ==1) <a href="/people" class="mdl-layout__tab menu-link @if(mb_substr(Request::segment(1), 0, 6) == 'people') is-active @endif">People</a> @endif
+			@if($menu->find(5)->action ==1) <a href="/elections" class="mdl-layout__tab menu-link @if(mb_substr(Request::segment(1), 0, 9) == 'elections') is-active @endif">Elections</a> @endif
+			@if($menu->find(6)->action ==1) <a href="/laws" class="mdl-layout__tab menu-link @if(Request::is ('laws')) is-active @endif">Laws</a> @endif
 		</div>
 	</div>
 
@@ -57,12 +57,12 @@
 	</div>
 	<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark submenu_div">
 		<div class="container">
-			<a href="/organizations" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 12) == 'organization') is-active @endif">Organizations</a>
-			<a href="/projects" class="mdl-layout__tab @if(Request::is ('projects')) is-active @endif">Projects</a>
-			<a href="/services" class="mdl-layout__tab @if(Request::is ('services')) is-active @endif">Services</a>
-			<a href="/people" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 6) == 'people') is-active @endif">People</a>
-			<a href="/elections" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 9) == 'elections') is-active @endif">Elections</a>
-			<a href="/laws" class="mdl-layout__tab @if(Request::is ('laws')) is-active @endif">Laws</a>
+			@if($menu->find(1)->action ==1) <a href="/organizations" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 12) == 'organization') is-active @endif">Organizations</a> @endif
+			@if($menu->find(2)->action ==1) <a href="/projects" class="mdl-layout__tab @if(Request::is ('projects')) is-active @endif">Projects</a> @endif
+			@if($menu->find(3)->action ==1) <a href="/services" class="mdl-layout__tab @if(Request::is ('services')) is-active @endif">Services</a> @endif
+			@if($menu->find(4)->action ==1) <a href="/people" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 6) == 'people') is-active @endif">People</a> @endif
+			@if($menu->find(5)->action ==1) <a href="/elections" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 9) == 'elections') is-active @endif">Elections</a> @endif
+			@if($menu->find(6)->action ==1) <a href="/laws" class="mdl-layout__tab @if(Request::is ('laws')) is-active @endif">Laws</a> @endif
 		</div>
 	</div>
 </header>

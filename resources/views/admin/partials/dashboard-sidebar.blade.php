@@ -102,7 +102,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="/entity_main"><i class="fa fa-circle-o"></i> Main </a></li>
+                <li><a href="/entity_main"><i class="fa fa-circle-o"></i> Main Menu</a></li>
                 <li><a href="/entity_organizations"><i class="fa fa-circle-o"></i> Organization </a></li>
               </ul>
             </li>

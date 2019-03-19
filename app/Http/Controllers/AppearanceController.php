@@ -13,6 +13,8 @@ use App\Models\Layout;
 use Validator;
 use Input;
 use Response;
+use Session;
+use Image;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 
 class AppearanceController extends Controller
@@ -82,56 +84,66 @@ class AppearanceController extends Controller
      *
      * @return Response
      */
-    public function store()
-    {
-        $about = $this->about->first();
-    	$user               = \Auth::user();
-        $users              = \DB::table('users')->get();
-        $total_users        = \DB::table('users')->count();
-        $userRole           = $user->hasRole('user');
-        $editorRole         = $user->hasRole('editor');
-        $adminRole          = $user->hasRole('administrator');
+    public function store(Request $request)
+    {   
+        $logo = Layout::find(3);
+        if($request->hasFile('site_logo')){
+            
+            $companylogo = $request->file('site_logo');
+            $filename = time() . '.' . $companylogo->getClientOriginalExtension();
+            Image::make($companylogo)->resize(300, 300, function ($constraint) {
+            $constraint->aspectRatio();})->save( public_path('/upload/images/' . $filename ) );
+            $logo->link=$filename;
+            
+        }
 
-        $userRole               = $user->hasRole('user');
-        $editorRole             = $user->hasRole('editor');
-        $adminRole              = $user->hasRole('administrator');
-
-        if($userRole)
+        if ($request->input('logo_active') == 'checked')
         {
-            $access = 'User';
-        } elseif ($editorRole) {
-            $access = 'Editor';
-        } elseif ($adminRole) {
-            $access = 'Administrator';
+            $logo->action = 1;
         }
-
-        $input = Input::all();
-        $validation = Validator::make($input, About::$rules);
-
-        if ($validation->passes())
-        {	
-        	$about = $this->about->first();
-            $about->update($input);
-            //$this->post->create($input);
-
-            return view('admin.pages.edit-about', [
-	            'users'             => $users,
-	            'total_users'       => $total_users,
-	            'user'              => $user,
-	            'access'            => $access,
-	            'success' 			=> 'true', 
-	            'errors' 			=> '', 
-	            'message' 			=> 'Post created successfully.',], compact('about'));
+        else {
+            $logo->action = 0;
         }
+        $logo->save();
 
-        return view('admin.pages.edit-about', [
-	            'users'             => $users,
-	            'total_users'       => $total_users,
-	            'user'              => $user,
-	            'access'            => $access,
-	            'success' => 'false', 
-	            'errors' => $validation, 
-	            'message' => 'All fields are required.',], compact('about'));
+        $name = Layout::find(1);
+        $name->link=$request->site_name;
+        if ($request->input('name_active') == 'checked')
+        {
+            $name->action = 1;
+        }
+        else {
+            $name->action = 0;
+        }
+        $name->save();
+
+        $tagline = Layout::find(2);
+        $tagline->link=$request->site_tagline;
+        if ($request->input('tagline_active') == 'checked')
+        {
+            $tagline->action = 1;
+        }
+        else {
+            $tagline->action = 0;
+        }
+        $tagline->save();
+
+        $footer_text=Layout::find(4);
+        $footer_text->link=$request->footer_text;
+        $footer_text->save();
+
+        $footer_button=Layout::find(5);
+        $footer_button->link=$request->footer_button;
+        $footer_button->save();
+
+        $footer_link=Layout::find(6);
+        $footer_link->link=$request->footer_link;
+        $footer_link->save();
+
+        Session::flash('message', 'Appearance updated!');
+        Session::flash('status', 'success');
+
+        return redirect('appearance');
     }
 
     /**

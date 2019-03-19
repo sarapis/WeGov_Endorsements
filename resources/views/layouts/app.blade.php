@@ -40,7 +40,7 @@
     
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5XHJ6oNL9-qh0XsL0G74y1xbcxNGkSxw&callback=initMap">
+    <script src="https://maps.googleapis.com/maps/api/js?key={{$api->find(1)->api_key}}&callback=initMap">
     </script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>

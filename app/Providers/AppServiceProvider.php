@@ -12,6 +12,26 @@ class AppServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		//
+		view()->composer('partials.header', function($view)
+        {
+            $view->with('layout', \App\Models\Layout::all());
+        });
+
+        view()->composer('partials.header', function($view)
+        {
+            $view->with('menu', \App\Models\EntityMenu::all());
+        });
+
+        view()->composer('partials.footer', function($view)
+        {
+            $view->with('layout', \App\Models\Layout::all());
+        });
+
+        view()->composer('layouts.app', function($view)
+        {
+            $view->with('api', \App\Models\Api::all());
+        });
+
 	}
 
 	/**

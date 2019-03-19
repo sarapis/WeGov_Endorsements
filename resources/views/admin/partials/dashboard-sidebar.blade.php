@@ -61,7 +61,7 @@
             </li>
 
             <li class="treeview">
-              <a href="#">
+              <a href="/tb_organizations">
                 <i class="fa fa-table"></i>
                 <span>Index Tables</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -86,7 +86,7 @@
             </li>
 
             <li class="treeview">
-              <a href="#">
+              <a href="/tb_greenbook">
                 <i class="fa fa-table"></i>
                 <span>Joined Tables</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -96,7 +96,7 @@
               </ul>
             </li>
             <li class="treeview">
-              <a href="#">
+              <a href="/entity_main">
                 <i class="fa fa-table"></i>
                 <span>Menus</span>
                 <i class="fa fa-angle-left pull-right"></i>

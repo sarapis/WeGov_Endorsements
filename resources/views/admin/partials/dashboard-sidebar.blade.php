@@ -61,9 +61,9 @@
             </li>
 
             <li class="treeview">
-              <a href="">
+              <a href="#">
                 <i class="fa fa-table"></i>
-                <span>Indexe Tables</span>
+                <span>Index Tables</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -86,7 +86,7 @@
             </li>
 
             <li class="treeview">
-              <a href="">
+              <a href="#">
                 <i class="fa fa-table"></i>
                 <span>Joined Tables</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -96,7 +96,7 @@
               </ul>
             </li>
             <li class="treeview">
-              <a href="">
+              <a href="#">
                 <i class="fa fa-table"></i>
                 <span>Menus</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -107,7 +107,7 @@
               </ul>
             </li>
             <li>
-                <a href="/apis" title="Appearance"><i class="fa fa-window-maximize" aria-hidden="true"></i><span>Apis</span></a>
+                <a href="/apis" title="Appearance"><i class="fa fa-window-maximize" aria-hidden="true"></i><span>APIs</span></a>
             </li>
             @if (Auth::user()->profile)
                 <li class="treeview">

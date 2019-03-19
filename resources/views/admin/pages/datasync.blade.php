@@ -49,6 +49,7 @@
                                 <h4 class="box-title">Joined Organizations: {{$join_agencies}}</h4>
                             </div>
                             <div class="col-md-6 text-right">
+                                <button class="btn btn-success btn-sm sync_all" id="sync_1">SYNC ALL</button>
                                 <button class="btn btn-primary btn-sm open_modal" value="1">Edit</button>
                             </div>
                         </div>
@@ -104,6 +105,7 @@
                                 <h4 class="box-title">Joined Organizations: {{$join_organizations}}</h4>
                             </div>
                             <div class="col-md-6 text-right">
+                                <button class="btn btn-success btn-sm sync_all" id="sync_2">SYNC ALL</button>
                                 <button class="btn btn-primary btn-sm open_modal" value="2">Edit</button>
                             </div>
                         </div>
@@ -159,6 +161,7 @@
                                 <h4 class="box-title">Joined Organizations: {{$join_serviceorganizations}}</h4>
                             </div>
                             <div class="col-md-6 text-right">
+                                <button class="btn btn-success btn-sm sync_all" id="sync_3">SYNC ALL</button>
                                 <button class="btn btn-primary btn-sm open_modal" value="3">Edit</button>
                             </div>
                         </div>
@@ -214,6 +217,7 @@
                                 <h4 class="box-title">Joined Organizations: {{$join_politicians}}</h4>
                             </div>
                             <div class="col-md-6 text-right">
+                                <button class="btn btn-success btn-sm sync_all" id="sync_4">SYNC ALL</button>
                                 <button class="btn btn-primary btn-sm open_modal" value="4">Edit</button>
                             </div>
                         </div>
@@ -268,6 +272,7 @@
                                 <h4 class="box-title">Joined Organizations: {{$join_greenbooks}}</h4>
                             </div>
                             <div class="col-md-6 text-right">
+                                <button class="btn btn-success btn-sm sync_all" id="sync_5">SYNC ALL</button>
                                 <button class="btn btn-primary btn-sm open_modal" value="5">Edit</button>
                             </div>
                         </div>
@@ -391,6 +396,45 @@
 <script type="text/javascript">
     $(document).ready(function() {
         var $img = $('<img class="probar titleimage" id="title" src="images/xpProgressBar.gif" alt="Loading..." />');
+
+
+
+        $('.sync_all').click(function(){
+            sync_all_now(this, 0);
+        });
+
+        function sync_all_now(parent, c){
+
+            current = $('.sync_now',$(parent).parent().parent().parent().next()).eq(c);
+
+            current.hide();
+
+            current.after($img);
+
+            var name = current.parent().prev().prev().prev().html();
+
+            current.after($img);
+            
+            $here = current;
+            name = name.toLowerCase();
+            
+            $.ajax({
+                type: "GET",
+                url: '/sync_'+name,
+                success: function(result) {
+                    $img.remove();
+                    $here.show();
+                    $here.html('Updated');
+                    $here.removeClass('bg-yellow');
+                    $here.addClass('bg-purple');
+                    $here.parent().prev().html('<?php echo date("Y/m/d H:i:s"); ?>');
+                    c ++;
+                    if($('.sync_now',$(parent).parent().parent().parent().next()).length != c)
+                        sync_all_now(parent, c);
+                }
+            });
+        }
+
 
         $('.sync_now').click(function(){
             $(this).hide();

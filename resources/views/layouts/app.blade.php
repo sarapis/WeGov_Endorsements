@@ -52,7 +52,7 @@
 
         @include('partials.header')
         <main class="demo-main mdl-layout__content">
-            <div class="@if(Request::is ('/'))  @else container @endif">
+            <div class=" @if(Request::is ('/') || Request::is ('home'))  @else container @endif">
                 @yield('content')
             </div>
         </main>

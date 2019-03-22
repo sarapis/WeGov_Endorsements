@@ -88,5 +88,5 @@
     </div>
 </div>
 
-@include('layouts.script')
+
 @endsection

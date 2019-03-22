@@ -519,5 +519,4 @@ $(document).ready(function() {
 } );
 </script>
 
-@include('layouts.script')
 @endsection

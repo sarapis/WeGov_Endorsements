@@ -32,5 +32,4 @@
 
 </div>
 
-@include('layouts.script')
 @endsection

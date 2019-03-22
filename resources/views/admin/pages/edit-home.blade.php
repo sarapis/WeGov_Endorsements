@@ -58,7 +58,7 @@
                            <!-- {{Form::label('body', 'Content')}}{{Form::textarea('body',null,array('class' => 'form-control', 'placeholder'=>'Content', 'id' => 'summernote'))}}--> 
                         </div>
                         <div class="form-group">
-                            <label for="body">Hoem Content Bottom</label>
+                            <label for="body">Home Content Bottom</label>
                             <textarea class="form-control" placeholder="Content" id="summernote_bottom" name="bottom" cols="50" rows="10" style="display: none;">{!! $post->bottom !!}</textarea>
                            <!-- {{Form::label('body', 'Content')}}{{Form::textarea('body',null,array('class' => 'form-control', 'placeholder'=>'Content', 'id' => 'summernote'))}}--> 
                         </div>

@@ -759,3 +759,13 @@ html, body {
   font-size: 40px;
   vertical-align: middle;
 }
+.tab_filter_btn.menu_btn{
+  display: block;
+  color: #000000;
+}
+.nav-tabs.nav-menu{
+  background-color: #004a83 !important;
+}
+.nav-menu li a{
+  color: #ffffff !important;
+}

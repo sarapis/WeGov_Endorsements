@@ -1,4 +1,4 @@
-# mygovnyc
+# MyGovNYC
 MyGovNYC is a Laravel/MySQL/Vue.js app that pull data and joins data from AirTables and Socrata Open Data repositories.
 
 Its purpose is to integrate public datasets and information resources together into a single web app that displays data-driven profiles of New York City government agencies. 

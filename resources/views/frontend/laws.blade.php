@@ -7,7 +7,11 @@
         $("#buttonID").css("margin-top", ($("#divID").height() - $("#buttonID").height() - $("#buttonID").height()) + "px");
     });
 </script>
-
+<style>
+    .inner_request_detail button.btn.btn-raised.btn-info {
+    font-size: 12px;
+    }
+</style>
 <div class="demo-container mdl-grid inner_organization">
     <div class="demo-content election_menu mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col " style="padding: 0px;">
         <div class="box padding_0" style="box-shadow:none; border: none;">
@@ -30,7 +34,9 @@
                                     </div>
                                     <div class="col-md-4">
                                         <h4 class="box-title">Events (<a href="https://laws.council.nyc.gov/events/" target="_blank">Go to Calendar</a>)</h4>
-                                           <iframe src="https://feed.mikle.com/widget/v2/95922/" height="256px" width="100%" class="fw-iframe" scrolling="no" frameborder="0" style="height: 175px;"></iframe>       
+                                        <div class="fw-iframe" style="height: 256px;">
+                                          <script src="//rss.bloople.net/?url=https%3A%2F%2Flaws.council.nyc.gov%2Fevents%2Frss%2F&showtitle=false&type=js"></script>
+                                        </div>    
                                     </div>
                                 </div>
                             </div>

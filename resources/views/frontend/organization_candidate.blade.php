@@ -86,7 +86,7 @@
                 <li><a href="#people_disclouser" data-toggle="tab" >DISCLOSURES</a></li>
             </ul>
 
-            <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
+            <button type="button" class="btn btn-raised btn-block btn-primary org_filter"><i class="fa fa-bars filter-icon" aria-hidden="true"></i> Candidates  </button>
 
             <div class="tab_filter_btn">
                 <ul class="nav nav-tabs" role="tablist">

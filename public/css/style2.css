@@ -769,3 +769,7 @@ html, body {
 .nav-menu li a{
   color: #ffffff !important;
 }
+.filter-icon{
+  float: left;
+  font-size: 20px;
+}

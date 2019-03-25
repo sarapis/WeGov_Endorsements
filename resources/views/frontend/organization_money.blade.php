@@ -114,7 +114,7 @@
                 @endif
             </ul>
             
-            <button type="button" class="btn btn-raised btn-block btn-primary org_filter">Organization Filter </button>
+            <button type="button" class="btn btn-raised btn-block btn-primary org_filter"><i class="fa fa-bars filter-icon" aria-hidden="true"></i> Money  </button>
 
             <div class="tab_filter_btn">
                 <ul class="nav nav-tabs" role="tablist">

@@ -351,7 +351,7 @@ class OrganizationController extends Controller
 
         $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->first();
 
-        $request = DB::table('requests')->where('tracking_code', '=', $tracking_code)->first();
+        $request = Requests::where('tracking_code', '=', $tracking_code)->first();
 
         $responsible_agency = Agency::where('agency_recordid', '=', $request->responsible_agency)->first();
 

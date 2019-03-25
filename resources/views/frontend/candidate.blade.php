@@ -14,7 +14,7 @@
             </div>
             <div class="col-sm-10 col-xs-12">
                 <div class="pull-left org_title">{{$politician->name}}</div><br/>
-                <div class="pull-left people_title_org"><a href="/organization_{{$politician->elected->organizationid}}">{{$politician->elected->organization}}</a></div>
+                <div class="pull-left people_title_org"> @if($politician->elected_to) <a href="/organization_{{$politician->elected->organizationid}}">{{$politician->elected->organization}}</a> @endif </div>
                 <div class="social_icon">
                     <ul>
                         <li>@if($politician->website)

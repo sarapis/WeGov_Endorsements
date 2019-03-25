@@ -161,8 +161,8 @@
 			                        	<div class="row">
 			                        		<div class="col-sm-7">
 			                            		<h4>Borough: <p>{{$request->borough}}</p></h4>
-			                            		<h4>Community Board: <a class="blue_color" href="/organization_{{$request->community->magency}}">{{$request->community->magencyacro}}</a></h4>
-                                                
+			                            		<h4>Community Board: <a class="blue_color" href="/organization_{{$request->community->magency}}/requests">{{$request->community->magencyacro}}</a></h4>
+
 			                            		<h4>Priority Number: <p>{{$request->priority}}</p></h4>
 			                            		<h4>Request: <p>{{$request->request}}</p></h4>
 			                            		<h4>Explanation: <p>{{$request->explanation}}</p></h4>

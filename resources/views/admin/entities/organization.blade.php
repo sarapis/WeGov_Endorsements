@@ -45,7 +45,8 @@
                                     <th class="text-center">Endorsements</th>
                                     <th class="text-center">Candidates</th>
                                     <th class="text-center">Requests</th>
-                                    <th class="text-center">Requests From</th>                          
+                                    <th class="text-center">Requests From</th>
+                                    <th class="text-center">Indicators</th>                          
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -63,6 +64,7 @@
                                     <td class="text-center"><span class="badge bg-{{$organization->candidates}}">{{$organization->candidates}}</td>
                                     <td class="text-center"><span class="badge bg-{{$organization->requests}}">{{$organization->requests}}</span></td>
                                     <td class="text-center"><span class="badge bg-{{$organization->requests_from}}">{{$organization->requests_from}}</span></td>
+                                    <td class="text-center"><span class="badge bg-{{$organization->indicators}}">{{$organization->indicators}}</span></td>
                                     <td class="text-center">
                                         <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$organization->id}}"><i class="fa fa-fw fa-edit"></i>Edit</button>
                                     </td>
@@ -161,6 +163,13 @@
 
                       <div class="col-sm-6">
                         <input type="checkbox" style="margin-top: 10px;" id="requests_from" name="requests_from">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="text" class="col-sm-6 control-label">Indicators</label>
+
+                      <div class="col-sm-6">
+                        <input type="checkbox" style="margin-top: 10px;" id="indicators" name="indicators">
                       </div>
                     </div>
                   </div>

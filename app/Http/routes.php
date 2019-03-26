@@ -267,6 +267,8 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::get('/sync_expenses', ['uses' => 'AdminExpenseController@airtable']); 
 	Route::get('/sync_organization', ['uses' => 'AdminAgencyController@airtable']);
 	Route::get('/sync_cb_requests', ['uses' => 'AdminRequestController@airtable']);
+	Route::get('/sync_kpis', ['uses' => 'AdminKpisController@airtable']);
+
 	Route::get('/sync_services', ['uses' => 'AdminServiceController@airtable']);
 	Route::get('/sync_locations', ['uses' => 'AdminLocationController@airtable']); 
 	Route::get('/sync_services_organizations', ['uses' => 'AdminServiceOrganizationController@airtable']); 

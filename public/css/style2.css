@@ -824,5 +824,6 @@ html, body {
 @media screen and (min-width: 980px){
   .box-about{
     box-shadow: none;
+    margin-bottom: 0;
   }
 }

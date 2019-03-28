@@ -801,7 +801,7 @@ html, body {
   }
 }
 .box .box-header .box-title.about-box-title{
-  font-size: 18px !important;
+  font-size: 16px !important;
   font-weight: 400;
 }
 .box .box-about .box-header{
@@ -820,4 +820,9 @@ html, body {
 .box-other{
   padding-top: 12px;
   padding-bottom: 12px;
+}
+@media screen and (min-width: 980px){
+  .box-about{
+    box-shadow: none;
+  }
 }

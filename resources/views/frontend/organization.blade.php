@@ -11,23 +11,8 @@
                   <img src="{{$organization->logo}}" class="img-responsive center" >
               @endif
             </div>
-            <div class="col-sm-10 col-xs-12">
-                <div class="pull-right">
-                    <p class="text-tages"> Tags: <?php 
-                        $tag_names = explode(',', $organization->tags);
-                    ?>
-                        @foreach($tag_names as $tag_name)
-                            @if($tag_name!='')
-                            <span class="badge tag_badge bg-blue">{{$tag_name}}</span>
-                            @endif
-                        @endforeach
-                    </p>
-                </div>
-                <div class="pull-right" style="padding-left: 20px;padding-right: 10px;">
-                    <p class="text-types"> Type: 
-                        <span class="badge type_badge bg-blue">{{$organization_type}}</span>
-                    </p>
-                </div>
+            <div class="col-sm-7 col-xs-12">
+
                 <div class="pull-left org_title">{{$organization->name}}</div>
                 <div class="social_icon">
                     <ul>
@@ -76,6 +61,25 @@
                     </ul>
                 </div>
                 <input type="hidden" id="organizations_id" value="{{$organization->organizations_id}}">
+            </div>
+            <div class="col-sm-3 col-xs-12">
+                
+                <div class="pull-left" style="padding-right: 20px;">
+                    <p class="text-types"> Type: 
+                        <span class="badge type_badge bg-blue">{{$organization_type}}</span>
+                    </p>
+                </div>
+                <div class="pull-left">
+                    <p class="text-tages"> Tags: <?php 
+                        $tag_names = explode(',', $organization->tags);
+                    ?>
+                        @foreach($tag_names as $tag_name)
+                            @if($tag_name!='')
+                            <span class="badge tag_badge bg-blue">{{$tag_name}}</span>
+                            @endif
+                        @endforeach
+                    </p>
+                </div>
             </div>
         </div>
         <div class="menu-bar row">

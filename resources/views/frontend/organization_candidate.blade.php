@@ -6,14 +6,69 @@
     <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col">
         <div class="page-title row ">
             <div class="col-sm-2 image_main"> 
-                @if($politician->picture)
-                <img src="{{$politician->picture}}" class="img-responsive center" >
-                @else
-                <img src="{{asset('images/image.jpg')}}" class="img-responsive center" >
-                @endif
+              @if($organization->logo!='')
+                  <img src="{{$organization->logo}}" class="img-responsive center" >
+              @endif
             </div>
-            <div class="col-sm-10 col-xs-12">
-                <div class="pull-right">
+            <div class="col-sm-7 col-xs-12">
+
+                <div class="pull-left org_title">{{$organization->name}}</div>
+                <div class="social_icon">
+                    <ul>
+                        <li>@if($organization->website)
+                            <a target="_blank" href="http://{{$organization->website}}" title="Website"><i class="fas fa-globe"></i></a>
+                            @else
+                            <a title="Website"><i class="fas fa-globe bg-disable"></i></a>
+                            @endif
+                        </li>
+                        <li>@if($organization->Facebook)
+                            <a target="_blank" href="http://{{$organization->Facebook}}" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            @else
+                            <a title="Facebook"><i class="fab fa-facebook-f bg-disable"></i></a>
+                            @endif
+                        </li>
+                        <li>@if($organization->Twitter)
+                            <a target="_blank" href="http://{{$organization->Twitter}}" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            @else
+                            <a title="Twitter"><i class="fab fa-twitter bg-disable"></i></a>
+                            @endif
+                        </li>
+                        <li>@if($organization->RSS)
+                            <a target="_blank" href="http://{{$organization->RSS}}" title="RSS"><i class="fas fa-rss"></i></a>
+                            @else
+                            <a title="RSS"><i class="fas fa-rss bg-disable"></i></a>
+                            @endif
+                        </li>
+                        <li>@if($organization->phones)
+                            <a href="tel: {{$organization->phones}}" title="Phone"><i class="fas fa-phone"></i></a>
+                            @else
+                            <a title="Phone"><i class="fas fa-phone bg-disable"></i></a>
+                            @endif
+                        </li>
+                        <li>@if($organization->email)
+                            <a href="mailto: {{$organization->email}}" title="Email"><i class="fas fa-envelope"></i></a>
+                            @else
+                            <a title="Email"><i class="fas fa-envelope bg-disable"></i></a>
+                            @endif
+                        </li>
+                        <li>@if($organization->main_address)
+                            <a target="_blank" href="https://www.google.com/maps/place/{{$organization->main_address}}" title="Address"><i class="fas fa-map-marker-alt"></i></a>
+                            @else
+                            <a title="Address"><i class="fas fa-map-marker-alt bg-disable"></i></a>
+                            @endif
+                        </li>
+                    </ul>
+                </div>
+                <input type="hidden" id="organizations_id" value="{{$organization->organizations_id}}">
+            </div>
+            <div class="col-sm-3 col-xs-12">
+                
+                <div class="pull-left" style="padding-right: 20px;">
+                    <p class="text-types"> Type: 
+                        <span class="badge type_badge bg-blue">{{$organization_type}}</span>
+                    </p>
+                </div>
+                <div class="pull-left">
                     <p class="text-tages"> Tags: <?php 
                         $tag_names = explode(',', $organization->tags);
                     ?>
@@ -23,59 +78,6 @@
                             @endif
                         @endforeach
                     </p>
-                </div>
-                <div class="pull-right" style="padding-left: 20px;padding-right: 10px;">
-                    <p class="text-types"> Type: 
-                        <span class="badge type_badge bg-blue">{{$organization_type}}</span>
-                    </p>
-                </div>
-                <div class="pull-left org_title">{{$politician->name}}</div><br/>
-                <div class="pull-left people_title_org">{{$organization->name}}</div>
-                <div class="social_icon">
-                    <ul>
-                        <li>@if($politician->website)
-                            <a target="_blank" href="http://{{$politician->website}}" title="Website"><i class="fas fa-globe"></i></a>
-                            @else
-                            <a title="Website"><i class="fas fa-globe bg-disable"></i></a>
-                            @endif
-                        </li>
-                        <li>@if($politician->facebook)
-                            <a target="_blank" href="http://{{$politician->facebook}}" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            @else
-                            <a title="Facebook"><i class="fab fa-facebook-f bg-disable"></i></a>
-                            @endif
-                        </li>
-                        <li>@if($politician->twitter)
-                            <a target="_blank" href="http://{{$politician->twitter}}" title="Twitter"><i class="fab fa-twitter"></i></a>
-                            @else
-                            <a title="Twitter"><i class="fab fa-twitter bg-disable"></i></a>
-                            @endif
-                        </li>
-                        <li>@if($politician->rss)
-                            <a target="_blank" href="http://{{$politician->rss}}" title="RSS"><i class="fas fa-rss"></i></a>
-                            @else
-                            <a title="RSS"><i class="fas fa-rss bg-disable"></i></a>
-                            @endif
-                        </li>
-                        <li>@if($politician->phone)
-                            <a href="tel: {{$politician->phone}}" title="Phone"><i class="fas fa-phone"></i></a>
-                            @else
-                            <a title="Phone"><i class="fas fa-phone bg-disable"></i></a>
-                            @endif
-                        </li>
-                        <li>@if($politician->email)
-                            <a href="mailto: {{$politician->email}}" title="Email"><i class="fas fa-envelope"></i></a>
-                            @else
-                            <a title="Email"><i class="fas fa-envelope bg-disable"></i></a>
-                            @endif
-                        </li>
-                        <li>@if($politician->address)
-                            <a target="_blank" href="https://www.google.com/maps/place/{{$politician->address}}" title="Address"><i class="fas fa-map-marker-alt"></i></a>
-                            @else
-                            <a title="Address"><i class="fas fa-map-marker-alt bg-disable"></i></a>
-                            @endif
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>

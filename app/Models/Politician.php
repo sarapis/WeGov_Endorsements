@@ -15,7 +15,7 @@ class Politician extends Model
     }
 
     public function elected() {
-        return $this->hasMany('App\Models\PoliticianOrganization',  'elected_to', 'recordid') ;
+        return $this->belongsTo('App\Models\PoliticianOrganization',  'elected_to', 'recordid') ;
     }
 
 }

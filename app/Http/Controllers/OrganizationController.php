@@ -89,11 +89,12 @@ class OrganizationController extends Controller
         $organization_type = $organization = Organization::where('organizations_id','=',$id)->first()->type;
         $organizations = Agency::orderBy('magencyacro', 'asc')->get();
 
-        $original_organization = Organization::where('organizations_id','=',$id)->first();
-        $original_agency = DB::table('agencies')->where('magency','=',$id)->first();
+        $agency = Agency::where('magency', '=', $id)->first();
 
-        // var_dump($organization_services);
-        // exit();
+        if($agency)
+            $agency_recordid = $agency->agency_recordid;
+        else
+            $agency_recordid = '';
 
         $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->leftjoin('expenses', 'agencies.expenses', 'like', DB::raw("concat('%', expenses.expenses_id, '%')"))->leftjoin('phones', 'organizations.phones', 'like', DB::raw("concat('%', phones.phone_id, '%')"))->leftjoin('address', 'organizations.main_address', '=', 'address.address_id')->select('organizations.*', 'organizations.description as organization_description', 'agencies.*', 'phones.*', DB::raw('sum(expenses.year1_forecast) as expenses_budgets', 'address.*'))->groupBy('organizations.organization_id')->first();
 
@@ -105,9 +106,13 @@ class OrganizationController extends Controller
         $organization->total_project_cost=$budgetclass->custom_number_format($organization->total_project_cost, 1);
         $organization->expenses_budgets=$budgetclass->custom_number_format($organization->expenses_budgets, 1);
 
+        $desired_count = Kpi::where('agency_join', '=', $agency_recordid)->whereRaw('desired_direction = trend')->count();
+
+        $undesired_count = Kpi::where('agency_join', '=', $agency_recordid)->whereRaw('desired_direction != trend')->count();
+
         $entity = EntityOrganization::where('types', '=', $organization_type)->first();  
 
-        return view('frontend.organization', compact('organization', 'organizations_services', 'original_organization', 'organization_type', 'entity'));
+        return view('frontend.organization', compact('organization', 'organizations_services', 'organization_type', 'entity', 'desired_count', 'undesired_count'));
     }
 
     public function projects($id)

@@ -161,19 +161,50 @@
                         <div class="col-sm-8">
                             <div class="box">
                                 <div class="org_about">
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
                                     <p>{!! $organization->organization_description !!}</p>
                                     </div>
-                                    <div class="col-md-4 right_about_btn">
-                                        <h5><a href="/organization_{{$organization->organizations_id}}/services"><span>@if($organizations_services!='')
-                                                        {{sizeof(explode(",", $organizations_services->organization_services))}}
-                                                        @else 0 @endif</span></a>Services</h5>
-                                        <h5><a href="/organization_{{$organization->organizations_id}}/projects"><span>@if($organization->projects!=null)
-                                                        {{sizeof(explode(",", $organization->projects))}}
-                                                        @else 0 @endif</span></a>Projects</h5>
-                                        <h5><a href="/organization_{{$organization->organizations_id}}/money"><span>${{$organization->expenses_budgets}}</span></a>Budget(E)</h5>
-                                        <h5><a href="/organization_{{$organization->organizations_id}}/money"><span>${{$organization->total_project_cost}}</span></a>Budget(C)</h5>
+                                    <div class="col-md-4" style="padding: 0;">
+                                        <div class="box box-about">
+                                            <div class="box-header text-center"><h3 class="box-title">Inputs</h3></div>
+                                            <div class="box-body">
+                                                <div class="col-md-12 right_about_btn">
+                                                    <h5><a href="/organization_{{$organization->organizations_id}}/money"><span>${{$organization->expenses_budgets}}</span></a>Budget(E)</h5>
+                                                    <h5><a href="/organization_{{$organization->organizations_id}}/money"><span>${{$organization->total_project_cost}}</span></a>Budget(C)</h5>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div class="col-md-4" style="padding: 0;">
+                                        <div class="box box-about">
+                                            <div class="box-header text-center"><h3 class="box-title">Outputs</h3></div>
+                                            <div class="box-body">
+                                                <div class="col-md-12 right_about_btn">
+                                                    <h5><a href="/organization_{{$organization->organizations_id}}/services"><span>@if($organizations_services!='')
+                                                                    {{sizeof(explode(",", $organizations_services->organization_services))}}
+                                                                    @else 0 @endif</span></a>Services</h5>
+                                                    <h5><a href="/organization_{{$organization->organizations_id}}/projects"><span>@if($organization->projects!=null)
+                                                                    {{sizeof(explode(",", $organization->projects))}}
+                                                                    @else 0 @endif</span></a>Projects</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" style="padding: 0;">
+                                        <div class="box box-about">
+                                            <div class="box-header text-center"><h3 class="box-title">Indicators</h3></div>
+                                            <div class="box-body">
+                                                <div class="col-md-12 right_about_btn">
+                                                    <h5><a href="/organization_{{$organization->organizations_id}}/indicators"><span>@if($desired_count)
+                                                                    {{$desired_count}}
+                                                                    @else 0 @endif</span></a>Desired</h5>
+                                                    <h5><a href="/organization_{{$organization->organizations_id}}/indicators"><span>@if($undesired_count)
+                                                                    {{$undesired_count}}
+                                                                    @else 0 @endif</span></a>Undesired</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>    
                                 </div>
                             </div>
                         </div>

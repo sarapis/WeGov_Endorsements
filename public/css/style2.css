@@ -781,3 +781,15 @@ html, body {
   font-size: 20px;
   font-weight: 600;
 }
+.right_about_btn{
+  padding: 0;
+}
+.box-about{
+  border: none;
+}
+@media screen and (max-width: 980px){
+  .right_about_btn h5, .right_about_btn h5:nth-child(2n+2) {
+      margin: 1% 2% 0% 2%;
+      width: 46%;
+  }
+}

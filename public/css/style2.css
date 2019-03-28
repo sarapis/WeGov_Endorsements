@@ -773,3 +773,11 @@ html, body {
   float: left;
   font-size: 20px;
 }
+.text-desired{
+  color: #02435f;
+  font-size: 20px;
+}
+.text-desired .badge{
+  font-size: 20px;
+  font-weight: 600;
+}

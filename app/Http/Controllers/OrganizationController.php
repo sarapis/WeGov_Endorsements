@@ -35,6 +35,7 @@ use App\Models\Realestate;
 use App\Models\Securities;
 use App\Models\Trust;
 use App\Models\Relatives;
+use App\Models\Kpi;
 use App\Services\Numberformat;
 
 class OrganizationController extends Controller
@@ -363,6 +364,31 @@ class OrganizationController extends Controller
         return view('frontend.organization_requests_details', compact('organization', 'organization_type', 'community_board', 'request', 'responsible_agency', 'agency_map', 'entity'));
 
     }
+
+    public function indicators($id)
+    {
+        $organization_type = Organization::where('organizations_id','=',$id)->first()->type;
+
+        $agency = Agency::where('magency', '=', $id)->first();
+
+        if($agency)
+            $agency_recordid = $agency->agency_recordid;
+        else
+            $agency_recordid = '';
+
+        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->first();    
+
+        $indicators = Kpi::where('agency_join', '=', $agency_recordid)->get();
+
+        $desired_count = Kpi::where('agency_join', '=', $agency_recordid)->whereRaw('desired_direction = trend')->count();
+
+        $undesired_count = Kpi::where('agency_join', '=', $agency_recordid)->whereRaw('desired_direction != trend')->count();
+
+        $entity = EntityOrganization::where('types', '=', $organization_type)->first();
+
+        return view('frontend.organization_indicators', compact('organization', 'organization_type', 'indicators', 'entity', 'desired_count', 'undesired_count'));
+
+    } 
     
     /**
      * Store a newly created resource in storage.

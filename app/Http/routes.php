@@ -52,6 +52,7 @@ Route::get('/candidates/{politician_id}', 'OrganizationController@candidates_det
 Route::get('/organization_{id}/requests', 'OrganizationController@requests');
 Route::get('/organization_{id}/requests_from', 'OrganizationController@requests_from');
 Route::get('/organization_{id}/requests/{tracking_code}', 'OrganizationController@requests_details');
+Route::get('/organization_{id}/indicators', 'OrganizationController@indicators');
 Route::get('/organization_{id}', 'OrganizationController@find');
 
 Route::post('/organizations_filter', 'OrganizationController@filter');

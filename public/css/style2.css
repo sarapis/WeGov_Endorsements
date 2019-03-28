@@ -792,4 +792,32 @@ html, body {
       margin: 1% 2% 0% 2%;
       width: 46%;
   }
+  .right_about_btn h5, .right_about_btn h5:nth-child(2n+2) {
+    margin: 0% 0% 0% 4%;
+    width: 46%;
+  }
+  .box-middle{
+    border: 0px !important;
+  }
+}
+.box .box-header .box-title.about-box-title{
+  font-size: 18px !important;
+  font-weight: 400;
+}
+.box .box-about .box-header{
+  padding: 10px 20px;
+}
+.right_about_btn h5 {
+  margin: 0% 4% 0px 0;
+}
+.box-middle{
+  margin: 12px auto;
+  border-left: 2px solid #d2d6de;
+  border-right: 2px solid #d2d6de;
+  border-radius: 0;
+  padding: 0 10px
+}
+.box-other{
+  padding-top: 12px;
+  padding-bottom: 12px;
 }

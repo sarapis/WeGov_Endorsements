@@ -65,7 +65,7 @@
             </div>
             <div class="col-sm-3 col-xs-12">
                 
-                <div class="pull-left" style="padding-right: 20px;">
+                <div class="pull-left" style="padding-right: 10px;">
                     <p class="text-types"> Type: 
                         <span class="badge type_badge bg-blue">{{$organization->type}}</span>
                     </p>

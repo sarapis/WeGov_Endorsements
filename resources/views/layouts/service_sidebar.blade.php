@@ -11,15 +11,13 @@
         </div>
       </div>
 
-      <hr>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="treeview">
-       
-            <span class="item-list">Service Type</span>
-
-          <ul class="treeview-menu"  style="display: block !important;">
+      
+          <a href="#service_type_collapse" class="item-list" data-toggle="collapse" aria-expanded="false">Service Type</a>
+          <ul class="treeview-menu" id="service_type_collapse">
             <li style="padding-left: 10px;">
               @foreach($taxonomies as $taxonomy)
               @if($taxonomy->name!='')
@@ -33,12 +31,12 @@
             </li>
           </ul>
         </li>
-        <hr>
-        <li class="treeview">
-   
-            <span class="item-list">Provide By</span>
 
-          <ul class="treeview-menu" style="display: block !important;">
+        <li class="treeview">
+
+          <a href="#provide_collapse" class="item-list" data-toggle="collapse" aria-expanded="false">Provide By</a>
+
+          <ul class="treeview-menu" id="provide_collapse">
             <li style="padding-left: 10px;">
               
                 @foreach($services_organizations as $organization)

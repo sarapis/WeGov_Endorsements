@@ -308,11 +308,14 @@ hr{
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 17px;
   padding-left: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   line-height: 25px;    
   display: block;
+  box-sizing: border-box;
+  box-shadow: 1.5px 2.6px 5px 0 rgba(178, 176, 176, 0.3);
+  border: 1px solid #dfdfdf;
 }
-.sidebar-menu>li { margin-bottom: 20px; }
+/*.sidebar-menu>li { margin-bottom: 20px; }*/
 .subitem-list{
   font-size: 16px;
   color: #222222;
@@ -612,4 +615,19 @@ dt{
   padding: 10px;
   border-radius: 15px;
   font-size: 12px;
+}
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+    content: '\e259';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'Glyphicons Halflings';
+    font-size: 0.8em;
+    color: #424242;
+}
+a[aria-expanded="true"]::before {
+    content: '\e260';
+}
+a, a:focus, a:hover{
+  color: #004a83;
 }

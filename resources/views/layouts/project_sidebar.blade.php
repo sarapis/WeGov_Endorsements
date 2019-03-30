@@ -13,9 +13,10 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="treeview  menu-open">
-            <span class="item-list">Project Type</span>
-          <ul class="treeview-menu" style="display: block !important;">
+        <!-- <li class="treeview">
+
+          <a href="#project_collapse" class="item-list" data-toggle="collapse" aria-expanded="false">Project Type</a>
+          <ul class="treeview-menu" id="project_collapse">
             <li style="padding-left: 10px;">
               @foreach($project_types as $project_type)
               @if($project_type->project_type!='')
@@ -28,12 +29,12 @@
               @endforeach
             </li>
           </ul>
-        </li>
+        </li> -->
        
-        <li class="treeview menu-open">
-            <span class="item-list">Managing Agency</span>
+        <li class="treeview">
 
-          <ul class="treeview-menu" style="display: block !important;">
+          <a href="#agency_collapse" class="item-list" data-toggle="collapse" aria-expanded="false">Managing Agency</a>
+          <ul class="treeview-menu" id="agency_collapse">
             <li style="padding-left: 10px;">
               
                 @foreach($organizations as $organization)

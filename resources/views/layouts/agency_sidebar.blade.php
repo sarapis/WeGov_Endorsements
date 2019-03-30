@@ -13,14 +13,12 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="treeview menu-open">
-        
-            <span class="item-list">Type</span>
+        <li class="treeview">
 <!--             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span> -->
-        
-          <ul class="treeview-menu" style="display: block !important;">
+          <a href="#type_collapse" class="item-list" data-toggle="collapse" aria-expanded="false">Type</a>
+          <ul class="treeview-menu" id="type_collapse">
             <li style="padding-left: 10px;">
               @foreach($types as $type)
               
@@ -44,12 +42,12 @@
           </ul>
         </li>
 
-        <li class="treeview menu-open">
-            <span class="item-list">Tags</span>
+        <li class="treeview">
   <!--           <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span> -->
-          <ul class="treeview-menu" style="display: block !important;">
+          <a href="#tag_collapse" class="item-list" data-toggle="collapse" aria-expanded="false">Tags</a>
+          <ul class="treeview-menu" id="tag_collapse">
             <li style="padding-left: 10px;">
               
                 @foreach($tags as $tag)

@@ -32,8 +32,20 @@
             </div>
             <div class="col-sm-4">
                 <div class="box" style="border-top: 2px solid #d2d6de;">
-                <div id="mymap_service"></div>
-            </div>
+                    <div id="mymap_service"></div>
+                </div>      
+                <p class="search-label">Find Services Near an Address?</p>
+                        
+                <div class="has-feedback">
+                  <span class="glyphicon glyphicon-search form-control-input"></span>
+                  <div class="form-group is-empty" style="margin-top: 10px;">
+                    <input type="text" class="form-control form-input" placeholder="Search Address..." id="search_address">
+                  </div>        
+                </div>
+                <button type="button" class="btn btn_findout" id="search_location"><p class="search-label">Search</p></button>
+                <button type="button" class="btn btn_findout pull-right" id="search_near"><p class="search-label">Services Near Me</p></button>
+                   
+                
             </div>
         </div>
     </div>

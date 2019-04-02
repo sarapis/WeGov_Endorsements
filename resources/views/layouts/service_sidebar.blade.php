@@ -55,7 +55,8 @@
     </section>
     <!-- /.sidebar -->
   </aside>
-
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -189,7 +190,82 @@
           });
       });
 
-      
+
+      $(document).on('click', "#search_location", function () {
+        val = $('#search_address').val();
+        console.log(val);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          })
+
+        $.ajax({
+          type: 'POST',
+          url: '/search_address',
+          data: {
+            search_location: val
+          },
+          success: function(data){
+              $('#loader').hide();
+              $('#service_content').html(data);
+               window.history.replaceState({url: "" + window.location.href + ""}, '','/services');
+          }
+        });
+      });
+
+      $(document).on('click', "#search_near", function () {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+          })
+
+        $.ajax({
+          type: 'POST',
+          url: '/search_near',
+          data: {
+            search_location: val
+          },
+          success: function(data){
+              $('#loader').hide();
+              $('#service_content').html(data);
+               window.history.replaceState({url: "" + window.location.href + ""}, '','/services');
+          }
+        });
+      });
+
+      $(function () {
+        var getData = function (request, response) {
+            $.getJSON(
+                "https://geosearch.planninglabs.nyc/v1/autocomplete?text=" + request.term,
+                function (data) {
+                    response(data.features);
+                    
+                    var label = new Object();
+                    for(i = 0; i < data.features.length; i++)
+                        label[i] = data.features[i].properties.label;
+                    response(label);
+                });
+        };
+     
+        var selectItem = function (event, ui) {
+            $("#search_address").val(ui.item.value);
+            return false;
+        }
+     
+        $("#search_address").autocomplete({
+            source: getData,
+            select: selectItem,
+            minLength: 2,
+            change: function() {
+                console.log(selectItem);
+
+            }
+        });
+     
+    });
 
     });
 </script>

@@ -631,3 +631,30 @@ a[aria-expanded="true"]::before {
 a, a:focus, a:hover{
   color: #004a83;
 }
+.search-label{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #004a83;
+  font-size: 21px;
+}
+.btn_findout{
+  padding: 5px 8px;
+  text-transform: inherit;
+  border: 1px solid #004a83;
+  margin: 0;
+}
+.ui-widget.ui-widget-content{
+  width: 200px;
+}
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus {
+  background: #004a83 !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+.ui-menu-item:focus, .ui-menu-item:hover{
+  color: #ffffff !important;
+  background: #004a83 !important;
+}
+.has-feedback .form-control{
+  padding-right: 5px;
+}

@@ -59,13 +59,13 @@ class IndexController extends Controller
     {
         // return $tree;
         //return view('files.treeview',compact('tree'));
-        $abouts = DB::table('abouts')->first();
+        $about = DB::table('abouts')->first();
         $service_name = '&nbsp;';
         $location_name = '&nbsp;';
         $organization_name = '&nbsp;';
         $service_type_name = '&nbsp;';
         $filter = collect([$service_type_name, $location_name, $organization_name, $service_name]);
-        return view('frontend.about', compact('abouts','taxonomies','allTaxonomies','servicetypes','projecttypes','organizationtypes', 'taxonomys','filter'));
+        return view('frontend.about', compact('about','taxonomies','allTaxonomies','servicetypes','projecttypes','organizationtypes', 'taxonomys','filter'));
     }
 
 

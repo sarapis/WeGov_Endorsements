@@ -2,7 +2,11 @@
 @section('title', 'Agencies and Departments')
 
 @section('content')
-
+<style>
+    table{
+        width: 100%;
+    }
+</style>
 
 <div class="demo-container mdl-grid inner_organization">
     <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col">

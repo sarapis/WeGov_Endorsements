@@ -265,7 +265,7 @@ class ServiceController extends Controller
         $services = [];
         foreach ($locations as $key => $location) {
             
-            $values = Service::where('locations', 'like', '%'.$location->location_recordid.'%')->get();
+            $values = Service::where('locations', 'like', '%'.$location->location_recordid.'%');
             foreach ($values as $key => $value) {
                 $services[] = $value;
             }

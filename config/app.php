@@ -171,7 +171,7 @@ return [
 
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 
-        Stevebauman\Location\LocationServiceProvider::class,
+
 
         Jcf\Geocode\GeocodeServiceProvider::class,
 	],
@@ -274,7 +274,7 @@ return [
         // ADD TWITTER API - https://github.com/thujohn/twitter - https://apps.twitter.com/
         'Twitter' 		=> Thujohn\Twitter\Facades\Twitter::class,
         'Mapper'        => Cornford\Googlmapper\Facades\MapperFacade::class,
-        'Geolocation'   => Stevebauman\Location\Facades\Location::class, 
+    
         'Geocode'       => Jcf\Geocode\Facades\Geocode::class,
 	],
 

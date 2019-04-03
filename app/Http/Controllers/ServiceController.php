@@ -22,7 +22,7 @@ use App\Models\Program;
 use App\Models\Contact;
 use App\Models\EntityOrganization;
 
-use Geolocation;
+use GeoLocation;
 use Geocode;
 
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
@@ -244,7 +244,10 @@ class ServiceController extends Controller
     {
         $ip= \Request::ip();
         // echo $ip;
-        $data = \Geolocation::get($ip);
+        $data = \GeoLocation::get($ip);
+
+        var_dump($ip);
+        exit();
 
         // $auth = new Location();
         // $locations = $auth->geolocation(40.573414, -73.987818);

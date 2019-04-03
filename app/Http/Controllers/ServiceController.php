@@ -270,8 +270,15 @@ class ServiceController extends Controller
                 $services[] = $value;
             }
         }
+
+        if ($values){
+            $organization_services =  $values->leftjoin('services_phones', 'services.phones', 'like', DB::raw("concat('%', services_phones.phone_recordid, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->leftjoin('services_organizations', 'services.organization', '=', 'services_organizations.organization_recordid')->select('services.*', DB::raw('group_concat(services_phones.services_phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'), 'services_organizations.organization_x_id')->groupBy('services.id')->get();
+        }
+        else{
+            $organization_services = [];
+        }
         
-        $organization_services =  $values->leftjoin('services_phones', 'services.phones', 'like', DB::raw("concat('%', services_phones.phone_recordid, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->leftjoin('services_organizations', 'services.organization', '=', 'services_organizations.organization_recordid')->select('services.*', DB::raw('group_concat(services_phones.services_phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'), 'services_organizations.organization_x_id')->groupBy('services.id')->get();
+        
 
         // var_dump($organization_services);
         // exit();

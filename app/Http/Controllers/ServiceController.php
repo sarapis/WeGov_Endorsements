@@ -257,9 +257,6 @@ class ServiceController extends Controller
         // $lat =37.3422;
         // $lng = -121.905;
 
-        var_dump($lat,  $lng);
-        exit();
-
         $locations = Location::select(DB::raw('*, ( 3959 * acos( cos( radians('.$lat.') ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians('.$lng.') ) + sin( radians('.$lat.') ) * sin( radians( latitude ) ) ) ) AS distance'))
         ->having('distance', '<', 2)
         ->orderBy('distance')
@@ -268,19 +265,14 @@ class ServiceController extends Controller
         $services = [];
         foreach ($locations as $key => $location) {
             
-            $values = Service::where('service_locations', 'like', '%'.$location->location_recordid.'%')->get();
+            $values = Service::where('locations', 'like', '%'.$location->location_recordid.'%')->get();
             foreach ($values as $key => $value) {
                 $services[] = $value;
             }
         }
 
-        if ($values){
-            $organization_services =  $values->leftjoin('services_phones', 'services.phones', 'like', DB::raw("concat('%', services_phones.phone_recordid, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->leftjoin('services_organizations', 'services.organization', '=', 'services_organizations.organization_recordid')->select('services.*', DB::raw('group_concat(services_phones.services_phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'), 'services_organizations.organization_x_id')->groupBy('services.id')->get();
-        }
-        else{
-            $organization_services = [];
-        }
-        
+        $organization_services =  $values->leftjoin('services_phones', 'services.phones', 'like', DB::raw("concat('%', services_phones.phone_recordid, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->leftjoin('services_organizations', 'services.organization', '=', 'services_organizations.organization_recordid')->select('services.*', DB::raw('group_concat(services_phones.services_phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'), 'services_organizations.organization_x_id')->groupBy('services.id')->get();
+       
         
 
         // var_dump($organization_services);

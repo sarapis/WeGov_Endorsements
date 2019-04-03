@@ -192,8 +192,8 @@
 
 
       $(document).on('click', "#search_location", function () {
-        val = $('#search_address').val();
-        console.log(val);
+        var val = $('#search_address').val();
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -208,6 +208,7 @@
           },
           success: function(data){
               $('#loader').hide();
+              $('#search_address').html(' '); 
               $('#service_content').html(data);
                window.history.replaceState({url: "" + window.location.href + ""}, '','/services');
           }

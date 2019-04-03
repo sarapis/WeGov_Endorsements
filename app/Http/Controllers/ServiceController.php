@@ -196,6 +196,13 @@ class ServiceController extends Controller
 
         $search_address = $request->input('search_address');
 
+        if($search_address == ''){
+            $search_address = 'aaa';
+        }
+        else{
+            $search_address = $search_address;
+        }
+        
         $response = Geocode::make()->address($search_address);
     //     $response = Geocode::make()->address('1 Infinite Loop');
     //     if ($response) {

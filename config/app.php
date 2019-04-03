@@ -171,7 +171,7 @@ return [
 
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 
-        Midnite81\GeoLocation\GeoLocationServiceProvider::class,
+        Stevebauman\Location\LocationServiceProvider::class,
 
         Jcf\Geocode\GeocodeServiceProvider::class,
 	],

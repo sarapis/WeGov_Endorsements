@@ -22,6 +22,9 @@ use App\Models\Program;
 use App\Models\Contact;
 use App\Models\EntityOrganization;
 
+use Geolocation;
+use Geocode;
+
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 
 class ServiceController extends Controller
@@ -81,9 +84,7 @@ class ServiceController extends Controller
         else
             $organization_services =  Service::leftjoin('services_phones', 'services.phones', 'like', DB::raw("concat('%', services_phones.phone_recordid, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->leftjoin('services_organizations', 'services.organization', '=', 'services_organizations.organization_recordid')->select('services.*', DB::raw('group_concat(services_phones.services_phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'), 'services_organizations.organization_x_id')->groupBy('services.id')->get();
 
-        $organization_map = DB::table('services_organizations')->leftjoin('locations', 'services_organizations.organization_locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->leftjoin('services_address', 'locations.address', 'like', DB::raw("concat('%', services_address.address_recordid, '%')"))->leftjoin('agencies', 'services_organizations.organization_recordid', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('projects', 'agencies.projects', 'like', DB::raw("concat('%', projects.project_recordid, '%')"))->groupBy('projects.project_recordid')->select('services_organizations.*', 'locations.*', 'projects.*', 'services_address.*')->groupBy('locations.id')->get();
-
-        return view('frontend.services_filter', compact('organization_services', 'organization_map'))->render();
+        return view('frontend.services_filter', compact('organization_services'))->render();
     }
 
     /**
@@ -187,6 +188,96 @@ class ServiceController extends Controller
             ->orwhere('description', 'like', '%'.$find.'%')->get();
 
         return view('frontend.services_filter', compact('organization_services'))->render();
+    }
+
+    public function searchaddress(Request $request)
+    {
+        $ip= \Request::ip();
+
+        $search_address = $request->input('search_address');
+
+        $response = Geocode::make()->address($search_address);
+    //     $response = Geocode::make()->address('1 Infinite Loop');
+    //     if ($response) {
+    //         echo $response->latitude();
+    //         echo $response->longitude();
+    //         echo $response->formattedAddress();
+    //         echo $response->locationType();
+    // //         echo $response->raw()->address_components[8]['types'][0];
+    // // echo $response->raw()->address_components[8]['long_name'];
+    //        dd($response);
+    //     }
+
+        $lat =$response->latitude();
+        $lng =$response->longitude();
+
+        // $lat =37.3422;
+        // $lng = -121.905;
+
+        $locations = Location::select(DB::raw('*, ( 3959 * acos( cos( radians('.$lat.') ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians('.$lng.') ) + sin( radians('.$lat.') ) * sin( radians( latitude ) ) ) ) AS distance'))
+        ->having('distance', '<', 2)
+        ->orderBy('distance')
+        ->get();
+
+        $services = [];
+        foreach ($locations as $key => $location) {
+            
+            $values = Service::where('locations', 'like', '%'.$location->location_recordid.'%');
+            foreach ($values as $key => $value) {
+                $services[] = $value->id;
+            }
+        }
+
+
+        $organization_services =  $values->leftjoin('services_phones', 'services.phones', 'like', DB::raw("concat('%', services_phones.phone_recordid, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->leftjoin('services_organizations', 'services.organization', '=', 'services_organizations.organization_recordid')->select('services.*', DB::raw('group_concat(services_phones.services_phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'), 'services_organizations.organization_x_id')->groupBy('services.id')->get();
+
+        $organization_map = DB::table('services_organizations')->leftjoin('locations', 'services_organizations.organization_locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->leftjoin('services_address', 'locations.address', 'like', DB::raw("concat('%', services_address.address_recordid, '%')"))->leftjoin('agencies', 'services_organizations.organization_recordid', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('projects', 'agencies.projects', 'like', DB::raw("concat('%', projects.project_recordid, '%')"))->groupBy('projects.project_recordid')->select('services_organizations.*', 'locations.*', 'projects.*', 'services_address.*')->groupBy('locations.id')->get();
+
+        // var_dump($organization_services);
+        // exit();
+        
+        return view('frontend.services_filter', compact('organization_services', 'organization_map'))->render();
+
+    }
+
+    public function searchnear(Request $request)
+    {
+        $ip= \Request::ip();
+        // echo $ip;
+        $data = \Geolocation::get($ip);
+
+        // $auth = new Location();
+        // $locations = $auth->geolocation(40.573414, -73.987818);
+        // var_dump($locations);
+
+
+        $lat =floatval($data->latitude);
+        $lng =floatval($data->longitude);
+
+        // $lat =37.3422;
+        // $lng = -121.905;
+
+        $locations = Location::select(DB::raw('*, ( 3959 * acos( cos( radians('.$lat.') ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians('.$lng.') ) + sin( radians('.$lat.') ) * sin( radians( latitude ) ) ) ) AS distance'))
+        ->having('distance', '<', 2)
+        ->orderBy('distance')
+        ->get();
+
+        $services = [];
+        foreach ($locations as $key => $location) {
+            
+            $values = Service::where('service_locations', 'like', '%'.$location->location_recordid.'%')->get();
+            foreach ($values as $key => $value) {
+                $services[] = $value;
+            }
+        }
+        
+        $organization_services =  $values->leftjoin('services_phones', 'services.phones', 'like', DB::raw("concat('%', services_phones.phone_recordid, '%')"))->leftjoin('taxonomies', 'services.taxonomy', '=', 'taxonomies.taxonomy_id')->leftjoin('services_organizations', 'services.organization', '=', 'services_organizations.organization_recordid')->select('services.*', DB::raw('group_concat(services_phones.services_phone_number) as phone_numbers'), DB::raw('taxonomies.name as taxonomy_name'), 'services_organizations.organization_x_id')->groupBy('services.id')->get();
+
+        // var_dump($organization_services);
+        // exit();
+        
+        return view('frontend.services_filter', compact('organization_services'))->render();
+
     }
     /**
      * Update the specified resource in storage.

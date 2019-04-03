@@ -26,4 +26,34 @@ $(document).ready(function()
             }
         });      
     });
+
+
+        var getData = function (request, response) {
+            $.getJSON(
+                "https://geosearch.planninglabs.nyc/v1/autocomplete?text=" + request.term,
+                function (data) {
+                    response(data.features);
+                    
+                    var label = new Object();
+                    for(i = 0; i < data.features.length; i++)
+                        label[i] = data.features[i].properties.label;
+                    response(label);
+                });
+        };
+     
+        var selectItem = function (event, ui) {
+            $("#search_address").val(ui.item.value);
+            return false;
+        }
+     
+        $("#search_address").autocomplete({
+            source: getData,
+            select: selectItem,
+            minLength: 2,
+            change: function() {
+                console.log(selectItem);
+
+            }
+        });
+
 });

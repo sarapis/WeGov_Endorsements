@@ -67,6 +67,9 @@ Route::get('/organization_{id}/services/{service_id}', 'ServiceController@find')
 Route::post('/services_filter', 'ServiceController@filter');
 Route::post('/services_search', 'ServiceController@search');
 
+Route::post('/search_address', 'ServiceController@searchaddress');
+Route::post('/search_near', 'ServiceController@searchnear');
+
 //Projects
 Route::get('/projects', 'ProjectController@index');
 Route::get('/projects/{id}', 'ProjectController@project');

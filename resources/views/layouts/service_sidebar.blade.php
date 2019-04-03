@@ -204,7 +204,7 @@
           type: 'POST',
           url: '/search_address',
           data: {
-            search_location: val
+            search_address: val
           },
           success: function(data){
               $('#loader').hide();
@@ -225,9 +225,6 @@
         $.ajax({
           type: 'POST',
           url: '/search_near',
-          data: {
-            search_location: val
-          },
           success: function(data){
               $('#loader').hide();
               $('#service_content').html(data);

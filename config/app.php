@@ -170,6 +170,10 @@ return [
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
 
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+
+        Midnite81\GeoLocation\GeoLocationServiceProvider::class,
+
+        Jcf\Geocode\GeocodeServiceProvider::class,
 	],
 
 	/*
@@ -270,6 +274,8 @@ return [
         // ADD TWITTER API - https://github.com/thujohn/twitter - https://apps.twitter.com/
         'Twitter' 		=> Thujohn\Twitter\Facades\Twitter::class,
         'Mapper'        => Cornford\Googlmapper\Facades\MapperFacade::class,
+        'GeoLocation'   => Midnite81\GeoLocation\Facades\GeoLocation::class,
+        'Geocode'       => Jcf\Geocode\Facades\Geocode::class,
 	],
 
 ];

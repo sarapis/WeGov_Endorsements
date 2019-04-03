@@ -245,8 +245,8 @@ class ServiceController extends Controller
         $ip= \Request::ip();
         // echo $ip;
 
-        var_dump($ip);
-        exit();
+        // var_dump($ip);
+        // exit();
         $data = \GeoLocation::get($ip);
 
         // $auth = new Location();

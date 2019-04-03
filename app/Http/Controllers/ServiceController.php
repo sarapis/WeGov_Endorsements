@@ -257,6 +257,9 @@ class ServiceController extends Controller
         // $lat =37.3422;
         // $lng = -121.905;
 
+        var_dump($lat,  $lng);
+        exit();
+
         $locations = Location::select(DB::raw('*, ( 3959 * acos( cos( radians('.$lat.') ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians('.$lng.') ) + sin( radians('.$lat.') ) * sin( radians( latitude ) ) ) ) AS distance'))
         ->having('distance', '<', 2)
         ->orderBy('distance')

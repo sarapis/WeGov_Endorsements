@@ -274,7 +274,7 @@ return [
         // ADD TWITTER API - https://github.com/thujohn/twitter - https://apps.twitter.com/
         'Twitter' 		=> Thujohn\Twitter\Facades\Twitter::class,
         'Mapper'        => Cornford\Googlmapper\Facades\MapperFacade::class,
-        'GeoLocation'   => Midnite81\GeoLocation\Facades\GeoLocation::class,
+        'Geolocation'   => Stevebauman\Location\Facades\Location::class, 
         'Geocode'       => Jcf\Geocode\Facades\Geocode::class,
 	],
 

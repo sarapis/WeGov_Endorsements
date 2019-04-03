@@ -244,10 +244,10 @@ class ServiceController extends Controller
     {
         $ip= \Request::ip();
         // echo $ip;
-        $data = \GeoLocation::get($ip);
 
         var_dump($ip);
         exit();
+        $data = \GeoLocation::get($ip);
 
         // $auth = new Location();
         // $locations = $auth->geolocation(40.573414, -73.987818);

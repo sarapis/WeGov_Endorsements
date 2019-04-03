@@ -29,7 +29,8 @@
         "kyslik/column-sortable": "5.2.*",
 		"rap2hpoutre/laravel-log-viewer": "^0.11.0",
 		"midnite81/geolocation": "^1.0",
-		"jcf/geocode": "~1.3"
+		"jcf/geocode": "~1.3",
+		"stevebauman/location": "^3.0"
 	},
 	"require-dev": {
         "fzaninotto/faker": "~1.4",

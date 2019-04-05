@@ -525,9 +525,12 @@ html, body {
 .election_menu .box-body{ padding: 20px;float: left; width: 100%; }
 .election_menu .box p {color: #222222; font-size: 16px; font-weight: 500;}
 .election_menu .box p i {color: #0e548a; margin-right: 10px;}
-.election_menu .box-body div {padding-left: 28px;margin: 20px 0;height: 100px; overflow: auto;}
+.election_menu .box-body div {padding-left: 28px;margin: 20px 0;height: 100px;}
+
 .election_menu .box-body h5 {margin:4% 2% 0px 0; text-align: center; border-radius: 10px;background: #ebebeb;padding: 8px 11px; color: #222222; font-weight: 600;display: inline-block;font-size: 14px;}
+
 .election_menu .box-body span {display: block; text-align: center; font-size: 18px;margin-bottom: 3px;color: #004a83; font-weight: bold; font-family: lato;}
+
 .detail_elec .box-header {float: left;width: 100%;} 
 .detail_elec .box-title {float: left; } 
 .election_menu.detail_elec .box-header p { float: right; margin-bottom: 0px; }
@@ -829,4 +832,7 @@ html, body {
 }
 .org_about{
   padding-bottom: 10px;
+}
+.election_menu #mymap_service_profile{
+  display: block;
 }

@@ -41,7 +41,7 @@ class jobsController extends Controller
 
         $allprojects = Project::leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid','agencies.magency','agencies.magencyacro','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->orderBy('project_projectid', 'asc')->paginate(20);
 
-        $jobs = Job::all();
+        $jobs = Job::paginate(20);
 
         return view('frontend.jobs', compact('project_types', 'organizations', 'allprojects', 'jobs'));
     }

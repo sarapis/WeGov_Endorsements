@@ -117,6 +117,9 @@
                 @if($entity->indicators == 'On')
                 <li><a href="/organization_{{$organization->organizations_id}}/indicators" id="indicators_tab">INDICATORS</a></li>
                 @endif
+                @if($entity->jobs == 'On')
+                <li><a href="/organization_{{$organization->organizations_id}}/jobs" id="jobs_tab">JOBS</a></li>
+                @endif
             </ul>
 
             <button type="button" class="btn btn-raised btn-block btn-primary org_filter"><i class="fa fa-bars filter-icon" aria-hidden="true"></i> Endorsements  </button>
@@ -155,6 +158,9 @@
                     @endif
                     @if($entity->indicators == 'On')
                     <li><a href="/organization_{{$organization->organizations_id}}/indicators" id="indicators_tab">INDICATORS</a></li>
+                    @endif
+                    @if($entity->jobs == 'On')
+                    <li><a href="/organization_{{$organization->organizations_id}}/jobs" id="jobs_tab">JOBS</a></li>
                     @endif
                 </ul>
             </div>

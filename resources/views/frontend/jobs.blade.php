@@ -8,7 +8,7 @@
           <button type="button" class="btn btn-raised btn-block btn-primary btn-filter">Filter</button>
         </div>
         <div class="col-sm-3 side-filter">
-          @include('layouts.project_sidebar')
+          @include('layouts.job_sidebar')
         </div>
         <div class="col-sm-9 organization_right" id="project_content" >
           <div class="col-sm-12" style="padding-left:0px;">

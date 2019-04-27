@@ -13,6 +13,7 @@ use App\Models\Agency;
 use App\Models\Organization;
 use App\Models\ServiceOrganization;
 use App\Models\Greenbook;
+use App\Models\Job;
 use App\Models\PoliticianOrganization;
 use App\Models\Airtable_politicians;
 use App\Models\Dataset_api;
@@ -52,6 +53,12 @@ class DatasyncController extends Controller
         else
             $greenbook_date = Greenbook::find(1)->created_at;
 
+        $jobs = Job::count();
+        if($jobs==0)
+            $job_date ='';
+        else
+            $job_date = Job::find(1)->created_at;
+
         $all_agencies = Agency::count();
         $join_agencies = Agency::whereNotNull('magency')->count();
 
@@ -67,10 +74,13 @@ class DatasyncController extends Controller
         $all_greenbooks = Greenbook::count();
         $join_greenbooks = Greenbook::whereNotNull('organization_code')->count();
 
+        $all_jobs = Job::count();
+        $join_jobs = Job::whereNotNull('organization_code')->count();
+
         $dataset = Dataset_api::all();
 
 
-        return view('admin.pages.datasync', compact('budgets', 'contacts', 'services', 'greenbooks', 'greenbook_date', 'politicians', 'all_agencies', 'join_agencies', 'all_organizations', 'join_organizations' ,'all_serviceorganizations', 'join_serviceorganizations', 'all_politicians', 'join_politicians', 'all_greenbooks', 'join_greenbooks', 'dataset'))->withUser($user)->withAccess($access);
+        return view('admin.pages.datasync', compact('budgets', 'contacts', 'services', 'greenbooks', 'greenbook_date', 'jobs', 'job_date', 'politicians', 'all_agencies', 'join_agencies', 'all_organizations', 'join_organizations' ,'all_serviceorganizations', 'join_serviceorganizations', 'all_politicians', 'join_politicians', 'all_greenbooks', 'join_greenbooks', 'all_jobs', 'join_jobs', 'dataset'))->withUser($user)->withAccess($access);
     }
 
     public function create()

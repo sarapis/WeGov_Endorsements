@@ -53,6 +53,8 @@ Route::get('/organization_{id}/requests', 'OrganizationController@requests');
 Route::get('/organization_{id}/requests_from', 'OrganizationController@requests_from');
 Route::get('/organization_{id}/requests/{tracking_code}', 'OrganizationController@requests_details');
 Route::get('/organization_{id}/indicators', 'OrganizationController@indicators');
+Route::get('/organization_{id}/jobs', 'OrganizationController@jobs');
+Route::get('/organization_{id}/job_description', 'OrganizationController@job_description');
 Route::get('/organization_{id}', 'OrganizationController@find');
 
 Route::post('/organizations_filter', 'OrganizationController@filter');
@@ -69,6 +71,9 @@ Route::post('/services_search', 'ServiceController@search');
 
 Route::post('/search_address', 'ServiceController@searchaddress');
 Route::post('/search_near', 'ServiceController@searchnear');
+
+//Jobs
+Route::get('/jobs', 'JobsController@index');
 
 //Projects
 Route::get('/projects', 'ProjectController@index');
@@ -285,6 +290,7 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::get('/sync_details', ['uses' => 'AdminDetailController@airtable']);
 
 	Route::get('/sync_greenbook', ['uses' => 'AdminGreenbookController@greenbook']);
+	Route::get('/sync_jobs', ['uses' => 'AdminJobController@job']);
 
 	
 	Route::get('/sync_politician_organizations', ['uses' => 'AdminPoliticianOrganizationController@airtable']);   
@@ -308,7 +314,7 @@ Route::group(['middleware' => 'administrator'], function () {
 
 	Route::resource('appearance', 'AppearanceController');
 
-	Route::resource('apis', 'ApiController');
+	// Route::resource('apis', 'ApiController');
 
 	// resource routes for posts
 	Route::resource('posts', 'PostsController');
@@ -338,6 +344,7 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::resource('tb_details', 'AdminDetailController');
 
 	Route::resource('tb_greenbook', 'AdminGreenbookController');
+	Route::resource('tb_jobs', 'AdminJobController');
 
 	//Entity
 	Route::resource('entity_organizations', 'AdminEntityOrganizationController');

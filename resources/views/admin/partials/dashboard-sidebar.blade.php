@@ -93,6 +93,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="/tb_greenbook"><i class="fa fa-circle-o"></i> Greenbook </a></li>
+                <li><a href="/tb_jobs"><i class="fa fa-circle-o"></i> Jobs </a></li>
               </ul>
             </li>
             <li class="treeview">

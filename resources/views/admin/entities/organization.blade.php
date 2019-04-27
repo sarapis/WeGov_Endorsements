@@ -46,7 +46,8 @@
                                     <th class="text-center">Candidates</th>
                                     <th class="text-center">Requests</th>
                                     <th class="text-center">Requests From</th>
-                                    <th class="text-center">Indicators</th>                          
+                                    <th class="text-center">Indicators</th>
+                                    <th class="text-center">Jobs</th>                           
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -65,6 +66,7 @@
                                     <td class="text-center"><span class="badge bg-{{$organization->requests}}">{{$organization->requests}}</span></td>
                                     <td class="text-center"><span class="badge bg-{{$organization->requests_from}}">{{$organization->requests_from}}</span></td>
                                     <td class="text-center"><span class="badge bg-{{$organization->indicators}}">{{$organization->indicators}}</span></td>
+                                    <td class="text-center"><span class="badge bg-{{$organization->jobs}}">{{$organization->jobs}}</span></td>
                                     <td class="text-center">
                                         <button class="btn btn-block btn-primary btn-sm open_modal"  value="{{$organization->id}}"><i class="fa fa-fw fa-edit"></i>Edit</button>
                                     </td>
@@ -128,8 +130,6 @@
                         <input type="checkbox" style="margin-top: 10px;" id="people" name="people">
                       </div>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="form-group">
                       <label for="text" class="col-sm-6 control-label">Laws</label>
 
@@ -137,6 +137,9 @@
                         <input type="checkbox" style="margin-top: 10px;" id="laws" name="laws">
                       </div>
                     </div>
+                  </div>
+                  <div class="col-md-6">
+                    
                     <div class="form-group">
                       <label for="text" class="col-sm-6 control-label">Endorsements</label>
 
@@ -170,6 +173,13 @@
 
                       <div class="col-sm-6">
                         <input type="checkbox" style="margin-top: 10px;" id="indicators" name="indicators">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="text" class="col-sm-6 control-label">Jobs</label>
+
+                      <div class="col-sm-6">
+                        <input type="checkbox" style="margin-top: 10px;" id="jobs" name="jobs">
                       </div>
                     </div>
                   </div>

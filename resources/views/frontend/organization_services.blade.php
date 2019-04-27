@@ -236,17 +236,8 @@
                 lng: value.longitude,
                 title: value.name,
                 infoWindow: {
-                content: (value.name+'</br>' +value.address_1+', ' +value.city+', '+value.state_province+', '+value.postal_code)
-                }
-            });
-        }
-        if (value.project_lat && value.project_long) {
-            mymap_service.addMarker({
-                lat: value.project_lat,
-                lng: value.project_long,
-                title: value.project_projectid,
-                infoWindow: {
-                    content: (value.project_recordid+','+value.project_projectid+'</br>')
+                maxWidth: 150,
+                content: ('<a>'+value.name+'</a></br>' +value.services_address_1+', ' +value.services_address_city+', '+value.services_address_state_province+', '+value.services_address_postalcode)
                 }
             });
         }

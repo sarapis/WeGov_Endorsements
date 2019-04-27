@@ -308,6 +308,59 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <div class="col-md-6">
+                            <h4 class="box-title">Dataset Name: {{$dataset[5]->name}}</h4>
+                            <h4 class="box-title">Format: Socrata</h4>
+                            <h4 class="box-title">Api Path: {{$dataset[5]->api_path}}</h4>
+                            <h4 class="box-title">Notes: {{$dataset[5]->notes}}</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-6">
+                                <h4 class="box-title">All Jobs: {{$all_jobs}}</h4>
+                                <h4 class="box-title">Joined Jobs: {{$join_jobs}}</h4>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <button class="btn btn-success btn-sm sync_all" id="sync_6">SYNC ALL</button>
+                                <button class="btn btn-primary btn-sm open_modal" value="6">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-body table-responsive">
+                        <table id="user_table" class="table table-striped table-hover table-condensed">
+                            <thead>
+                                <tr class="success">
+                                    <th class="text-center">No</th>
+                                    <th class="text-center">Table Name</th>
+                                    <th class="text-center">Total Records</th>
+                                    <th class="text-center">Last Synced</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">Jobs</td>
+                                    <td class="text-center">{{$jobs}}</td>
+                                    <td class="text-center">{{$job_date}}</td>
+                                    <td class="text-center">
+                                        <button class="badge bg-yellow sync_now">Sync Now</button>
+                                       <!--  <button class="badge bg-blue"><a href="/tb_greenbook" style="color: white;">View Table</a></button> -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
         <!-- Passing BASE URL to AJAX -->
         <input id="url" type="hidden" value="{{ \Request::url() }}">
 

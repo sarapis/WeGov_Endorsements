@@ -145,6 +145,9 @@ class OrganizationController extends Controller
 
         $organization_map = DB::table('services_organizations')->where('organization_x_id','=', $id)->leftjoin('locations', 'services_organizations.organization_locations', 'like', DB::raw("concat('%', locations.location_id, '%')"))->leftjoin('services_address', 'locations.address', 'like', DB::raw("concat('%', services_address.address_recordid, '%')"))->leftjoin('agencies', 'services_organizations.organization_recordid', 'like', DB::raw("concat('%', agencies.magency, '%')"))->leftjoin('projects', 'agencies.projects', 'like', DB::raw("concat('%', projects.project_recordid, '%')"))->groupBy('projects.project_recordid')->select('services_organizations.*', 'locations.*', 'projects.*', 'services_address.*')->groupBy('locations.id')->get();
 
+        // var_dump($organization_map);
+        // exit();
+
         $entity = EntityOrganization::where('types', '=', $organization->type)->first(); 
 
         return view('frontend.organization_services', compact('organization', 'organizations_services', 'organization_services', 'organization_map', 'entity'))->render();
@@ -392,6 +395,55 @@ class OrganizationController extends Controller
         $entity = EntityOrganization::where('types', '=', $organization_type)->first();
 
         return view('frontend.organization_indicators', compact('organization', 'organization_type', 'indicators', 'entity', 'desired_count', 'undesired_count'));
+
+    } 
+
+    public function jobs($id)
+    {
+        $organization_type = Organization::where('organizations_id','=',$id)->first()->type;
+
+        $agency = Agency::where('magency', '=', $id)->first();
+
+        if($agency)
+            $agency_recordid = $agency->agency_recordid;
+        else
+            $agency_recordid = '';
+
+        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->first();    
+
+        $indicators = Kpi::where('agency_join', '=', $agency_recordid)->get();
+
+        $desired_count = Kpi::where('agency_join', '=', $agency_recordid)->whereRaw('desired_direction = trend')->count();
+
+        $undesired_count = Kpi::where('agency_join', '=', $agency_recordid)->whereRaw('desired_direction != trend')->count();
+
+        $entity = EntityOrganization::where('types', '=', $organization_type)->first();
+
+        return view('frontend.organization_jobs', compact('organization', 'organization_type', 'indicators', 'entity', 'desired_count', 'undesired_count'));
+
+    } 
+    public function job_description($id)
+    {
+        $organization_type = Organization::where('organizations_id','=',$id)->first()->type;
+
+        $agency = Agency::where('magency', '=', $id)->first();
+
+        if($agency)
+            $agency_recordid = $agency->agency_recordid;
+        else
+            $agency_recordid = '';
+
+        $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->first();    
+
+        $indicators = Kpi::where('agency_join', '=', $agency_recordid)->get();
+
+        $desired_count = Kpi::where('agency_join', '=', $agency_recordid)->whereRaw('desired_direction = trend')->count();
+
+        $undesired_count = Kpi::where('agency_join', '=', $agency_recordid)->whereRaw('desired_direction != trend')->count();
+
+        $entity = EntityOrganization::where('types', '=', $organization_type)->first();
+
+        return view('frontend.organization_job_description', compact('organization', 'organization_type', 'indicators', 'entity', 'desired_count', 'undesired_count'));
 
     } 
     

@@ -47,6 +47,8 @@ $(document).ready(function(){
                     $('#requests_from').attr('checked','checked');
                 if(data.indicators == 'On')
                     $('#indicators').attr('checked','checked');
+                if(data.jobs == 'On')
+                    $('#jobs').attr('checked','checked');
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');
             },
@@ -84,6 +86,7 @@ $(document).ready(function(){
             requests:$('#requests').prop('checked')==1?'On':'Off',
             requests_from:$('#requests_from').prop('checked')==1?'On':'Off',
             indicators:$('#indicators').prop('checked')==1?'On':'Off',
+            jobs:$('#jobs').prop('checked')==1?'On':'Off',
         }
 
         //used to determine the http verb to use [add=POST], [update=PUT]

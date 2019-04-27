@@ -68,7 +68,7 @@ class AdminJobController extends Controller
 
     public function index()
     {
-        $jobs = Job::paginate(15);
+        $jobs = Job::groupBy('agency')->paginate(15);
         return view('admin.tables.job')->with('jobs', $jobs);
     }
 

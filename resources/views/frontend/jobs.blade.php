@@ -26,33 +26,19 @@
                           </tr>
                       </thead>
                       <tbody>
+                        @foreach($jobs as $job)
                         <tr>
-                            <td><a href="#">172053</a></td>
-                            <td><a href="#">Health and Hospitals Corp.</a></td>
-                            <td>311 Call Center Manager</td>
-                            <td>Community & Business Services</td>
-                            <td>Manhattan, NY</td>
-                            <td>10/21/2014</td>
+                            <td><a href="#">{{$job->job_id}}</a></td>
+                            <td><a href="#">{{$job->agency}}</a></td>
+                            <td>{{$job->job_id}}</td>
+                            <td>{{$job->job_id}}</td>
+                            <td>{{$job->job_id}}</td>
+                            <td>{{$job->job_id}}</td>
                         </tr>
-                        <tr>
-                            <td><a href="#">172053</a></td>
-                            <td><a href="#">Health and Hospitals Corp.</a></td>
-                            <td>311 Call Center Manager</td>
-                            <td>Community & Business Services</td>
-                            <td>Manhattan, NY</td>
-                            <td>10/21/2014</td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">172053</a></td>
-                            <td><a href="#">Health and Hospitals Corp.</a></td>
-                            <td>311 Call Center Manager</td>
-                            <td>Community & Business Services</td>
-                            <td>Manhattan, NY</td>
-                            <td>10/21/2014</td>
-                        </tr>
+                        @endforeach
                       </tbody>
                     </table>
-                    <div class="text-right">{{ $allprojects->links() }}</div>
+                    <div class="text-right">{{ $jobs->links() }}</div>
                     <style type="text/css">.pagination{margin-top: 0;}</style>
                 </div>
             </div>

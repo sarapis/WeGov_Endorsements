@@ -164,7 +164,7 @@ class AdminJobController extends Controller
         
         $job->save();
 
-        Job::where('job_id', $job->job_id)->update(['organization_code'=>$job->organization_code]);
+        Job::where('agency', $job->agency)->update(['organization_code'=>$job->organization_code]);
 
         return response()->json($job);
     }

@@ -118,7 +118,7 @@
                 <li><a href="/organization_{{$organization->organizations_id}}/indicators" id="indicators_tab">INDICATORS</a></li>
                 @endif
                 @if($entity->jobs == 'On')
-                <li><a href="/organization_{{$organization->organizations_id}}/jobs" id="jobs_tab">JOBS</a></li>
+                <li class="active"><a href="/organization_{{$organization->organizations_id}}/jobs" id="jobs_tab">JOBS</a></li>
                 @endif
             </ul>
 
@@ -160,7 +160,7 @@
                     <li><a href="/organization_{{$organization->organizations_id}}/indicators" id="indicators_tab">INDICATORS</a></li>
                     @endif
                     @if($entity->jobs == 'On')
-                    <li><a href="/organization_{{$organization->organizations_id}}/jobs" id="jobs_tab">JOBS</a></li>
+                    <li class="active"><a href="/organization_{{$organization->organizations_id}}/jobs" id="jobs_tab">JOBS</a></li>
                     @endif
                 </ul>
             </div>
@@ -175,20 +175,20 @@
                                 <div class="box-body inner_request_detail">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <h4>Job ID: <p> 390413</p></h4>
-                                            <h4>Business Title: <p>Environmental Health and Safety Officer</p></h4>
-                                            <h4>Civil Service Title: <p>ASSISTANT EXECUTIVE DIRECTOR</p></h4>
-                                            <h4>Title Classification: <p>Non-Competitive</p></h4>
-                                            <h4>Job Category: <p>Health, Policy, Research & Analysis, Public Safety, Inspections, & Enforcement</p></h4>
-                                            <h4>Career Level : <p>Executive</p></h4>
-                                            <h4>Work Location: <p>Office Of The Chair</p></h4>
-                                            <h4>Division/Work Unit: <p>Office of the Chair</p></h4>
+                                            <h4>Job ID: <p>{{$job->job_id}}</p></h4>
+                                            <h4>Business Title: <p>{{$job->business_title}}</p></h4>
+                                            <h4>Civil Service Title: <p>{{$job->civil_service_title}}</p></h4>
+                                            <h4>Title Classification: <p>{{$job->title_code_no}}</p></h4>
+                                            <h4>Job Category: <p>{{$job->job_category}}</p></h4>
+                                            <h4>Career Level : <p>{{$job->division_work_unit}}</p></h4>
+                                            <h4>Work Location: <p>{{$job->work_location}}</p></h4>
+                                            <h4>Division/Work Unit: <p>{{$job->division_work_unit}}</p></h4>
                                         </div>
                                         <div class="col-sm-6">
-                                            <h4># of Positions: <p> 1</p></h4>
-                                            <h4>Title Code No: <p>10174</p></h4>
-                                            <h4>Level: <p>M5</p></h4>
-                                            <h4>Proposed Salary Range: <p>$145,000.00 - $180,000.00 (Annual)</p></h4>
+                                            <h4># of Positions: <p> {{$job->of_positions}}</p></h4>
+                                            <h4>Title Code No: <p>{{$job->title_code_no}}</p></h4>
+                                            <h4>Level: <p>{{$job->level}}</p></h4>
+                                            <h4>Proposed Salary Range: <p>${{$job->salary_range_from}} - ${{$job->salary_range_to}} ({{$job->salary_frequency}})</p></h4>
                                         </div>
                                     </div>
                                 </div>
@@ -200,59 +200,35 @@
                                 <div class="box-body inner_request_detail job_details">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <p>The New York City Housing Authority (NYCHA) is the nation’s largest public housing authority, with an operating budget of $3.3 billion and approximately 10,600 employees who manage and maintain 325 developments that house over 400,000 residents.  NYCHA also operates the country’s largest Section 8 program, which provides rental assistance to over 200,000 additional families. </p>
-                                            <p>Reporting directly to the Chair of the Housing Authority, the Environmental Health and Safety Officer (“EHSO”) will be responsible for the oversight and strategic planning of the development, implementation, and continuous improvement of environmental health and safety (EHS) programs. </p>
-                                            <p>The EHSO’s responsibilities include: </p>
-                                            <ul>
-                                                <li><p>Auditing lead paint interim controls and ensure proper abatement.</p></li>
-                                                <li><p>Collaborate with the Chief Compliance Officer and Quality Assurance Officer to ensure any issues that impact the environmental health and safety of residents are addressed.</p></li>
-                                                <li><p>Communicate with the public and stakeholders regarding EH&S, including creating a platform for employee and resident complaints.</p></li>
-                                                <li><p>Report to the Chair and the Board on the status of the EH&S program with a specific focus on lead paint hazards, mold, pests, air quality, heat and elevators Develop and implement an EHS strategic plan including roadmap and overall goals for the EHS business units.</p></li>
-                                                <li><p>Serve as NYCHA’s EHS representative with local, state, and federal officials; on committees, legal proceedings, and press.</p></li>
-                                            </ul>
-                                            <p>Key Competencies</p>
-                                            <ul>
-                                                <li><p>Imbue the Authority with strong ethical principles.</p></li>
-                                                <li><p>Ability to communicate expertly and clearly, both written and verbal, to a wide range of stakeholders.</p></li>
-                                                <li><p>Establish a strong network of relationships among peer leaders across other City, State and Federal agencies and government and external stakeholders.</p></li>
-                                                <li><p>Develop innovative and impactful solutions that help address operation needs.</p></li>
-                                                <li><p>Familiarity with environmental health and safety law and regulation.</p></li>
-                                                <li><p>Demonstrated ability to make timely and sound decisions; establish priorities and successfully carry out multiple assignments, meeting critical deadlines and timeframes.</p></li>
-                                            </ul>
-                                            <p>Please read this posting carefully to make certain you meet the qualification requirements before applying to this position.</p>
-                                            <h4>Minimum Qual Requirements</h4>
-                                            <ol type="1">
-                                                <li><p>A baccalaureate degree from an accredited college and three years of full-time paid experience in an administrative, executive or consultative capacity in a large public housing agency; or</p></li>
-                                                <li><p>Education and/or experience which is equivalent to "1" above.</p></li>
-                                            </ol>
-                                            <h4>Preferred Skills</h4>
+                                            <p>{!! $job->job_description !!}</p>
+                                            <h4 style="padding-top: 20px;">Minimum Qual Requirements</h4>
+                                            <p>{!! $job->minimum_qual_requirements !!}</p>
+                                            <h4 style="padding-top: 20px;">Preferred Skills</h4>
                                             <ul>
                                                 <li><p>A Baccalaureate degree from an accredited college, or equivalent; preferably a Master’s Degree in the fields of public administration, business management, environmental planning, or a related field.</p></li>
                                                 <li><p>A minimum of 10 years of full time satisfactory professional experience in the field of environmental health and safety.</p></li>
                                                 <li><p>Experience overseeing large teams of staff and vendors performing multiple different types of work at a fast pace.</p></li>
                                             </ul>
                                             <h4>To Apply</h4>
-                                            <p>Click the "Apply Now" button.</p>
-                                            <h4>Hours/ Shift: <p>35 Hours.</p></h4>
+                                            <p>{{$job->to_apply}}</p>
+                                            <h4 style="padding-top: 20px;">Hours/ Shift: <p>{{$job->hours_shift}}</p></h4>
                                             
-                                            <h4>Work Location: <p>30-30 Thomson Avenue.LIC, NY</p></h4>
-                                            <h4>Recidency Requirement: <p>NYCHA has no residency requirements.</p></h4>
+                                            <h4>Work Location: <p>{{$job->work_location}}</p></h4>
+                                            <h4>Residency Requirement: <p>{{$job->residency_requirement}}</p></h4>
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <h4>Posting Date: <p> 12/04/2019</p></h4>
+                                                    <h4>Posting Date: <p> {{$job->process_date}}</p></h4>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <h4>Post Unit: <p> 04/22/2019</p></h4>
+                                                    <h4>Post Unit: <p> {{$job->post_until}}</p></h4>
                                                 </div>
                                             </div>
-                                            <a class="btn btn-charter" target="_blank" href="#">Apply Now</a>
-                                            <a class="btn btn-charter" target="_blank" href="#">Email to Friend</a>
+                                            <a class="btn btn-charter" target="_blank" href="#" style="width: auto;">View the Official NYC Listing to Apply</a>
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="col-sm-12">
-                                    <a href="#" style="font-size: 17px;">< Return to Previous Page</a>
                                     <p style="text-align: center;">The City of New York is an Equal Opportunity Employer</p>
                                 </div>
                             </div>

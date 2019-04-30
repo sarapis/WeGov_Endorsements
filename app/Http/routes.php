@@ -54,7 +54,7 @@ Route::get('/organization_{id}/requests_from', 'OrganizationController@requests_
 Route::get('/organization_{id}/requests/{tracking_code}', 'OrganizationController@requests_details');
 Route::get('/organization_{id}/indicators', 'OrganizationController@indicators');
 Route::get('/organization_{id}/jobs', 'OrganizationController@jobs');
-Route::get('/organization_{id}/job_description', 'OrganizationController@job_description');
+Route::get('/organization_{id}/jobs/{job_id}', 'OrganizationController@job');
 Route::get('/organization_{id}', 'OrganizationController@find');
 
 Route::post('/organizations_filter', 'OrganizationController@filter');

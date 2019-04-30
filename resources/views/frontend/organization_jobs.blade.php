@@ -118,7 +118,7 @@
                 <li><a href="/organization_{{$organization->organizations_id}}/indicators" id="indicators_tab">INDICATORS</a></li>
                 @endif
                 @if($entity->jobs == 'On')
-                <li><a href="/organization_{{$organization->organizations_id}}/jobs" id="jobs_tab">JOBS</a></li>
+                <li class="active"><a href="/organization_{{$organization->organizations_id}}/jobs" id="jobs_tab">JOBS</a></li>
                 @endif
             </ul>
 
@@ -160,7 +160,7 @@
                     <li><a href="/organization_{{$organization->organizations_id}}/indicators" id="indicators_tab">INDICATORS</a></li>
                     @endif
                     @if($entity->jobs == 'On')
-                    <li><a href="/organization_{{$organization->organizations_id}}/jobs" id="jobs_tab">JOBS</a></li>
+                    <li class="active"><a href="/organization_{{$organization->organizations_id}}/jobs" id="jobs_tab">JOBS</a></li>
                     @endif
                 </ul>
             </div>
@@ -173,43 +173,27 @@
                                     <table id="example3" class="table table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th style="text-align:center; width: 10%;" class="sorting_asc">ID#</th>
+                                                <th style="text-align:center; width: 5%;" class="sorting_asc">ID#</th>
                                                 <th class="sorting_asc">Business Title</th>
                                                 <th class="sorting_asc">Job Category</th>
                                                 <th class="sorting_asc">Work Location</th>
                                                 <th class="sorting_asc">Salary Range From</th>
                                                 <th class="sorting_asc">Salary Range To</th>
-                                                <th class="sorting_asc">Posting Data</th>
+                                                <th class="sorting_asc">Posting Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($jobs as $job)
                                             <tr>
-                                                <td><a href="/organization_{{$organization->organizations_id}}/job_description">172053</a></td>
-                                                <td>311 Call Center Manager</td>
-                                                <td>Community & Business Services</td>
-                                                <td>Manhattan, NY</td>
-                                                <td>49492</td>
-                                                <td>69000</td>
-                                                <td>10/21/2014</td>
+                                                <td><a href="/organization_{{$organization->organizations_id}}/jobs/{{$job->job_id}}">{{$job->job_id}}</a></td>
+                                                <td>{{$job->business_title}}</td>
+                                                <td>{{$job->job_category}}</td>
+                                                <td>{{$job->work_location}}</td>
+                                                <td>{{$job->salary_range_from}}</td>
+                                                <td>{{$job->salary_range_to}}</td>
+                                                <td>{{$job->posting_date}}</td>
                                             </tr>
-                                             <tr>
-                                                <td><a href="/organization_{{$organization->organizations_id}}/job_description">172053</a></td>
-                                                <td>311 Call Center Manager</td>
-                                                <td>Community & Business Services</td>
-                                                <td>Manhattan, NY</td>
-                                                <td>49492</td>
-                                                <td>69000</td>
-                                                <td>10/21/2014</td>
-                                            </tr>
-                                             <tr>
-                                                <td><a href="/organization_{{$organization->organizations_id}}/job_description">172053</a></td>
-                                                <td>311 Call Center Manager</td>
-                                                <td>Community & Business Services</td>
-                                                <td>Manhattan, NY</td>
-                                                <td>49492</td>
-                                                <td>69000</td>
-                                                <td>10/21/2014</td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

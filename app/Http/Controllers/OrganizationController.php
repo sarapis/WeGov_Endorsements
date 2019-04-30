@@ -36,6 +36,7 @@ use App\Models\Securities;
 use App\Models\Trust;
 use App\Models\Relatives;
 use App\Models\Kpi;
+use App\Models\Job;
 use App\Services\Numberformat;
 
 class OrganizationController extends Controller
@@ -411,18 +412,15 @@ class OrganizationController extends Controller
 
         $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->first();    
 
-        $indicators = Kpi::where('agency_join', '=', $agency_recordid)->get();
-
-        $desired_count = Kpi::where('agency_join', '=', $agency_recordid)->whereRaw('desired_direction = trend')->count();
-
-        $undesired_count = Kpi::where('agency_join', '=', $agency_recordid)->whereRaw('desired_direction != trend')->count();
+        $jobs = Job::where('organization_code', '=', $id)->get();
 
         $entity = EntityOrganization::where('types', '=', $organization_type)->first();
 
-        return view('frontend.organization_jobs', compact('organization', 'organization_type', 'indicators', 'entity', 'desired_count', 'undesired_count'));
+        return view('frontend.organization_jobs', compact('organization', 'organization_type', 'jobs', 'entity'));
 
     } 
-    public function job_description($id)
+    
+    public function job($id, $job_id)
     {
         $organization_type = Organization::where('organizations_id','=',$id)->first()->type;
 
@@ -435,15 +433,11 @@ class OrganizationController extends Controller
 
         $organization = Organization::where('organizations_id','=',$id)->leftjoin('agencies', 'organizations.organizations_id', '=', 'agencies.magency')->first();    
 
-        $indicators = Kpi::where('agency_join', '=', $agency_recordid)->get();
-
-        $desired_count = Kpi::where('agency_join', '=', $agency_recordid)->whereRaw('desired_direction = trend')->count();
-
-        $undesired_count = Kpi::where('agency_join', '=', $agency_recordid)->whereRaw('desired_direction != trend')->count();
+        $job = Job::where('organization_code', '=', $id)->where('job_id', '=', $job_id)->first();
 
         $entity = EntityOrganization::where('types', '=', $organization_type)->first();
 
-        return view('frontend.organization_job_description', compact('organization', 'organization_type', 'indicators', 'entity', 'desired_count', 'undesired_count'));
+        return view('frontend.organization_job', compact('organization', 'organization_type', 'job', 'entity'));
 
     } 
     

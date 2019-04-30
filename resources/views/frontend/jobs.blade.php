@@ -28,8 +28,8 @@
                       <tbody>
                         @foreach($jobs as $job)
                         <tr>
-                            <td><a href="#">{{$job->job_id}}</a></td>
-                            <td><a href="#">{{$job->agency}}</a></td>
+                            <td><a href="/organization_{{$job->organization_code}}/jobs/{{$job->job_id}}">{{$job->job_id}}</a></td>
+                            <td>{{$job->agency}}</a></td>
                             <td>{{$job->business_title}}</td>
                             <td>{{$job->job_category}}</td>
                             <td>{{$job->work_location}}</td>

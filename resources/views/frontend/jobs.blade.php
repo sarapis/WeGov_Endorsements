@@ -10,7 +10,7 @@
         <div class="col-sm-3 side-filter">
           @include('layouts.job_sidebar')
         </div>
-        <div class="col-sm-9 organization_right" id="project_content" >
+        <div class="col-sm-9 organization_right" id="job_content" >
           <div class="col-sm-12" style="padding-left:0px;">
             <div class="box padding_0 table_data">
                 <div class="padding_0 endosment_table table-responsive">
@@ -46,7 +46,6 @@
         </div>
     </div>
 </div>
-<script src="{{ asset('js/frontend/organization_project_ajax.js') }}"></script>
 <script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>

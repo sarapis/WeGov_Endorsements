@@ -6,7 +6,7 @@
         <div class="has-feedback">
           <span class="glyphicon glyphicon-search form-control-input"></span>
           <div class="form-group is-empty">
-            <input type="text" class="form-control form-input" placeholder="Search..." id="search_project">
+            <input type="text" class="form-control form-input" placeholder="Search..." id="search_job">
           </div>        
         </div>
       </div>
@@ -17,7 +17,7 @@
        
         <li class="treeview">
 
-          <a href="#agency_collapse" class="item-list" data-toggle="collapse" aria-expanded="false">Managing Agency</a>
+          <a href="#agency_collapse" class="item-list" data-toggle="collapse" aria-expanded="false">City Agencies</a>
           <ul class="treeview-menu" id="agency_collapse">
             <li style="padding-left: 10px;">
               
@@ -25,7 +25,7 @@
                 @if($organization->magencyacro!='')
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" name="projects_organizations[]" value="{{$organization->agency_recordid}}" class="organization-checkbox">  <span class="subitem-list text-uppercase">{{$organization->magencyacro}}</span>
+                    <input type="checkbox" name="projects_organizations[]" value="{{$organization->magency}}" class="organization-checkbox">  <span class="subitem-list text-uppercase">{{$organization->magencyacro}}</span>
                   </label>
                 </div>
                 @endif
@@ -45,17 +45,18 @@
           $('.side-filter').toggle()
       });
 
-      $('#search_project').change(function(){
-        search_project();
+      $('#search_job').change(function(){
+        search_job();
 
         document.getElementById("loader").style.display = "block";
       });
       $('.glyphicon-search').click(function(){
-        search_project();
+        search_job();
         document.getElementById("loader").style.display = "block";
       });
-      function search_project(){
-        val = $('#search_project').val();
+      
+      function search_job(){
+        val = $('#search_job').val();
         console.log(val);
         $.ajaxSetup({
             headers: {
@@ -65,14 +66,14 @@
 
         $.ajax({
           type: 'POST',
-          url: '/projects_search',
+          url: '/jobs_search',
           data: {
-            search_project: val
+            search_job: val
           },
           success: function(data){
               $('#loader').hide();
-              $('#project_content').html(data);
-              window.history.replaceState({url: "" + window.location.href + ""}, '','/projects');
+              $('#job_content').html(data);
+              window.history.replaceState({url: "" + window.location.href + ""}, '','/jobs');
           }
         });
       }
@@ -84,15 +85,11 @@
           for(i = 0; i < cboxes.length; i ++)
             organization_value[i] = cboxes[i].value;
 
-          var project_type = [];
-          var cboxes = $('.project-type:checked');
-          for(i = 0; i < cboxes.length; i ++)
-            project_type[i] = cboxes[i].value;
 
-          console.log(organization_value);
-          console.log(project_type);
-          if(project_type.length == 0 && organization_value.length == 0){
-            window.location.href = '/projects';
+          // console.log(organization_value);
+
+          if(organization_value.length == 0){
+            window.location.href = '/jobs';
           }
           else {
             $.ajaxSetup({
@@ -103,15 +100,14 @@
 
             $.ajax({
               type: 'POST',
-              url: '/projects_filter',
+              url: '/jobs_filter',
               data: {
-                organization_value: organization_value,
-                project_type: project_type
+                organization_value: organization_value
               },
               success: function(data){
                   $('#loader').hide();
-                  $('#project_content').html(data);
-                  window.history.replaceState({url: "" + window.location.href + ""}, '','/projects');
+                  $('#job_content').html(data);
+                  window.history.replaceState({url: "" + window.location.href + ""}, '','/jobs');
               }
             });
           }

@@ -75,6 +75,10 @@ Route::post('/search_near', 'ServiceController@searchnear');
 //Jobs
 Route::get('/jobs', 'JobsController@index');
 
+Route::post('/jobs_filter', 'JobsController@filter');
+
+Route::post('/jobs_search', 'JobsController@search');
+
 //Projects
 Route::get('/projects', 'ProjectController@index');
 Route::get('/projects/{id}', 'ProjectController@project');

@@ -89,8 +89,8 @@
           for(i = 0; i < cboxes.length; i ++)
             project_type[i] = cboxes[i].value;
 
-          console.log(organization_value);
-          console.log(project_type);
+          // console.log(organization_value);
+          // console.log(project_type);
           if(project_type.length == 0 && organization_value.length == 0){
             window.location.href = '/projects';
           }

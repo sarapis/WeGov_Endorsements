@@ -36,14 +36,47 @@ class jobsController extends Controller
 
     public function index()
     {
-        $project_types = Project::distinct()->get(['project_type']);
-        $organizations = Agency::whereNotNull('projects')->orderBy('magencyacro', 'asc')->get();
+        $organization_codes = Job::groupBy('organization_code')->pluck('organization_code');
+        $organization_codes = json_decode(json_encode($organization_codes));
 
-        $allprojects = Project::leftJoin('agencies', 'projects.project_managingagency', '=', 'agency_recordid')->select('projects.id','projects.project_recordid','projects.project_projectid','agencies.magency','agencies.magencyacro','projects.project_description','projects.project_commitments','projects.project_totalcost','projects.project_type')->orderBy('project_projectid', 'asc')->paginate(20);
+        $organizations = Agency::whereIn('magency', $organization_codes)->orderBy('magencyacro', 'asc')->get();
 
-        $jobs = Job::paginate(20);
+        $jobs = Job::orderBy('agency', 'asc')->paginate(20);
 
-        return view('frontend.jobs', compact('project_types', 'organizations', 'allprojects', 'jobs'));
+        return view('frontend.jobs', compact('organizations', 'jobs'));
+    }
+
+    public function filter(Request $request)
+    {
+        $ids = $request->organization_value;
+         
+        $check = 0;
+
+
+        if(isset($ids[0])){
+            $jobs = Job::whereIn('organization_code',$ids);
+            $check = 1;
+        }
+
+
+        if($check == 1)
+            $jobs = $jobs->orderBy('agency', 'asc')->get();
+        else
+            $jobs =  Job::orderBy('agency', 'asc')->get();
+
+
+        return view('frontend.jobs_filter', compact('jobs'))->render();
+    }
+
+
+    public function search(Request $request)
+    {
+        $find = $request->search_job;
+
+        $jobs = Job::where('business_title', 'like', '%'.$find.'%')
+            ->orwhere('job_category', 'like', '%'.$find.'%')->orwhere('job_description', 'like', '%'.$find.'%')->get();
+
+        return view('frontend.jobs_filter', compact('jobs'))->render();
     }
 
     

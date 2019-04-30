@@ -223,7 +223,7 @@
                                                     <h4>Post Unit: <p> {{$job->post_until}}</p></h4>
                                                 </div>
                                             </div>
-                                            <a class="btn btn-charter" target="_blank" href="#" style="width: auto;">View the Official NYC Listing to Apply</a>
+                                            <a class="btn btn-charter" target="_blank" href="https://a127-jobs.nyc.gov/psc/nycjobs/EMPLOYEE/HRMS/c/HRS_HRAM.HRS_APP_SCHJOB.GBL?Page=HRS_APP_JBPST&Action=U&FOCUS=Applicant&SiteId=1&JobOpeningId={{$job->job_id}}&PostingSeq=1" style="width: auto;">View the Official NYC Listing to Apply</a>
                                         </div>
                                     </div>
                                 </div>

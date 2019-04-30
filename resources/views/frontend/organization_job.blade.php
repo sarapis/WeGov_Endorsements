@@ -180,7 +180,6 @@
                                             <h4>Civil Service Title: <p>{{$job->civil_service_title}}</p></h4>
                                             <h4>Title Classification: <p>{{$job->title_code_no}}</p></h4>
                                             <h4>Job Category: <p>{{$job->job_category}}</p></h4>
-                                            <h4>Career Level : <p>Experienced (non-manager)</p></h4>
                                             <h4>Work Location: <p>{{$job->work_location}}</p></h4>
                                             <h4>Division/Work Unit: <p>{{$job->division_work_unit}}</p></h4>
                                         </div>

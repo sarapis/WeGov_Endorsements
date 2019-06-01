@@ -92,7 +92,7 @@ class AppearanceController extends Controller
             $companylogo = $request->file('site_logo');
             $filename = time() . '.' . $companylogo->getClientOriginalExtension();
             Image::make($companylogo)->resize(300, 300, function ($constraint) {
-            $constraint->aspectRatio();})->save( public_path('/upload/images/' . $filename ) );
+            $constraint->aspectRatio();})->save( public_path('upload/images/' . $filename ) );
             $logo->link=$filename;
             
         }

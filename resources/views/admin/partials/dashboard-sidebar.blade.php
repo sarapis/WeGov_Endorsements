@@ -27,7 +27,7 @@
                 {{ Lang::get('sidebar-nav.nav_title') }}
             </li>
 
-            <li class="active">
+            <li>
                 {!! HTML::icon_link( "/dashboard", 'fa '.Lang::get('sidebar-nav.link_icon_dashboard'), "<span>".Lang::get('sidebar-nav.link_title_dashboard')."</span>", array('title' => Lang::get('sidebar-nav.link_title_dashboard'))) !!}
             </li>
             <li>

@@ -26,9 +26,10 @@
 		<div class="container">
 			<a href="#" class="mdl-layout__tab menu-link">Sign in</a>
 			<a href="#" class="mdl-layout__tab menu-link">Register</a>
-			<a href="http://mygov.nyc/" class="mdl-layout__tab menu-link">Welcome</a>
-			<a href="http://mygov.nyc/legislation/processes" class="mdl-layout__tab menu-link">Decide</a>
-			<a href="/" class="mdl-layout__tab menu-link  is-active">Research</a>
+			<a href="http://wegov.nyc/" class="mdl-layout__tab menu-link">Welcome</a>
+			<a href="http://wegov.nyc/news" class="mdl-layout__tab menu-link">News</a>
+			<a href="http://wegov.nyc/learn/" class="mdl-layout__tab menu-link">Learn</a>
+			<a href="/" class="mdl-layout__tab menu-link  is-active">Research</a>			
 			<div class="tab_filter_btn menu_btn">
                 <ul class="nav nav-tabs nav-menu" role="tablist">
                     @if($menu->find(1)->action ==1)<li><a href="/organizations" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 12) == 'organization') is-active @endif">Organizations</a></li>@endif
@@ -42,10 +43,12 @@
 					
                 </ul>
             </div>
-			<a href="http://mygov.nyc/about" class="mdl-layout__tab menu-link">About</a>
-			<a href="http://mygov.nyc/blog/" class="mdl-layout__tab menu-link">Blog</a>
-			<a href="https://opencollective.com/mygovnyc" class="mdl-layout__tab menu-link">Donate</a>
-			<a href="http://blog.mygov.nyc/get-involved/" class="mdl-layout__tab menu-link">Get Involved</a>
+            <a href="http://decide.wegov.nyc/legislation/processes" class="mdl-layout__tab menu-link">Decide</a>
+			<a href="http://wegov.nyc/act/" class="mdl-layout__tab menu-link">Act</a>
+			<a href="http://wegov.nyc/about" class="mdl-layout__tab menu-link">About</a>
+			<a href="http://wegov.nyc/blog/" class="mdl-layout__tab menu-link">Blog</a>
+			<a href="https://opencollective.com/wegovnyc" class="mdl-layout__tab menu-link">Donate</a>
+			<a href="http://wegov.nyc/get-involved/" class="mdl-layout__tab menu-link">Get Involved</a>
 			@if($menu->find(1)->action ==1) <a href="/organizations" class="mdl-layout__tab menu-link @if(mb_substr(Request::segment(1), 0, 12) == 'organization') is-active @endif">Organizations</a> @endif
 			@if($menu->find(2)->action ==1) <a href="/projects" class="mdl-layout__tab menu-link @if(Request::is ('projects')) is-active @endif">Projects</a> @endif
 			@if($menu->find(3)->action ==1) <a href="/services" class="mdl-layout__tab menu-link @if(Request::is ('services')) is-active @endif">Services</a> @endif
@@ -61,13 +64,16 @@
 
 	<div class="mdl-layout__tab-bar mdl-layout__header-row external-menubar ">
 		<div class="container">
-			<a href="http://mygov.nyc/" class="mdl-layout__tab menu-link">Welcome</a>
-			<a href="http://mygov.nyc/legislation/processes" class="mdl-layout__tab menu-link">Decide</a>
+			<a href="http://wegov.nyc/" class="mdl-layout__tab menu-link">Welcome</a>
+			<a href="http://wegov.nyc/news" class="mdl-layout__tab menu-link">News</a>
+			<a href="http://wegov.nyc/learn/" class="mdl-layout__tab menu-link">Learn</a>
 			<a href="/" class="mdl-layout__tab menu-link  is-active">Research</a>
-			<a href="http://mygov.nyc/about" class="mdl-layout__tab menu-link">About</a>
-			<a href="http://mygov.nyc/blog/" class="mdl-layout__tab menu-link">Blog</a>
-			<a href="https://opencollective.com/mygovnyc" class="mdl-layout__tab menu-link">Donate</a>
-			<a href="http://blog.mygov.nyc/get-involved/" class="mdl-layout__tab menu-link">Get Involved</a>
+			<a href="http://decide.wegov.nyc/legislation/processes" class="mdl-layout__tab menu-link">Decide</a>
+			<a href="http://wegov.nyc/act/" class="mdl-layout__tab menu-link">Act</a>
+			<a href="http://wegov.nyc/about" class="mdl-layout__tab menu-link">About</a>
+			<a href="http://wegov.nyc/blog/" class="mdl-layout__tab menu-link">Blog</a>
+			<a href="https://opencollective.com/wegovnyc" class="mdl-layout__tab menu-link">Donate</a>
+			<a href="http://wegov.nyc/get-involved/" class="mdl-layout__tab menu-link">Get Involved</a>
 		</div>
 	</div>
 	<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark submenu_div">

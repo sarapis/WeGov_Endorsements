@@ -51,7 +51,7 @@ class AdminEntityMenuController extends Controller
     public function store(Request $request)
     {
         $menus = $request->input('menu');
-        for($i = 1; $i<=7; $i++){
+        for($i = 1; $i<=8; $i++){
             $main_menu = EntityMenu::find($i);
             $main_menu->action = $this->inarray($i, $menus);
             $main_menu->save();

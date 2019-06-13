@@ -1,4 +1,4 @@
-@extends('admin.layouts.dashboardhome') 
+@extends('admin.layouts.dashboard') 
 
 @section('template_title') Appearance
 @endsection 
@@ -8,14 +8,13 @@
 
 @section('content')
 
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/AdminLTE.min.css">
 <style type="text/css">
    .checkbox input[type=checkbox]{
         margin-left: -20px !important;

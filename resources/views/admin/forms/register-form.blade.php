@@ -36,6 +36,7 @@
     </div>
 
     <div class="row form-group">
+        <!-- <div class="g-recaptcha" data-sitekey="{{ env('RE_CAP_SITE') }}"></div> -->
 		<div class="g-recaptcha" data-sitekey="6LfR-kwUAAAAAPeLY6mgbFd1T7kiZ1dqjjaUuEOp"></div>
     </div>
 

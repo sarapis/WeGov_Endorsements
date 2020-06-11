@@ -12,9 +12,15 @@
 		        <i class="fa fa-bars" aria-hidden="true"></i> Menu 
 		    </button>
 			<ul class="register_button">
+				@if (Auth::user())
+				<li>
+					<a href="/auth/logout">Sign out</a>
+				</li>
+				@else
 				<li>
 					<a href="/auth/login">Sign in</a>
 				</li>
+				@endif
 				<li>
 					<a class="button" href="/auth/register">Register</a>
 				</li>

@@ -133,7 +133,7 @@ class AuthController extends Controller {
             $profile = new Profile;
             $user->profile()->save($profile);
 
-			$attemptsAllowed 		= 4;
+			$attemptsAllowed 		= 50;
 
 			return view('auth.activateAccount')
 			    ->with('email', $user->email)
@@ -168,7 +168,7 @@ class AuthController extends Controller {
 		$user 					= \Auth::user();
 		$username				= $user->name;
 		$userEmail				= $user->email;
-		$attemptsAllowed 		= 4;
+		$attemptsAllowed 		= 40;
 		$attemptsUsed			= $user->resent;
 		$attemptsRemaining		= $attemptsAllowed - $attemptsUsed;
 		if( $attemptsUsed >= $attemptsAllowed )

@@ -136,6 +136,7 @@ class AuthController extends Controller {
 			$attemptsAllowed 		= 50;
 
 			return view('auth.activateAccount')
+				->with('id', $user->id)
 			    ->with('email', $user->email)
 			    ->with('username', $user->name)
 			    ->with('attempts', $user->resent)
@@ -163,9 +164,9 @@ class AuthController extends Controller {
 		});
 	}
 
-	public function resendEmail()
+	public function resendEmail($id)
 	{
-		$user 					= \Auth::user();
+		$user 					= User::find($id);
 		$username				= $user->name;
 		$userEmail				= $user->email;
 		$attemptsAllowed 		= 50;
@@ -174,6 +175,7 @@ class AuthController extends Controller {
 		if( $attemptsUsed >= $attemptsAllowed )
 		{
 			return view('auth.tooManyEmails')
+
 			    ->with('email', $userEmail)
 			    ->with('username', $username)
 			    ->with('attempts', $attemptsUsed)
@@ -183,7 +185,9 @@ class AuthController extends Controller {
 			$user->resent = $user->resent + 1;
 			$user->save();
 			$this->sendEmail($user);
+
 			return view('auth.activateAccount')
+				->with('id', $id)
 			    ->with('email', $userEmail)
 			    ->with('username', $username)
 			    ->with('attempts', $user->resent)

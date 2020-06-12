@@ -50,6 +50,7 @@ class Authenticate {
 			//\Session::flash('message', 'Please activate your account to proceed.');
 			//return redirect()->guest('auth.guest_activate');
 			return view('auth.guest_activate')
+				->with( 'id', \Auth::user()->id )
 				->with( 'email', \Auth::user()->email )
 				->with( 'date', \Auth::user()->created_at->format('Y-m-d') );
 		}

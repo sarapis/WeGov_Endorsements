@@ -59,7 +59,7 @@
 	        <hr class="login-full-span">
 
 			<div class="input-group-btn text-center">
-				{!! HTML::icon_btn( '/resendEmail', 'fa fa-paper-plane-o margin-left-1', Lang::get('auth.clickHereResend'), array('title' => Lang::get('auth.clickHereResend'), 'class' => 'btn btn-primary btn-flat margin-top-1 margin-bottom-1')) !!}
+				{!! HTML::icon_btn( '/resendEmail/'. $id, 'fa fa-paper-plane-o margin-left-1', Lang::get('auth.clickHereResend'), array('title' => Lang::get('auth.clickHereResend'), 'class' => 'btn btn-primary btn-flat margin-top-1 margin-bottom-1')) !!}
 			</div>
 
       	</div>

@@ -138,7 +138,7 @@ Route::controllers([
 	'password' 	=> 'Auth\PasswordController',
 ]);
 // REGISTRATION EMAIL CONFIRMATION ROUTES
-Route::get('/resendEmail', [
+Route::get('/resendEmail/{id}', [
     'as' 		=> 'user',
 	'uses'		=> 'Auth\AuthController@resendEmail'
 ]);

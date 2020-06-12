@@ -168,7 +168,7 @@ class AuthController extends Controller {
 		$user 					= \Auth::user();
 		$username				= $user->name;
 		$userEmail				= $user->email;
-		$attemptsAllowed 		= 40;
+		$attemptsAllowed 		= 50;
 		$attemptsUsed			= $user->resent;
 		$attemptsRemaining		= $attemptsAllowed - $attemptsUsed;
 		if( $attemptsUsed >= $attemptsAllowed )

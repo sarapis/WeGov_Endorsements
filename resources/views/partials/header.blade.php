@@ -66,9 +66,7 @@
 		</div>
 	</div>
 
-
-
-	<div class="mdl-layout__tab-bar mdl-layout__header-row external-menubar ">
+	<!-- <div class="mdl-layout__tab-bar mdl-layout__header-row external-menubar ">
 		<div class="container">
 			<a href="http://wegov.nyc/" class="mdl-layout__tab menu-link">Welcome</a>
 			<a href="http://wegov.nyc/news" class="mdl-layout__tab menu-link">News</a>
@@ -92,6 +90,16 @@
 			@if($menu->find(6)->action ==1) <a href="/elections" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 9) == 'elections') is-active @endif">Elections</a> @endif
 			@if($menu->find(7)->action ==1) <a href="/laws" class="mdl-layout__tab @if(Request::is ('laws')) is-active @endif">Laws</a> @endif
 			@if($menu->find(8)->action ==1) <a href="/about" class="mdl-layout__tab @if(Request::is ('about')) is-active @endif">About</a> @endif
+		</div>
+	</div> -->
+
+	<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark submenu_div">
+		<div class="container">
+			<a href="/elections" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 9) == 'elections') is-active @endif">Elections</a>
+			<a href="/organizations" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 13) == 'organizations') is-active @endif">Endorsers</a>
+			<a href="/organization_170010012/candidates" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 23) == 'organization_170010012') is-active @endif">Offices</a>
+			<a href="/candidates/588" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 10) == 'candidates') is-active @endif">Candidates</a>
+			<a href="http://www.d9ithub.com/nycvoters/app/login.php" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 9) == 'nycvoters') is-active @endif">Voters</a>
 		</div>
 	</div>
 </header>

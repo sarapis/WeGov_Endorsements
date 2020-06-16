@@ -836,3 +836,107 @@ html, body {
 .election_menu #mymap_service_profile{
   display: block;
 }
+.logo_area {
+  height: auto;
+  background-color: #112e51;
+  padding: 0 0;
+  float: left;
+  width: 100%;
+}
+#logo_area_container {
+  max-width: 1040px;
+  padding: 0 30px;
+}
+.border_bottom {
+  border-bottom: 1px solid #ffffff;
+  float: left;
+  width: 100%;
+  margin-bottom: 6px;
+}
+.logo_left {
+  float: left;
+  padding-top: 0;
+  height: 30px;
+  margin: 15px 0;
+}  
+.logo_left img{
+  max-width: 100%;
+  max-height: 100%;
+} 
+.main_menu {
+  float: right;
+  width: auto;
+}     
+.external_menubar {
+  float: left;
+  width: 100%;
+  padding-right: 0px;
+  margin: 0px;
+  margin-top: 9px;
+}
+.external_menubar li {
+  float: left;
+  display: inline-block;
+  padding-bottom: 0px;
+}
+.external_menubar li .menu_link.is-active {
+    color: #ffffff;
+    text-decoration: none;
+}
+.external_menubar li .menu_link {
+  float: left;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 12px 15px;
+}
+.external_menubar li .dropdown-menu {
+    background-color: #0071bc;
+    margin: 0px 0 0 0;
+    border-radius: 0px;
+    box-shadow: none;
+    border: none;
+    width: 213px;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
+.external_menubar li .dropdown-menu li {
+    width: 100%;
+}
+.external_menubar li {
+    float: left;
+    display: inline-block;
+    padding-bottom: 0px;
+}
+.external_menubar li .dropdown-menu li a {
+    width: 100%;
+    text-align: left;
+    padding-left: 18px;
+    color: #fff;
+    font-weight: 400;
+    padding: 7px 15px;
+}
+.external_menubar li .menu_link {
+    float: left;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 12px 15px;
+}

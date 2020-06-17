@@ -658,3 +658,19 @@ a, a:focus, a:hover{
 .has-feedback .form-control{
   padding-right: 5px;
 }
+#main_heading {
+  background: #fafafa;
+  border-bottom: 1px solid #eee;
+  padding: 20px 0 !important;
+  float: left;
+  width: 100%;
+  margin: 0 0 15px;
+}
+#main_heading .page-title {
+    font-size: 20px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-weight: 800;
+}

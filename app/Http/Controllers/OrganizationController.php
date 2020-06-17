@@ -54,7 +54,8 @@ class OrganizationController extends Controller
         $types = Organization::distinct()->orderBy('type')->get(['type']);
         $tags = Tag::orderBy('tag_name')->get();
 
-        $organizations = Organization::where('type', '=', 'City Agency')->get();
+        $organizations = Organization::where('type', '=', 'Endorsing Organization')->get();
+        // $organizations = Organization::where('type', '=', 'City Agency')->get();
         return view('frontend.organizations', compact('types', 'tags','organizations'));
     }
 

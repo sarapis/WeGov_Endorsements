@@ -83,7 +83,7 @@
             </div>
         </div>
         <div class="menu-bar row">
-            <ul class="nav nav-tabs desktop_tab" role="tablist">
+            <!-- <ul class="nav nav-tabs desktop_tab" role="tablist">
                 @if($entity->about == 'On')
                 <li class="active"><a href="/organization_{{$organization->organizations_id}}" class="menu-title">ABOUT</a></li>
                 @endif
@@ -120,7 +120,7 @@
                 @if($entity->jobs == 'On')
                 <li><a href="/organization_{{$organization->organizations_id}}/jobs" id="jobs_tab">JOBS</a></li>
                 @endif
-            </ul>
+            </ul> -->
 
             <button type="button" class="btn btn-raised btn-block btn-primary org_filter"><i class="fa fa-bars filter-icon" aria-hidden="true"></i> About </button>
 

@@ -83,16 +83,17 @@
             </div>
         </div>
         <div class="menu-bar row">
-            <!-- <ul class="nav nav-tabs desktop_tab" role="tablist">
+            @if ($organization_type == "Elected Office")
+            <ul class="nav nav-tabs desktop_tab" role="tablist">
                 @if($entity->about == 'On')
                 <li class="active"><a href="/organization_{{$organization->organizations_id}}" class="menu-title">ABOUT</a></li>
                 @endif
-                @if($entity->projects == 'On')
+            <!--     @if($entity->projects == 'On')
                 <li><a href="/organization_{{$organization->organizations_id}}/projects" id="projects_tab">PROJECTS</a></li>
                 @endif
                 @if($entity->services == 'On')
                 <li><a href="/organization_{{$organization->organizations_id}}/services" id="services_tab">SERVICES</a></li>
-                @endif
+                @endif -->
                 @if($entity->money == 'On')
                 <li><a href="/organization_{{$organization->organizations_id}}/money" id="money_tab">MONEY</a></li>
                 @endif
@@ -102,13 +103,13 @@
                 @if($entity->laws == 'On')
                 <li><a href="/organization_{{$organization->organizations_id}}/laws" id="laws_tab">LAWS</a></li>
                 @endif
-                @if($entity->endorsements == 'On')
+                <!-- @if($entity->endorsements == 'On')
                 <li><a href="/organization_{{$organization->organizations_id}}/endorsements" id="laws_tab">ENDORSEMENTS</a></li>
-                @endif
+                @endif -->
                 @if($entity->candidates == 'On')
                 <li><a href="/organization_{{$organization->organizations_id}}/candidates" id="legislation_tab">CANDIDATES</a></li>
                 @endif
-                @if($entity->requests == 'On')
+               <!--  @if($entity->requests == 'On')
                 <li><a href="/organization_{{$organization->organizations_id}}/requests" id="requests_tab">REQUESTS</a></li>
                 @endif
                 @if($entity->requests_from == 'On')
@@ -119,8 +120,9 @@
                 @endif
                 @if($entity->jobs == 'On')
                 <li><a href="/organization_{{$organization->organizations_id}}/jobs" id="jobs_tab">JOBS</a></li>
-                @endif
-            </ul> -->
+                @endif -->
+            </ul>
+            @endif
 
             <button type="button" class="btn btn-raised btn-block btn-primary org_filter"><i class="fa fa-bars filter-icon" aria-hidden="true"></i> About </button>
 

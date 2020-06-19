@@ -70,6 +70,14 @@ class OrganizationController extends Controller
         return view('frontend.organizations', compact('types', 'tags','organizations'));
     }
 
+    public function candidates_all()
+    {
+        $types = Organization::distinct()->orderBy('type')->get(['type']);
+        $tags = Tag::orderBy('tag_name')->get();
+        $organizations = Organization::orderBy('name')->get();
+        return view('frontend.organizations', compact('types', 'tags','organizations'));
+    }
+
     public function allpost(Request $request)
     {
         

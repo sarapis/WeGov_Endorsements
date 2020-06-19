@@ -42,6 +42,7 @@ Route::get('/organization_all', 'OrganizationController@all');
 
 Route::get('/endorsers', 'OrganizationController@endorsers');
 Route::get('/offices', 'OrganizationController@offices');
+Route::get('/candidates', 'OrganizationController@candidates_all');
 
 Route::get('/organization_{id}/projects', 'OrganizationController@projects');
 Route::get('/organization_{id}/services', 'OrganizationController@services');

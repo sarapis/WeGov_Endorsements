@@ -296,7 +296,8 @@ class OrganizationController extends Controller
     public function candidates_detail($politician_id)
     {
 
-        $politician = Politician::find($politician_id);
+        // $politician = Politician::find($politician_id);
+        $politician = Politician::where('recordid', '=', $politician_id)->first();
 
         $campaigns = Campaign::where('politician', '=', $politician->recordid)->leftjoin('parties', 'campaigns.parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('campaigns.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('campaigns.id')->get();
         $endorsements = Endorsement::where('candidate_name', '=', $politician->recordid)->get();

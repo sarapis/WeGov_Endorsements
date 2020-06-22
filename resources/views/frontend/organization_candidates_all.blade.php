@@ -29,6 +29,9 @@
                         <h5 class="org_title">
                             <a href="/candidate_{{$candidate->recordid}}">{{str_limit($candidate->name, 40)}}</a>
                         </h5>
+                        <div class="box-body">
+                            <p style="font-size: 12px;"><i class="fas fa-calendar-alt"></i> Election Year:  {{$candidate->election_year}}</p>
+                        </div>
                     </div>
                 </div>
                 @endforeach

@@ -481,18 +481,8 @@ class OrganizationController extends Controller
     public function search_year(Request $request)
     {
         $year = $request->search_year;
-        $organizations = [];
-        $politician_organizations = PoliticianOrganization::select('recordid', 'organizationid', 'campaigns')->get();
-        foreach ($politician_organizations as $key => $value) {            
-            $politician = Politician::where('recordid', '=', $value->recordid)->first();
-            if ($politician) {
-                if(strpos($politician->election_year, $year) !== false){
-                    $filtered_organization = Organization::where('organizations_id', '=', $value->organizationid)->first();
-                    array_push($organizations, $filtered_organization);
-                }
-            }
-        }
-        return view('frontend.organization_filter', compact('organizations'))->render();
+        $candidates = Politician::where('election_year', 'like', '%'.$year.'%')->get();
+        return view('frontend.organization_candidates_filter', compact('candidates'))->render();
     }
 
     public function filter(Request $request)

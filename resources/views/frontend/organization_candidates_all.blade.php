@@ -11,7 +11,7 @@
         <div class="col-sm-3 side-filter">
             @include('layouts.agency_sidebar')
         </div>
-        <div class="col-sm-9 organization_right" id="organization_year_search">
+        <div class="col-sm-9 candidates_right" id="candidates_year_search">
             <div class="year-search-form">
                 <div class="has-feedback"  style="width: 100px;">
                     <span class="glyphicon glyphicon-search form-control-input" id="glyphicon-search-year"></span>
@@ -21,7 +21,7 @@
                 </div>       
             </div>
         </div>
-        <div class="col-sm-9 organization_right" id="organization_content">
+        <div class="col-sm-9 organization_right" id="candidates_content">
             <div class="">
                 @foreach ($candidates as $candidate)
                 <div class="col-sm-4 col-md-4 col-xs-6">
@@ -63,13 +63,12 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/organizations_search_year',
+                url: '/candidates_search_year',
                 data: {
                     search_year: val
                 },
                 success: function(data){
-                    $('#loader').hide();
-                    $('#organization_content').html(data);
+                    $('#candidates_content').html(data);
                 }
             });
         }

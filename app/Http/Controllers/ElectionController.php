@@ -27,7 +27,7 @@ class ElectionController extends Controller
 
     public function find($id)
     {
-        $election = Election::where('year', '=', $id)->first();
+        $election = Election::where('recordid', '=', $id)->first();
 
         $offices = Campaign::where('winner', '=', '1')->where('election', '=', $election->recordid)->groupBy('campaigns.office')->select('campaigns.*', DB::raw('sum(campaigns.of_endorsements) as sum_endorsements'), DB::raw('count(campaigns.id) as sum_candidates'))->get();
 

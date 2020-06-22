@@ -11,7 +11,7 @@
                 <div class="col-sm-4">
                     <div class="box padding_0">
                         <div class="box-header">
-                            <h3 class="box-title"><a href="/elections/{{$election->year}}">{{$election->name}}</a></h3>
+                            <h3 class="box-title"><a href="/elections/{{$election->recordid}}">{{$election->name}}</a></h3>
                         </div>
                         <div class="box-body">
                             <p><i class="fas fa-calendar-alt"></i> Election Day:  {!! date("m/d/Y", strtotime($election->election_day)) !!}</p>

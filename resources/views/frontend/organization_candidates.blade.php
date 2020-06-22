@@ -188,7 +188,7 @@
                                     <div class="col-sm-4">
                                         <div class="box padding_0">
                                             <div class="box-header">
-                                                <a href="/candidates/{{$politician->politicians()->first()->id}}"><h3 class="box-title">{{$politician->politicians()->first()->name}}</h3> @if($politician->winner) <span class="glyphicon glyphicon-star pull-right box-title"></span> @endif</a>
+                                                <a href="/candidates/{{$politician->politicians()->first()->recordid}}"><h3 class="box-title">{{$politician->politicians()->first()->name}}</h3> @if($politician->winner) <span class="glyphicon glyphicon-star pull-right box-title"></span> @endif</a>
                                             </div>
                                             <div class="box-body">
                                                 <span class="org_tags">@if($politician->parties) {{$politician->parties_name}} @else &nbsp&nbsp @endif</span>
@@ -220,7 +220,7 @@
                                     <div class="col-sm-4">
                                         <div class="box padding_0">
                                             <div class="box-header">
-                                                <a href="/candidates/{{$politician->politicians()->first()->id}}"><h3 class="box-title">{{$politician->politicians()->first()->name}}</h3> @if($politician->winner) <span class="glyphicon glyphicon-star pull-right box-title"></span> @endif</a>
+                                                <a href="/candidates/{{$politician->politicians()->first()->recordid}}"><h3 class="box-title">{{$politician->politicians()->first()->name}}</h3> @if($politician->winner) <span class="glyphicon glyphicon-star pull-right box-title"></span> @endif</a>
                                             </div>
                                             <div class="box-body">
                                                 <span class="org_tags">@if($politician->parties) {{$politician->parties_name}} @else &nbsp&nbsp @endif</span>

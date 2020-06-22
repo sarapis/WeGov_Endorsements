@@ -22,6 +22,7 @@ use App\Models\Organization;
 use App\Models\Tag;
 use App\Models\Endorsement;
 use App\Models\Politician;
+use App\Models\PoliticianOrganization;
 use App\Models\Election;
 use App\Models\Campaign;
 use App\Models\Requests;
@@ -474,6 +475,23 @@ class OrganizationController extends Controller
         $organizations = Organization::groupBy('organizations.organization_id')->where('organizations.name', 'like', '%'.$find.'%')
             ->orwhere('organizations.description', 'like', '%'.$find.'%')->sortable(['expenses_budgets'])->get();
 
+        return view('frontend.organization_filter', compact('organizations'))->render();
+    }
+
+    public function search_year(Request $request)
+    {
+        $year = $request->search_year;
+        $organizations = [];
+        $politician_organizations = PoliticianOrganization::select('recordid', 'organizationid', 'campaigns')->get();
+        foreach ($politician_organizations as $key => $value) {            
+            $politician = Politician::where('recordid', '=', $value->recordid)->first();
+            if ($politician) {
+                if(strpos($politician->election_year, $year) !== false){
+                    $filtered_organization = Organization::where('organizations_id', '=', $value->organizationid)->first();
+                    array_push($organizations, $filtered_organization);
+                }
+            }
+        }
         return view('frontend.organization_filter', compact('organizations'))->render();
     }
 

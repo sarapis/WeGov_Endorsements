@@ -11,16 +11,6 @@
         <div class="col-sm-3 side-filter">
             @include('layouts.agency_sidebar')
         </div>
-        <div class="col-sm-9 organization_right" id="organization_year_search">
-            <div class="year-search-form">
-                <div class="has-feedback"  style="width: 100px;">
-                    <span class="glyphicon glyphicon-search form-control-input" id="glyphicon-search-year"></span>
-                    <div class="form-group is-empty">
-                        <input type="text" class="form-control form-input" placeholder="Year..." id="search_year">
-                    </div> 
-                </div>       
-            </div>
-        </div>
         <div class="col-sm-9 organization_right" id="organization_content">
             <div class="">
                 @foreach ($organizations as $organization)
@@ -50,45 +40,6 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-
-    $(document).ready(function () {
-
-        $('#glyphicon-search-year').click(function(){
-            console.log('hhqa');
-            search_year();
-        });
-
-        $('#search_year').change(function(){
-            console.log('hello');
-            search_year();
-        });
-
-        function search_year(){
-            val = $('#search_year').val();
-            console.log(val);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            })
-
-            $.ajax({
-                type: 'POST',
-                url: '/organizations_search_year',
-                data: {
-                    search_year: val
-                },
-                success: function(data){
-                    $('#loader').hide();
-                    $('#organization_content').html(data);
-                }
-            });
-        }
-    });
-
-</script>
 
 @endsection
 

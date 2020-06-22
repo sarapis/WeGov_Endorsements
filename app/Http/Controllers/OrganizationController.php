@@ -73,10 +73,10 @@ class OrganizationController extends Controller
 
     public function candidates_all()
     {
-        $types = Organization::distinct()->orderBy('type')->get(['type']);
+        $types = Politician::distinct()->orderBy('type')->get(['type']);
         $tags = Tag::orderBy('tag_name')->get();
-        $organizations = Organization::orderBy('name')->get();
-        return view('frontend.organizations', compact('types', 'tags','organizations'));
+        $candidates = Politician::orderBy('name')->get();
+        return view('frontend.organization_candidates_all', compact('types', 'tags','candidates'));
     }
 
     public function allpost(Request $request)

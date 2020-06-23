@@ -29,7 +29,7 @@ class ElectionController extends Controller
     {
         $election = Election::where('recordid', '=', $id)->first();
 
-        $offices = Campaign::where('winner', '=', '1')->where('election', '=', $election->recordid)->groupBy('campaigns.office')->select('campaigns.*', DB::raw('sum(campaigns.of_endorsements) as sum_endorsements'), DB::raw('count(campaigns.id) as sum_candidates'))->get();
+        $offices = Campaign::where('election', '=', $election->recordid)->groupBy('campaigns.office')->select('campaigns.*', DB::raw('sum(campaigns.of_endorsements) as sum_endorsements'), DB::raw('count(campaigns.id) as sum_candidates'))->get();
 
         return view('frontend.elections_detail', compact('election', 'offices'));
     }

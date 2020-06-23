@@ -57,9 +57,9 @@ class OrganizationController extends Controller
 
     public function endorsers()
     {
-        $types = Organization::distinct()->orderBy('type')->get(['type']);
+        $types = PoliticianOrganization::distinct()->orderBy('type')->get(['type']);
         $tags = Tag::orderBy('tag_name')->get();
-        $organizations = Organization::where('type', '!=', 'Elected Office')->get();
+        $organizations = PoliticianOrganization::where('type', '=', 'Elected Office')->get();
         return view('frontend.organizations_endorsers', compact('types', 'tags','organizations'));
     }
 
@@ -67,7 +67,7 @@ class OrganizationController extends Controller
     {
         $types = Organization::distinct()->orderBy('type')->get(['type']);
         $tags = Tag::orderBy('tag_name')->get();
-        $organizations = Organization::where('type', '=', 'Elected Office')->get();
+        $organizations = Organization::where('type', '<>', 'Elected Office')->get();
         return view('frontend.organizations', compact('types', 'tags','organizations'));
     }
 
@@ -517,6 +517,45 @@ class OrganizationController extends Controller
             $organizations = Organization::all();
 
         return view('frontend.organization_filter', compact('organizations'))->render();
+    }
+
+
+    public function filter_endorsers(Request $request)
+    {
+        $types = $request->organization_type;
+        $tags = $request->organization_tag;
+
+        // $find = $request->val; 
+        $check = 0;
+        if(isset($types[0])){
+            $organizations = PoliticianOrganization::whereIn('type',$types);            
+            $check = 1;
+        } else {
+            if ($types) {
+                $organizations = PoliticianOrganization::where('type', '=', $types); 
+            }
+        }
+
+        if(isset($tags[0])){
+            if($check == 0)
+               $organizations = PoliticianOrganization::where('tags', 'like', '%'.$tags[0].'%');
+            else
+                // $organizations = $organizations->whereIn('tags', $tags);
+            $organizations = $organizations->where(function ($query) use($tags) {
+                // $query = $query->where('tags', 'like', '%'.$tags[0].'%');
+                for($i = 0; $i < count($tags); $i++)
+                    $query->orwhere('tags', 'like', '%'.$tags[$i].'%');
+            });
+            $check = 1;
+        }
+      
+        if($check == 1)
+            $organizations = $organizations->get();
+        else
+            $organizations = PoliticianOrganization::all();
+
+
+        return view('frontend.organization_filter_endorsers', compact('organizations'))->render();
     }
     
 }

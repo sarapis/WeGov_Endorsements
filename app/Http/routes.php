@@ -62,6 +62,7 @@ Route::get('/organization_{id}/jobs/{job_id}', 'OrganizationController@job');
 Route::get('/organization_{id}', 'OrganizationController@find');
 
 Route::post('/organizations_filter', 'OrganizationController@filter');
+Route::post('/organizations_filter_endorsers', 'OrganizationController@filter_endorsers');
 Route::post('/organizations_search', 'OrganizationController@search');
 Route::post('/candidates_search_year', 'OrganizationController@search_year');
 

@@ -9,7 +9,7 @@
           <button type="button" class="btn btn-raised btn-block btn-primary btn-filter">Filter</button>
         </div>
         <div class="col-sm-3 side-filter">
-            @include('layouts.agency_sidebar')
+            @include('layouts.agency_sidebar_endorsers')
         </div>
         <div class="col-sm-9 organization_right" id="organization_content">
             <div class="">
@@ -22,9 +22,9 @@
                           @endif
                         </div>
                         <h5 class="org_title">
-                            <a href="/organization_{{$organization->organizations_id}}/endorsements">{{str_limit($organization->name, 40)}}</a>
+                            <a href="/organization_{{$organization->organizationid}}/endorsements">{{str_limit($organization->organization, 40)}}</a>
                         </h5>
-                        <a target="_blank" class="org_website" @if($organization->website!='') href="http://{{$organization->website}}" @endif > Website <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                        <!-- <a target="_blank" class="org_website" @if($organization->website!='') href="http://{{$organization->website}}" @endif > Website <i class="fa fa-external-link" aria-hidden="true"></i></a> -->
                         <?php 
                             $tag_names = explode(',', $organization->tags);
                             ?>

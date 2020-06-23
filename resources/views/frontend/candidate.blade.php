@@ -97,7 +97,7 @@
                                         <tbody>
                                                 @foreach($campaigns as $campaign)
                                                 <tr>
-                                                    <td><a href="/elections/{{$campaign->elections()->first()->year}}">{{$campaign->elections()->first()->name}}</a></td>
+                                                    <td><a href="/elections/{{$campaign->elections()->first()->recordid}}">{{$campaign->elections()->first()->name}}</a></td>
                                                     <td style="text-align: left;">@if(isset($campaign->office)) <a href="/organization_{{$campaign->organization()->first()->organizationid}}/candidates">{{$campaign->organization()->first()->organization}}</a> @endif</td>
                                                     <td style="text-align: left;">{{$campaign->parties_name}}</td>
                                                     <td>{{$campaign->of_endorsements}}</td>
@@ -128,7 +128,7 @@
                                         <tbody>
                                             @foreach($endorsements as $endorsement)
                                             <tr>
-                                                <td><a href="/elections/{{$endorsement->elections()->first()->year}}">{{$endorsement->elections()->first()->name}}</a></td>
+                                                <td><a href="/elections/{{$endorsement->elections()->first()->recordid}}">{{$endorsement->elections()->first()->name}}</a></td>
                                                 <td style="text-align: left;">@if($endorsement->office) <a href="/organization_{{$endorsement->offices()->first()->organizationid}}/candidates">{{$endorsement->offices()->first()->organization}}</a> @endif</td>
                                                 <td style="text-align: left;">@if(isset($endorsement->organizations)) <a href="/organization_{{$endorsement->organization()->first()->organizationid}}/endorsements">{{$endorsement->organization()->first()->organization}}</a> @endif</td>
                                                 <td style="text-align: left;"><a href="{{$endorsement->link}}"></a></td>

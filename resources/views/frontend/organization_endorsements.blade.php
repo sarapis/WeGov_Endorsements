@@ -123,8 +123,8 @@
                                         <tbody>
                                             @foreach($endorsements as $endorsement)
                                             <tr>
-                                                <td style="width: 10%;">@if($endorsement->elections()->first()) <a href="/elections/{{$endorsement->elections()->first()->year}}">{{$endorsement->elections()->first()->name}}</a> @endif</td>
-                                                <td style="text-align: left; width: 25%;"><a href="/candidates/{{$endorsement->candidate()->first()->id}}">{{$endorsement->candidate()->first()->name}}</a></td>
+                                                <td style="width: 10%;">@if($endorsement->elections()->first()) <a href="/elections/{{$endorsement->elections()->first()->recordid}}">{{$endorsement->elections()->first()->name}}</a> @endif</td>
+                                                <td style="text-align: left; width: 25%;"><a href="/candidates/{{$endorsement->candidate()->first()->recordid}}">{{$endorsement->candidate()->first()->name}}</a></td>
                                                 <td style="width: 20%;">{{$endorsement->parties_name}}</td>
                                                 <td style="text-align: left;">@if(isset($endorsement->offices()->first()->organization))<a href="/organization_{{$endorsement->offices()->first()->organizationid}}/candidates"> {{$endorsement->offices()->first()->organization}}</a>@endif</td>
                                                 <td style="width: 15%;">{{$endorsement->date_recorded}}</td>

@@ -57,7 +57,7 @@ class OrganizationController extends Controller
 
     public function endorsers()
     {
-        $types = PoliticianOrganization::distinct()->orderBy('type')->get(['type']);
+        $types = PoliticianOrganization::distinct()->where('type', '!=', 'Elected Office')->orderBy('type')->get(['type']);
         $tags = Tag::orderBy('tag_name')->get();
         $organizations = PoliticianOrganization::where('type', '!=', 'Elected Office')->get();
         return view('frontend.organizations_endorsers', compact('types', 'tags','organizations'));
@@ -67,7 +67,7 @@ class OrganizationController extends Controller
     {
         $types = Organization::distinct()->orderBy('type')->get(['type']);
         $tags = Tag::orderBy('tag_name')->get();
-        $organizations = Organization::where('type', '<>', 'Elected Office')->get();
+        $organizations = Organization::where('type', '=', 'Elected Office')->get();
         return view('frontend.organizations', compact('types', 'tags','organizations'));
     }
 

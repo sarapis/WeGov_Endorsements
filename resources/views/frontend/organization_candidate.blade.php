@@ -115,7 +115,7 @@
                                         <tbody>
                                                 @foreach($campaigns as $campaign)
                                                 <tr>
-                                                    <td><a href="/elections/{{$campaign->elections()->first()->year}}">{{$campaign->elections()->first()->name}}</a></td>
+                                                    <td><a href="/elections/{{$campaign->elections()->first()->recordid}}">{{$campaign->elections()->first()->name}}</a></td>
                                                     <td style="text-align: left;">{{$organization->name}}</td>
                                                     <td style="text-align: left;">{{$campaign->parties_name}}</td>
                                                     <td>{{$campaign->of_endorsements}}</td>

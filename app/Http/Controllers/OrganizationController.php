@@ -479,6 +479,16 @@ class OrganizationController extends Controller
         return view('frontend.organization_filter', compact('organizations'))->render();
     }
 
+    public function search_endorsers(Request $request)
+    {
+        $find = $request->search_agency;
+
+        $organizations = PoliticianOrganization::where('organization', 'like', '%'.$find.'%')
+            ->orwhere('type', 'like', '%'.$find.'%')->orwhere('tags', 'like', '%'.$find.'%')->get();
+
+        return view('frontend.organization_filter_endorsers', compact('organizations'))->render();
+    }
+
     public function search_year(Request $request)
     {
         $year = $request->search_year;

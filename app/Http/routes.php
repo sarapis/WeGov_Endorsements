@@ -64,6 +64,7 @@ Route::get('/organization_{id}', 'OrganizationController@find');
 Route::post('/organizations_filter', 'OrganizationController@filter');
 Route::post('/organizations_filter_endorsers', 'OrganizationController@filter_endorsers');
 Route::post('/organizations_search', 'OrganizationController@search');
+Route::post('/organizations_search_endorsers', 'OrganizationController@search_endorsers');
 Route::post('/candidates_search_year', 'OrganizationController@search_year');
 
 //Services

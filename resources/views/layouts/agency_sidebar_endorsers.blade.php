@@ -100,7 +100,7 @@
 
         $.ajax({
           type: 'POST',
-          url: '/organizations_search',
+          url: '/organizations_search_endorsers',
           data: {
             search_agency: val
           },

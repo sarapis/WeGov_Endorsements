@@ -261,6 +261,7 @@ class OrganizationController extends Controller
 
         $politician_organization = DB::table('politician_organizations')->where('organizationid', '=', $id)->first();
 
+        $election_2019_recordid = Election::where('id', '=', '1')->first()->recordid;
         $election_2017_recordid = Election::where('year', '=', '2017')->first()->recordid;
         $election_2013_recordid = Election::where('year', '=', '2013')->first()->recordid;
 
@@ -272,11 +273,13 @@ class OrganizationController extends Controller
             $politicians_2017 = Campaign::where('office', '=', $politician_organization->recordid)->where('election', '=', $election_2017_recordid)->leftjoin('parties', 'campaigns.parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('campaigns.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('campaigns.id')->orderBy('campaigns.winner', 'desc')->get();
 
             $politicians_2013 = Campaign::where('office', '=', $politician_organization->recordid)->where('election', '=', $election_2013_recordid)->leftjoin('parties', 'campaigns.parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('campaigns.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('campaigns.id')->orderBy('campaigns.winner', 'desc')->get();
+
+            $politicians_2019 = Campaign::where('office', '=', $politician_organization->recordid)->where('election', '=', $election_2019_recordid)->leftjoin('parties', 'campaigns.parties','like', DB::raw("concat('%', parties.recordid, '%')"))->select('campaigns.*', DB::raw('group_concat(parties.name) as parties_name'))->groupBy('campaigns.id')->orderBy('campaigns.winner', 'desc')->get();
         }
         else{
             $politicians_2017 = [];
             $politicians_2013 = [];
-
+            $politicians_2019 = [];
         }
 
 
@@ -289,7 +292,7 @@ class OrganizationController extends Controller
         $entity = EntityOrganization::where('types', '=', $organization_type)->first();
 
 
-        return view('frontend.organization_candidates', compact('organization', 'organization_type', 'entity', 'politicians_2017', 'politicians_2013', 'endorsements'));
+        return view('frontend.organization_candidates', compact('organization', 'organization_type', 'entity', 'politicians_2017', 'politicians_2013', 'politicians_2019', 'endorsements'));
 
     }
 

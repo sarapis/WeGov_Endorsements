@@ -114,7 +114,8 @@
                                     <div class="election_head">
                                         <h3>Elections</h3>
                                         <ul role="tablist">
-                                            <li class="active"><a href="#2017" data-toggle="tab">2017 Primary</a></li>
+                                            <li class="active"><a href="#2019" data-toggle="tab" >2019 Primary</a></li>
+                                            <li><a href="#2017" data-toggle="tab">2017 Primary</a></li>
                                             <li><a href="#2013" data-toggle="tab" >2013 Primary</a></li>
                                         </ul>
                                     </div>
@@ -123,7 +124,39 @@
                         </div>
                         <div class="col-sm-9">
                             <div class="tab-content" style="padding: 0;">
-                                <div role="tabpanel" class="tab-pane active" id="2017">
+                                <div role="tabpanel" class="tab-pane active" id="2019">
+                                    @foreach($politicians_2019 as $politician)
+                                    <div class="col-sm-4">
+                                        <div class="box padding_0">
+                                            <div class="box-header">
+                                                <a href="/candidates/{{$politician->politicians()->first()->recordid}}"><h3 class="box-title">{{$politician->politicians()->first()->name}}</h3> @if($politician->winner) <span class="glyphicon glyphicon-star pull-right box-title"></span> @endif</a>
+                                            </div>
+                                            <div class="box-body">
+                                                <span class="org_tags">@if($politician->parties) {{$politician->parties_name}} @else &nbsp&nbsp @endif</span>
+                                                <span class="org_tags">Endorsements : {{$politician->of_endorsements}}</span>
+                                                @php
+                                                    $endorsement_ids = $endorsements->where('campaigns', $politician->recordid)
+                                                    
+                                                @endphp
+                                                <div class="candidate_detail">
+                                                
+                                                    <ul>
+                                                    @foreach($endorsement_ids as $endorsement)
+                                                        @if($endorsement->organization_name)
+                                                        <li>
+                                                            <a href="/organization_{{ $endorsement->organizations_id }}/endorsements"><span>{{ $endorsement->organization_name }}</span></a>
+                                                        </li>
+                                                        @endif
+                                                    @endforeach
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="2017">
                                     @foreach($politicians_2017 as $politician)
                                     <div class="col-sm-4">
                                         <div class="box padding_0">

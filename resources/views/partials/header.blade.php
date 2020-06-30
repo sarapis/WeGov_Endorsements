@@ -56,7 +56,7 @@
 			<a href="/endorsers" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 9) == 'endorsers') is-active @endif">Endorsers</a>
 			<a href="/offices" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 7) == 'offices') is-active @endif">Offices</a>
 			<a href="/candidates/588" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 10) == 'candidates') is-active @endif">Candidates</a>
-			<a href="http://www.d9ithub.com/nycvoters/app/login.php" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 9) == 'nycvoters') is-active @endif">Voters</a>
+			<a href="https://voters.wegov.nyc/app/" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 9) == 'nycvoters') is-active @endif">Voters</a>
 		</div>
 	</div>
 	<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark submenu_div">
@@ -65,7 +65,7 @@
 			<a href="/endorsers" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 9) == 'endorsers') is-active @endif">Endorsers</a>
 			<a href="/offices" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 7) == 'offices') is-active @endif">Offices</a>
 			<a href="/candidates" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 10) == 'candidates') is-active @endif">Candidates</a>
-			<a href="http://www.d9ithub.com/nycvoters/app/login.php" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 9) == 'nycvoters') is-active @endif">Voters</a>
+			<a href="https://voters.wegov.nyc/app/" class="mdl-layout__tab @if(mb_substr(Request::segment(1), 0, 9) == 'nycvoters') is-active @endif">Voters</a>
 		</div>
 	</div>
 </header>

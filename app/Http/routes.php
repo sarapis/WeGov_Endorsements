@@ -173,6 +173,10 @@ Route::get('/social/handle/{provider}',[
 	'uses' 		=> 'Auth\AuthController@getSocialHandle'
 ]);
 
+Route::get('/', function () {
+    return redirect('/elections');
+});
+
 // AUTHENTICATION ALIASES/REDIRECTS
 Route::get('login', function () {
     return redirect('/auth/login');
